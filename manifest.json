@@ -529,5 +529,93 @@
    "W3B_R129_M"
   ],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_C",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_C.lean",
+  "chars": 1713,
+  "sha256": "94168b5f3e4301694e21fd343c84e2433806b97769b1b78de5d15dd8bfc1c85c",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_M",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_M.lean",
+  "chars": 6516,
+  "sha256": "7fb570d2b3f0f6de32af58155eea27cfa7ba8ae29c2fc85402b52a5b301be744",
+  "imports_posted": [
+   "mwnwdkfh-f5rc11"
+  ],
+  "imports_in_bundle": [
+   "LDR_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_M2",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_M2.lean",
+  "chars": 2899,
+  "sha256": "945a8c9abcc84a058301f677eee470266d305319590d2a785d82138b9137276a",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "LDR_M"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_T1",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_T1.lean",
+  "chars": 2008,
+  "sha256": "c525e7f1480327cbc9104ad60a3425fca1106d2f0aff6c2374fa1da1402fc392",
+  "imports_posted": [
+   "mwnwdiwa-i2wmaa"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_T2",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_T2.lean",
+  "chars": 7023,
+  "sha256": "265da89cce6741a0dcbbe167c6dc54787c7efc7280933d55e1d38fd74ee79758",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "LDR_M",
+   "LDR_T1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_T3",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_T3.lean",
+  "chars": 7435,
+  "sha256": "0ddd4cc5d438f92e4c503daca85704c7a0efa1d2eab85961df77aec48bf181d0",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "LDR_T2"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "LDR_rules_469_337",
+  "module": "LDR_M3b",
+  "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_M3b.lean",
+  "chars": 2500,
+  "sha256": "00609c93412d113d907e5c09076679d87f4d03a54023279e6ee0ebceda20fdae",
+  "imports_posted": [
+   "mwnvekt3-6yexo1"
+  ],
+  "imports_in_bundle": [
+   "LDR_M2",
+   "LDR_T3"
+  ],
+  "table": "oeis-new-terms"
  }
 ]

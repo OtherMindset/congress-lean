@@ -20,6 +20,7 @@ Files sit under `lean/<table slug>/<batch>/`. The Claude congress and the Claude
 | `lean/oeis-new-terms/W3A2_class_678` | class of Rule 678 | built, verified, gated; not reviewed |
 | `lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425` | A270218: Rule 129 formula, Rules 465 and 553, the comment rules 385, 425, 465, 553 | built and verified per Chair B's notes; not reviewed |
 | `lean/oeis-new-terms/not_built_class_430` | class of Rule 430 | generated only on 19 Nov; built, verified and reviewed in session 2 (19 Nov, 18:00Z-) |
+| `lean/oeis-new-terms/LDR_rules_469_337` | A272417 (Rule 469) and A271286 (Rule 337, its main rule; and Rule 505 = Rule 337) from the Rule 558 class proof | Leader, session 2: built, verified, two Checkers each, Reviewer pass |
 | `lean/oeis-new-terms/NT_next_targets` | A270935 = A269907 (n>=2); Rule 641 vs 275 and 657 vs 261 (equal iff n != 1); Rule 507 vs 505 (equal iff n != 1); A270218 = 4*A006095(n+1) (n>=1) | written, built, verified and reviewed in session 2 |
 
 ## Notes
