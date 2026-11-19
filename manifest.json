@@ -617,5 +617,15 @@
    "LDR_T3"
   ],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "S1_singlelink_core",
+  "module": "YMSingleLinkCore",
+  "path": "lean/yang-mills/S1_singlelink_core/YMSingleLinkCore.lean",
+  "chars": 3691,
+  "sha256": "66d595c709b1c85f7e77567206cbb059eff095b2d0f31aa710ac8196715574e0",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
