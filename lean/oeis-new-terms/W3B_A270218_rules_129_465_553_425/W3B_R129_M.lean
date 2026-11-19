@@ -7,7 +7,7 @@ import LongTable.W3B_R129_D
 -/
 namespace LT2D
 
-/-- A270218 (Rule 129): %F a(n) = 4*(1-3*2^n+2^(1+2*n))/3. - Colin Barker, Mar 13 2016 (the entry gives no range; the formula gives 0 at n = 0 but a(0) = 1, so it is stated for n >= 1) -/
+/-- A270218 (Rule 129), read r-mwnv6hwv-xsha6f: "%F A270218 Conjectures from _Colin Barker_, Mar 13 2016: (Start)" / "%F A270218 a(n) = 4*(1-3*2^n+2^(1+2*n))/3.". Stated without division, as 3 * a(n) = 4*(1-3*2^n+2^(1+2*n)) (the right side is divisible by 3 for every n). The entry gives no range, and the entry's formula is false at n = 0 (it gives 0, but a(0) = 1), so it is stated for n >= 1. -/
 theorem a270218_formula (n : Nat) (hn : 1 ≤ n) :
     3 * (onCount 129 (2 ^ n - 1) : Int) = 4 * (1 - 3 * 2 ^ n + 2 ^ (1 + 2 * n)) := by
   have h := vn_count_chunked VN.W3B_R129.tab 129 767 3 8 (-12) (4) 1 1 VN.W3B_R129.sls VN.W3B_R129.ok2 VN.W3B_R129.ok1s VN.W3B_R129.ok1 VN.W3B_R129.okr n (by omega)

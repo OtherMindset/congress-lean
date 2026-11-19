@@ -7,7 +7,7 @@ import LongTable.W3B_R465_D
 -/
 namespace LT2D
 
-/-- Class theorem for Rule 465 (no OEIS conjecture): 3 * a(n) = 8*4^n - 12*2^n + 4 for n >= 1, where a(n) is the number of ON cells inside [-g, g]^2 at stage g = 2^n - 1 (so a(n) = (8*4^n - 12*2^n + 4)/3, equal to A270218's formula). -/
+/-- Class theorem for Rule 465 (1 rule in its class). Rule 465 is named in A270218's comment; this theorem is only Rule 465's own closed form, not that equality (which is LT2D.a270218_r465_count_eq_129): 3 * a(n) = 8*4^n - 12*2^n + 4 for n >= 1, where a(n) is the number of ON cells inside [-g, g]^2 at stage g = 2^n - 1 (so a(n) = (8*4^n - 12*2^n + 4)/3, equal to A270218's formula). -/
 theorem r465_count (n : Nat) (hn : 1 ≤ n) :
     3 * (onCount 465 (2 ^ n - 1) : Int) = 8 * 4 ^ n - 12 * 2 ^ n + 4 := by
   have h := vn_count_chunked VN.W3B_R465.tab 465 1023 3 8 (-12) (4) 1 1 VN.W3B_R465.sls VN.W3B_R465.ok2 VN.W3B_R465.ok1s VN.W3B_R465.ok1 VN.W3B_R465.okr n (by omega)

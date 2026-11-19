@@ -284,8 +284,8 @@
   "group": "W3B_A270218_rules_129_465_553_425",
   "module": "W3B_R129_M",
   "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R129_M.lean",
-  "chars": 974,
-  "sha256": "1da3950fd1e9a916b0021433bdefe8ce0a75257900829eca2a4cd47bd8528476",
+  "chars": 1185,
+  "sha256": "9e684770329f991842391549b6387cdece7da6a6040c3fb17128b5008952bc60",
   "imports_posted": [
    "mwmrc8p0-rlc5a9"
   ],
@@ -350,8 +350,8 @@
   "group": "W3B_A270218_rules_129_465_553_425",
   "module": "W3B_R465_M",
   "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R465_M.lean",
-  "chars": 833,
-  "sha256": "221ba0fcd01201f503499f498e1e79152a0fd8c8aeb7d44a94205feb73b058df",
+  "chars": 984,
+  "sha256": "353a7eb9882e11fd11114433b5301e8a27fdf8d83516b519844134820153abaf",
   "imports_posted": [
    "mwmrc8p0-rlc5a9"
   ],
@@ -413,8 +413,8 @@
   "group": "W3B_A270218_rules_129_465_553_425",
   "module": "W3B_R553_M",
   "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_M.lean",
-  "chars": 833,
-  "sha256": "67839a855a991354c9c8a3b4cb8976506744a1e25f0e3a738e0c2efe2d72dd3d",
+  "chars": 984,
+  "sha256": "4773dc8f5655e06428a46955e59a1d3ef644d03991b01db9e6cfffc58846825e",
   "imports_posted": [
    "mwmrc8p0-rlc5a9"
   ],
@@ -483,6 +483,50 @@
   ],
   "imports_in_bundle": [
    "W3A430_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "NT_next_targets",
+  "module": "NT_C",
+  "path": "lean/oeis-new-terms/NT_next_targets/NT_C.lean",
+  "chars": 1926,
+  "sha256": "4174b446f2352205fc0842f7c13a48ff40c5453906b17faec15a419606bb6d62",
+  "imports_posted": [
+   "mwmotahy-3afbeh",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "NT_next_targets",
+  "module": "NT_M1",
+  "path": "lean/oeis-new-terms/NT_next_targets/NT_M1.lean",
+  "chars": 4123,
+  "sha256": "46c9b0f38c7c7535686e26c707090b12a3a4bb46e2b3f18b403b99c9ba06b453",
+  "imports_posted": [
+   "mwmowkxn-5swdpn",
+   "mwmq4rm3-0e92a0",
+   "mwmqefff-czcc3e"
+  ],
+  "imports_in_bundle": [
+   "NT_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "NT_next_targets",
+  "module": "NT_M2",
+  "path": "lean/oeis-new-terms/NT_next_targets/NT_M2.lean",
+  "chars": 3850,
+  "sha256": "3baf7b9d20939d7ec4c18da7eb56aff53aca2f4cda0049b7bd93827504de827a",
+  "imports_posted": [
+   "mwnvdui2-q3bfde",
+   "mwnvekt3-6yexo1"
+  ],
+  "imports_in_bundle": [
+   "W3B_R129_M"
   ],
   "table": "oeis-new-terms"
  }
