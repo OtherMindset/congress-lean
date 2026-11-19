@@ -1,0 +1,489 @@
+[
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R505_C",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_C.lean",
+  "chars": 9575,
+  "sha256": "4922822b4bf02dce66180b8c65e8a754f76947cb6e4d3acd25a5f369b45a360b",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R505_D",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D.lean",
+  "chars": 11175,
+  "sha256": "bc3c1122494ea76a0756d4f2911fe52dd54c27c638edbc7bf3e72cebf3842356",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R505_D3"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R505_D1",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D1.lean",
+  "chars": 9040,
+  "sha256": "c639a1a8b33773de115a296119edf37a3f592ef345f4387e93e7cb1eb27763b2",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R505_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R505_D2",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D2.lean",
+  "chars": 9046,
+  "sha256": "37ff854052b77bc43fe266ad6d27cd96afb2eebd68c82eed4c981cf9bd045828",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R505_D1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R505_D3",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D3.lean",
+  "chars": 9047,
+  "sha256": "cd5be29f1dbec481e4149bece042965d402d88ac1830bedd1dd73f9ffd4ef4a4",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R505_D2"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R505_M",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_M.lean",
+  "chars": 1104,
+  "sha256": "84c83ade84c7f9ea0a486b52de335a50deb8dbd3468e1cb8eccf5b0f35a06af6",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3B_R505_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R507_C",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_C.lean",
+  "chars": 9648,
+  "sha256": "7f068d4e019475e6411b03c6bd9d346fbffde97bf425fee8669529015291c03a",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R507_D",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D.lean",
+  "chars": 11284,
+  "sha256": "2be0ea73aa88a1026fce1ccddc60c3fab77bfa6b119190674fafb07d30514c43",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R507_D3"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R507_D1",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D1.lean",
+  "chars": 9042,
+  "sha256": "5bfce1d9c611346daa2c0c9243617a128884b35ebdc9c1a8209a397cb7dca530",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R507_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R507_D2",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D2.lean",
+  "chars": 9045,
+  "sha256": "5add58b9216d108fe2a0d4aa40ba47a55c08ef27273636710647563d11c43de7",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R507_D1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R507_D3",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D3.lean",
+  "chars": 9046,
+  "sha256": "68b031ca46b8eb79ac7cb02a7838990bb9eea5cbd19d4238a8d0974647de950a",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R507_D2"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3L1r_rules_505_507",
+  "module": "W3B_R507_M",
+  "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_M.lean",
+  "chars": 854,
+  "sha256": "73bf2e66650c924763db57a4ea0fab1b76d907adfdad0030d44b719d28358eb8",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3B_R507_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A1_class_558",
+  "module": "W3A558_C",
+  "path": "lean/oeis-new-terms/W3A1_class_558/W3A558_C.lean",
+  "chars": 9747,
+  "sha256": "08dd709af5b6c997767fd569ed76442aab3b76368c9b5380eb4b5de9f059fee1",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A1_class_558",
+  "module": "W3A558_D",
+  "path": "lean/oeis-new-terms/W3A1_class_558/W3A558_D.lean",
+  "chars": 4477,
+  "sha256": "22498b39f7481b96e790b4ba6776dffc05e9562fdbe05504c1e427c8dd6afee2",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3A558_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A1_class_558",
+  "module": "W3A558_M",
+  "path": "lean/oeis-new-terms/W3A1_class_558/W3A558_M.lean",
+  "chars": 1196,
+  "sha256": "3844392a05bcae4cd46941b944f58c9ac8666bfafa879341e6575e38c2db47e4",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3A558_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A2_class_678",
+  "module": "W3A678_C",
+  "path": "lean/oeis-new-terms/W3A2_class_678/W3A678_C.lean",
+  "chars": 8514,
+  "sha256": "abfa49f54cfe45e78728aa400c21ea644b0e8b1b6baa6c37088c12640e8032d6",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A2_class_678",
+  "module": "W3A678_D",
+  "path": "lean/oeis-new-terms/W3A2_class_678/W3A678_D.lean",
+  "chars": 9040,
+  "sha256": "404e96acc12dfa08a2fa4f8f53a4753e46967201d47dc1702d84053080425f9f",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3A678_D1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A2_class_678",
+  "module": "W3A678_D1",
+  "path": "lean/oeis-new-terms/W3A2_class_678/W3A678_D1.lean",
+  "chars": 7180,
+  "sha256": "5b9e1c1cc642a606f9ebeb1d45d99eff2e94916fead9507d55f4a4b612d54b73",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3A678_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3A2_class_678",
+  "module": "W3A678_M",
+  "path": "lean/oeis-new-terms/W3A2_class_678/W3A678_M.lean",
+  "chars": 769,
+  "sha256": "1864bb379c24226aeb72078a355104a999ec6339c42e26ed16257abb897d026e",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3A678_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R129T_M",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R129T_M.lean",
+  "chars": 3260,
+  "sha256": "5ada520480b44972b48365f42d060ca037a416562173dc5bb2c90af534b58a27",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3B_R129_D",
+   "W3B_R465_D",
+   "W3B_R553_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R129_C",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R129_C.lean",
+  "chars": 8614,
+  "sha256": "a5aa0d47f4a99ba999a18a2041e2235204caa93da20999f3d61dfc66879a0fb5",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R129_D",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R129_D.lean",
+  "chars": 4894,
+  "sha256": "84f61934209a119a8163f39a12f5d00c5f339d89d05e2e179b00e2d737800cfc",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R129_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R129_M",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R129_M.lean",
+  "chars": 974,
+  "sha256": "1da3950fd1e9a916b0021433bdefe8ce0a75257900829eca2a4cd47bd8528476",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3B_R129_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R425T_M",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R425T_M.lean",
+  "chars": 1674,
+  "sha256": "25b0ec8fe876a43f6c0ce9a76b4f5c476c4e22d999181b4340b7922358eb788c",
+  "imports_posted": [
+   "mwnlksna-88ktqn",
+   "mwnllao8-qtpg9r"
+  ],
+  "imports_in_bundle": [
+   "W3B_R129_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R465_C",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R465_C.lean",
+  "chars": 8524,
+  "sha256": "174cf8c68a2bcbb385b32647e2caeb2e1ff81bcf03a0e6d3c4d9c93f174caf2f",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R465_D",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R465_D.lean",
+  "chars": 9344,
+  "sha256": "b73af64e769ce0107c6ff2776bc8538df6bf2490c9aa97238c51f31513d26379",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R465_D1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R465_D1",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R465_D1.lean",
+  "chars": 3836,
+  "sha256": "6d303c2e7cc908000daa661390630a8a9fde9e4bf5964f85112f31ea082bd652",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R465_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R465_M",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R465_M.lean",
+  "chars": 833,
+  "sha256": "221ba0fcd01201f503499f498e1e79152a0fd8c8aeb7d44a94205feb73b058df",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3B_R465_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R553_C",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_C.lean",
+  "chars": 8817,
+  "sha256": "035a959d66f43ca8ab8e57c8cb60dab7d91fe392ef2c9844c08ae63c46d918d9",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R553_D",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_D.lean",
+  "chars": 9578,
+  "sha256": "345469d98dde3db5f18a2820e64c5880b335144297bf710dd84baa1215fbb2d1",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R553_D2"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R553_D1",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_D1.lean",
+  "chars": 10488,
+  "sha256": "ace606581fb8055d7d5933ec4d541c5c7573f9d6e6cef7dcf3cb9af66b965397",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R553_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R553_D2",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_D2.lean",
+  "chars": 3837,
+  "sha256": "750cfffaf2e5ed0841c190d10658eeeb87ac8feb6959e58bcd9417fc84560ce1",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3B_R553_D1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "W3B_A270218_rules_129_465_553_425",
+  "module": "W3B_R553_M",
+  "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_M.lean",
+  "chars": 833,
+  "sha256": "67839a855a991354c9c8a3b4cb8976506744a1e25f0e3a738e0c2efe2d72dd3d",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3B_R553_D"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "not_built_class_430",
+  "module": "W3A430_C",
+  "path": "lean/oeis-new-terms/not_built_class_430/W3A430_C.lean",
+  "chars": 8425,
+  "sha256": "2f3c2c8593ec10f629a828980c11f8e0a842ecb4067417d0ede3614e49f874f4",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwmov2n4-tdc56b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "not_built_class_430",
+  "module": "W3A430_D",
+  "path": "lean/oeis-new-terms/not_built_class_430/W3A430_D.lean",
+  "chars": 8623,
+  "sha256": "a03ef1cd03d9549f37d5fca78e3ad38f70590410ccbbc10890f6937226171493",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3A430_D2"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "not_built_class_430",
+  "module": "W3A430_D1",
+  "path": "lean/oeis-new-terms/not_built_class_430/W3A430_D1.lean",
+  "chars": 10507,
+  "sha256": "e49d865c7ca139889070b66c156e7a9471249af2f38e0d7afd7c6be6539d138d",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3A430_C"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "not_built_class_430",
+  "module": "W3A430_D2",
+  "path": "lean/oeis-new-terms/not_built_class_430/W3A430_D2.lean",
+  "chars": 3848,
+  "sha256": "b2948978a5e2b30abf6e8357030c15e1ecf59bde56ca1e5cdadcf42adbcd991e",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "W3A430_D1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "not_built_class_430",
+  "module": "W3A430_M",
+  "path": "lean/oeis-new-terms/not_built_class_430/W3A430_M.lean",
+  "chars": 773,
+  "sha256": "b7fba7acfe2008d3768d2f5912af23767fdafa85ef7f27f73bf04b4fe1c2d180",
+  "imports_posted": [
+   "mwmrc8p0-rlc5a9"
+  ],
+  "imports_in_bundle": [
+   "W3A430_D"
+  ],
+  "table": "oeis-new-terms"
+ }
+]
