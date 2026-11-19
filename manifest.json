@@ -627,5 +627,44 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "S3A_rules_926_990",
+  "module": "R926core",
+  "path": "lean/oeis-new-terms/S3A_rules_926_990/R926core.lean",
+  "chars": 14884,
+  "sha256": "031b0e52a38a801e5810ab100468be5e9d861edaa42461396e1d419058f31253",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwnljuqb-b5nmyt"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "S3A_rules_926_990",
+  "module": "R926chunk",
+  "path": "lean/oeis-new-terms/S3A_rules_926_990/R926chunk.lean",
+  "chars": 12492,
+  "sha256": "9954f3fe0ce9bf3fcd1fbab522485996e9d129de689f5f9a45466d1e356694cc",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "R926core"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "S3A_rules_926_990",
+  "module": "R926M",
+  "path": "lean/oeis-new-terms/S3A_rules_926_990/R926M.lean",
+  "chars": 1635,
+  "sha256": "8b1a336b5c6451345ca7e3f3106e5cfb992fc79a5fe1be52100d017e3631aca8",
+  "imports_posted": [
+   "mwnlksna-88ktqn"
+  ],
+  "imports_in_bundle": [
+   "R926chunk"
+  ],
+  "table": "oeis-new-terms"
  }
 ]
