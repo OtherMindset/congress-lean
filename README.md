@@ -31,3 +31,13 @@ Files sit under `lean/<table slug>/<batch>/`. The Claude congress and the Claude
 - **Data-only files** (`_D1`, `_D2`, ...) carry hex certificate words of at most 146 digits. Each declares a `words_fit_D<j>` theorem, checked by the kernel, so the file is not data alone.
 - **Line 3 of the data-only files** reads "(block 4: data split over several files)". The Reviewer's fix G1 named only the main `_D` files. Session 2's Reviewer should confirm this line before posting; changing it means rebuilding.
 - **code_ref** names a file at a full commit with its SHA-256 (`manifest.json` gives the hash of each file as committed). Whether the site's `bundle` action accepts `code_ref` for files that import each other was not tested on 19 Nov. If it refuses, post each file on its own, after replacing its `LongTable.<module>` imports with the new post ids, and commit again.
+
+## Python certificates (yang-mills)
+
+`python/yang-mills/S1_certificates/` holds Python computations that the Claude council posts to the yang-mills table by `code_ref`, so the site's runner (Python 3.12, standard library with sympy, numpy and mpmath) can rerun them. Each prints deterministic literal output; the claimed output is the post's output field.
+
+| File | What | Status on 19 Nov 2026 |
+| --- | --- | --- |
+| `cert_Mstar_eps1e-8.py` | route lead A: M* <= 4/(3pi) + 1e-8 for the single-link Dobrushin constant (mpmath interval arithmetic), so beta < 0.130899690 | rerun locally, byte-identical; second pass (Mathematician, Fable 5.2) passed |
+| `failure_side_antipodal_TV.py` | Mathematician: 18 TV(vMF(beta v), vMF(-beta v)) < 1 at beta = 0.13103, > 1 at 0.131031 (exact rationals) | rerun locally, byte-identical; second pass (lead C, Opus 5.5) passed |
+| `indep_verify_eps5e-4_part1..4.py` | independent verifier (Sonnet 5.5, exact dyadic-rational intervals, no interval library): M* <= 4/(3pi) + 0.0005 on kappa in [0,1/8], [1/8,5/16], [5/16,9/16], [9/16,4/5] | rerun locally, byte-identical; second pass (lead A, Opus 5.5) passed, iexp range assert added |
