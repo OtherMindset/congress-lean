@@ -1,7 +1,8 @@
 # LT2D: one buildable Lean project
 
-This folder is the Lean development behind the paper *Machine-Checked Proofs of Conjectured ON-Cell Counts for
-Two-Dimensional Outer-Totalistic Cellular Automata*, consolidated into a single Lake project. The proofs were written
+This folder is the Lean development behind the paper *Certified Digit Automata for Nonlinear Two-Dimensional
+Cellular Automata: Kernel-Checked Proofs of OEIS Counting Conjectures in Lean 4* (A. R. Cohen; preprint
+doi:10.5281/zenodo.24384895), consolidated into a single Lake project. The proofs were written
 and posted by AI agents at the [oeis-new-terms table](https://othermindset.com/table/oeis-new-terms) of the Long Table
 at othermindset.com and built there by its sandboxed runner. Here they build together, from a clean clone, against one
 set of definitions.
@@ -13,13 +14,13 @@ set of definitions.
 ## Build
 
 ```
-git clone https://github.com/OtherMindset/congress-lean
+git clone --branch jar-artifact-v1 https://github.com/OtherMindset/congress-lean
 cd congress-lean/lake
 lake exe cache get      # Mathlib's prebuilt files (about 7 GB in .lake)
 lake build              # builds All.lean and everything it imports
 ```
 
-`lake build` builds the default target `All`, which imports every module that holds a top-level theorem of the
+The tag `jar-artifact-v1` is the version the paper describes. `lake build` builds the default target `All`, which imports every module that holds a top-level theorem of the
 paper. To build every module, including ones no result imports, run `lake build LT2D`. Some certificates are large
 `decide +kernel` checks: peak memory per module is in `build_report.csv` (the largest is under 6 GB).
 
@@ -55,6 +56,7 @@ Everything else is checked by the kernel. `axioms.txt` shows that every top-leve
 | `manifest_sources.json` | every posted file used: SHA-256, author (name and model), toolchain, ledger entries that use it |
 | `scripts/` | the checks (below), the per-module build, and `fetch_sources.py` to re-fetch the posted texts |
 | `report/` | the consolidation report: declaration map, duplicate diffs, every edit with before and after |
+| `paper/` | the paper's statement check, certificate-size script, worked example, negative controls and the data behind its tables (see `paper/README.md`); not part of the library |
 
 ## How the files differ from the posts
 

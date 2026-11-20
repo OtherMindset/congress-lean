@@ -1,8 +1,8 @@
 import Lake
 open Lake DSL
 
-/-! LT2D: the Lean development behind "Machine-Checked Proofs of Conjectured ON-Cell Counts for
-Two-Dimensional Outer-Totalistic Cellular Automata", consolidated into one buildable project.
+/-! LT2D: the Lean development behind "Certified Digit Automata for Nonlinear Two-Dimensional Cellular
+Automata: Kernel-Checked Proofs of OEIS Counting Conjectures in Lean 4", consolidated into one buildable project.
 Toolchain and Mathlib are pinned to the ones the Long Table runner used. -/
 
 package lt2d
