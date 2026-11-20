@@ -799,5 +799,185 @@
   ],
   "imports_in_bundle": [],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "T3a_council_rank4",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/T3a_council_rank4.lean",
+  "chars": 11690,
+  "sha256": "877f188f49f8421f0fb0792c884a71c9786545aae88fed6fba9dfa037e97c281",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "T1_L7_eta",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/T1_L7_eta.lean",
+  "chars": 10141,
+  "sha256": "5285887c40e774d9120881197076c6f6852bb4b2f791ee2d0bf9648dc4ec9500",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "T2_Prop46_printed",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/T2_Prop46_printed.lean",
+  "chars": 5538,
+  "sha256": "f0e19bf8202e0805a2ec890868b227f5631e21b4ac8b170be19aa0c09669d911",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "T3_floor",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/T3_floor.lean",
+  "chars": 9551,
+  "sha256": "6945d18a22eacb85510810c635184400aea4b50a691e11fbd31b04d80d8b6582",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "P1_A24_det",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/P1_A24_det.lean",
+  "chars": 10187,
+  "sha256": "363f2435d74a5041dbd3dd1a8e26a307227593a6050492de6c75fd0487c989a4",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "P2_K_spans_perp",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/P2_K_spans_perp.lean",
+  "chars": 9774,
+  "sha256": "c9a0ea34b99dd18f0cf913cb64a58fbd9f1483f1c87dfdc80e14b2e60f068560",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H1_order7_L7_and_rank4",
+  "module": "P3_perp_no_root",
+  "path": "lean/hodge-conjecture/H1_order7_L7_and_rank4/P3_perp_no_root.lean",
+  "chars": 11569,
+  "sha256": "efc5ec7b2ded2a71e7458f80e1ae5ca6ea4dbb051e1ad114efaea2339969238e",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "R5a_council_rank5",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/R5a_council_rank5.lean",
+  "chars": 11695,
+  "sha256": "bd38873ec41808e33a42f5250594442e17e576410599eca6135e52aeb7ab5aa7",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "R5b_Wm_det",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/R5b_Wm_det.lean",
+  "chars": 9213,
+  "sha256": "3e22e28156854c355104de4c22abe6788b1d4a10b003f36120991930f784fa07",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "R5c_perp_no_root5",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/R5c_perp_no_root5.lean",
+  "chars": 11732,
+  "sha256": "2141ec53972f878849aa22ee28ddef66fe66d6fa0d7b07c73cc0f65a599683d2",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "R5d_GE_det",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/R5d_GE_det.lean",
+  "chars": 11842,
+  "sha256": "b441ad67f2c722184fb80763cf7f63ce978f5b9551e6db093cf84270c5e38ab0",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "Omega7",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/Omega7.lean",
+  "chars": 11138,
+  "sha256": "f6a3762ee0997960723eb299a6c0f38be94f222b42c687e5a4465cd6da6bb2ff",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "L7idx_A",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/L7idx_A.lean",
+  "chars": 10743,
+  "sha256": "182bb2f29a79781fb13ca29a14b1aa522a31b7f08fcd6f3cddcdaf2867f2de1e",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "H2_L7_index_Omega7_rank5",
+  "module": "L7idx_B",
+  "path": "lean/hodge-conjecture/H2_L7_index_Omega7_rank5/L7idx_B.lean",
+  "chars": 11485,
+  "sha256": "436618a0dd136d145067a46fe6c46308c5fcddc345051ab953e90bf1a356d62f",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "hodge-conjecture"
+ },
+ {
+  "group": "A281816_totient_pairs",
+  "module": "A281816_a72",
+  "path": "lean/oeis-new-terms/A281816_totient_pairs/A281816_a72.lean",
+  "chars": 7292,
+  "sha256": "45eaaad5cbb86f6cd9e69d94d0af9c9f8921a943c4f59f935c7d84be203725ec",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "A281816_totient_pairs",
+  "module": "A281816_terms_a73_a80",
+  "path": "lean/oeis-new-terms/A281816_totient_pairs/A281816_terms_a73_a80.lean",
+  "chars": 10662,
+  "sha256": "0aa4b556b2bc6d831b9e9f78b9d562a6092b9343c0a8a622c777fdb02bfc9224",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "A281816_totient_pairs",
+  "module": "A281816_a76",
+  "path": "lean/oeis-new-terms/A281816_totient_pairs/A281816_a76.lean",
+  "chars": 10730,
+  "sha256": "9aa8f555b0811f300ff9f58db927b54f68bc202a5b0c26120ee0f2b2259e26d2",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "RH_zeta_pole",
+  "module": "ZetaPole",
+  "path": "lean/riemann-hypothesis/RH_zeta_pole/ZetaPole.lean",
+  "chars": 1229,
+  "sha256": "01a5df3c33cae2456d36306cd2eba973c1abfb8f3a683bf5ef943a60ff4afc16",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "riemann-hypothesis"
  }
 ]
