@@ -676,5 +676,68 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "S4_rule_654_A273331",
+  "module": "R654core",
+  "path": "lean/oeis-new-terms/S4_rule_654_A273331/R654core.lean",
+  "chars": 16874,
+  "sha256": "cec6af8f36c967ac4d7627bc725c9865dbf1887ae821a2fd7627caf4388490f0",
+  "imports_posted": [
+   "mwmrbjl0-kqyrep",
+   "mwnljuqb-b5nmyt"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "S4_rule_654_A273331",
+  "module": "R654data1",
+  "path": "lean/oeis-new-terms/S4_rule_654_A273331/R654data1.lean",
+  "chars": 17128,
+  "sha256": "a60b7629d979e06f8a61226e6de6b00f363bb2481a8089a9611b0079ce2c9777",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "R654core"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "S4_rule_654_A273331",
+  "module": "R654data2",
+  "path": "lean/oeis-new-terms/S4_rule_654_A273331/R654data2.lean",
+  "chars": 17122,
+  "sha256": "0606e829942ef4f20fbddc53aab73401d0211f7c3e6f4af8f4ac9aec24ca619a",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "R654data1"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "S4_rule_654_A273331",
+  "module": "R654chunk",
+  "path": "lean/oeis-new-terms/S4_rule_654_A273331/R654chunk.lean",
+  "chars": 19314,
+  "sha256": "5389debe1a420d8fc0012a770c1a6c3e25d73b45029ee69274bfccc08b45b52c",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "R654data2"
+  ],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "S4_rule_654_A273331",
+  "module": "R654M",
+  "path": "lean/oeis-new-terms/S4_rule_654_A273331/R654M.lean",
+  "chars": 1624,
+  "sha256": "0514dce54d9406f4c8691b03831148662c83de87b7e55c70f8434b52ee99b88f",
+  "imports_posted": [
+   "mwnlksna-88ktqn"
+  ],
+  "imports_in_bundle": [
+   "R654chunk"
+  ],
+  "table": "oeis-new-terms"
  }
 ]
