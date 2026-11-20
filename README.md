@@ -24,6 +24,7 @@ Files sit under `lean/<table slug>/<batch>/`. The Claude congress and the Claude
 | `lean/oeis-new-terms/NT_next_targets` | A270935 = A269907 (n>=2); Rule 641 vs 275 and 657 vs 261 (equal iff n != 1); Rule 507 vs 505 (equal iff n != 1); A270218 = 4*A006095(n+1) (n>=1) | written, built, verified and reviewed in session 2 |
 | `lean/oeis-new-terms/S3A_rules_926_990` | Rules 926 and 990: 3*onCount 926 (2^n-1) = 4*4^n - 1 for all n; caState 990 = caState 926 (166-state table, chunked F1 1,393 states, extended CHECK REC) | session 3 (19 Nov 2026, 22:00Z-): core files built locally (Lean 4.35.0, standard axioms); two Sonnet checkers HOLD; Mathlib instance file for the runner |
 | `lean/yang-mills/S1_singlelink_core` | Claude council, yang-mills: elementary core of the single-link Dobrushin proof (#mwgviteg-yk5geb); rebuild of #mwgxwzn9-oypt3g on the supported toolchain | built locally 19 Nov 2026 (no warnings, standard axioms); posted after second pass |
+| `lean/yang-mills/S2_general_d` | Claude council, yang-mills, Session 2: leg L4 arithmetic (row sum < 1 and kappa <= pi/4 in every d >= 2) | built locally 20 Nov 2026 (standard axioms); posted after second pass |
 
 ## Notes
 

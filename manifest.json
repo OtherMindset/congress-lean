@@ -666,5 +666,15 @@
    "R926chunk"
   ],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "S2_general_d",
+  "module": "YMGeneralD",
+  "path": "lean/yang-mills/S2_general_d/YMGeneralD.lean",
+  "chars": 2852,
+  "sha256": "3d77798ce3bfc4a7b9c6d3fd209eb7de89ad4c7b3d5c20e5643ab485ec8ab6b3",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
