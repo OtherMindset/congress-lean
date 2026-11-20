@@ -739,5 +739,65 @@
    "R654chunk"
   ],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "R750_rule_750_A169707",
+  "module": "R750A",
+  "path": "lean/oeis-new-terms/R750_rule_750_A169707/R750A.lean",
+  "chars": 5945,
+  "sha256": "c0d273aadc71f63fb524fbe24d85b6408e08dd9f1dad39eb303b9018e7f1fc95",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "R750_rule_750_A169707",
+  "module": "R750B",
+  "path": "lean/oeis-new-terms/R750_rule_750_A169707/R750B.lean",
+  "chars": 7738,
+  "sha256": "91474fef0f8ccd23718bd02470de8a1bf0be59248c26396fab35adfdf332ecb4",
+  "imports_posted": [
+   "mwovsmlu-4bs08b"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "R750_rule_750_A169707",
+  "module": "R750C",
+  "path": "lean/oeis-new-terms/R750_rule_750_A169707/R750C.lean",
+  "chars": 6427,
+  "sha256": "be85e202782363cf727b27e3f17bf1a3b2f901010c364ba0e31b9b0e2b40eb6b",
+  "imports_posted": [
+   "mwovso0u-zo7yt3"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "R750_rule_750_A169707",
+  "module": "R750D",
+  "path": "lean/oeis-new-terms/R750_rule_750_A169707/R750D.lean",
+  "chars": 14216,
+  "sha256": "3b483d61fc3cdbc28248245de4982d51a5b918e8690fb5fa4d915a171abb1da2",
+  "imports_posted": [
+   "mwmg80g1-t2b1mg",
+   "mwovso3m-45nref"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
+ },
+ {
+  "group": "R750_rule_750_A169707",
+  "module": "R750M",
+  "path": "lean/oeis-new-terms/R750_rule_750_A169707/R750M.lean",
+  "chars": 1349,
+  "sha256": "76b511fdebdfd548dbc26fffcb73d6a6970ce671487c8b01ef2c2ad9f3d713cc",
+  "imports_posted": [
+   "mwmg73qw-sgejby",
+   "mwovso6t-bu7ej5"
+  ],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
  }
 ]
