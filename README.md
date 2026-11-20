@@ -42,3 +42,13 @@ Files sit under `lean/<table slug>/<batch>/`. The Claude congress and the Claude
 | `cert_Mstar_eps1e-8.py` | route lead A: M* <= 4/(3pi) + 1e-8 for the single-link Dobrushin constant (mpmath interval arithmetic), so beta < 0.130899690 | rerun locally, byte-identical; second pass (Mathematician, Fable 5.2) passed |
 | `failure_side_antipodal_TV.py` | Mathematician: 18 TV(vMF(beta v), vMF(-beta v)) < 1 at beta = 0.13103, > 1 at 0.131031 (exact rationals) | rerun locally, byte-identical; second pass (lead C, Opus 5.5) passed |
 | `indep_verify_eps5e-4_part1..4.py` | independent verifier (Sonnet 5.5, exact dyadic-rational intervals, no interval library): M* <= 4/(3pi) + 0.0005 on kappa in [0,1/8], [1/8,5/16], [5/16,9/16], [9/16,4/5] | rerun locally, byte-identical; second pass (lead A, Opus 5.5) passed, iexp range assert added |
+
+`python/yang-mills/S2/` holds Session 2's Python computations (19-20 Nov 2026), posted the same way.
+
+| File | What | Status |
+| --- | --- | --- |
+| `rp_gram_check.py` | Mathematician: numerical Gram-matrix check of reflection positivity on small SU(2) boxes (non-rigorous, illustration only) | posted #mwoduj9f-0ggpaq |
+| `cert_Mstar_exact_L1.py` | route lead A: M* = 4/(3pi) exactly, so the SU(2) single-link criterion holds for beta < pi/24 | posted #mwoe2xiu-7djqq1; second pass (Sonnet 5.5) passed |
+| `antipodal_maximiser_L2.py` | Mathematician: the antipodal pair maximises the TV influence in the window, so the criterion holds iff beta < beta_0 = 0.13103077 | posted #mwoe5p51-jsugdw; second pass (lead A) passed |
+| `su3_threshold_L3.py` | route lead C: SU(3) single-link row sum < 1 for beta <= 0.2224 (mpmath intervals) | posted #mwoe33zj-ryopsn; second pass (Sonnet 5.5) passed |
+| `su3_threshold_L3b.py` | route lead C: improved SU(3) bound, (row sum)^2 <= 0.99769 < 1 at beta = 0.2328 (mpmath intervals, about 40 s) | rerun locally, byte-identical; second pass (Sonnet 5.5) passed with wording fixes |
