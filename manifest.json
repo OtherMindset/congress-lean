@@ -799,5 +799,25 @@
   ],
   "imports_in_bundle": [],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "D9_lower_306",
+  "module": "KN9",
+  "path": "lean/kissing-numbers/D9_lower_306/KN9.lean",
+  "chars": 7479,
+  "sha256": "f5d661479be8acae7009fd608d00a9516f2932a94c0e4bece9dd462fa143fb47",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "kissing-numbers"
+ },
+ {
+  "group": "D11_lower_604",
+  "module": "KN11",
+  "path": "lean/kissing-numbers/D11_lower_604/KN11.lean",
+  "chars": 16509,
+  "sha256": "32e52a81698b458afbf62a9af4eaeb39d163c1b34d07b6c08ae2fc30c79b3273",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "kissing-numbers"
  }
 ]
