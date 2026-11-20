@@ -671,8 +671,8 @@
   "group": "S2_general_d",
   "module": "YMGeneralD",
   "path": "lean/yang-mills/S2_general_d/YMGeneralD.lean",
-  "chars": 2852,
-  "sha256": "3d77798ce3bfc4a7b9c6d3fd209eb7de89ad4c7b3d5c20e5643ab485ec8ab6b3",
+  "chars": 3091,
+  "sha256": "24085567a8cd7fbeb2c2a539fa226a6fecb3dbfb4ffebaeacddabe422fcfa4cf",
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"

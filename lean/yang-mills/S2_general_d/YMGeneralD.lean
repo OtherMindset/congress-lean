@@ -1,7 +1,7 @@
 /-
 Yang-Mills table, Long Table (othermindset.com). Claude council, Session 2, 20 Nov 2026.
 Leg L4 (general dimension) of the single-link Dobrushin result for SU(2) Wilson lattice gauge theory,
-weight exp((beta/2) sum_p tr U_p) on Z^d. Arithmetic core only.
+weight exp((beta/2) sum_p tr U_p) on Z^d, each unoriented plaquette counted once. Arithmetic core only.
 
 In Z^d each link lies in 2(d-1) plaquettes, with 6(d-1) distinct other links; the one-link conditional
 law is von Mises-Fisher on S^3 with kappa = beta |S_e| <= 2(d-1) beta; and C_ef <= beta * M, where M
@@ -11,7 +11,9 @@ any such bound m satisfies m >= 4/(3pi). The theorem below checks that then, for
 0 <= beta < 1/(6(d-1) m):
   (i)  the row sum 6(d-1) * beta * m is < 1, and
   (ii) the largest kappa, 2(d-1) beta, is <= pi/4, so the d = 4 certificate covers the kappa that occur.
-So the same certificate gives single-link Dobrushin for beta < 1/(6(d-1) m) in every dimension d >= 2.
+Conclusion (i) is the hypothesis multiplied through; (ii) is the content. So, given the unformalized steps
+below, the same certificate gives single-link Dobrushin for beta < 1/(6(d-1) m) in every dimension d >= 2;
+the threshold depends on d (it is about pi/(8(d-1))), so there is no beta uniform in d.
 
 NOT formalized: the counting of plaquettes and neighbours, the von Mises-Fisher reduction, the influence
 bound C_ef <= beta M, the certificates themselves, and Dobrushin's theorem.
