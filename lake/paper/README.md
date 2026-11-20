@@ -10,13 +10,13 @@ build them, and no result depends on them. Run the commands from `lake/`.
 python3 -I paper/check_statements.py paper/rows.json manifest.json paper/statement_check.txt
 ```
 
-`rows.json` holds the rows of the paper's Tables 2-4, as generated from the ledger export by `gen_tables_jar.py`.
+`rows.json` holds the rows of the paper's tables of results (Section 7), as generated from the ledger export by `gen_tables_jar.py`.
 The script compares each row with the statement the runner elaborated (`manifest.json`, `top_level_theorems`):
 closed forms as functions of n (exact evaluation at 41 consecutive n, truncated subtraction in exponents), equal
 counts and relations by their rules, order and hypothesis. Result: 191 theorems, 184 matched, 0 mismatched, 7 to be
 read (printed in the paper's Appendix A).
 
-## Certificate sizes (paper, Table 5)
+## Certificate sizes (paper, Section 8.2)
 
 - `table_sizes.py` lists every guessed table in `LT2D/` with its rule, mask, chunks and recurrence check, and writes
   `Sizes.lean`, which recomputes the seed and step product sizes with the library's own `VN.explore` by `#eval`:
@@ -26,7 +26,8 @@ read (printed in the paper's Appendix A).
   lake env lean paper/Sizes.lean        # prints Sizes_output.txt
   ```
 
-- `table_sizes.json` joins those sizes with `build_report.csv`; `gen_sizes_tex.py` writes the paper's Table 5.
+- `table_sizes.json` joins those sizes with `build_report.csv`; `gen_sizes_tex.py` writes the paper's table of certificate sizes (`join_sizes.py` builds the JSON from
+  `Sizes_output.txt` and `build_report.csv`).
 
 ## Worked example and negative controls (paper, Section 6)
 
@@ -45,7 +46,7 @@ Check them with `lake env lean paper/<file>.lean` (no output means they hold).
   `gen_tables_jar.py` compares with every closed form and relation.
 - `gen_artifact_tex.py`: writes the paper's definitions listing, build table and Appendix A from this directory's
   parent.
-- `r750_kernel_check.py`: the 2-kernel growth diagnostic for Rule 750 (paper, Table 7).
+- `r750_kernel_check.py`: the 2-kernel growth diagnostic for Rule 750 (paper, Section 8.5).
 
 Not here: the guessing program (`gen/kernel.py`), the generators `emit2.py` and `emit_instance.py` named in the
 headers of the generated files, and the OEIS snapshot of 19 Nov 2026.
