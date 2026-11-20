@@ -18,7 +18,6 @@
 #   T[n][k] = T[n][k-1] - T[n+2][k-1]  (same for F with c = -1: F[0][0] = pi/2, F[1][0] = 0),
 # asin c by its Taylor series with geometric tail (0 <= c <= 1/4 is asserted).
 # Every integral over a subset of [-1,1] of the truncated series differs from the true one by at most TAIL.
-import sys
 from fractions import Fraction as F
 from mpmath import iv
 
@@ -170,8 +169,7 @@ def certify(r_lo, r_hi, nmu, nr):
             val, q, c = second_derivative(muc, rc, cache)
             ub = val + slack
             if not ub.b < 0:
-                print("FAILED at box centre mu =", muc, "r =", rc)
-                sys.exit(1)
+                raise AssertionError("FAILED at box centre mu = " + str(muc) + ", r = " + str(rc))
             count += 1
             if worst is None or ub.b > worst:
                 worst = ub.b
@@ -183,7 +181,7 @@ def certify(r_lo, r_hi, nmu, nr):
 
 
 if __name__ == "__main__":
-    part = int(sys.argv[1]) if len(sys.argv) > 1 else 0
+    part = 0   # whole range in one computation
     NMU, NR, PARTS = 160, 80, 1
     lo = SIDE * (part - 1) / PARTS if part else F(0)
     hi = SIDE * part / PARTS if part else SIDE
