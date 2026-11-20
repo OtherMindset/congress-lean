@@ -1,0 +1,2694 @@
+Word-level diffs (whitespace-normalised declaration text) between differing copies of each duplicated name.
+
+--- LT2D.D1 in mwmbp99x-ymn9an, mwmo3omz-3d6q7j
++++ LT2D.D1 in mwmc69rp-fpejr2
+@@ -4,11 +4,5 @@
+ List
+ Cell
+ :=
+-[(1,
+-0),
+-(-1,
+-0),
+-(0,
+-1),
+-(0,
+--1)]
++[(0,
++0)]
+
+--- LT2D.D1 in mwmbp99x-ymn9an, mwmo3omz-3d6q7j
++++ LT2D.D1 in mwmnzbwy-gx846h
+@@ -4,7 +4,9 @@
+ List
+ Cell
+ :=
+-[(1,
++[(0,
++0),
++(1,
+ 0),
+ (-1,
+ 0),
+
+--- LT2D.D3 in mwmc69rp-fpejr2
++++ LT2D.D3 in mwmnzbwy-gx846h
+@@ -4,13 +4,7 @@
+ List
+ Cell
+ :=
+-[(-1,
+-0),
+ (0,
+--1),
+-(0,
+-0),
+-(0,
+-1),
+-(1,
+-0)]
++0)
++::
++D2
+
+--- LT2D.base_box in mwmc7dqp-lya7v1
++++ LT2D.base_box in mwmfcf3a-sdo7h1
+@@ -10,11 +10,11 @@
+ y
+ =>
+ finOn
+-L6
++W6
+ (x,
+ y)
+ ==
+-Ecf
++E3
+ 3
+ (x,
+ y)))
+
+--- LT2D.card_offSet in mwmc7dqp-lya7v1
++++ LT2D.card_offSet in mwmfdcb8-xvayfc, mwmo64bd-kg91iu
+@@ -3,23 +3,29 @@
+ (h
+ :
+ Nat)
++(h1
++:
++1
++≤
++h)
+ :
+ (offSet
+ h).card
+ =
+-4
+-*
+-h
+-+
+-5
++12
++*
++h
+++
++1
+ :=
+ by
+have
+ hA
+ :
+-(({0}
+-:
+-Finset
+-Int)
++(Finset.Icc
++(-1
++:
++Int)
++1
+ ×ˢ
+ Finset.Icc
+ (-(h
+@@ -27,87 +33,152 @@
+ Int))
+ h).card
+ =
+-2
+-*
+-h
+-+
+-1
++3
++*
++(2
++*
++h
+++
++1)
+ :=
+ by
+rw
+ [Finset.card_product,
+-Finset.card_singleton,
++Int.card_Icc,
+ Int.card_Icc]
+-omega
+-have
+-hB
+-:
+-(((Finset.Icc
+-(-(h
+-:
+-Int))
+-h).erase
+-0)
+-×ˢ
+-({0}
+-:
+-Finset
+-Int)).card
+-=
+-2
+-*
+-h
++congr
++1
++<;>
++omega
++have
++hB1
++:
++(Finset.Icc
++(2
++:
++Int)
++h
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1).card
++=
++(h
++-
++1)
++*
++3
+ :=
+ by
+rw
+ [Finset.card_product,
+-Finset.card_singleton,
+-Finset.card_erase_of_mem
+-(by
+-simp),
++Int.card_Icc,
+ Int.card_Icc]
+-omega
+-have
+-hC
+-:
+-({(1,
++congr
++1
++<;>
++omega
++have
++hB2
++:
++(Finset.Icc
++(-(h
++:
++Int))
++(-2)
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1).card
++=
++(h
++-
++1)
++*
++3
++:=
++by
+rw
++[Finset.card_product,
++Int.card_Icc,
++Int.card_Icc]
++congr
++1
++<;>
++omega
++have
++hT
++:
++({(0,
++(h
++:
++Int)
+++
+ 1),
+-(1,
+--1),
+-(-1,
++(0,
++-(h
++:
++Int)
++-
+ 1),
+-(-1,
+--1)}
++((h
++:
++Int)
+++
++1,
++0),
++(-(h
++:
++Int)
++-
++1,
++0)}
+ :
+ Finset
+ Cell).card
+ =
+ 4
+ :=
+-by
+decide
++by
+rw
++[Finset.card_insert_of_notMem
++(by
++simp;
++omega),
++Finset.card_insert_of_notMem
++(by
++simp;
++omega),
++Finset.card_pair
++(by
++simp;
++omega)]
+ have
+ d1
+ :
+ Disjoint
+-(({0}
+-:
+-Finset
+-Int)
++(Finset.Icc
++(-1
++:
++Int)
++1
+ ×ˢ
+ Finset.Icc
+ (-(h
+ :
+ Int))
+ h)
+-(((Finset.Icc
+-(-(h
+-:
+-Int))
+-h).erase
+-0)
+-×ˢ
+-({0}
+-:
+-Finset
+-Int))
++(Finset.Icc
++(2
++:
++Int)
++h
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1)
+ :=
+ by
+rw
+ [Finset.disjoint_left]
+@@ -119,23 +190,20 @@
+ simp
+ only
+ [Finset.mem_product,
+-Finset.mem_singleton,
+-Finset.mem_erase,
+ Finset.mem_Icc]
+ at
+ hp
+ hq
+-exact
+-hq.1.1
+-hp.1
++omega
+ have
+ d2
+ :
+ Disjoint
+-((({0}
+-:
+-Finset
+-Int)
++((Finset.Icc
++(-1
++:
++Int)
++1
+ ×ˢ
+ Finset.Icc
+ (-(h
+@@ -143,28 +211,28 @@
+ Int))
+ h)
+ ∪
+-(((Finset.Icc
+-(-(h
+-:
+-Int))
+-h).erase
+-0)
+-×ˢ
+-({0}
+-:
+-Finset
+-Int)))
+-({(1,
+-1),
+-(1,
+--1),
+-(-1,
+-1),
+-(-1,
+--1)}
+-:
+-Finset
+-Cell)
++(Finset.Icc
++(2
++:
++Int)
++h
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1))
++(Finset.Icc
++(-(h
++:
++Int))
++(-2)
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1)
+ :=
+ by
+rw
+ [Finset.disjoint_left]
+@@ -177,8 +245,89 @@
+ only
+ [Finset.mem_union,
+ Finset.mem_product,
+-Finset.mem_singleton,
+-Finset.mem_erase,
++Finset.mem_Icc]
++at
++hp
++hq
++omega
++have
++d3
++:
++Disjoint
++(((Finset.Icc
++(-1
++:
++Int)
++1
++×ˢ
++Finset.Icc
++(-(h
++:
++Int))
++h)
++∪
++(Finset.Icc
++(2
++:
++Int)
++h
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1))
++∪
++(Finset.Icc
++(-(h
++:
++Int))
++(-2)
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1))
++({(0,
++(h
++:
++Int)
+++
++1),
++(0,
++-(h
++:
++Int)
++-
++1),
++((h
++:
++Int)
+++
++1,
++0),
++(-(h
++:
++Int)
++-
++1,
++0)}
++:
++Finset
++Cell)
++:=
++by
+rw
++[Finset.disjoint_left]
++rintro
++⟨x,
++y⟩
++hp
++hq
++simp
++only
++[Finset.mem_union,
++Finset.mem_product,
+ Finset.mem_Icc]
+ at
+ hp
+@@ -193,10 +342,13 @@
+ rw
+ [offSet,
+ Finset.card_union_of_disjoint
++d3,
++Finset.card_union_of_disjoint
+ d2,
+ Finset.card_union_of_disjoint
+ d1,
+ hA,
+-hB,
+-hC]
+-omega
++hB1,
++hB2,
++hT]
++omega
+
+--- LT2D.card_window in mwmbjanx-5lciqx, mwmbp99x-ymn9an, mwmc7dqp-lya7v1, mwmezycj-p4n3xa, mwmfdcb8-xvayfc
++++ LT2D.card_window in mwmeo46j-i1w8jl, mwmo00d2-zk3ahq, mwmo4lkh-4j151k, mwmo64bd-kg91iu
+@@ -15,12 +15,30 @@
+ ^
+ 2
+ :=
+-by
+rw
++by
+simp
++only
+ [window,
+ Finset.card_product,
+-Int.card_Icc,
+-sq]
+-congr
++Int.card_Icc]
++have
++:
++((g
++:
++Int)
+++
+ 1
+-<;>
+-omega
++-
++-(g
++:
++Int)).toNat
++=
++2
++*
++g
+++
++1
++:=
++by
+omega
++rw
++[this];
++ring
+
+--- LT2D.contains_offAfter in mwmbjanx-5lciqx, mwmbp99x-ymn9an, mwmezycj-p4n3xa, mwmnzbwy-gx846h, mwmo3omz-3d6q7j
++++ LT2D.contains_offAfter in mwmc69rp-fpejr2
+@@ -48,5 +48,4 @@
+ p
+ <;>
+ simp_all
+-[List.contains_iff_mem,
+-List.mem_filter]
++[List.mem_filter]
+
+--- LT2D.contains_onAfter in mwmc69rp-fpejr2
++++ LT2D.contains_onAfter in mwmezycj-p4n3xa, mwmo3omz-3d6q7j
+@@ -48,4 +48,5 @@
+ p
+ <;>
+ simp_all
+-[List.mem_filter]
++[List.contains_iff_mem,
++List.mem_filter]
+
+--- LT2D.count_formula in mwmc7dqp-lya7v1
++++ LT2D.count_formula in mwmo64bd-kg91iu
+@@ -1,39 +1,23 @@
+ theorem
+ count_formula
+-{rule
++{r
+ :
+ Nat}
+-(hcl
++(hr
+ :
+-∀
+-m
+-:
+-Nat,
+-caState
+-rule
+-(2
+-*
+-m
+-+
+-7)
+-=
+-Ocf
+-((m
+-:
+-Int)
+-+
+-3))
++Shape
++r)
+ (n
+ :
+ Nat)
+ (hn
+ :
+-3
++2
+ ≤
+ n)
+ :
+ (onCount
+-rule
++r
+ (2
+ ^
+ n
+@@ -48,293 +32,51 @@
+ ^
+ n
+ -
+-6
++10
+ *
+ 2
+ ^
+ n
+++
++12
+ :=
+-by
+obtain
+-⟨k,
+-rfl⟩
+-:
+-∃
+-k,
++by
+rcases
++(show
+ n
+ =
+-k
+-+
++2
++∨
+ 3
+-:=
+-⟨n
+--
+-3,
++≤
++n
+ by
+-omega⟩
++omega)
++with
++rfl
++|
++h3
++·
+ have
+-hP
+ :
+-1
+-≤
+-2
+-^
+-k
+-:=
+-Nat.one_le_two_pow
+-have
+-h2
+-:
+-2
+-^
+-(k
+-+
+-3)
+-=
+-8
+-*
+-2
+-^
+-k
+-:=
+-by
+rw
+-[pow_add];
+-ring
+-have
+-hg
+-:
+-2
+-^
+-(k
+-+
+-3)
+--
+-1
+-=
+-2
+-*
+-(4
+-*
+-2
+-^
+-k
+--
+-4)
+-+
+-7
+-:=
+-by
+omega
+-have
+-hs
+-:
+-caState
+-rule
+ (2
+ ^
+-(k
+-+
+-3)
+--
+-1)
+-=
+-Ocf
+-(((4
+-*
+ 2
+-^
+-k
+--
+-4
+-+
+-3
+-:
+-Nat))
+-:
+-Int)
+-:=
+-by
+rw
+-[hg,
+-hcl]
+-congr
+-1
+-have
+-hc
+-:=
+-onCount_Ocf
+-hs
+-(by
+-omega)
+-(by
+-omega)
+-have
+-hc'
+-:
+-(onCount
+-rule
+-(2
+-^
+-(k
+-+
+-3)
+--
+-1)
+-:
+-Int)
+-+
+-(4
+-*
+-((4
+-*
+-2
+-^
+-k
+--
+-4
+-+
+-3
+-:
+-Nat)
+-:
+-Int)
+-+
+-5)
+-=
+-(2
+-*
+-((2
+-^
+-(k
+-+
+-3)
+ -
+ 1
+ :
+ Nat)
+-:
+-Int)
+-+
+-1)
+-^
+-2
++=
++3
+ :=
+-by
+exact_mod_cast
+-hc
+-have
+-q1
+-:
+-((4
+-*
+-2
+-^
+-k
+--
+-4
+-+
+-3
+-:
+-Nat)
+-:
+-Int)
+-=
+-4
+-*
+-((2
+-^
+-k
+-:
+-Nat)
+-:
+-Int)
+--
+-1
+-:=
+-by
+omega
+-have
+-q2
+-:
+-((2
+-^
+-(k
+-+
+-3)
+--
+-1
+-:
+-Nat)
+-:
+-Int)
+-=
+-8
+-*
+-((2
+-^
+-k
+-:
+-Nat)
+-:
+-Int)
+--
+-1
+-:=
+-by
+omega
++by
+norm_num
+ rw
+-[q1,
+-q2]
+-at
+-hc'
+-have
+-q3
+-:
+-(4
+-:
+-Int)
+-^
+-(k
+-+
+-3)
+-=
+-((2
+-:
+-Int)
+-^
+-(k
+-+
+-3))
+-^
+-2
+-:=
+-by
+rw
+-[←
+-pow_mul,
+-mul_comm,
+-pow_mul];
++[this,
++count_three
++hr.2.1]
+ norm_num
+-have
+-q4
+-:
+-(2
+-:
+-Int)
+-^
+-(k
+-+
+-3)
+-=
+-8
+-*
+-((2
+-^
+-k
+-:
+-Nat)
+-:
+-Int)
+-:=
+-by
+push_cast
+-rw
+-[pow_add]
+-ring
+-rw
+-[q3,
+-q4]
+-linear_combination
+-hc'
++·
++exact
++count_large
++hr.2.2
++n
++h3
+
+--- LT2D.count_large in mwmfdcb8-xvayfc
++++ LT2D.count_large in mwmo64bd-kg91iu
+@@ -1,5 +1,28 @@
+ theorem
+ count_large
++{r
++:
++Nat}
++(hr
++:
++∀
++m
++:
++Nat,
++caState
++r
++(2
++*
++m
+++
++7)
++=
++O3
++((m
++:
++Int)
+++
++3))
+ (n
+ :
+ Nat)
+@@ -10,7 +33,7 @@
+ n)
+ :
+ (onCount
+-323
++r
+ (2
+ ^
+ n
+@@ -106,7 +129,7 @@
+ hs
+ :
+ caState
+-323
++r
+ (2
+ ^
+ (k
+@@ -132,8 +155,7 @@
+ :=
+ by
+rw
+ [hg,
+-(closed323
+-_).2]
++hr]
+ congr
+ 1
+ have
+@@ -149,7 +171,7 @@
+ hc'
+ :
+ (onCount
+-323
++r
+ (2
+ ^
+ (k
+@@ -316,5 +338,5 @@
+ rw
+ [q3,
+ q4]
+-linear_combination
+-hc'
++linarith
++[hc']
+
+--- LT2D.count_three in mwmfdcb8-xvayfc
++++ LT2D.count_three in mwmo64bd-kg91iu
+@@ -1,8 +1,19 @@
+ theorem
+ count_three
++{r
++:
++Nat}
++(h
++:
++caState
++r
++3
++=
++coFin
++W3)
+ :
+ onCount
+-323
++r
+ 3
+ =
+ 36
+@@ -10,5 +21,5 @@
+ by
+unfold
+ onCount
+ rw
+-[stages323.1]
++[h]
+ decide
+
+--- LT2D.offSet in mwmc7dqp-lya7v1
++++ LT2D.offSet in mwmfdcb8-xvayfc, mwmo64bd-kg91iu
+@@ -7,10 +7,11 @@
+ Finset
+ Cell
+ :=
+-(({0}
++(Finset.Icc
++(-1
+ :
+-Finset
+ Int)
++1
+ ×ˢ
+ Finset.Icc
+ (-(h
+@@ -18,26 +19,54 @@
+ Int))
+ h)
+ ∪
+-(((Finset.Icc
++(Finset.Icc
++(2
++:
++Int)
++h
++×ˢ
++Finset.Icc
++(-1
++:
++Int)
++1)
++∪
++(Finset.Icc
+ (-(h
+ :
+ Int))
+-h).erase
+-0)
++(-2)
+ ×ˢ
+-({0}
++Finset.Icc
++(-1
+ :
+-Finset
+-Int))
++Int)
++1)
+ ∪
+-({(1,
++({(0,
++(h
++:
++Int)
+++
+ 1),
+-(1,
+--1),
+-(-1,
++(0,
++-(h
++:
++Int)
++-
+ 1),
+-(-1,
+--1)}
++((h
++:
++Int)
+++
++1,
++0),
++(-(h
++:
++Int)
++-
++1,
++0)}
+ :
+ Finset
+ Cell)
+
+--- LT2D.onCount_odd in mwmeo46j-i1w8jl
++++ LT2D.onCount_odd in mwmo00d2-zk3ahq
+@@ -1,104 +1,154 @@
+ theorem
+ onCount_odd
+-(g
++{r
++:
++Nat}
++(hr
++:
++∀
++m,
++caState
++r
++(3
+++
++2
++*
++m)
++=
++coFin
++D3)
++(n
+ :
+ Nat)
+-(hg
++(hn
+ :
+-3
++2
+ ≤
+-g)
+-(ho
+-:
+-g
+-%
+-2
+-=
+-1)
++n)
+ :
+ onCount
+-259
+-g
++r
++(2
++^
++n
++-
++1)
+ =
+ (2
+ *
+-g
++(2
++^
++n
++-
++1)
+ +
+ 1)
+ ^
+ 2
+ -
+-13
++9
+ :=
+-by
+unfold
+-onCount
+-rw
+-[caState_odd
+-g
+-hg
+-ho]
++by
+have
++h4
++:
++4
++≤
++2
++^
++n
++:=
++by
+calc
++4
++=
++2
++^
++2
++:=
++by
+norm_num
++_
++≤
++2
++^
++n
++:=
++Nat.pow_le_pow_right
++(by
++norm_num)
++hn
+ have
+-h
++hodd
++:
++(2
++^
++n
++-
++1)
++%
++2
++=
++1
+ :=
+-Finset.card_filter_add_card_filter_not
+-(s
++by
+obtain
++⟨k,
++hk⟩
++:
++∃
++k,
++n
++=
++k
+++
++1
+ :=
+-window
+-g)
+-(fun
+-p
+-:
+-Cell
+-=>
+-p.1.natAbs
+-+
+-p.2.natAbs
+-≤
+-2)
+-have
+-e
+-:
+-(window
+-g).filter
+-(fun
+-p
+-:
+-Cell
+-=>
+-O
+-p
+-=
+-true)
+-=
+-(window
+-g).filter
+-(fun
+-p
+-:
+-Cell
+-=>
+-¬
+-(p.1.natAbs
+-+
+-p.2.natAbs
+-≤
+-2))
+-:=
+-by
+ext
+-⟨x,
+-y⟩
+-simp
+-[O]
+-rw
+-[e]
++⟨n
++-
++1,
++by
++omega⟩
+ have
+ :=
+-diamond_card
+-g
++Nat.one_le_two_pow
++(n
++:=
++k)
++rw
++[hk,
++pow_succ];
++omega
++obtain
++⟨m,
++hm⟩
++:
++∃
++m,
++2
++^
++n
++-
++1
++=
++3
+++
++2
++*
++m
++:=
++⟨(2
++^
++n
++-
++4)
++/
++2,
++by
++omega⟩
++exact
++onCount_D3
+ (by
+ omega)
+-have
+-:=
+-card_window
+-g
+-omega
++(by
++rw
++[hm];
++exact
++hr
++m)
+
+--- LT2D.same_counts in mwmbp99x-ymn9an
++++ LT2D.same_counts in mwmezycj-p4n3xa
+@@ -6,50 +6,32 @@
+ Nat}
+ (hr
+ :
++∀
++m,
+ caState
+ r
+-1
++(2
++*
++m
+++
++1)
+ =
+ coFin
+-D1
+-∧
+-∀
+-g,
+-3
+-≤
+-g
+-→
+-caState
+-r
+-g
+-=
+-fun
+-_
+-=>
+-true)
++O1)
+ (hs
+ :
++∀
++m,
+ caState
+ s
+-1
++(2
++*
++m
+++
++1)
+ =
+ coFin
+-D1
+-∧
+-∀
+-g,
+-3
+-≤
+-g
+-→
+-caState
+-s
+-g
+-=
+-fun
+-_
+-=>
+-true)
++O1)
+ (n
+ :
+ Nat)
+@@ -90,66 +72,30 @@
+ [caState_zero,
+ caState_zero]
+ |
++n
+++
+ 1
+ =>
+-show
+-onCount
+-r
+-1
+-=
+-onCount
+-s
+-1;
+-unfold
+-onCount;
+-rw
+-[hr.1,
+-hs.1]
+-|
+-n
+-+
+-2
+-=>
+ have
+-h4
+-:
+-4
+-≤
+-2
+-^
++h
++:=
++count_odd
++hr
+ (n
+ +
+-2)
++1)
++(by
++omega)
++have
++h'
+ :=
+-by
+calc
+-4
+-=
+-2
+-^
+-2
+-:=
+-by
+norm_num
+-_
+-≤
+-2
+-^
++count_odd
++hs
+ (n
+ +
+-2)
+-:=
+-Nat.pow_le_pow_right
+-(by
+-norm_num)
++1)
+ (by
+ omega)
+-rw
+-[onCount_allOn
+-(hr.2
+-_
+-(by
+-omega)),
+-onCount_allOn
+-(hs.2
+-_
+-(by
+-omega))]
++exact_mod_cast
++h.trans
++h'.symm
+
+--- LT2D.stages in mwmbjanx-5lciqx
++++ LT2D.stages in mwmc69rp-fpejr2
+@@ -1,172 +1,252 @@
+ theorem
+ stages
+-{rule
++{r
+ :
+ Nat}
+-(h0
++(M
++:
++List
++Cell)
++(b0
+ :
+ Nat.testBit
+-rule
++r
+ 0
+ =
+ true)
+-(h9
++(b9
+ :
+ Nat.testBit
+-rule
++r
+ 9
+ =
++false)
++(e
++:
++(sameSet
++(offAfter
++r
++(finOn
++[(0,
++0)])
++(cands
++[(0,
++0)]))
++D1
++&&
++sameSet
++(onAfter
++r
++(coFin
++D1)
++(cands
++D1))
++M
++&&
++sameSet
++(offAfter
++r
++(finOn
++M)
++(cands
++M))
++D3
++&&
++sameSet
++(onAfter
++r
++(coFin
++D3)
++(cands
++D3))
++L4
++&&
++sameSet
++(offAfter
++r
++(finOn
++L4)
++(cands
++L4))
++D5
++&&
++sameSet
++(onAfter
++r
++(coFin
++D5)
++(cands
++D5))
++L6)
++=
+ true)
+-(E1
+-:
+-sameSet
+-(offAfter
+-rule
+-(finOn
+-O1)
+-(cands
+-O1))
+-P5
+-=
+-true)
+-(E2
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-P5)
+-(cands
+-P5))
+-X4
+-=
+-true)
+-(E3
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-X4)
+-(cands
+-X4))
+-Q8
+-=
+-true)
+-(E4
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-Q8)
+-(cands
+-Q8))
+-O1
+-=
+-true)
+-(E5
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-O1)
+-(cands
+-O1))
+-O1
+-=
+-true)
+-(g
+-:
+-Nat)
+-:
+-caState
+-rule
+-g
+-=
+-stage7
+-g
+-:=
+-by
+induction
+-g
+-with
+-|
+-zero
+-=>
+-exact
+-caState_zero
+-rule
+-|
+-succ
+-g
+-ih
+-=>
++:
++Stages
++r
++:=
++by
+simp
++only
++[Bool.and_eq_true]
++at
++e
++obtain
++⟨⟨⟨⟨⟨e1,
++e2⟩,
++e3⟩,
++e4⟩,
++e5⟩,
++e6⟩
++:=
++e
++have
++s1
++:
++caState
++r
++1
++=
++coFin
++D1
++:=
++by
+show
++step
++r
++(caState
++r
++0)
++=
++_
++rw
++[caState_zero,
++step_finOn
++b0];
++exact
++coFin_congr
++(sameSet_contains
++e1)
++have
++s2
++:
++caState
++r
++2
++=
++finOn
++M
++:=
++by
+show
++step
++r
++(caState
++r
++1)
++=
++_
++rw
++[s1,
++step_coFin_off
++b9];
++exact
++finOn_congr
++(sameSet_contains
++e2)
++have
++s3
++:
++caState
++r
++3
++=
++coFin
++D3
++:=
++by
+show
++step
++r
++(caState
++r
++2)
++=
++_
++rw
++[s2,
++step_finOn
++b0];
++exact
++coFin_congr
++(sameSet_contains
++e3)
++have
++s4
++:
++caState
++r
++4
++=
++finOn
++L4
++:=
++by
+show
++step
++r
++(caState
++r
++3)
++=
++_
++rw
++[s3,
++step_coFin_off
++b9];
++exact
++finOn_congr
++(sameSet_contains
++e4)
++have
++s5
++:
++caState
++r
++5
++=
++coFin
++D5
++:=
++by
+show
++step
++r
++(caState
++r
++4)
++=
++_
++rw
++[s4,
++step_finOn
++b0];
++exact
++coFin_congr
++(sameSet_contains
++e5)
++refine
++⟨s1,
++s3,
++s4,
++s5,
++?_⟩
+ show
+ step
+-rule
+-(caState
+-rule
+-g)
+-=
+-stage7
+-(g
+-+
+-1)
+-rw
+-[ih]
+-match
+-g
+-with
+-|
+-0
+-=>
+-exact
+-(step_finOn
+-h0
+-O1).trans
+-(coFin_congr
+-(sameSet_contains
+-E1))
+-|
+-1
+-=>
+-exact
+-(step_coFin
+-h9
+-P5).trans
+-(coFin_congr
+-(sameSet_contains
+-E2))
+-|
+-2
+-=>
+-exact
+-(step_coFin
+-h9
+-X4).trans
+-(coFin_congr
+-(sameSet_contains
+-E3))
+-|
+-3
+-=>
+-exact
+-(step_coFin
+-h9
+-Q8).trans
+-(coFin_congr
+-(sameSet_contains
+-E4))
+-|
+-_
+-+
+-4
+-=>
+-exact
+-(step_coFin
+-h9
+-O1).trans
+-(coFin_congr
+-(sameSet_contains
+-E5))
++r
++(caState
++r
++5)
++=
++_
++rw
++[s5,
++step_coFin_off
++b9];
++exact
++finOn_congr
++(sameSet_contains
++e6)
+
+--- LT2D.stages in mwmbjanx-5lciqx
++++ LT2D.stages in mwmnzbwy-gx846h
+@@ -1,172 +1,217 @@
+ theorem
+ stages
+-{rule
++{r
+ :
+ Nat}
+-(h0
++(h
+ :
+ Nat.testBit
+-rule
++r
+ 0
+ =
++true
++∧
++Nat.testBit
++r
++9
++=
++true
++∧
++sameSet
++(offAfter
++r
++(finOn
++[(0,
++0)])
++(cands
++[(0,
++0)]))
++D1
++=
++true
++∧
++sameSet
++(offAfter
++r
++(coFin
++D1)
++(cands
++D1))
++D2
++=
++true
++∧
++sameSet
++(offAfter
++r
++(coFin
++D2)
++(cands
++D2))
++D3
++=
++true
++∧
++sameSet
++(offAfter
++r
++(coFin
++D3)
++(cands
++D3))
++D2
++=
+ true)
+-(h9
+-:
+-Nat.testBit
+-rule
+-9
+-=
+-true)
+-(E1
+-:
+-sameSet
+-(offAfter
+-rule
+-(finOn
+-O1)
+-(cands
+-O1))
+-P5
+-=
+-true)
+-(E2
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-P5)
+-(cands
+-P5))
+-X4
+-=
+-true)
+-(E3
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-X4)
+-(cands
+-X4))
+-Q8
+-=
+-true)
+-(E4
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-Q8)
+-(cands
+-Q8))
+-O1
+-=
+-true)
+-(E5
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-O1)
+-(cands
+-O1))
+-O1
+-=
+-true)
+-(g
+-:
+-Nat)
+-:
+-caState
+-rule
+-g
+-=
+-stage7
+-g
+-:=
+-by
+induction
+-g
++:
++caState
++r
++1
++=
++coFin
++D1
++∧
++∀
++m,
++caState
++r
++(2
+++
++2
++*
++m)
++=
++coFin
++D2
++∧
++caState
++r
++(3
+++
++2
++*
++m)
++=
++coFin
++D3
++:=
++by
+obtain
++⟨h0,
++h9,
++E1,
++E2,
++E3,
++E4⟩
++:=
++h
++have
++s1
++:=
++stage1
++h0
++E1
++refine
++⟨s1,
++fun
++m
++=>
++?_⟩
++induction
++m
+ with
+ |
+ zero
+ =>
+-exact
+-caState_zero
+-rule
++have
++s2
++:
++caState
++r
++2
++=
++coFin
++D2
++:=
++stage_succ
++h9
++E2
++s1
++exact
++⟨s2,
++stage_succ
++h9
++E3
++s2⟩
+ |
+ succ
+-g
++m
+ ih
+ =>
+-show
+-step
+-rule
+-(caState
+-rule
+-g)
+-=
+-stage7
+-(g
++have
++a
++:
++caState
++r
++(2
+++
++2
++*
++(m
+++
++1))
++=
++coFin
++D2
++:=
++by
+rw
++[show
++2
+++
++2
++*
++(m
+ +
+ 1)
++=
++(3
+++
++2
++*
++m)
+++
++1
++by
++omega]
++exact
++stage_succ
++h9
++E4
++ih.2
++exact
++⟨a,
++by
+ rw
+-[ih]
+-match
+-g
+-with
+-|
+-0
+-=>
+-exact
+-(step_finOn
+-h0
+-O1).trans
+-(coFin_congr
+-(sameSet_contains
+-E1))
+-|
++[show
++3
+++
++2
++*
++(m
+++
++1)
++=
++(2
+++
++2
++*
++(m
+++
++1))
+++
+ 1
+-=>
+-exact
+-(step_coFin
+-h9
+-P5).trans
+-(coFin_congr
+-(sameSet_contains
+-E2))
+-|
+-2
+-=>
+-exact
+-(step_coFin
+-h9
+-X4).trans
+-(coFin_congr
+-(sameSet_contains
+-E3))
+-|
+-3
+-=>
+-exact
+-(step_coFin
+-h9
+-Q8).trans
+-(coFin_congr
+-(sameSet_contains
+-E4))
+-|
+-_
+-+
+-4
+-=>
+-exact
+-(step_coFin
+-h9
+-O1).trans
+-(coFin_congr
+-(sameSet_contains
+-E5))
++by
++omega]
++exact
++stage_succ
++h9
++E3
++a⟩
+
+--- LT2D.stages in mwmbjanx-5lciqx
++++ LT2D.stages in mwmo3omz-3d6q7j
+@@ -1,172 +1,199 @@
+ theorem
+ stages
+-{rule
++{r
+ :
+ Nat}
+-(h0
++(h
+ :
+ Nat.testBit
+-rule
++r
+ 0
+ =
+-true)
+-(h9
+-:
++true
++∧
+ Nat.testBit
+-rule
++r
+ 9
+ =
+-true)
+-(E1
+-:
++false
++∧
+ sameSet
+ (offAfter
+-rule
++r
+ (finOn
+ O1)
+ (cands
+ O1))
+-P5
++D1
+ =
+-true)
+-(E2
+-:
++true
++∧
+ sameSet
+-(offAfter
+-rule
++(onAfter
++r
+ (coFin
+-P5)
++D1)
+ (cands
+-P5))
+-X4
+-=
+-true)
+-(E3
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-X4)
+-(cands
+-X4))
+-Q8
+-=
+-true)
+-(E4
+-:
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-Q8)
+-(cands
+-Q8))
++D1))
+ O1
+ =
+ true)
+-(E5
+ :
+-sameSet
+-(offAfter
+-rule
+-(coFin
+-O1)
+-(cands
+-O1))
++∀
++m,
++caState
++r
++(2
++*
++m)
++=
++finOn
+ O1
++∧
++caState
++r
++(2
++*
++m
+++
++1)
+ =
+-true)
+-(g
+-:
+-Nat)
+-:
+-caState
+-rule
+-g
+-=
+-stage7
+-g
++coFin
++D1
+ :=
+-by
+induction
+-g
++by
+obtain
++⟨h0,
++h9,
++E1,
++E2⟩
++:=
++h
++intro
++m
++induction
++m
+ with
+ |
+ zero
+ =>
++refine
++⟨caState_zero
++r,
++?_⟩
++show
++step
++r
++(caState
++r
++0)
++=
++coFin
++D1
++rw
++[caState_zero,
++step_finOn
++h0]
+ exact
+-caState_zero
+-rule
++coFin_congr
++(sameSet_contains
++E1)
+ |
+ succ
+-g
++m
+ ih
+ =>
++have
++a
++:
++caState
++r
++(2
++*
++(m
+++
++1))
++=
++finOn
++O1
++:=
++by
+rw
++[show
++2
++*
++(m
+++
++1)
++=
++(2
++*
++m
+++
++1)
+++
++1
++by
++omega]
+ show
+ step
+-rule
++r
+ (caState
+-rule
+-g)
++r
++(2
++*
++m
+++
++1))
+ =
+-stage7
+-(g
++finOn
++O1
++rw
++[ih.2,
++step_coFin0
++h9]
++exact
++finOn_congr
++(sameSet_contains
++E2)
++refine
++⟨a,
++?_⟩
++rw
++[show
++2
++*
++(m
+ +
+ 1)
+++
++1
++=
++(2
++*
++(m
+++
++1))
+++
++1
++by
++omega]
++show
++step
++r
++(caState
++r
++(2
++*
++(m
+++
++1)))
++=
++coFin
++D1
+ rw
+-[ih]
+-match
+-g
+-with
+-|
+-0
+-=>
++[a,
++step_finOn
++h0]
+ exact
+-(step_finOn
+-h0
+-O1).trans
+-(coFin_congr
++coFin_congr
+ (sameSet_contains
+-E1))
+-|
+-1
+-=>
+-exact
+-(step_coFin
+-h9
+-P5).trans
+-(coFin_congr
+-(sameSet_contains
+-E2))
+-|
+-2
+-=>
+-exact
+-(step_coFin
+-h9
+-X4).trans
+-(coFin_congr
+-(sameSet_contains
+-E3))
+-|
+-3
+-=>
+-exact
+-(step_coFin
+-h9
+-Q8).trans
+-(coFin_congr
+-(sameSet_contains
+-E4))
+-|
+-_
+-+
+-4
+-=>
+-exact
+-(step_coFin
+-h9
+-O1).trans
+-(coFin_congr
+-(sameSet_contains
+-E5))
++E1)
+
+--- LT2D.sumTo_eq_sum in mwmg80g1-t2b1mg
++++ LT2D.sumTo_eq_sum in mwmowkxn-5swdpn
+@@ -9,7 +9,7 @@
+ :
+ Nat)
+ :
+-A272706.sumTo
++VN.sumTo
+ h
+ m
+ =

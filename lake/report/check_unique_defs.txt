@@ -1,0 +1,8 @@
+OK   def LT2D.caState: 1 occurrence(s) LT2D/Defs.lean:34
+OK   def LT2D.onCount: 1 occurrence(s) LT2D/Defs.lean:43
+OK   def LT2D.window: 1 occurrence(s) LT2D/Defs.lean:39
+OK   def LT2D.ruleOut: 1 occurrence(s) LT2D/Defs.lean:20
+OK   def LT2D.nbrOn: 1 occurrence(s) LT2D/Defs.lean:24
+OK   def LT2D.step: 1 occurrence(s) LT2D/Defs.lean:29
+OK   abbrev LT2D.Cell: 1 occurrence(s) LT2D/Defs.lean:16
+unique definitions: PASS

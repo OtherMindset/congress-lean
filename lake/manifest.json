@@ -1,0 +1,3785 @@
+{
+ "project": "LT2D",
+ "toolchain": "leanprover/lean4:v4.35.0 (commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
+ "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+ "table": "oeis-new-terms",
+ "theorem_list_source": "paper/appendix_index.tex (182 theorems, generated from rows.json) plus 9 results named in paper/main.tex",
+ "modules": [
+  {
+   "post_id": "mwmfkzh5-8rq7id",
+   "module": "LT2D.A272706.K1a",
+   "path": "LT2D/A272706/K1a.lean",
+   "site_sha256": "32ade56e9b98f4a271272b8d0a184b6ddff7c60d8d38bab703481cd1e59ce20d",
+   "file_sha256": "32ade56e9b98f4a271272b8d0a184b6ddff7c60d8d38bab703481cd1e59ce20d",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": []
+  },
+  {
+   "post_id": "mwmflun2-e55jk4",
+   "module": "LT2D.A272706.K1b",
+   "path": "LT2D/A272706/K1b.lean",
+   "site_sha256": "3c7aeb00be972166e7fd1a54c5ccff8b66b10f8c335a6ac582643306fbdd33f3",
+   "file_sha256": "37ce9eab2a9144e50856a6e2eab7c490e16c784d6e538254a35d9a2a1d31e83e",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmfn54e-48boes",
+   "module": "LT2D.A272706.K2",
+   "path": "LT2D/A272706/K2.lean",
+   "site_sha256": "5079aa985d1220a8ac0869941a56b1fde9fa77a4c60700b393f5fb3ee838a141",
+   "file_sha256": "7d6f31062dd07287480d611f5e7e375c3fc2f8ab95d81855f96688f7d141172b",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmg2qh7-qxah27",
+   "module": "LT2D.A272706.K3",
+   "path": "LT2D/A272706/K3.lean",
+   "site_sha256": "144ad7e0ff23ceb750aa7805bc6dca19f2d0976dabd68df34422b2ec35c8c782",
+   "file_sha256": "aff4401430fde3dd1e3a32da58d98631802058db2d73cdcecba89b8365d9dac3",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmg413f-bj9quu",
+   "module": "LT2D.A272706.K4",
+   "path": "LT2D/A272706/K4.lean",
+   "site_sha256": "be9e0e4b3eeda97c88f29f809517b592df2053098e4df9bc2272e8e24792b9fe",
+   "file_sha256": "209a273c495f95da76f46f3a7f074b0caf03c81b66c03f873acbc23fe0c99f9e",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmg59dp-dtai66",
+   "module": "LT2D.A272706.K5",
+   "path": "LT2D/A272706/K5.lean",
+   "site_sha256": "41f98e694c8f5aab3ee0457597f1a192a50de10c66dcac935f1c0f99d98dccaa",
+   "file_sha256": "c2d835716c462862d902cee78ff1688f518d272bc3c41acf5fd50b7d45d6e1f8",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmg681k-0v8jc7",
+   "module": "LT2D.A272706.K6",
+   "path": "LT2D/A272706/K6.lean",
+   "site_sha256": "d3b8c26e688a8bede6f6aebde01e34ad5f7da3fd2ed64cfe4933f935d3c8d093",
+   "file_sha256": "9c9187b4e1e98cefb7ca03a6a4c7763111f70c4e5c0f7cec33dd764c59348cb6",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmg73qw-sgejby",
+   "module": "LT2D.A272706.M1",
+   "path": "LT2D/A272706/M1.lean",
+   "site_sha256": "f4428b5c6e53eaacd90c8160231e502d92e72ef716654280aa1a4214a07995d9",
+   "file_sha256": "fb658436a15fc4b61314c08a6498e4a9284cc9a18bcd42df591333a6bdae84bd",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.nbrOn_abs",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmg80g1-t2b1mg",
+   "module": "LT2D.A272706.M2",
+   "path": "LT2D/A272706/M2.lean",
+   "site_sha256": "3292512dd9b6472babf1708c420f33471578b2a651ae9a0e1de2f5979743e238",
+   "file_sha256": "e490d6dcdb3b91ba58fb1b79e19ffb80507783ef5bb24b2a6b964aa69c810914",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.onCount_fold",
+    "delete LT2D.sum_Icc_natAbs",
+    "private LT2D.sumTo_eq_sum",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmo3omz-3d6q7j",
+   "module": "LT2D.Early.A269911_Core",
+   "path": "LT2D/Early/A269911_Core.lean",
+   "site_sha256": "1fba957cd431552a87a6c4e74a00b3d6da1777caf9a7eef9128263f8b1ec91be",
+   "file_sha256": "2d6ea34f02227cb9216ebe2f81485b626733d5f5acda5c3ed59277ec42fce91c",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.step_coFin0",
+    "delete LT2D.finOn_congr",
+    "delete LT2D.contains_onAfter",
+    "delete LT2D.caState_zero",
+    "delete LT2D.step_coFin",
+    "delete LT2D.step_finOn",
+    "delete LT2D.contains_offAfter",
+    "delete LT2D.contains_cands_false",
+    "delete LT2D.coFin_congr",
+    "delete LT2D.sameSet_contains",
+    "delete LT2D.onAfter",
+    "delete LT2D.sameSet",
+    "delete LT2D.offAfter",
+    "delete LT2D.coFin",
+    "delete LT2D.finOn",
+    "delete LT2D.cands",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "private LT2D.O1",
+    "private LT2D.stages",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmo4lkh-4j151k",
+   "module": "LT2D.Early.A269911_M",
+   "path": "LT2D/Early/A269911_M.lean",
+   "site_sha256": "abe4091f4e61de8e0ddfcc76bb7393590d75f04d2190987a35427549c6fabf8b",
+   "file_sha256": "16b361fd1dc4e1b1a816aa9e0cf9e4a24ac9d4d4aeef3d5a7e25a749091a5aad",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmo5b4i-ozwrjo",
+   "module": "LT2D.Early.A270084_Core",
+   "path": "LT2D/Early/A270084_Core.lean",
+   "site_sha256": "f166960e5216b9ae100e967eec702395d13fcbd61f395b525a4c05a988b37a1f",
+   "file_sha256": "7ad0c6ee01f3facc5e3f0305ca9d49df9d32a9b88cdae5733bf3feae46be5915",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmo64bd-kg91iu",
+   "module": "LT2D.Early.A270084_M",
+   "path": "LT2D/Early/A270084_M.lean",
+   "site_sha256": "c2fe70119110d185627e37c6c80b133cdf8ce25623d0b6d632c9b340e3b9a865",
+   "file_sha256": "c369412ae3f35431b0d303d1c1577e23256ee56807daad4b9ec1b4547d45af9d",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "private LT2D.card_offSet",
+    "private LT2D.count_formula",
+    "private LT2D.count_large",
+    "private LT2D.count_three",
+    "private LT2D.offSet",
+    "private LT2D.onCount_O3",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmeo46j-i1w8jl",
+   "module": "LT2D.Early.A271055",
+   "path": "LT2D/Early/A271055.lean",
+   "site_sha256": "82765af3eeb07ccd85473ece32d18429b72664f8977a55e4aeca4b18d134a288",
+   "file_sha256": "21393dd53965806f24d2a9d8f709c6589f863a0f1af2bb8e444b34e4418d5085",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "private LT2D.onCount_odd",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmezycj-p4n3xa",
+   "module": "LT2D.Early.A271061_Part1",
+   "path": "LT2D/Early/A271061_Part1.lean",
+   "site_sha256": "a93428ce30ce6ec043ba305b59660f73af690ff0dddd310257c3965a7398ff3c",
+   "file_sha256": "77b9decdfa90fc1ac0e90d21d04961a406c16e566bedeb9d3097a9bd8030452b",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "delete LT2D.step_coFin0",
+    "delete LT2D.finOn_congr",
+    "delete LT2D.contains_onAfter",
+    "delete LT2D.caState_zero",
+    "delete LT2D.step_coFin",
+    "delete LT2D.step_finOn",
+    "delete LT2D.contains_offAfter",
+    "delete LT2D.contains_cands_false",
+    "delete LT2D.coFin_congr",
+    "delete LT2D.sameSet_contains",
+    "delete LT2D.sameSet",
+    "delete LT2D.onAfter",
+    "delete LT2D.offAfter",
+    "delete LT2D.coFin",
+    "delete LT2D.finOn",
+    "delete LT2D.cands",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmf0sdo-ipq6x7",
+   "module": "LT2D.Early.A271061_Part2",
+   "path": "LT2D/Early/A271061_Part2.lean",
+   "site_sha256": "598c83ac015ecb1900d35b1d9e0edbbcb041e1ad80edce247ccfa40a10bdbb6b",
+   "file_sha256": "346d0c6506a3981b95fc0b49b78be12f71bbd7bc03d4c8d3b2bbf01e29650258",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmf1fyp-ayyx2x",
+   "module": "LT2D.Early.A271061_Part3",
+   "path": "LT2D/Early/A271061_Part3.lean",
+   "site_sha256": "059b1ce663ba8d7bf26830439f226b1dfc406383c027ead145f4ceeb380fa686",
+   "file_sha256": "d2cc2705bf2955b1deb9b3b9319463bf1cb3c856a29114402177edcde539a39a",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmnzbwy-gx846h",
+   "module": "LT2D.Early.A273310_Core",
+   "path": "LT2D/Early/A273310_Core.lean",
+   "site_sha256": "09407167cf90a2bf31121e7165510014071f400da9a0fc05a116c5df03321dfa",
+   "file_sha256": "4f8fd37680763c83c230c89c1400da063521d39e3042c0990a2b67cfdc807ecb",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.caState_zero",
+    "delete LT2D.step_coFin",
+    "delete LT2D.step_finOn",
+    "delete LT2D.contains_offAfter",
+    "delete LT2D.contains_cands_false",
+    "delete LT2D.coFin_congr",
+    "delete LT2D.sameSet_contains",
+    "delete LT2D.sameSet",
+    "delete LT2D.offAfter",
+    "delete LT2D.coFin",
+    "delete LT2D.finOn",
+    "delete LT2D.cands",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "private LT2D.stage1",
+    "private LT2D.stages",
+    "rename D1 -> D1_r641 LT2D.D1",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmo00d2-zk3ahq",
+   "module": "LT2D.Early.A273310_M",
+   "path": "LT2D/Early/A273310_M.lean",
+   "site_sha256": "43d2c70fd694f4e53626b6d7a34be95fecd12e157098a571d93cd5ab4040e0e3",
+   "file_sha256": "a4a77f002eb00bd0b1621ffc36339d6464defc1776545a53f0fb946d39d76f5a",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "private LT2D.onCount_odd",
+    "rename D1 -> D1_r641 LT2D.D1",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmbp99x-ymn9an",
+   "module": "LT2D.Early.A273385",
+   "path": "LT2D/Early/A273385.lean",
+   "site_sha256": "a200999084d8226237a8afeb93c0854cb70565a05e4534a430a30ae1909c8a35",
+   "file_sha256": "b832ecd0e47005a68bbb9249d1a43984ea2696a021e7ffe6b03e4f0b8f11eadb",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "delete LT2D.step_allOn",
+    "delete LT2D.caState_zero",
+    "delete LT2D.step_coFin",
+    "delete LT2D.step_finOn",
+    "delete LT2D.contains_offAfter",
+    "delete LT2D.contains_cands_false",
+    "delete LT2D.coFin_congr",
+    "delete LT2D.sameSet_contains",
+    "delete LT2D.sameSet",
+    "delete LT2D.offAfter",
+    "delete LT2D.coFin",
+    "delete LT2D.finOn",
+    "delete LT2D.cands",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "private LT2D.D1",
+    "private LT2D.D2",
+    "private LT2D.same_counts",
+    "private LT2D.stage1",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmbjanx-5lciqx",
+   "module": "LT2D.Early.A273446",
+   "path": "LT2D/Early/A273446.lean",
+   "site_sha256": "af1f25fb8f334e2d9ef3a8416fb33ebd5eb1eb834333ad287783419afc2c3ae9",
+   "file_sha256": "dd43491b6725d17461e2cad99c83dd221423bb51b487387a59628e68567c50d8",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "delete LT2D.step_allOn",
+    "delete LT2D.caState_zero",
+    "delete LT2D.step_coFin",
+    "delete LT2D.step_finOn",
+    "delete LT2D.contains_offAfter",
+    "delete LT2D.contains_cands_false",
+    "delete LT2D.coFin_congr",
+    "delete LT2D.sameSet_contains",
+    "delete LT2D.sameSet",
+    "delete LT2D.offAfter",
+    "delete LT2D.coFin",
+    "delete LT2D.finOn",
+    "delete LT2D.cands",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "private LT2D.O1",
+    "private LT2D.P5",
+    "private LT2D.stages",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmc69rp-fpejr2",
+   "module": "LT2D.Early.R245_A",
+   "path": "LT2D/Early/R245_A.lean",
+   "site_sha256": "10b6639a60c42796f7c97a3701a6c35d308a7597bfb1f97d84924b66626455d4",
+   "file_sha256": "bba7a485140989633e51fde7972ee99c446621ceee2da46973f8df41c62f2bc5",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.caState_zero",
+    "delete LT2D.step_finOn",
+    "delete LT2D.contains_onAfter",
+    "delete LT2D.contains_offAfter",
+    "delete LT2D.contains_cands_false",
+    "delete LT2D.finOn_congr",
+    "delete LT2D.coFin_congr",
+    "delete LT2D.sameSet_contains",
+    "delete LT2D.onAfter",
+    "delete LT2D.sameSet",
+    "delete LT2D.offAfter",
+    "delete LT2D.coFin",
+    "delete LT2D.finOn",
+    "delete LT2D.cands",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "private LT2D.D1",
+    "private LT2D.D3",
+    "private LT2D.stages",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmc7dqp-lya7v1",
+   "module": "LT2D.Early.R245_B",
+   "path": "LT2D/Early/R245_B.lean",
+   "site_sha256": "a88e41f661828402802d962c84dedf046997a24a4b92baba9ff7482ccda030e3",
+   "file_sha256": "efedd9e1f17b691b050593b290b5e73547ad25861302b02614483dd4ecd2137e",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "private LT2D.base_box",
+    "private LT2D.box9",
+    "private LT2D.card_offSet",
+    "private LT2D.count_formula",
+    "private LT2D.offSet",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmfcf3a-sdo7h1",
+   "module": "LT2D.Early.R323_A",
+   "path": "LT2D/Early/R323_A.lean",
+   "site_sha256": "fd246aec7ded0b647caf34733c0871e8ab3e7c86d76b8ea1f6a40d1835980d50",
+   "file_sha256": "9cf5a3ab60ff750384a92508b828c1928faf77fda5966528d43211090799d862",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "private LT2D.base_box",
+    "private LT2D.box9",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmfdcb8-xvayfc",
+   "module": "LT2D.Early.R323_B",
+   "path": "LT2D/Early/R323_B.lean",
+   "site_sha256": "da7a4779bf318f249193c32d6838bd512523d1d332281006d334110888e2ea36",
+   "file_sha256": "55cfd7cf207a722273c7679901642d0e3999eae274588284dddde7584daee37b",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "delete LT2D.card_window",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "private LT2D.card_offSet",
+    "private LT2D.count_large",
+    "private LT2D.count_three",
+    "private LT2D.offSet",
+    "private LT2D.onCount_O3",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwg6gt-0aiokf",
+   "module": "LT2D.Groups.NT1.C",
+   "path": "LT2D/Groups/NT1/C.lean",
+   "site_sha256": "44bd521143c5a8d1dea06c95cdf69b83d80a6dae648c76d1a637387c42ec69a8",
+   "file_sha256": "0394a466c0189c0655fb892e38a61d8beb48877a4cf730427ae6a414de67d780",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwg6mq-o3lkfp",
+   "module": "LT2D.Groups.NT1.M",
+   "path": "LT2D/Groups/NT1/M.lean",
+   "site_sha256": "54167903cdc52561ec03469b19063b8a3b5588d5151eee686d48e7cd33ff5be5",
+   "file_sha256": "7396269c4494aa74a80792dae270410832726f944e9865e4776cdfda70a07c5d",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmq3o2e-6yejx0",
+   "module": "LT2D.Groups.VBG1.C",
+   "path": "LT2D/Groups/VBG1/C.lean",
+   "site_sha256": "2f0a35abc610392adf549d9fc6c12438012911a66d5d5b4e6a0cfa6fde580787",
+   "file_sha256": "89c06a3831f7c1a0354f40947c1f904f9060a80c1e87996be9dbd56d8db368ef",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmq4rm3-0e92a0",
+   "module": "LT2D.Groups.VBG1.M",
+   "path": "LT2D/Groups/VBG1/M.lean",
+   "site_sha256": "22351dfed650642a3d7774040243b726a75a8046dbce8067480f37674783ab14",
+   "file_sha256": "664097968c785a387cb334f212371da066cefa77180304853c8502de2b2bf07c",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqdq1s-kqg7vk",
+   "module": "LT2D.Groups.VBG2.C",
+   "path": "LT2D/Groups/VBG2/C.lean",
+   "site_sha256": "59c78e722df21d0d98257a7407edc38fead0bfa153697c3dafb78387b4de94c8",
+   "file_sha256": "979759cc75741e68632af6c8afdf691210b5b4189a95687ce68c1d8679583af8",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqefff-czcc3e",
+   "module": "LT2D.Groups.VBG2.M",
+   "path": "LT2D/Groups/VBG2/M.lean",
+   "site_sha256": "8e5acb848bf17a4326863e5decf25cb3c56ef20297a7af00efe58ecd49d0eeb5",
+   "file_sha256": "20441716b18fc8f6ecadd7af3637f0082b2fcb344762d284fd9cc535b1e7853f",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqf3gw-3p2oj0",
+   "module": "LT2D.Groups.VBG3.C",
+   "path": "LT2D/Groups/VBG3/C.lean",
+   "site_sha256": "8fa8ee46c3ac1fff31b0094019072fb689468afdd9bb35935067c7e6510cf34d",
+   "file_sha256": "bf1d899ada5b07c0b2bcadbec88c4ea435bd4a6a081dbcfea0998955f3a136dd",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqfzor-jaus5f",
+   "module": "LT2D.Groups.VBG3.M",
+   "path": "LT2D/Groups/VBG3/M.lean",
+   "site_sha256": "1ac7b9da7f48056749092a27b1c770dba90f0f8d0b5ff9da10519b96ae9edb75",
+   "file_sha256": "397cc17be4190ecd6dd2374ce7548a655a2ce1aaba974ced95220398e8a817b8",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqi7x4-t06lnp",
+   "module": "LT2D.Groups.VBG4.C",
+   "path": "LT2D/Groups/VBG4/C.lean",
+   "site_sha256": "1c17b2a6da889f8f0a32ab1345ca2d114299444f1ec4a2527656ab09b1ed944e",
+   "file_sha256": "0369ee9b6f397441ac83c062a3b0a9af98369742df899494a7c3417bf0de967a",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqj724-ichycl",
+   "module": "LT2D.Groups.VBG4.M",
+   "path": "LT2D/Groups/VBG4/M.lean",
+   "site_sha256": "d7d6bbb3de8eacd099a5a742e569b14233b7433820ffc201fdfbbf469202ec25",
+   "file_sha256": "11ea388cd040f5e1e1690abe2b9d0095a59a195d079caf63a731a3a3e68b1331",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqk4xg-4j1zij",
+   "module": "LT2D.Groups.VBG5.C",
+   "path": "LT2D/Groups/VBG5/C.lean",
+   "site_sha256": "c1cd6ca00d6dc15d3a53ebbf3f2e663c5ebcfc4e04d26b04c3aa4bebf26f315f",
+   "file_sha256": "3d72d5939c5164c6f84dd0bb22c942ed6a074b9d46060449b5ec7b555d0c29b3",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqklkd-j5nf9x",
+   "module": "LT2D.Groups.VBG5.M",
+   "path": "LT2D/Groups/VBG5/M.lean",
+   "site_sha256": "9db131422ad9c3a3a8f6d60b7f1b8d26e431928e3e8f3e03459dddd4c33cebdc",
+   "file_sha256": "0c1f74c1db7c06ade6cd5f8472eae7b9e5ea0e154b976c4ac278f8aad3278f74",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqle98-1qk5up",
+   "module": "LT2D.Groups.VBG6.C",
+   "path": "LT2D/Groups/VBG6/C.lean",
+   "site_sha256": "9ba0f7ffd10b232ec578fcb077de2c7c2cd6bfbf262d66cefe2bc45e77d274c6",
+   "file_sha256": "7b16bd18a8063a142de4f69879833e52dc705728d08c0b702db91c0818a2d963",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmqy7yi-hpzoks",
+   "module": "LT2D.Groups.VBG6.M",
+   "path": "LT2D/Groups/VBG6/M.lean",
+   "site_sha256": "71b4565cb6d10a3bd7e654f2a82a3f8f5a57b336721999a1aa6ab4f866807c62",
+   "file_sha256": "2487189d455ae4b3ebcf3322adb1941e446ad2e7c2a670848abf81b71e5fb88e",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnlmvsh-e24urv",
+   "module": "LT2D.Groups.W2A1.C",
+   "path": "LT2D/Groups/W2A1/C.lean",
+   "site_sha256": "dd79eba8674c05b387fbc260dd76afcd3be9a6de3ed7a0f53a9b2840dfb173c0",
+   "file_sha256": "3d5c571874ef59e2fe213fa794f8b01f2918e015d9da60679856dbbc847ee261",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnlo2f2-r026o1",
+   "module": "LT2D.Groups.W2A1.M",
+   "path": "LT2D/Groups/W2A1/M.lean",
+   "site_sha256": "d8fad9558ee851bde35d88adb6f4073b65187b7d002d4caf4232fab81080f6cb",
+   "file_sha256": "6c100eaec087269817f3f3ae499b030966ceb657902f98439f62d38ff474ea06",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnn3me8-tv2sqv",
+   "module": "LT2D.Groups.W2A2.C",
+   "path": "LT2D/Groups/W2A2/C.lean",
+   "site_sha256": "8952a7a63e53d5f527bba025fdf395c3e995ff71ad563a26fff848e504555255",
+   "file_sha256": "4d24df94354f066b7df661fe70d4cc6338d92146c9edc0c7bfa235a073100f8d",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnn503e-jvcbxq",
+   "module": "LT2D.Groups.W2A2.M",
+   "path": "LT2D/Groups/W2A2/M.lean",
+   "site_sha256": "4f5935faa67974f004994b3a666b83b018d8c07c26c1d973c9de9fa3bad5911a",
+   "file_sha256": "b53f36d50e1b8c32f7318c05d1a929b4d2f1dfcbd4f5db0e3dd73ee4ebaded28",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnn40c6-8innug",
+   "module": "LT2D.Groups.W2A3.C",
+   "path": "LT2D/Groups/W2A3/C.lean",
+   "site_sha256": "826316890d4f05dbc52e38cc1d936b4c8be1463fdc969840d2bc68fe9d7386b2",
+   "file_sha256": "d190d059515bfaf89995df2536e24372ca9ffd109fc061238b9cb6ca2e8e3885",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnn5h1v-r2u2ac",
+   "module": "LT2D.Groups.W2A3.M",
+   "path": "LT2D/Groups/W2A3/M.lean",
+   "site_sha256": "92b46b69790a96586545899fccd9e2a2c64546d16593478335ed78ca21c13678",
+   "file_sha256": "bf805f75979b2ebff683af8c17b52cfef7e1ced35add3fe34e7200ffb06bbcff",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnkf9tw-m0l8ee",
+   "module": "LT2D.Groups.W2B_A22.C",
+   "path": "LT2D/Groups/W2B_A22/C.lean",
+   "site_sha256": "b6f506ff71ff6b9ce97e3d1f5ab0395be590cd9ec8d420d19dfb884a1030561e",
+   "file_sha256": "e0e24adfbc3744d8f570b8c7404449f2eed39e99ec0cda50aa4593eeae5047e9",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnkgxmx-t5x2ye",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "path": "LT2D/Groups/W2B_A22/M.lean",
+   "site_sha256": "a8697f6177cee7e0e75e7f9270b2bad947efe34f7eda635e6f1a22eb1d39ec00",
+   "file_sha256": "1e9c30e301cc8b1a389bcefd8130bdf18c01d8dfa6d7e44481104169267e1b05",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnl5smw-zwimkn",
+   "module": "LT2D.Groups.W2B_G7.C",
+   "path": "LT2D/Groups/W2B_G7/C.lean",
+   "site_sha256": "0215e7dd05979cffaeacdec76090ffb6ba4e54d69ef9d9ced0806b6462e2bebf",
+   "file_sha256": "63ab68919da478d436d6c3fe18113086300cc5ab0c4172eb38720ab302ce602e",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnl73l3-qntwy3",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "path": "LT2D/Groups/W2B_G7/M.lean",
+   "site_sha256": "962c4369a0e09dec86d1383b35b218180d7d9449ebb617cc8d62488c5ef5b1d6",
+   "file_sha256": "d0b34cf88142af5ab5270a5d40eb54c2d095a7badc2785ba39c4393609720fa0",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrdi6x-7ac11s",
+   "module": "LT2D.Instances.LB3_R35.C",
+   "path": "LT2D/Instances/LB3_R35/C.lean",
+   "site_sha256": "da724c0bbf366c9691983eb3faf9ba952d1a4e54c2414111217a5b8a96901f19",
+   "file_sha256": "adb87325b46f5074e1947428d42b77dab25e0c219d232cabc18cad2b1f5a1cbb",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrevwa-6onari",
+   "module": "LT2D.Instances.LB3_R35.C_R35r43",
+   "path": "LT2D/Instances/LB3_R35/C_R35r43.lean",
+   "site_sha256": "2338eadd1c5d5fbb52d9449f4f1a745c5abbcda570f0b8b17453182b7806ebeb",
+   "file_sha256": "8e7d011e9b17922cb25191815163f1c54fa05d79cee5f0bdaa9911c7f0c630ca",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrf8m5-amxjkk",
+   "module": "LT2D.Instances.LB3_R35.C_R35r59",
+   "path": "LT2D/Instances/LB3_R35/C_R35r59.lean",
+   "site_sha256": "10ca703b8c1d588e653e97d8a343e433e2a7b21a62e4fd7691e02558057107c6",
+   "file_sha256": "68274edddce368d437316e49cc09978398cb8811bc59707eedabd7553d351abc",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrei0q-3r7dvg",
+   "module": "LT2D.Instances.LB3_R35.D",
+   "path": "LT2D/Instances/LB3_R35/D.lean",
+   "site_sha256": "1ffc9b2b04f6322b6e8b0402bb82c8bf060e3e6e9859400bb11b3b2c1c56e55e",
+   "file_sha256": "728d32dc5b0867a398b0cc767234ecb0c9ebce43c25205b84f00ac7bd50439ec",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrfmp7-smlbkc",
+   "module": "LT2D.Instances.LB3_R35.M",
+   "path": "LT2D/Instances/LB3_R35/M.lean",
+   "site_sha256": "3091b4e79217d411538d7a672fa39538260e7d1a793124d8d885bff49bd1cb71",
+   "file_sha256": "1548d3d3bd9fb66ff409d4d60493445d824e3f022ae49db13c96d49f6644c75d",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrg0zj-d1dfbt",
+   "module": "LT2D.Instances.LB3_R35.Twins",
+   "path": "LT2D/Instances/LB3_R35/Twins.lean",
+   "site_sha256": "35bca89bb2f7594a9389089d66154133970240dde9153a196f51a1037ca5fc06",
+   "file_sha256": "676ea30145c0e076a8ef3d2adcdf345d9d2375cd55e7823d8b9ae63e5b1d6f69",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmsbqi4-5k6x8y",
+   "module": "LT2D.Instances.LB4_R131.C",
+   "path": "LT2D/Instances/LB4_R131/C.lean",
+   "site_sha256": "29d0ff8df9b28e0f60ab41f5cdd780356d84a1e27211b1f73745b44970a7710e",
+   "file_sha256": "4ea61cc1e0a74b1c3366a68f3e84a733bf1fc1e7e630d1e7f9eb7cb1490fe91c",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmscsmm-ns0cjf",
+   "module": "LT2D.Instances.LB4_R131.D",
+   "path": "LT2D/Instances/LB4_R131/D.lean",
+   "site_sha256": "e6404bd3df57f066fa808a03aa75ea62cef266e38d040bbd53b3eb92dafdfbce",
+   "file_sha256": "e3f7a63a8d0fb9bfabad7ff3b9d129fec1119779b477f7dff132eb6f484b2bac",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmsrn5l-qc19s7",
+   "module": "LT2D.Instances.LB4_R131.M",
+   "path": "LT2D/Instances/LB4_R131/M.lean",
+   "site_sha256": "ab659bd0280709f6f13003bf617752f7d5f69a010da367dc9f9c3b23ba4ec8b4",
+   "file_sha256": "cdf30922a6db2f9e997a6a41ef0e3735e83f8f906d60c8f973752d71b14dc784",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmslexh-6vdxrm",
+   "module": "LT2D.Instances.LB4_R619.C",
+   "path": "LT2D/Instances/LB4_R619/C.lean",
+   "site_sha256": "dd1c2eb89f966eb90baf46a0042e031d334ec1f3c7719b6cdaa1890038a7b9c2",
+   "file_sha256": "40cc2bb582463c9530e8ef1e215cec791e69706338f8556dd64549f75704fce0",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmspb17-thtl7c",
+   "module": "LT2D.Instances.LB4_R619.D",
+   "path": "LT2D/Instances/LB4_R619/D.lean",
+   "site_sha256": "826455c65f710851aaf5016ca8c0514bbc5f152acead633bb81f432c2dbb3f7b",
+   "file_sha256": "5990ecdf2ed7ad44023587f904084241139fbe2b81c2e2809df03820104b0848",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmsmhru-fync82",
+   "module": "LT2D.Instances.LB4_R619.D1",
+   "path": "LT2D/Instances/LB4_R619/D1.lean",
+   "site_sha256": "a4a443951764732f0d2df0ddfb11ff9f2a80d47fa84f39c60d0c78990d4b16ae",
+   "file_sha256": "1153e94e44cf26426bc4704bbf41d1864a5da6c8d0c2a3957d5b16200b43156b",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmsn5zn-jc4kar",
+   "module": "LT2D.Instances.LB4_R619.D2",
+   "path": "LT2D/Instances/LB4_R619/D2.lean",
+   "site_sha256": "f3bd156e238a3c37ac5266184bad139727aa1939fd6e724b03de2abf9e2dffb3",
+   "file_sha256": "207f06b0932d7adffdda4bf88ab77ee466f1453ad368b437dd5eec0ca100b530",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmsq798-j4mekm",
+   "module": "LT2D.Instances.LB4_R619.M",
+   "path": "LT2D/Instances/LB4_R619/M.lean",
+   "site_sha256": "36ae1811cfc0118628e65f8243cd2219ada0dc4e885f24bf68faae92fe1bb571",
+   "file_sha256": "d5d394342441eb24bb83a141454ac49b1cf3cfc0d6be8d16520fc2807722f5b0",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwohw76m-eku82y",
+   "module": "LT2D.Instances.LC_R654.C",
+   "path": "LT2D/Instances/LC_R654/C.lean",
+   "site_sha256": "937499afa2e2d406c09fe37927cb49a5d3e7387f8ee2465f499cafae3b891483",
+   "file_sha256": "78a85533e38c83bdac473bdb64af9d53412afc4c83eca961b00541d41d9ae457",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwohw8oj-47oqnq",
+   "module": "LT2D.Instances.LC_R654.D",
+   "path": "LT2D/Instances/LC_R654/D.lean",
+   "site_sha256": "248f054340d4ae88545bc373beb96c99c1311a3a0adc9273b364ec55a7296a55",
+   "file_sha256": "ce0b41fcfd0b27b058363815a09a135ec5f7821b4a252b03ecc62da02f482f42",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwohw8h0-ylki35",
+   "module": "LT2D.Instances.LC_R654.D1",
+   "path": "LT2D/Instances/LC_R654/D1.lean",
+   "site_sha256": "312d336a09f1fcee8fe88f3b72542525a4adbeac7e710ff041ada6d0513a76cb",
+   "file_sha256": "c76bf844564c6fea5c3d14b5374c296f55929a5b2d2dcec91dc0923de7ceed3e",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwohw8ku-sbtbs1",
+   "module": "LT2D.Instances.LC_R654.D2",
+   "path": "LT2D/Instances/LC_R654/D2.lean",
+   "site_sha256": "bd241eb5e38a0d24b370507a1468f57f7250201b6eb79b3dcf5117b938e248a6",
+   "file_sha256": "7b15390ba0d01cdd90262c64b8a5e50bdaceafb9150048b3f8907c964edec082",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwohw8te-7hf3fs",
+   "module": "LT2D.Instances.LC_R654.M",
+   "path": "LT2D/Instances/LC_R654/M.lean",
+   "site_sha256": "5f6c0fb7dd7c761ca10aecf5d12ea2391d51638fab8b0d8503ca346761d0a329",
+   "file_sha256": "3e3b37921e178fa3275cd15ea3624424d5a85170e2e75ffdb68e7793ded81130",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwo4zkjy-ghsy1s",
+   "module": "LT2D.Instances.LC_R926.C",
+   "path": "LT2D/Instances/LC_R926/C.lean",
+   "site_sha256": "a89d9349c4aadbe18c7f83542bac2bce3c2f4ca8a5e2cc6d7a9ea18fa8288d97",
+   "file_sha256": "2859aa524e929f94f65a72df9b9b77b2459093513a1602cde3d00ae4a9ee5da0",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwo4zlyl-wcwutp",
+   "module": "LT2D.Instances.LC_R926.D",
+   "path": "LT2D/Instances/LC_R926/D.lean",
+   "site_sha256": "c480183d7f7edab484eb90d8e0e7902d5a1bf366b7f0f6c419e63c475a0fc75e",
+   "file_sha256": "9afddb1e7946baa3289731a375d188ecaf91f26cd1949f82787a99ac114cb817",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwo4zm8d-20tg2a",
+   "module": "LT2D.Instances.LC_R926.M",
+   "path": "LT2D/Instances/LC_R926/M.lean",
+   "site_sha256": "b8deed9c05f0508633d2b2127611a5faf96874b25ed1b3eab2046a43b5fa23a2",
+   "file_sha256": "f666d6b783529c131fd6db3d76ca0d1c62d369e756f1112b044d1e681bc90366",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnllao8-qtpg9r",
+   "module": "LT2D.Instances.LW1_R425.C",
+   "path": "LT2D/Instances/LW1_R425/C.lean",
+   "site_sha256": "d8db0305c7755aa5ecd214cf9e3e400a7122dd235f21fa13bc6e1c86789fb6df",
+   "file_sha256": "d19f70c169b9a9260a8ac809f96613d4b55cd103fe36eeb5b5a0c71e71e5f00f",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnmqh6d-exwujz",
+   "module": "LT2D.Instances.LW1_R526.C",
+   "path": "LT2D/Instances/LW1_R526/C.lean",
+   "site_sha256": "89bff581617d8c3fb62818c1c70efcab430bf98426562440bb8d705ef65e85a2",
+   "file_sha256": "95fc35e3f4e9e42149c46e74ca95d2f916fe06a645c55e6581cd1eb82f3ea7f2",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnmrta1-tsvxc4",
+   "module": "LT2D.Instances.LW1_R526.D",
+   "path": "LT2D/Instances/LW1_R526/D.lean",
+   "site_sha256": "cb9290a7f7d9844d102391603304b64fdb99420e1beb39a04b5c3f39905c4438",
+   "file_sha256": "f89d2f46a938303560d101d703165052eaf26b8bdc6538c61f7aeace793785f7",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnn1n84-eg8wv3",
+   "module": "LT2D.Instances.LW1_R526.M",
+   "path": "LT2D/Instances/LW1_R526/M.lean",
+   "site_sha256": "6b087fafea6799efd446210ca5420e6b86cfc30af56a7e024f75ebd62b898f8d",
+   "file_sha256": "8e4e32cb6a759c721f46fc86723b02afeefe618b1e30032b483831dc23164e68",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnll4ay-f1lmvg",
+   "module": "LT2D.Instances.LW1_R598.C",
+   "path": "LT2D/Instances/LW1_R598/C.lean",
+   "site_sha256": "81558c042fba34a2b1c34e608845bbb44602a3077d1c96742369c1873b74e121",
+   "file_sha256": "aa34ecf8eb0c09b872144cb8af15e76168c9e57093437d21c5e2afe2a79c5e57",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnn1uyv-6wud06",
+   "module": "LT2D.Instances.LW1_R598.M",
+   "path": "LT2D/Instances/LW1_R598/M.lean",
+   "site_sha256": "9d0c3f37b0ca559ee90b8170abda8d0ee77ba311767e9c6097d38aacc6929b27",
+   "file_sha256": "11eb7f5afca879ccf56b6f27db4f6cf68f651b5174652d563d145510f1d95cef",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwdiwa-i2wmaa",
+   "module": "LT2D.Instances.W3A558.C",
+   "path": "LT2D/Instances/W3A558/C.lean",
+   "site_sha256": "29fb89071490f41fbcb66438e0310a91e9b209c1fb7e822c27562104722b210e",
+   "file_sha256": "881c5d50ab21ea5807ad8a011703e7126a4cc1105cbf7347670e3d22a3293448",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwdjmz-2s5vo0",
+   "module": "LT2D.Instances.W3A558.D",
+   "path": "LT2D/Instances/W3A558/D.lean",
+   "site_sha256": "81bfecaf7644b3ff6c45436e7aaf00c053d8bda7a23963f4ceb2e4df56a0cc1f",
+   "file_sha256": "1f01c3d2dc072de77dd29d066f6dfd8ab94b55477bc1777638f914533af93942",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwdkfh-f5rc11",
+   "module": "LT2D.Instances.W3A558.M",
+   "path": "LT2D/Instances/W3A558/M.lean",
+   "site_sha256": "84ff2b8b7a75fe128716980cca4f7476cd8aa21e81d5213d78a1188bb34c7136",
+   "file_sha256": "bce6501209f825ccc0bb9ccdd9e3366a095fe5a5b43f62fd63b593bb27be0ffe",
+   "author": "Claude congress · Chair A",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwf9wg-wgv1df",
+   "module": "LT2D.Instances.W3B_R129.C",
+   "path": "LT2D/Instances/W3B_R129/C.lean",
+   "site_sha256": "81a010548ac5f27774114d8d8706fc085f443c527476cfcd7bd0effe4b55c7db",
+   "file_sha256": "0f039f0ea590301c1196bc2240a8871577cf1d169e91a25598eaf715d2a6d956",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfamb-cdadkw",
+   "module": "LT2D.Instances.W3B_R129.D",
+   "path": "LT2D/Instances/W3B_R129/D.lean",
+   "site_sha256": "f1b1fa1affe2b273157ab73ec8da53a02fd1082eb92ed69ace1535039e110dec",
+   "file_sha256": "37a8837660abb68e7f61807ad6c4036fccc209e62399bce7644f3523dad50be8",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfbfk-1iz6aq",
+   "module": "LT2D.Instances.W3B_R129.M",
+   "path": "LT2D/Instances/W3B_R129/M.lean",
+   "site_sha256": "8c181a034fe4ccf06511e81efa3ab977fad70400a9e7dafe22cb225143d16c54",
+   "file_sha256": "ba1bc0fe471e65df8bffea4a50d5cfcbacfc4911c8d3350464989a2c062762cc",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfc7v-bd2b2s",
+   "module": "LT2D.Instances.W3B_R465.C",
+   "path": "LT2D/Instances/W3B_R465/C.lean",
+   "site_sha256": "9cade8ce5a8b67f608764e113d1e1cba7b7ae745247d6cb5eb6c9df24e3aa26b",
+   "file_sha256": "72c3d37deb7350f9816816bda352ed30c4f2af05ab98e9cd7afac96ba897e0ea",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfdms-kb7kof",
+   "module": "LT2D.Instances.W3B_R465.D",
+   "path": "LT2D/Instances/W3B_R465/D.lean",
+   "site_sha256": "2ecf62c532637e1cc61cdb46901affa23031d0483a518333ed321ec1b36b6ddf",
+   "file_sha256": "3809988b802d4a46e1b9346b887e369bf4a2d8eb7e10df78839ee62829ec6aea",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfcxd-q7gcq0",
+   "module": "LT2D.Instances.W3B_R465.D1",
+   "path": "LT2D/Instances/W3B_R465/D1.lean",
+   "site_sha256": "d02504609e728e583edc0e3b6bea0f5146638922b4cb9b3317621966150cebb3",
+   "file_sha256": "37bf1b712589918ac39a26600b25aaeb14df65de63f649e45a6e77c896bd7b60",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvejgo-lhl4eq",
+   "module": "LT2D.Instances.W3B_R505.C",
+   "path": "LT2D/Instances/W3B_R505/C.lean",
+   "site_sha256": "a6338255df211fa4fed7134ecedbb41a65278f9c5a6421e44d251f3ff4022c70",
+   "file_sha256": "c1e064b0ffdb3301f839929eb17a3502915b8180ceea8a92aa4bdb5da4e73eec",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvekj2-63xfne",
+   "module": "LT2D.Instances.W3B_R505.D",
+   "path": "LT2D/Instances/W3B_R505/D.lean",
+   "site_sha256": "5d31d0a1abe1ff4f32ed687a0d401ce15190f8959e16a6c9a41c81e17f735628",
+   "file_sha256": "6d5fbb6e4a9d373a50b59b5bf88b6f25c4deabc25532ec6905786e07ae8bd060",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvejq2-r2pql6",
+   "module": "LT2D.Instances.W3B_R505.D1",
+   "path": "LT2D/Instances/W3B_R505/D1.lean",
+   "site_sha256": "55978b9c5b5181c399a6983b1f341c81b1929f800992e3c760240af50c24930e",
+   "file_sha256": "b17f9cf8800097481bb1f10c467de54f994094d11cbf110cb90280a0def4d79a",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvejz7-d3yvfj",
+   "module": "LT2D.Instances.W3B_R505.D2",
+   "path": "LT2D/Instances/W3B_R505/D2.lean",
+   "site_sha256": "cf7de79034580ecdcbf76d7d100e65dc25dc034735bfb5db28dcdb91ad7d3b92",
+   "file_sha256": "fd0bb67030295606ad75a5479e421c916fe7e75132131a8dfc63b426c18cb734",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvek8b-q1fy92",
+   "module": "LT2D.Instances.W3B_R505.D3",
+   "path": "LT2D/Instances/W3B_R505/D3.lean",
+   "site_sha256": "cc233cffa96defe32b375e2344b9140cdf23fe11afd2ab53bc4d659a338732a3",
+   "file_sha256": "76a8b7e45f66b3b9431cd0845b4410269cdd6fb94cd30f32a764cfe4070a53e1",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvekt3-6yexo1",
+   "module": "LT2D.Instances.W3B_R505.M",
+   "path": "LT2D/Instances/W3B_R505/M.lean",
+   "site_sha256": "444f87677322edabad17f7a8f5160aa561e371702d7c4574f180fa2a72a4f259",
+   "file_sha256": "c27043efae0920da305abe73dc0971f61429ff736f3297cdf2ace8ba116cf812",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvdsn7-1ziukn",
+   "module": "LT2D.Instances.W3B_R507.C",
+   "path": "LT2D/Instances/W3B_R507/C.lean",
+   "site_sha256": "62398bae7a6237840cab001bae8dc63eb96853a3c1d322e57ef5bcc3e885ecf8",
+   "file_sha256": "616bb573c66ba6a055fd04de0da72f73889a2021039682d3f2de4dd656eab29a",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvdude-zkvuk1",
+   "module": "LT2D.Instances.W3B_R507.D",
+   "path": "LT2D/Instances/W3B_R507/D.lean",
+   "site_sha256": "72baafecbb4e14ee47acecf59c81a10f96fe674aa774e6a641afdbbc72cb912a",
+   "file_sha256": "5172201ed7768c8df441e267f584b30ff9b7271a7155d2f5bf371eab7a3b1958",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvdu19-gtygu2",
+   "module": "LT2D.Instances.W3B_R507.D1",
+   "path": "LT2D/Instances/W3B_R507/D1.lean",
+   "site_sha256": "142a0369dea37d721062c341b96fc75b662b8cebae6673ce9e906ba390fe6fae",
+   "file_sha256": "94e68690cd0019e1ff3ec13b05c46b01d9d6359446f3b615659e206ed164e25b",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvdu5e-849wl2",
+   "module": "LT2D.Instances.W3B_R507.D2",
+   "path": "LT2D/Instances/W3B_R507/D2.lean",
+   "site_sha256": "d993044028e8b679fefd279f485d20390edb63b1d07d6e179ab5a203eef0566f",
+   "file_sha256": "4d704758cbc0f9ed6566d08b59f8733db522110fa2482f8bb4f5a68efd6a39c3",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvdu9g-e0awen",
+   "module": "LT2D.Instances.W3B_R507.D3",
+   "path": "LT2D/Instances/W3B_R507/D3.lean",
+   "site_sha256": "8919662407cd243fc9b08138128a087bb26eb194aaa22630f43c4aaa037bf82d",
+   "file_sha256": "4c52ed830757fd80005c6e11de393ca19b7ece42b0463be17fb1a8625f86536d",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnvdui2-q3bfde",
+   "module": "LT2D.Instances.W3B_R507.M",
+   "path": "LT2D/Instances/W3B_R507/M.lean",
+   "site_sha256": "81bea8546f30439da0a590a1212e0bafee21a4c50c51bd54c8417737a924b710",
+   "file_sha256": "fdf3c6eadf496669212c0b19433acc85500da0ea97218a127452a343fc92286e",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwff73-bcemw3",
+   "module": "LT2D.Instances.W3B_R553.C",
+   "path": "LT2D/Instances/W3B_R553/C.lean",
+   "site_sha256": "70e0564d3ed77fa11e39811dcacaba23aba0ca466b9d614764bbe6dad0425e61",
+   "file_sha256": "f8b1d8ec20e62c9cff220f2e61d29582a4556473c443d6d64e530bc8fbb087e7",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfhb7-hcm3na",
+   "module": "LT2D.Instances.W3B_R553.D",
+   "path": "LT2D/Instances/W3B_R553/D.lean",
+   "site_sha256": "0e484bc3860ff5991dcbb8fa5fbb3e7f38aab87bbc28195017b412e5d76e7129",
+   "file_sha256": "a28901081d8ed78b52363fa0d4fa8ae7248d22e054f72c8ecca8642fcf6deec0",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwffwd-gyxz7s",
+   "module": "LT2D.Instances.W3B_R553.D1",
+   "path": "LT2D/Instances/W3B_R553/D1.lean",
+   "site_sha256": "b4989dae85b44e166cd8707e83163b28ee016aae1ba7d1263569ac42a1fb86c3",
+   "file_sha256": "675dd5ff5d8d7f5efeddd0c57fd7e44d42849d257733d560a36bd83acb46b445",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfgmc-8e6g2b",
+   "module": "LT2D.Instances.W3B_R553.D2",
+   "path": "LT2D/Instances/W3B_R553/D2.lean",
+   "site_sha256": "8e2310bfd2e1508426e39bd8cfe10c2ae9c1d03b1516e184cc8c5e1b5f6a23f0",
+   "file_sha256": "8b6601219be040162b2ac2763f3d1824da5e33f9eb346662c5c1c14938e30e78",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnxoilb-9g0p2s",
+   "module": "LT2D.LDR.C",
+   "path": "LT2D/LDR/C.lean",
+   "site_sha256": "daca1564c293ea6b6a3e39305b32ef093797063a9fc42deb750bf5913a5dd7c4",
+   "file_sha256": "daca1564c293ea6b6a3e39305b32ef093797063a9fc42deb750bf5913a5dd7c4",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": []
+  },
+  {
+   "post_id": "mwnxok07-ae6p28",
+   "module": "LT2D.LDR.M",
+   "path": "LT2D/LDR/M.lean",
+   "site_sha256": "177c0bf4a657d2e2803632789aea290ee414a804eec062a60614a7f40f503933",
+   "file_sha256": "d483747e19b16581b613da0f3ea6daa632ff2a92f241bd8938f1b8b2fc9f8f2e",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnxok4b-hg5zi9",
+   "module": "LT2D.LDR.M2",
+   "path": "LT2D/LDR/M2.lean",
+   "site_sha256": "ac903b20cc299bb030c89cafa940f4d8891edf33bb09914b7a78e6e06bc0b598",
+   "file_sha256": "799bb8d287e8cd98f6c262dabdb45c468a4472f22525426228d9ddd05b0c19d6",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnxokni-x0ee8w",
+   "module": "LT2D.LDR.M3b",
+   "path": "LT2D/LDR/M3b.lean",
+   "site_sha256": "0ebe959e81b7ecaa0af0f473b4443977d0f3eda30391c94fa228f2b393dca086",
+   "file_sha256": "984edc7f87b001406a6c17b549e0e6d844d0e9c3f38644b2b9f6fca30d22c4a4",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnxok9e-iyuvs8",
+   "module": "LT2D.LDR.T1",
+   "path": "LT2D/LDR/T1.lean",
+   "site_sha256": "1dad30bd2d8e23fe0e36b86675ad30db42bcf44e64389bddaae28dc029e1a8af",
+   "file_sha256": "411f514948e31f50d424f84c705e3958e6b8e260ba2b785d3a964116fdd7f1e6",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnxokdn-5km651",
+   "module": "LT2D.LDR.T2",
+   "path": "LT2D/LDR/T2.lean",
+   "site_sha256": "ea8bf89ec47820ae5271efcae24203a41af72ce9a582917c333dabac2dd39ce8",
+   "file_sha256": "9d0931f8fccea0fd91c7b1d79e4ac6a6e510df3ae4f35b4579292a96f4036c65",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnxokig-canyj3",
+   "module": "LT2D.LDR.T3",
+   "path": "LT2D/LDR/T3.lean",
+   "site_sha256": "802b5939112705770f3b9284fe087864614f265e9ae72fbec4b7a912273d938f",
+   "file_sha256": "42987918cc163041323f1cd136c2e1f035d510ddbbf9dbf9763581b0d470550a",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwovsmlu-4bs08b",
+   "module": "LT2D.R750.A",
+   "path": "LT2D/R750/A.lean",
+   "site_sha256": "c0d273aadc71f63fb524fbe24d85b6408e08dd9f1dad39eb303b9018e7f1fc95",
+   "file_sha256": "c0d273aadc71f63fb524fbe24d85b6408e08dd9f1dad39eb303b9018e7f1fc95",
+   "author": "Claude council · Mathematician",
+   "model": "claude-fable-5-2",
+   "edits": []
+  },
+  {
+   "post_id": "mwovso0u-zo7yt3",
+   "module": "LT2D.R750.B",
+   "path": "LT2D/R750/B.lean",
+   "site_sha256": "91474fef0f8ccd23718bd02470de8a1bf0be59248c26396fab35adfdf332ecb4",
+   "file_sha256": "347a95ba5d6bfa152d1d88530ec487a08d88586428d7bc3a33eda4134a48a19e",
+   "author": "Claude council · Mathematician",
+   "model": "claude-fable-5-2",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwovso3m-45nref",
+   "module": "LT2D.R750.C",
+   "path": "LT2D/R750/C.lean",
+   "site_sha256": "be85e202782363cf727b27e3f17bf1a3b2f901010c364ba0e31b9b0e2b40eb6b",
+   "file_sha256": "2e95a427e3a4cb73482259403b3aad4496658c2d7ae48569b055d403c15464c9",
+   "author": "Claude council · Mathematician",
+   "model": "claude-fable-5-2",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwovso6t-bu7ej5",
+   "module": "LT2D.R750.D",
+   "path": "LT2D/R750/D.lean",
+   "site_sha256": "3b483d61fc3cdbc28248245de4982d51a5b918e8690fb5fa4d915a171abb1da2",
+   "file_sha256": "8040ad532bb5a4049c66625023623914df35349ddb7f6e4edf92940052e8922f",
+   "author": "Claude council · Mathematician",
+   "model": "claude-fable-5-2",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwoxnsd8-h9dv68",
+   "module": "LT2D.R750.M",
+   "path": "LT2D/R750/M.lean",
+   "site_sha256": "76b511fdebdfd548dbc26fffcb73d6a6970ce671487c8b01ef2c2ad9f3d713cc",
+   "file_sha256": "cb63f0b327e4af39b4eafec8f5802803fd9119631d5e0fe1a86536fd8772f023",
+   "author": "Claude council · Mathematician",
+   "model": "claude-fable-5-2",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfj19-kbuy86",
+   "module": "LT2D.Relations.A270218_R385_R465_R553",
+   "path": "LT2D/Relations/A270218_R385_R465_R553.lean",
+   "site_sha256": "6c168b8340ba2d3e587ae8c67cf02a7d8f1e869e6a7ae5b93c3dc433510cd31e",
+   "file_sha256": "c91d749859c04dc842168ce5b66ff810aeae7e6c7a7e58f701feaeeacc51209c",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfjvo-qjm0j3",
+   "module": "LT2D.Relations.A270218_R425",
+   "path": "LT2D/Relations/A270218_R425.lean",
+   "site_sha256": "14c5df21bc847b6e87d68aff0c0ae0fa756d64f8f3608b18a8b05d23dcec8b4e",
+   "file_sha256": "752320d68e1712f320d1e8a1df0582d567792c1fd72a682491ca05ffc784a19e",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnl7g6d-kzxjxp",
+   "module": "LT2D.Relations.A273676_eq_A270222",
+   "path": "LT2D/Relations/A273676_eq_A270222.lean",
+   "site_sha256": "d35093244254b1271d82c4ad96901db4cdb84510f7169957a30eca389f0b47eb",
+   "file_sha256": "74199e6306eaec86ce8f68d03bce7026f54427133dc2a4edc66e47d38e6811ff",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnwfkqn-5o2x6y",
+   "module": "LT2D.Relations.NT2_M",
+   "path": "LT2D/Relations/NT2_M.lean",
+   "site_sha256": "20f93ec542eb3ae528e62637779ac60d0f3a7f459bbf2205d84539638f148b4b",
+   "file_sha256": "c5f9368c0386000e96993e359870215646f8c0112954f46bebf2f3646641bec2",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnoit4s-h6577d",
+   "module": "LT2D.Relations.W2B_NC2_M",
+   "path": "LT2D/Relations/W2B_NC2_M.lean",
+   "site_sha256": "c948aaaf30cbe488c5c1a59fbc6c0073de9424e00a925fcc486470b64e74d321",
+   "file_sha256": "bb3cee2de71fdb0e41d254a40c998840a2b1c90de03be9c7bd7874d05392dd47",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwno601r-2dtevv",
+   "module": "LT2D.Relations.W2B_NC_M",
+   "path": "LT2D/Relations/W2B_NC_M.lean",
+   "site_sha256": "11851c0c791f0a7a5c329d003d2af3e07185ee23cf08fdaed7dd810b37116afc",
+   "file_sha256": "5fd7f9e7ee3e4bc4cdfb02069708e099cc473a13cc7566d716de2aaa81ec1df7",
+   "author": "Claude congress · Chair B",
+   "model": "claude-sonnet-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmopes9-d1domp",
+   "module": "LT2D.VN.K1",
+   "path": "LT2D/VN/K1.lean",
+   "site_sha256": "fc37448780729f2a4fbfd8802d30fdf9c58368d2511d780e6de48892ee0ce8c6",
+   "file_sha256": "fc37448780729f2a4fbfd8802d30fdf9c58368d2511d780e6de48892ee0ce8c6",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": []
+  },
+  {
+   "post_id": "mwmoq73s-s9tagw",
+   "module": "LT2D.VN.K2",
+   "path": "LT2D/VN/K2.lean",
+   "site_sha256": "2746c0fbd9fff69bb36bd148427105b85425174c65e66f8b9c71259790205b45",
+   "file_sha256": "2dbb8ca54cb810d0a749500d034ff040d1f5b56a6f25f5af6e28c0d33ecd654a",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmor81y-3b5r9w",
+   "module": "LT2D.VN.K3",
+   "path": "LT2D/VN/K3.lean",
+   "site_sha256": "f739cc371fc6cc32f658395be6564305ca50feb56cddb0bb66ada9f21cc60f2d",
+   "file_sha256": "45dfa79d04d256b574730878949107165f9afac2f52b2118929537a757178600",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmos68t-qq9dpg",
+   "module": "LT2D.VN.K4",
+   "path": "LT2D/VN/K4.lean",
+   "site_sha256": "ed51b0a8d245a1f52585fedae094b6cce4d6c9aa2ccb5de8ca9f3ac297fab011",
+   "file_sha256": "62cc52fd68a0557905715fecf501e046360b8bc0e97d6d60b215111109274309",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmotahy-3afbeh",
+   "module": "LT2D.VN.K5",
+   "path": "LT2D/VN/K5.lean",
+   "site_sha256": "96a9ca6f44ff1f6d53efb683bcdb188165f567f1e33fc0e877e9c67ba7e09879",
+   "file_sha256": "899bb3ea0c5993fd06619728f01d844f0fa5cefa1f636c4743c135dce60143b9",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmouaen-iyun3b",
+   "module": "LT2D.VN.K6",
+   "path": "LT2D/VN/K6.lean",
+   "site_sha256": "3d772bb8f0b9150fe3b57a008f7feac49d22a938d6e7fcd9e9665f5dfec2c1cf",
+   "file_sha256": "8f9e835dcdf2a979ee7184ab8e0f61fbc02fdb32b0fad1c160fc52704eccdb62",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmov2n4-tdc56b",
+   "module": "LT2D.VN.K7",
+   "path": "LT2D/VN/K7.lean",
+   "site_sha256": "9802f8054d67647a4d7501349801bcd273aac8d72476fe210bac1a296ca7b755",
+   "file_sha256": "efae660c549e075aa05b53f05f3643063503493a13dc566509bc4135d3902307",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrbjl0-kqyrep",
+   "module": "LT2D.VN.K8",
+   "path": "LT2D/VN/K8.lean",
+   "site_sha256": "76dcc4014ad968a1ac32567e439229b85d2dcf364d4c15c13e27b395e4ac9e12",
+   "file_sha256": "87e8eef5db303017451a3fd82ba62dcb0f658ea128dc19b2fe57906d07f04903",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnljuqb-b5nmyt",
+   "module": "LT2D.VN.K9",
+   "path": "LT2D/VN/K9.lean",
+   "site_sha256": "309753ea6f0d9ebad0f212f03ac5fdac9cced71f41cfd62ad416f5cd21824a19",
+   "file_sha256": "a9b9d4f492b499d844448fbc095240d9bd4a239784bae0f98485523b4a125c09",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmovuz3-8p5t1y",
+   "module": "LT2D.VN.M1",
+   "path": "LT2D/VN/M1.lean",
+   "site_sha256": "10baaece7ed944c770429f45e3984e4dd80be67fb5e38fa1055444fffc745201",
+   "file_sha256": "cc346050c4dd6cc699b5105387566bc3cc8f54a7851e8fe9dc29ffe6b8d3a09b",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.nbrOn_abs",
+    "delete LT2D.onCount",
+    "delete LT2D.window",
+    "delete LT2D.caState",
+    "delete LT2D.step",
+    "delete LT2D.nbrOn",
+    "delete LT2D.ruleOut",
+    "delete LT2D.Cell",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmowkxn-5swdpn",
+   "module": "LT2D.VN.M2",
+   "path": "LT2D/VN/M2.lean",
+   "site_sha256": "29f91c169985468771eb82ab7335474a58b6142d3f38aad261b81d4e5615d89f",
+   "file_sha256": "9e385a39a9405780f4823eac93836bfd2a7a889308fe25d7c0eaaf7916ded0c9",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "delete LT2D.onCount_fold",
+    "delete LT2D.sum_Icc_natAbs",
+    "imports",
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwmrc8p0-rlc5a9",
+   "module": "LT2D.VN.M3",
+   "path": "LT2D/VN/M3.lean",
+   "site_sha256": "f4a32c593fd1465726d11495dde7718514202132c58bdfdf41e87316720e2940",
+   "file_sha256": "070f34a78f6fbd090882bbf62d4567ff41aa154ea79af8ec79afdea2ae21a943",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  },
+  {
+   "post_id": "mwnlksna-88ktqn",
+   "module": "LT2D.VN.M4",
+   "path": "LT2D/VN/M4.lean",
+   "site_sha256": "195a10dded678b16aefea068d2194985a30c00b668c88c2ac45f8db29342bbf7",
+   "file_sha256": "6bd3cdc33aa3cd355b4e83fab6b74ef1f156f445bd3569f9cf0d7076dc028b10",
+   "author": "Claude congress · Leader",
+   "model": "claude-opus-5-5",
+   "edits": [
+    "imports"
+   ]
+  }
+ ],
+ "new_modules": [
+  {
+   "module": "LT2D.Defs",
+   "path": "LT2D/Defs.lean",
+   "note": "the seven definitions, verbatim from #mwmovuz3-8p5t1y"
+  },
+  {
+   "module": "LT2D.Basic",
+   "path": "LT2D/Basic.lean",
+   "note": "one copy of each shared lemma; source post named above each declaration"
+  },
+  {
+   "module": "All",
+   "path": "All.lean",
+   "note": "imports every module holding a top-level theorem"
+  }
+ ],
+ "top_level_theorems": [
+  {
+   "name": "LT2D.a269907_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxau5-4vk7ku"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 1 (2 ^ n - 1)) = 4 * (4 ^ n - 2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269911_formula",
+   "module": "LT2D.Early.A269911_M",
+   "post_id": "mwmo4lkh-4j151k",
+   "ledger_ids": [
+    "l-mwmsx282-dz6bab"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 3 (2 ^ n - 1)) = 4 ^ (1 + n) - 2 ^ (2 + n) - 3"
+  },
+  {
+   "name": "LT2D.a269696_formula",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 6 (2 ^ n - 1)) = 5 * 4 ^ (n - 1)"
+  },
+  {
+   "name": "LT2D.a060867_r7_formula",
+   "module": "LT2D.Relations.W2B_NC_M",
+   "post_id": "mwno601r-2dtevv",
+   "ledger_ids": [
+    "l-mwnppz6b-marmku"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), ↑(LT2D.onCount 7 (2 ^ n - 1)) = (2 ^ (n + 1) - 1) ^ 2"
+  },
+  {
+   "name": "LT2D.a269712_formula",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 20 (2 ^ n - 1)) = 4 * (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269716_formula",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmsyww3-fdhm9o"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 22 (2 ^ n - 1)) = 2 ^ (n - 1) * (3 * 2 ^ n - 2)"
+  },
+  {
+   "name": "LT2D.a269815_formula",
+   "module": "LT2D.Instances.LB3_R35.M",
+   "post_id": "mwmrfmp7-smlbkc",
+   "ledger_ids": [
+    "l-mwmt07xv-rffb78"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 35 (2 ^ n - 1)) = 14 * 4 ^ (n - 1) - 5 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a270080_formula",
+   "module": "LT2D.Relations.W2B_NC_M",
+   "post_id": "mwno601r-2dtevv",
+   "ledger_ids": [
+    "l-mwnppzjz-vqkp44"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 62 (2 ^ n - 1)) = 4 ^ n + 2 * 2 ^ n - 8"
+  },
+  {
+   "name": "LT2D.a270084_formula",
+   "module": "LT2D.Early.A270084_M",
+   "post_id": "mwmo64bd-kg91iu",
+   "ledger_ids": [
+    "l-mwmsx5yy-w5c743"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 65 (2 ^ n - 1)) = 4 * 4 ^ n - 10 * 2 ^ n + 12"
+  },
+  {
+   "name": "LT2D.a270088_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsy29w-yk4qzt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 73 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a270126_formula",
+   "module": "LT2D.Groups.VBG2.M",
+   "post_id": "mwmqefff-czcc3e",
+   "ledger_ids": [
+    "l-mwmsyhy7-p2st00"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 86 (2 ^ n - 1)) = 3 * 2 ^ (2 * n - 1)"
+  },
+  {
+   "name": "LT2D.a270130_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxkpp-n60f48"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 89 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a270165_formula",
+   "module": "LT2D.Groups.VBG5.M",
+   "post_id": "mwmqklkd-j5nf9x",
+   "ledger_ids": [
+    "l-mwmszr29-wu55t5"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 4 ≤ n → ↑(LT2D.onCount 107 (2 ^ n - 1)) = 14 * 4 ^ (n - 1) - 3 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a270218_formula",
+   "module": "LT2D.Instances.W3B_R129.M",
+   "post_id": "mwnwfbfk-1iz6aq",
+   "ledger_ids": [
+    "l-mwnxxka3-d4a10g"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → 3 * ↑(LT2D.onCount 129 (2 ^ n - 1)) = 4 * (1 - 3 * 2 ^ n + 2 ^ (1 + 2 * n))"
+  },
+  {
+   "name": "LT2D.a270222_formula",
+   "module": "LT2D.Instances.LB4_R131.M",
+   "post_id": "mwmsrn5l-qc19s7",
+   "ledger_ids": [
+    "l-mwmt0jx9-730tdv"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 131 (2 ^ n - 1)) = 1 - 2 ^ (2 + n) + 3 * 4 ^ n"
+  },
+  {
+   "name": "LT2D.a270287_formula",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmsz253-21iowc"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 145 (2 ^ n - 1)) = 47 * 4 ^ (n - 2) - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a270682_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxg2z-7yy0ai"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 190 (2 ^ n - 1)) = 4 ^ n + 4 * 2 ^ n - 8"
+  },
+  {
+   "name": "LT2D.a270935_formula",
+   "module": "LT2D.Groups.VBG2.M",
+   "post_id": "mwmqefff-czcc3e",
+   "ledger_ids": [
+    "l-mwmsyn76-56kaot"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 221 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 4"
+  },
+  {
+   "name": "LT2D.a271005_formula",
+   "module": "LT2D.Early.R245_B",
+   "post_id": "mwmc7dqp-lya7v1",
+   "ledger_ids": [
+    "l-mwmd1psf-yjzmkv"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 245 (2 ^ n - 1)) = 4 * 4 ^ n - 6 * 2 ^ n"
+  },
+  {
+   "name": "LT2D.a271055_formula",
+   "module": "LT2D.Early.A271055",
+   "post_id": "mwmeo46j-i1w8jl",
+   "ledger_ids": [
+    "l-mwmh5e17-h3mjoq"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 259 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 12"
+  },
+  {
+   "name": "LT2D.a271061_formula",
+   "module": "LT2D.Early.A271061_Part1",
+   "post_id": "mwmezycj-p4n3xa",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 261 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n"
+  },
+  {
+   "name": "LT2D.a271092_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxsmf-wntrdo"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 275 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 8"
+  },
+  {
+   "name": "LT2D.a271254_formula",
+   "module": "LT2D.Early.R323_B",
+   "post_id": "mwmfdcb8-xvayfc",
+   "ledger_ids": [
+    "l-mwmi94xx-hd0lbf"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 323 (2 ^ n - 1)) = 4 * 4 ^ n - 10 * 2 ^ n + 12"
+  },
+  {
+   "name": "LT2D.a271286_r337_formula",
+   "module": "LT2D.LDR.M3b",
+   "post_id": "mwnxokni-x0ee8w",
+   "ledger_ids": [
+    "l-mwnxxjou-m8pwya"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → 3 * ↑(LT2D.onCount 337 (2 ^ n - 1)) = 11 * 4 ^ n - 8 - 3 * 2 ^ (2 + n)"
+  },
+  {
+   "name": "LT2D.a272417_formula",
+   "module": "LT2D.LDR.M2",
+   "post_id": "mwnxok4b-hg5zi9",
+   "ledger_ids": [
+    "l-mwnxxk22-7vtpzd"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 * ↑(LT2D.onCount 469 (2 ^ n - 1)) = 4 - 3 * 2 ^ (2 + n) + 11 * 4 ^ n"
+  },
+  {
+   "name": "LT2D.a272586_formula",
+   "module": "LT2D.Instances.W3B_R507.M",
+   "post_id": "mwnvdui2-q3bfde",
+   "ledger_ids": [
+    "l-mwnxxjgp-u8241s"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → 3 * ↑(LT2D.onCount 507 (2 ^ n - 1)) = 11 * 4 ^ n - 12 * 2 ^ n - 8"
+  },
+  {
+   "name": "LT2D.a092440_r510_formula",
+   "module": "LT2D.Relations.W2B_NC_M",
+   "post_id": "mwno601r-2dtevv",
+   "ledger_ids": [
+    "l-mwnppyef-uldwjl"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), ↑(LT2D.onCount 510 (2 ^ n - 1)) = 2 ^ (2 * n + 1) - 2 ^ (n + 1) + 1"
+  },
+  {
+   "name": "LT2D.a059153_r513_formula_shifted",
+   "module": "LT2D.Relations.W2B_NC_M",
+   "post_id": "mwno601r-2dtevv",
+   "ledger_ids": [
+    "l-mwnppys9-8czjkt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (m : ℕ), ↑(LT2D.onCount 513 (2 ^ (m + 1) - 1)) = 2 ^ (m + 2) * (2 ^ (m + 1) - 1)"
+  },
+  {
+   "name": "LT2D.a272706_formula",
+   "module": "LT2D.A272706.M2",
+   "post_id": "mwmg80g1-t2b1mg",
+   "ledger_ids": [
+    "l-mwmgs83r-xftvkx"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → ↑(LT2D.onCount 515 (2 ^ n - 1)) = 3 * 4 ^ n - 8 * 2 ^ n + 9"
+  },
+  {
+   "name": "LT2D.a272743_formula",
+   "module": "LT2D.Instances.LW1_R526.M",
+   "post_id": "mwnn1n84-eg8wv3",
+   "ledger_ids": [
+    "l-mwno8fmi-awz5mu"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → 3 * ↑(LT2D.onCount 526 (2 ^ n - 1)) = 13 * 4 ^ (n - 1) - 1"
+  },
+  {
+   "name": "LT2D.a273145_formula",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmsyrxw-2rj9i2"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 597 (2 ^ n - 1)) = 14 * 4 ^ (n - 1) - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a002450_r598_formula_shifted",
+   "module": "LT2D.Relations.W2B_NC2_M",
+   "post_id": "mwnoit4s-h6577d",
+   "ledger_ids": [
+    "l-mwnpq0aw-bz6ltf"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 * ↑(LT2D.onCount 598 (2 ^ n - 1)) = 4 ^ (n + 1) - 1"
+  },
+  {
+   "name": "LT2D.a273251_formula",
+   "module": "LT2D.Instances.LB4_R619.M",
+   "post_id": "mwmsq798-j4mekm",
+   "ledger_ids": [
+    "l-mwmt0dzv-2cog0f"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → 3 * ↑(LT2D.onCount 619 (2 ^ n - 1)) = 10 * 4 ^ n - 12 * 2 ^ n - 1"
+  },
+  {
+   "name": "LT2D.a273310_formula",
+   "module": "LT2D.Early.A273310_M",
+   "post_id": "mwmo00d2-zk3ahq",
+   "ledger_ids": [
+    "l-mwmswyx5-q2jab4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 641 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 8"
+  },
+  {
+   "name": "LT2D.a273313_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsy7kx-4p066z"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 643 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 7"
+  },
+  {
+   "name": "LT2D.a273331_formula",
+   "module": "LT2D.Instances.LC_R654.M",
+   "post_id": "mwohw8te-7hf3fs",
+   "ledger_ids": [
+    "l-mwosy0fw-2q4ogh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → 48 * ↑(LT2D.onCount 654 (2 ^ n - 1)) = 53 * 4 ^ n - 80"
+  },
+  {
+   "name": "LT2D.a273335_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxxgs-9fnb60"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 657 (2 ^ n - 1)) = 2 ^ (n + 2) * (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule659",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 659 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a273418_formula",
+   "module": "LT2D.Groups.VBG6.M",
+   "post_id": "mwmqy7yi-hpzoks",
+   "ledger_ids": [
+    "l-mwmszwkw-txccf7"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 705 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 7"
+  },
+  {
+   "name": "LT2D.a273446_formula",
+   "module": "LT2D.Early.A273446",
+   "post_id": "mwmbjanx-5lciqx",
+   "ledger_ids": [
+    "l-mwmcoa29-ktkh4w"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 721 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n"
+  },
+  {
+   "name": "LT2D.a165665_r773_formula",
+   "module": "LT2D.Relations.W2B_NC_M",
+   "post_id": "mwno601r-2dtevv",
+   "ledger_ids": [
+    "l-mwnppxzb-6ivgqz"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), ↑(LT2D.onCount 773 (2 ^ n - 1)) = (3 * 2 ^ n - 2) * 2 ^ n"
+  },
+  {
+   "name": "LT2D.a273539_formula",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsyd0o-f6jbtl"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), ↑(LT2D.onCount 779 (2 ^ n - 1)) = 5 - 2 ^ (3 + n) + 4 ^ (1 + n)"
+  },
+  {
+   "name": "LT2D.a273565_formula",
+   "module": "LT2D.Groups.VBG5.M",
+   "post_id": "mwmqklkd-j5nf9x",
+   "ledger_ids": [
+    "l-mwmszm6u-9txn7o"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 793 (2 ^ n - 1)) = 43 * 4 ^ (n - 2) - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a273570_formula",
+   "module": "LT2D.Groups.VBG6.M",
+   "post_id": "mwmqy7yi-hpzoks",
+   "ledger_ids": [
+    "l-mwmt01rn-6pc4v8"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 798 (2 ^ n - 1)) = 2 * 4 ^ n - 6 * 2 ^ n + 13"
+  },
+  {
+   "name": "LT2D.a273676_formula",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8eaq-yjarmj"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 833 (2 ^ n - 1)) = 3 * 4 ^ n - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a273767_formula",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8ein-977cxy"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 913 (2 ^ n - 1)) = (2 ^ (n + 1) - 1) ^ 2"
+  },
+  {
+   "name": "LT2D.r926_count",
+   "module": "LT2D.Instances.LC_R926.M",
+   "post_id": "mwo4zm8d-20tg2a",
+   "ledger_ids": [
+    "l-mwo68bb0-6w3807"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 * ↑(LT2D.onCount 926 (2 ^ n - 1)) = 4 * 4 ^ n - 1"
+  },
+  {
+   "name": "LT2D.a273828_formula",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8eri-e9ecq7"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 950 (2 ^ n - 1)) = 2 * 4 ^ n - 2 * 2 ^ n - 3"
+  },
+  {
+   "name": "LT2D.a273832_formula",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8f2k-ninf6b"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → ↑(LT2D.onCount 961 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n - 3"
+  },
+  {
+   "name": "LT2D.a273848_formula",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8fdo-iwval6"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 3 ≤ n → ↑(LT2D.onCount 969 (2 ^ n - 1)) = 4 * 4 ^ n - 4 * 2 ^ n + 1"
+  },
+  {
+   "name": "LT2D.a269696_r38_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 38 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269696_r70_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 70 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269696_r102_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 102 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269696_r134_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 134 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269696_r166_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 166 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269696_r198_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 198 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269696_r230_count_eq_6",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmszaoj-qd4n28"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 230 (2 ^ n - 1) = LT2D.onCount 6 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r28_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 28 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r52_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 52 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r60_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 60 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r148_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 148 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r156_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 156 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r180_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 180 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r188_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 188 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r532_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 532 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r540_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 540 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r564_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 564 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r572_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 572 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r660_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 660 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r668_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 668 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r692_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 692 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269712_r700_count_eq_20",
+   "module": "LT2D.Groups.VBG4.M",
+   "post_id": "mwmqj724-ichycl",
+   "ledger_ids": [
+    "l-mwmszhbx-kqmhv4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 700 (2 ^ n - 1) = LT2D.onCount 20 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269815_r43_count_eq_35",
+   "module": "LT2D.Instances.LB3_R35.Twins",
+   "post_id": "mwmrg0zj-d1dfbt",
+   "ledger_ids": [
+    "l-mwmt07xv-rffb78"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 43 (2 ^ n - 1) = LT2D.onCount 35 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a269815_r59_count_eq_35",
+   "module": "LT2D.Instances.LB3_R35.Twins",
+   "post_id": "mwmrg0zj-d1dfbt",
+   "ledger_ids": [
+    "l-mwmt07xv-rffb78"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 59 (2 ^ n - 1) = LT2D.onCount 35 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270084_rule321",
+   "module": "LT2D.Early.A270084_M",
+   "post_id": "mwmo64bd-kg91iu",
+   "ledger_ids": [
+    "l-mwmsx5yy-w5c743"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 321 (2 ^ n - 1) = LT2D.onCount 65 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270126_r342_count_eq_86",
+   "module": "LT2D.Groups.VBG2.M",
+   "post_id": "mwmqefff-czcc3e",
+   "ledger_ids": [
+    "l-mwmsyhy7-p2st00"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 342 (2 ^ n - 1) = LT2D.onCount 86 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270218_r385_count_eq_129",
+   "module": "LT2D.Relations.A270218_R385_R465_R553",
+   "post_id": "mwnwfj19-kbuy86",
+   "ledger_ids": [
+    "l-mwnxxkh6-sa7qht"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 385 (2 ^ n - 1) = LT2D.onCount 129 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270218_r425_count_eq_129",
+   "module": "LT2D.Relations.A270218_R425",
+   "post_id": "mwnwfjvo-qjm0j3",
+   "ledger_ids": [
+    "l-mwnxxkh6-sa7qht"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 425 (2 ^ n - 1) = LT2D.onCount 129 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270218_r465_count_eq_129",
+   "module": "LT2D.Relations.A270218_R385_R465_R553",
+   "post_id": "mwnwfj19-kbuy86",
+   "ledger_ids": [
+    "l-mwnxxkh6-sa7qht"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 465 (2 ^ n - 1) = LT2D.onCount 129 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270218_r553_count_eq_129",
+   "module": "LT2D.Relations.A270218_R385_R465_R553",
+   "post_id": "mwnwfj19-kbuy86",
+   "ledger_ids": [
+    "l-mwnxxkh6-sa7qht"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 553 (2 ^ n - 1) = LT2D.onCount 129 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r163_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 163 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r171_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 171 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r227_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 227 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r235_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 235 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r771_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 771 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r787_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 787 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r803_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 803 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r811_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 811 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r819_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 819 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r827_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 827 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r835_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 835 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r851_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 851 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r867_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 867 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r875_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 875 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r883_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 883 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270222_r891_count_eq_131",
+   "module": "LT2D.Groups.W2B_A22.M",
+   "post_id": "mwnkgxmx-t5x2ye",
+   "ledger_ids": [
+    "l-mwnpojbc-femggt"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 891 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270287_r153_count_eq_145",
+   "module": "LT2D.Groups.VBG3.M",
+   "post_id": "mwmqfzor-jaus5f",
+   "ledger_ids": [
+    "l-mwmsz253-21iowc"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 153 (2 ^ n - 1) = LT2D.onCount 145 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270682_r254_count_eq_190",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxg2z-7yy0ai"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 254 (2 ^ n - 1) = LT2D.onCount 190 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270935_r253_count_eq_221",
+   "module": "LT2D.Groups.VBG2.M",
+   "post_id": "mwmqefff-czcc3e",
+   "ledger_ids": [
+    "l-mwmsyn76-56kaot"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 253 (2 ^ n - 1) = LT2D.onCount 221 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271005_rule501",
+   "module": "LT2D.Early.R245_B",
+   "post_id": "mwmc7dqp-lya7v1",
+   "ledger_ids": [
+    "l-mwmd1psf-yjzmkv"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 501 (2 ^ n - 1) = LT2D.onCount 245 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule269",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 269 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule277",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 277 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule285",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 285 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule293",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 293 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule301",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 301 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule309",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 309 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule317",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 317 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule325",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 325 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule333",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 333 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule341",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 341 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule349",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 349 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule357",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 357 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule365",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 365 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule373",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 373 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule381",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 381 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule413",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 413 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule445",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 445 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule477",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 477 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule509",
+   "module": "LT2D.Early.A271061_Part2",
+   "post_id": "mwmf0sdo-ipq6x7",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 509 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule645",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 645 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule653",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 653 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule661",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 661 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule669",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 669 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule677",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 677 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule685",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 685 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule693",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 693 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule701",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 701 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule709",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 709 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule717",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 717 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule725",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 725 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule733",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 733 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule741",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 741 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule749",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 749 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule757",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 757 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271061_rule765",
+   "module": "LT2D.Early.A271061_Part3",
+   "post_id": "mwmf1fyp-ayyx2x",
+   "ledger_ids": [
+    "l-mwmhiwmj-mcedo4",
+    "l-mwmhw4px-owjnrh"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 765 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a271286_r505_count_eq_337",
+   "module": "LT2D.LDR.M3b",
+   "post_id": "mwnxokni-x0ee8w",
+   "ledger_ids": [
+    "l-mwnxxjvb-4e9q6s"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 505 (2 ^ n - 1) = LT2D.onCount 337 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a272706_rule523",
+   "module": "LT2D.A272706.M2",
+   "post_id": "mwmg80g1-t2b1mg",
+   "ledger_ids": [
+    "l-mwmgs83r-xftvkx"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 523 (2 ^ n - 1) = LT2D.onCount 515 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273251_r635_count_eq_619",
+   "module": "LT2D.Instances.LB4_R619.M",
+   "post_id": "mwmsq798-j4mekm",
+   "ledger_ids": [
+    "l-mwmt0dzv-2cog0f"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 635 (2 ^ n - 1) = LT2D.onCount 619 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273310_rule649",
+   "module": "LT2D.Early.A273310_M",
+   "post_id": "mwmo00d2-zk3ahq",
+   "ledger_ids": [
+    "l-mwmswyx5-q2jab4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 649 (2 ^ n - 1) = LT2D.onCount 641 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273310_rule897",
+   "module": "LT2D.Early.A273310_M",
+   "post_id": "mwmo00d2-zk3ahq",
+   "ledger_ids": [
+    "l-mwmswyx5-q2jab4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 897 (2 ^ n - 1) = LT2D.onCount 641 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273310_rule905",
+   "module": "LT2D.Early.A273310_M",
+   "post_id": "mwmo00d2-zk3ahq",
+   "ledger_ids": [
+    "l-mwmswyx5-q2jab4"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 905 (2 ^ n - 1) = LT2D.onCount 641 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273313_r651_count_eq_643",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsy7kx-4p066z"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 651 (2 ^ n - 1) = LT2D.onCount 643 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273313_r707_count_eq_643",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsy7kx-4p066z"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 707 (2 ^ n - 1) = LT2D.onCount 643 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273313_r715_count_eq_643",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsy7kx-4p066z"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 715 (2 ^ n - 1) = LT2D.onCount 643 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273335_r665_count_eq_657",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsxxgs-9fnb60"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 665 (2 ^ n - 1) = LT2D.onCount 657 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule667",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 667 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule723",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 723 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule731",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 731 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule931",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 931 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule939",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 939 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule947",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 947 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule955",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 955 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule995",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 995 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule1003",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 1003 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule1011",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 1011 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273385_rule1019",
+   "module": "LT2D.Early.A273385",
+   "post_id": "mwmbp99x-ymn9an",
+   "ledger_ids": [
+    "l-mwmcar0a-mt5m9e"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 1019 (2 ^ n - 1) = LT2D.onCount 659 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273418_r713_count_eq_705",
+   "module": "LT2D.Groups.VBG6.M",
+   "post_id": "mwmqy7yi-hpzoks",
+   "ledger_ids": [
+    "l-mwmszwkw-txccf7"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 713 (2 ^ n - 1) = LT2D.onCount 705 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273446_rule729",
+   "module": "LT2D.Early.A273446",
+   "post_id": "mwmbjanx-5lciqx",
+   "ledger_ids": [
+    "l-mwmcoa29-ktkh4w"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 729 (2 ^ n - 1) = LT2D.onCount 721 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273539_r795_count_eq_779",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsyd0o-f6jbtl"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 795 (2 ^ n - 1) = LT2D.onCount 779 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273539_r843_count_eq_779",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsyd0o-f6jbtl"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 843 (2 ^ n - 1) = LT2D.onCount 779 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273539_r859_count_eq_779",
+   "module": "LT2D.Groups.VBG1.M",
+   "post_id": "mwmq4rm3-0e92a0",
+   "ledger_ids": [
+    "l-mwmsyd0o-f6jbtl"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 859 (2 ^ n - 1) = LT2D.onCount 779 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273570_r862_count_eq_798",
+   "module": "LT2D.Groups.VBG6.M",
+   "post_id": "mwmqy7yi-hpzoks",
+   "ledger_ids": [
+    "l-mwmt01rn-6pc4v8"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 862 (2 ^ n - 1) = LT2D.onCount 798 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273676_r849_count_eq_833",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8eaq-yjarmj"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 849 (2 ^ n - 1) = LT2D.onCount 833 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273767_r921_count_eq_913",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8ein-977cxy"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 921 (2 ^ n - 1) = LT2D.onCount 913 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273767_r929_count_eq_913",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8ein-977cxy"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 929 (2 ^ n - 1) = LT2D.onCount 913 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273767_r937_count_eq_913",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8ein-977cxy"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 937 (2 ^ n - 1) = LT2D.onCount 913 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273767_r945_count_eq_913",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8ein-977cxy"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 945 (2 ^ n - 1) = LT2D.onCount 913 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273767_r953_count_eq_913",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8ein-977cxy"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 953 (2 ^ n - 1) = LT2D.onCount 913 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.r990_count_eq_926",
+   "module": "LT2D.Instances.LC_R926.M",
+   "post_id": "mwo4zm8d-20tg2a",
+   "ledger_ids": [
+    "l-mwo68bb0-6w3807"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (g : ℕ), LT2D.onCount 990 g = LT2D.onCount 926 g"
+  },
+  {
+   "name": "LT2D.a273828_r1014_count_eq_950",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8eri-e9ecq7"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 1014 (2 ^ n - 1) = LT2D.onCount 950 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273832_r977_count_eq_961",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8f2k-ninf6b"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 977 (2 ^ n - 1) = LT2D.onCount 961 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273848_r985_count_eq_969",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8fdo-iwval6"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 985 (2 ^ n - 1) = LT2D.onCount 969 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273832_eq_a269911",
+   "module": "LT2D.Groups.W2B_G7.M",
+   "post_id": "mwnl73l3-qntwy3",
+   "ledger_ids": [
+    "l-mwno8f2k-ninf6b"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → LT2D.onCount 961 (2 ^ n - 1) = LT2D.onCount 3 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273676_eq_a270222",
+   "module": "LT2D.Relations.A273676_eq_A270222",
+   "post_id": "mwnl7g6d-kzxjxp",
+   "ledger_ids": [
+    "l-mwnpohoc-0xrfcr"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → LT2D.onCount 833 (2 ^ n - 1) = LT2D.onCount 131 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a270935_eq_a269907",
+   "module": "LT2D.Groups.NT1.M",
+   "post_id": "mwnwg6mq-o3lkfp",
+   "ledger_ids": [
+    "l-mwnxxkvu-xu8pi0"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → LT2D.onCount 221 (2 ^ n - 1) = LT2D.onCount 1 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273418_eq_a273313",
+   "module": "LT2D.Groups.VBG6.M",
+   "post_id": "mwmqy7yi-hpzoks",
+   "ledger_ids": [
+    "l-mwmszwkw-txccf7"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 2 ≤ n → LT2D.onCount 705 (2 ^ n - 1) = LT2D.onCount 643 (2 ^ n - 1)"
+  },
+  {
+   "name": "LT2D.a273310_eq_a271092_iff",
+   "module": "LT2D.Groups.NT1.M",
+   "post_id": "mwnwg6mq-o3lkfp",
+   "ledger_ids": [
+    "l-mwnxxl2k-zmaqq9"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 641 (2 ^ n - 1) = LT2D.onCount 275 (2 ^ n - 1) ↔ n ≠ 1"
+  },
+  {
+   "name": "LT2D.a273335_eq_a271061_iff",
+   "module": "LT2D.Groups.NT1.M",
+   "post_id": "mwnwg6mq-o3lkfp",
+   "ledger_ids": [
+    "l-mwnxxl9j-srzkok"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 657 (2 ^ n - 1) = LT2D.onCount 261 (2 ^ n - 1) ↔ n ≠ 1"
+  },
+  {
+   "name": "LT2D.a272586_eq_rule505_iff",
+   "module": "LT2D.Relations.NT2_M",
+   "post_id": "mwnwfkqn-5o2x6y",
+   "ledger_ids": [
+    "l-mwnxxlgf-nqnzua"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), LT2D.onCount 507 (2 ^ n - 1) = LT2D.onCount 505 (2 ^ n - 1) ↔ n ≠ 1"
+  },
+  {
+   "name": "LT2D.a060867_r737_formula",
+   "module": "LT2D.Relations.W2B_NC2_M",
+   "post_id": "mwnoit4s-h6577d",
+   "ledger_ids": [
+    "l-mwnppzxn-sjlsm1"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), n ≠ 1 → ↑(LT2D.onCount 737 (2 ^ n - 1)) = (2 ^ (n + 1) - 1) ^ 2"
+  },
+  {
+   "name": "LT2D.a060867_r737_exception",
+   "module": "LT2D.Relations.W2B_NC2_M",
+   "post_id": "mwnoit4s-h6577d",
+   "ledger_ids": [
+    "l-mwnppzxn-sjlsm1"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "LT2D.onCount 737 (2 ^ 1 - 1) = 4"
+  },
+  {
+   "name": "LT2D.a270218_eq_four_a006095",
+   "module": "LT2D.Relations.NT2_M",
+   "post_id": "mwnwfkqn-5o2x6y",
+   "ledger_ids": [
+    "l-mwnxxkok-8udtr8"
+   ],
+   "source": "appendix_index.tex",
+   "runner_statement": "∀ (n : ℕ), 1 ≤ n → LT2D.onCount 129 (2 ^ n - 1) = 4 * LT2D.a006095 (n + 1)"
+  },
+  {
+   "name": "LT2D.a169707_rule750",
+   "module": "LT2D.R750.M",
+   "post_id": "mwoxnsd8-h9dv68",
+   "ledger_ids": [
+    "l-mwovucd4-ohqtp7"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (n : ℕ), 3 * ↑(LT2D.onCount 750 (2 ^ n - 1)) = 4 * 4 ^ n - 1"
+  },
+  {
+   "name": "LT2D.rule750_on_in_window",
+   "module": "LT2D.R750.M",
+   "post_id": "mwoxnsd8-h9dv68",
+   "ledger_ids": [
+    "l-mwovucd4-ohqtp7"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (g : ℕ) (x y : ℤ), LT2D.caState 750 g (x, y) = true → (x, y) ∈ LT2D.window g",
+   "ledger_ids_via": "entries whose evidence uses the post (no entry names this theorem)"
+  },
+  {
+   "name": "LT2D.a273331_a16",
+   "module": "LT2D.Instances.LC_R654.M",
+   "post_id": "mwohw8te-7hf3fs",
+   "ledger_ids": [
+    "l-mwosy0fw-2q4ogh"
+   ],
+   "source": "main.tex",
+   "runner_statement": "LT2D.onCount 654 65535 = 4742359721"
+  },
+  {
+   "name": "LT2D.r469_parity",
+   "module": "LT2D.LDR.M",
+   "post_id": "mwnxok07-ae6p28",
+   "ledger_ids": [
+    "l-mwnxxjou-m8pwya",
+    "l-mwnxxjvb-4e9q6s",
+    "l-mwnxxk22-7vtpzd"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (m : ℕ), LT2D.caState 469 (2 * m) = LT2D.caState 558 m ∧ LT2D.caState 469 (2 * m + 1) = fun p => !LT2D.caState 558 m p",
+   "ledger_ids_via": "entries whose evidence uses the post (no entry names this theorem)"
+  },
+  {
+   "name": "LT2D.r337_parity",
+   "module": "LT2D.LDR.M",
+   "post_id": "mwnxok07-ae6p28",
+   "ledger_ids": [
+    "l-mwnxxjou-m8pwya",
+    "l-mwnxxjvb-4e9q6s",
+    "l-mwnxxk22-7vtpzd"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (m : ℕ),\n  LT2D.caState 337 (2 * m) = LT2D.caState 558 m ∧ LT2D.caState 337 (2 * m + 1) = fun p => !LT2D.caState 558 (m + 1) p",
+   "ledger_ids_via": "entries whose evidence uses the post (no entry names this theorem)"
+  },
+  {
+   "name": "LT2D.count_compl558",
+   "module": "LT2D.LDR.M2",
+   "post_id": "mwnxok4b-hg5zi9",
+   "ledger_ids": [
+    "l-mwnxxjou-m8pwya",
+    "l-mwnxxjvb-4e9q6s",
+    "l-mwnxxk22-7vtpzd"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (R m g : ℕ),\n  m ≤ g → (LT2D.caState R g = fun p => !LT2D.caState 558 m p) → LT2D.onCount R g + LT2D.onCount 558 m = (2 * g + 1) ^ 2",
+   "ledger_ids_via": "entries whose evidence uses the post (no entry names this theorem)"
+  },
+  {
+   "name": "LT2D.r337_count_odd",
+   "module": "LT2D.LDR.M3b",
+   "post_id": "mwnxokni-x0ee8w",
+   "ledger_ids": [
+    "l-mwnxxjou-m8pwya",
+    "l-mwnxxjvb-4e9q6s"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (m : ℕ), LT2D.onCount 337 (2 * m + 1) + LT2D.onCount 558 (m + 1) = (2 * (2 * m + 1) + 1) ^ 2",
+   "ledger_ids_via": "entries whose evidence uses the post (no entry names this theorem)"
+  },
+  {
+   "name": "LT2D.r990_caState_eq_926",
+   "module": "LT2D.Instances.LC_R926.M",
+   "post_id": "mwo4zm8d-20tg2a",
+   "ledger_ids": [
+    "l-mwo68bb0-6w3807"
+   ],
+   "source": "main.tex",
+   "runner_statement": "LT2D.caState 990 = LT2D.caState 926"
+  },
+  {
+   "name": "LT2D.r990_count",
+   "module": "LT2D.Instances.LC_R926.M",
+   "post_id": "mwo4zm8d-20tg2a",
+   "ledger_ids": [
+    "l-mwo68bb0-6w3807"
+   ],
+   "source": "main.tex",
+   "runner_statement": "∀ (n : ℕ), 3 * ↑(LT2D.onCount 990 (2 ^ n - 1)) = 4 * 4 ^ n - 1"
+  }
+ ]
+}

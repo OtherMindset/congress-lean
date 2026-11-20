@@ -1,0 +1,2712 @@
+--- site #mwmflun2-e55jk4
++++ LT2D/A272706/K1b.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmfkzh5_8rq7id
++import LT2D.A272706.K1a
+ -- A272706 / Rule 515, file K1b (verbatim copy of A273331 K1b #mwlxl791-zobq6n, namespace renamed) (core Lean only): certificate checker (BT, explore, certOK, ofList), L7-L9, mix.
+ 
+ namespace A272706
+--- site #mwmfn54e-48boes
++++ LT2D/A272706/K2.lean
+@@ -1,7 +1,7 @@
+ -- A272706 / Rule 515, file K2 (core Lean only; copy of A273331 K2a #mwlxycrx-omyz08 without the F4/F5 lanes): lanes = one automaton run fed with a number
+ -- computed on the fly (carry or borrow bit). Each lane is a step function on (state, bit).
+ -- Lemma numbering follows the congress plan (leader/a273331/sketch.md); every proof below is complete.
+-import LongTable.P_mwmflun2_e55jk4
++import LT2D.A272706.K1b
+ namespace A272706
+ 
+ /-- the x, y, z digits of a digit triple d = 4*z + 2*y + x -/
+--- site #mwmg2qh7-qxah27
++++ LT2D/A272706/K3.lean
+@@ -3,7 +3,7 @@
+ -- replaced by an in-kernel F1 certificate (E2)): products for F2 (seed) and F1 (one CA step), their kernel-checked
+ -- certificates, and F2_V (F1_V and NB3_V are in K4).
+ -- Lemma numbering follows the congress plan (leader/a273331/sketch.md); every proof below is complete.
+-import LongTable.P_mwmfn54e_48boes
++import LT2D.A272706.K2
+ namespace A272706
+ 
+ /-! ## F2: V x y 1 = [x = 0 and y = 0] -/
+--- site #mwmg413f-bj9quu
++++ LT2D/A272706/K4.lean
+@@ -1,6 +1,6 @@
+ -- A272706 / Rule 515, file K4 (core Lean only): F1_V and NB3_V, the automaton-side bridge for one CA step.
+ -- Adapted from A273331 K7 (#mwlzsauz-jspoq8): the same lane bookkeeping, with the bit-3 conjunct of end1.
+-import LongTable.P_mwmg2qh7_qxah27
++import LT2D.A272706.K3
+ namespace A272706
+ 
+ /-! ## D6, D7: the south lane (verbatim from A273331 K2b #mwlxzncp-r3jax1) -/
+--- site #mwmg59dp-dtai66
++++ LT2D/A272706/K5.lean
+@@ -1,7 +1,7 @@
+ -- A272706 / Rule 515, file K5 (core Lean only): the counts of V over the square [0, 2^n)^2, its two axes and
+ -- the origin at time 2^n, as digit-string sums through the 15-state automaton (linear representation,
+ -- backward form). Closed forms in K6.
+-import LongTable.P_mwmfkzh5_8rq7id
++import LT2D.A272706.K1a
+ namespace A272706
+ 
+ /-- sumTo h m = h 0 + h 1 + ... + h (m - 1) -/
+--- site #mwmg681k-0v8jc7
++++ LT2D/A272706/K6.lean
+@@ -1,7 +1,7 @@
+ -- A272706 / Rule 515, file K6 (core Lean only): linear recurrences of the digit-string sums from n = 2 on
+ -- (finite base checks over the 15 states by kernel decide, propagated by linearity), their closed forms at the
+ -- start state, and the core count identity.
+-import LongTable.P_mwmg59dp_dtai66
++import LT2D.A272706.K5
+ namespace A272706
+ 
+ /-! ## R1-R4: linear recurrences of the vectors it D f4 n from n = 2 on -/
+--- site #mwmg73qw-sgejby
++++ LT2D/A272706/M1.lean
+@@ -5,7 +5,8 @@
+ import Mathlib.Tactic.Ring
+ import Mathlib.Tactic.Linarith
+ import Mathlib.Tactic.NormNum
+-import LongTable.P_mwmg413f_bj9quu
++import LT2D.A272706.K4
++import LT2D.Basic
+ /-
+   A272706 (Rules 515 and 523), file M1 (Mathlib): the posted plane-wide definitions of 18 Nov
+   (#mwmbjanx-5lciqx, lines 8-41 of lean/NextStatements.lean, verbatim), then the bridge from the
+@@ -13,38 +14,7 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+-
+-/-- The window [-g,g]^2 around the seed. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+ 
+ end LT2D
+ 
+@@ -65,40 +35,6 @@
+     have h2 : (2 : Nat) ^ 10 = 1024 := by norm_num
+     rw [Nat.testBit_lt_two_pow (by omega : 523 < 2 ^ (c.toNat + 2 * k)),
+       Nat.testBit_lt_two_pow (by omega : 515 < 2 ^ (c.toNat + 2 * k))]
+-
+-/-- B3: the neighbour count of a state that depends only on (|x|, |y|) -/
+-theorem nbrOn_abs (s : Cell → Bool) (W : Nat → Nat → Bool)
+-    (hs : ∀ x y : Int, s (x, y) = W x.natAbs y.natAbs) (x y : Int) :
+-    nbrOn s (x, y) =
+-      (W (x.natAbs + 1) y.natAbs).toNat +
+-      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat +
+-      (W x.natAbs (y.natAbs + 1)).toNat +
+-      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by
+-  have hx : (W (x + 1).natAbs y.natAbs).toNat + (W (x - 1).natAbs y.natAbs).toNat =
+-      (W (x.natAbs + 1) y.natAbs).toNat +
+-      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat := by
+-    rcases lt_trichotomy x 0 with h | h | h
+-    · rw [show (x + 1).natAbs = x.natAbs - 1 by omega, show (x - 1).natAbs = x.natAbs + 1 by omega,
+-        if_neg (by omega)]
+-      omega
+-    · subst h
+-      rfl
+-    · rw [show (x + 1).natAbs = x.natAbs + 1 by omega, show (x - 1).natAbs = x.natAbs - 1 by omega,
+-        if_neg (by omega)]
+-  have hy : (W x.natAbs (y + 1).natAbs).toNat + (W x.natAbs (y - 1).natAbs).toNat =
+-      (W x.natAbs (y.natAbs + 1)).toNat +
+-      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by
+-    rcases lt_trichotomy y 0 with h | h | h
+-    · rw [show (y + 1).natAbs = y.natAbs - 1 by omega, show (y - 1).natAbs = y.natAbs + 1 by omega,
+-        if_neg (by omega)]
+-      omega
+-    · subst h
+-      rfl
+-    · rw [show (y + 1).natAbs = y.natAbs + 1 by omega, show (y - 1).natAbs = y.natAbs - 1 by omega,
+-        if_neg (by omega)]
+-  unfold nbrOn
+-  simp only [hs]
+-  omega
+ 
+ /-- B4 (THE BRIDGE): stage g of Rule 515 on the whole plane is V at (|x|, |y|), time g + 1 -/
+ theorem caState_515 (g : Nat) (x y : Int) :
+--- site #mwmg80g1-t2b1mg
++++ LT2D/A272706/M2.lean
+@@ -1,5 +1,6 @@
+-import LongTable.P_mwmg73qw_sgejby
+-import LongTable.P_mwmg681k_0v8jc7
++import LT2D.A272706.M1
++import LT2D.A272706.K6
++import LT2D.Basic
+ /-
+   A272706 (Rules 515 and 523), file M2 (Mathlib): the window count folded onto the quadrant,
+   the counts through the automaton (K5), and the two main theorems.
+@@ -9,54 +10,10 @@
+ open Finset
+ 
+ /-- S1 -/
+-theorem sumTo_eq_sum (h : Nat → Nat) (m : Nat) : A272706.sumTo h m = ∑ i ∈ range m, h i := by
++private theorem sumTo_eq_sum (h : Nat → Nat) (m : Nat) : A272706.sumTo h m = ∑ i ∈ range m, h i := by
+   induction m with
+   | zero => rfl
+   | succ m ih => rw [Finset.sum_range_succ, ← ih]; rfl
+-
+-/-- S2: a sum over [-g, g] of a function of |x| -/
+-theorem sum_Icc_natAbs (h : Nat → Int) (g : Nat) :
+-    ∑ x ∈ Icc (-(g : Int)) g, h x.natAbs = 2 * ∑ a ∈ range (g + 1), h a - h 0 := by
+-  induction g with
+-  | zero => simp <;> ring
+-  | succ g ih =>
+-    have e : Icc (-((g + 1 : Nat) : Int)) ((g + 1 : Nat) : Int) =
+-        insert (-((g : Int) + 1)) (insert ((g : Int) + 1) (Icc (-(g : Int)) g)) := by
+-      ext x
+-      simp only [Finset.mem_Icc, Finset.mem_insert]
+-      push_cast
+-      omega
+-    have n1 : ((g : Int) + 1) ∉ Icc (-(g : Int)) g := by
+-      simp only [Finset.mem_Icc]
+-      omega
+-    have n2 : -((g : Int) + 1) ∉ insert ((g : Int) + 1) (Icc (-(g : Int)) g) := by
+-      simp only [Finset.mem_insert, Finset.mem_Icc]
+-      omega
+-    rw [e, Finset.sum_insert n2, Finset.sum_insert n1, ih, Finset.sum_range_succ h (g + 1)]
+-    rw [show (-((g : Int) + 1)).natAbs = g + 1 by omega, show ((g : Int) + 1).natAbs = g + 1 by omega]
+-    ring
+-
+-/-- S3: the window count of a stage that depends only on (|x|, |y|) -/
+-theorem onCount_fold (rule g : Nat) (W : Nat → Nat → Bool)
+-    (hW : ∀ x y : Int, caState rule g (x, y) = W x.natAbs y.natAbs) :
+-    (onCount rule g : Int) =
+-      4 * ∑ a ∈ range (g + 1), ∑ b ∈ range (g + 1), ((W a b).toNat : Int)
+-      - 2 * ∑ a ∈ range (g + 1), ((W a 0).toNat : Int)
+-      - 2 * ∑ b ∈ range (g + 1), ((W 0 b).toNat : Int) + ((W 0 0).toNat : Int) := by
+-  have h1 : (onCount rule g : Int) = ∑ x ∈ Icc (-(g : Int)) g, ∑ y ∈ Icc (-(g : Int)) g,
+-      ((W x.natAbs y.natAbs).toNat : Int) := by
+-    unfold onCount window
+-    rw [Finset.card_filter, Nat.cast_sum, Finset.sum_product]
+-    refine Finset.sum_congr rfl (fun x _ => Finset.sum_congr rfl (fun y _ => ?_))
+-    rw [hW x y]
+-    cases W x.natAbs y.natAbs <;> simp
+-  have inner : ∀ x : Int, ∑ y ∈ Icc (-(g : Int)) g, ((W x.natAbs y.natAbs).toNat : Int) =
+-      2 * ∑ b ∈ range (g + 1), ((W x.natAbs b).toNat : Int) - ((W x.natAbs 0).toNat : Int) :=
+-    fun x => sum_Icc_natAbs (fun b => ((W x.natAbs b).toNat : Int)) g
+-  rw [h1, Finset.sum_congr rfl (fun x _ => inner x), Finset.sum_sub_distrib, ← Finset.mul_sum,
+-    sum_Icc_natAbs (fun a => ∑ b ∈ range (g + 1), ((W a b).toNat : Int)) g,
+-    sum_Icc_natAbs (fun a => ((W a 0).toNat : Int)) g]
+-  ring
+ 
+ /-- A272706 (Rule 515): Conjecture: a(n) = 3*4^n - 8*2^n + 9 (no range in the entry; false at n = 0). -/
+ theorem a272706_formula (n : Nat) (hn : 1 ≤ n) :
+--- site #mwmo3omz-3d6q7j
++++ LT2D/Early/A269911_Core.lean
+@@ -1,3 +1,4 @@
++import LT2D.Basic
+ /-
+   A269911 (Rule 3), core part, no imports. Definitions for any rule, a finite-list device used only in
+   proofs, kernel `decide` checks of the stages. Rule 3 has bit 0 set and bit 9 clear: the background
+@@ -6,150 +7,19 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+ 
+-/-- Each cell of L together with its four axial neighbours. -/
+-def cands (L : List Cell) : List Cell :=
+-  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])
+-
+-/-- The configuration that is ON exactly on L. -/
+-def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p
+-
+-/-- The configuration that is ON everywhere except on D. -/
+-def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)
+-
+-/-- The cells of C that are OFF after one step from s. -/
+-def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => !(step rule s p))
+-
+-/-- A and B have the same members. -/
+-def sameSet (A B : List Cell) : Bool :=
+-  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)
+-
+-/-- The cells of C that are ON after one step from s. -/
+-def onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => step rule s p)
+ /-! ## Generic lemmas (any rule) -/
+-
+-theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :
+-    A.contains q = B.contains q := by
+-  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h
+-  cases hA : A.contains q <;> cases hB : B.contains q
+-  · rfl
+-  · have := h.2 q (by simpa using hB)
+-    simp_all
+-  · have := h.1 q (by simpa using hA)
+-    simp_all
+-  · rfl
+-
+-theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    coFin A = coFin B := by
+-  funext q
+-  simp only [coFin, h q]
+-
+-theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :
+-    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧
+-      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by
+-  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →
+-      (cands L).contains r = true := by
+-    intro q hq r hr
+-    simp only [cands, List.contains_iff_mem, List.mem_flatMap]
+-    exact ⟨q, hq, hr⟩
+-  obtain ⟨x, y⟩ := p
+-  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-
+-theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by
+-  simp only [offAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/
+-theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :
+-    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands L).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]
+-    exact h0
+-  · simp
+-
+-/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/
+-theorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :
+-    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]
+-    exact h9
+-  · simp
+-
+-theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by
+-  funext p
+-  simp [caState, finOn]
+-
+-theorem contains_onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (onAfter rule s C).contains p = (C.contains p && step rule s p) := by
+-  simp only [onAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-theorem finOn_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    finOn A = finOn B := by
+-  funext q
+-  simp only [finOn, h q]
+-
+-/-- Bit 9 clear: from ON-except-D, the next stage is ON only on candidates near D. -/
+-theorem step_coFin0 {rule : Nat} (h9 : Nat.testBit rule 9 = false) (D : List Cell) :
+-    step rule (coFin D) = finOn (onAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [finOn, contains_onAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true,
+-      Bool.false_and]
+-    exact h9
+-  · simp
+ 
+ /-! ## Stages of a rule with bit 0 set and bit 9 clear that passes the two checks of `stages`: seed, ON except 4 cells, seed, ... -/
+ 
+ /-- The seed cell. -/
+-def O1 : List Cell := [(0, 0)]
++private def O1 : List Cell := [(0, 0)]
+ /-- OFF cells at odd stages: the four axial neighbours of the seed. -/
+ def D1 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1)]
+ 
+ /-- Even stage 2m: ON exactly at the seed. Odd stage 2m+1: ON except on the four neighbours. -/
+-theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = false ∧
++private theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = false ∧
+     sameSet (offAfter r (finOn O1) (cands O1)) D1 = true ∧
+     sameSet (onAfter r (coFin D1) (cands D1)) O1 = true) :
+     ∀ m, caState r (2 * m) = finOn O1 ∧ caState r (2 * m + 1) = coFin D1 := by
+--- site #mwmo4lkh-4j151k
++++ LT2D/Early/A269911_M.lean
+@@ -5,7 +5,8 @@
+ import Mathlib.Tactic.Ring
+ import Mathlib.Tactic.Linarith
+ import Mathlib.Tactic.NormNum
+-import LongTable.P_mwmo3omz_3d6q7j
++import LT2D.Early.A269911_Core
++import LT2D.Basic
+ /-
+   A269911 (Rule 3), Mathlib part. The core file defines Cell, ruleOut, nbrOn, step, caState (lines 8-31
+   of lean/NextStatements.lean, verbatim) and proves the stages: even stages ON exactly at the seed, odd
+@@ -15,19 +16,6 @@
+ namespace LT2D
+ 
+ /-! ## The window and the OEIS count -/
+-
+-/-- The window [-g,g]^2 around the seed. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  simp only [window, Finset.card_product, Int.card_Icc]
+-  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega
+-  rw [this]; ring
+ 
+ theorem D1_filter (g : Nat) (hg : 1 ≤ g) :
+     (window g).filter (fun p : Cell => D1.contains p = true) = D1.toFinset := by
+--- site #mwmo5b4i-ozwrjo
++++ LT2D/Early/A270084_Core.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmfcf3a_sdo7h1
++import LT2D.Early.R323_A
+ /- A270084 (Rule 65 and Rule 321), core part, no Mathlib. Imports the posted R323_A (#mwmfcf3a-sdo7h1, which
+    imports R245_A #mwmc69rp-fpejr2): LT2D definitions, finite-list device, features, lists W2..W6, shapes
+    E3 h, O3 h, finOn_W6. Rules 65 and 321 have bit 0 set and bit 9 clear. Their stage 1 is ON except on the
+--- site #mwmo64bd-kg91iu
++++ LT2D/Early/A270084_M.lean
+@@ -5,7 +5,8 @@
+ import Mathlib.Tactic.Ring
+ import Mathlib.Tactic.Linarith
+ import Mathlib.Tactic.NormNum
+-import LongTable.P_mwmo5b4i_ozwrjo
++import LT2D.Early.A270084_Core
++import LT2D.Basic
+ /-
+   A270084 (Rule 65, and Rule 321 by the entry's comment), Mathlib part. Imports the core file (stages and
+   closed forms of Rules 65 and 321, on the posted R323_A). Here: window and onCount, the count of an odd
+@@ -13,26 +14,13 @@
+ -/
+ namespace LT2D
+ 
+-/-- The window [-g,g]^2 around the seed. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  simp only [window, Finset.card_product, Int.card_Icc]
+-  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega
+-  rw [this]; ring
+-
+ /-- The OFF cells of the odd-stage shape O3 h: two crossing 3-wide strips and four tips. -/
+-def offSet (h : Nat) : Finset Cell :=
++private def offSet (h : Nat) : Finset Cell :=
+   (Finset.Icc (-1 : Int) 1 ×ˢ Finset.Icc (-(h : Int)) h) ∪ (Finset.Icc (2 : Int) h ×ˢ Finset.Icc (-1 : Int) 1) ∪
+   (Finset.Icc (-(h : Int)) (-2) ×ˢ Finset.Icc (-1 : Int) 1) ∪
+   ({(0, (h : Int) + 1), (0, -(h : Int) - 1), ((h : Int) + 1, 0), (-(h : Int) - 1, 0)} : Finset Cell)
+ 
+-theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by
++private theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by
+   have hA : (Finset.Icc (-1 : Int) 1 ×ˢ Finset.Icc (-(h : Int)) h).card = 3 * (2 * h + 1) := by
+     rw [Finset.card_product, Int.card_Icc, Int.card_Icc]
+     congr 1 <;> omega
+@@ -73,7 +61,7 @@
+   omega
+ 
+ /-- Count at a stage with the odd shape O3 h (1 ≤ h, h + 1 ≤ g): all window cells but the 12h+1 OFF cells. -/
+-theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :
++private theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :
+     onCount rule g + (12 * h + 1) = (2 * g + 1) ^ 2 := by
+   have e : (window g).filter (fun p => ¬ caState rule g p = true) = offSet h := by
+     ext ⟨x, y⟩
+@@ -91,13 +79,13 @@
+   unfold onCount
+   omega
+ 
+-theorem count_three {r : Nat} (h : caState r 3 = coFin W3) : onCount r 3 = 36 := by
++private theorem count_three {r : Nat} (h : caState r 3 = coFin W3) : onCount r 3 = 36 := by
+   unfold onCount
+   rw [h]
+   decide
+ 
+ /-- Rules with the shape of the Rule 323 closed forms: the count at stage 2^n - 1, n >= 3. -/
+-theorem count_large {r : Nat} (hr : ∀ m : Nat, caState r (2 * m + 7) = O3 ((m : Int) + 3))
++private theorem count_large {r : Nat} (hr : ∀ m : Nat, caState r (2 * m + 7) = O3 ((m : Int) + 3))
+     (n : Nat) (hn : 3 ≤ n) : (onCount r (2 ^ n - 1) : Int) = 4 * 4 ^ n - 10 * 2 ^ n + 12 := by
+   obtain ⟨k, rfl⟩ : ∃ k, n = k + 3 := ⟨n - 3, by omega⟩
+   have hP : 1 ≤ 2 ^ k := Nat.one_le_two_pow
+@@ -122,7 +110,7 @@
+   linarith [hc']
+ 
+ /-- For a rule of the shape: a(n) = 4*4^n - 10*2^n + 12 for n >= 2. -/
+-theorem count_formula {r : Nat} (hr : Shape r) (n : Nat) (hn : 2 ≤ n) :
++private theorem count_formula {r : Nat} (hr : Shape r) (n : Nat) (hn : 2 ≤ n) :
+     (onCount r (2 ^ n - 1) : Int) = 4 * 4 ^ n - 10 * 2 ^ n + 12 := by
+   rcases (show n = 2 ∨ 3 ≤ n by omega) with rfl | h3
+   · have : (2 ^ 2 - 1 : Nat) = 3 := by norm_num
+--- site #mwmeo46j-i1w8jl
++++ LT2D/Early/A271055.lean
+@@ -1,4 +1,5 @@
+ import Mathlib
++import LT2D.Basic
+ 
+ /-
+   A271055 (Rule 259). Plane-wide definitions for any rule number (as in the 18 Nov posts), then
+@@ -7,38 +8,7 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+-
+-/-- The window [-g,g]^2 around the seed. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+ 
+ /-! ## Rule 259: explicit states (d = |x| + |y|) -/
+ 
+@@ -137,11 +107,6 @@
+   obtain ⟨m, hm⟩ : ∃ m, g = 3 + 2 * m := ⟨(g - 3) / 2, by omega⟩
+   rw [hm]; exact (caState_pair m).2
+ 
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  simp only [window, Finset.card_product, Int.card_Icc]
+-  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega
+-  rw [this]; ring
+-
+ theorem diamond_card (g : Nat) (hg : 2 ≤ g) :
+     ((window g).filter (fun p : Cell => p.1.natAbs + p.2.natAbs ≤ 2)).card = 13 := by
+   have : (window g).filter (fun p : Cell => p.1.natAbs + p.2.natAbs ≤ 2) =
+@@ -152,7 +117,7 @@
+   rw [this]
+   decide
+ 
+-theorem onCount_odd (g : Nat) (hg : 3 ≤ g) (ho : g % 2 = 1) :
++private theorem onCount_odd (g : Nat) (hg : 3 ≤ g) (ho : g % 2 = 1) :
+     onCount 259 g = (2 * g + 1) ^ 2 - 13 := by
+   unfold onCount
+   rw [caState_odd g hg ho]
+--- site #mwmezycj-p4n3xa
++++ LT2D/Early/A271061_Part1.lean
+@@ -1,4 +1,5 @@
+ import Mathlib
++import LT2D.Basic
+ 
+ /-
+   A271061: Rule 261 and the 35 rules of the entry's comment (Rules 269 .. 765). Definitions for any
+@@ -7,141 +8,9 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+ 
+-/-- Each cell of L together with its four axial neighbours. -/
+-def cands (L : List Cell) : List Cell :=
+-  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])
+-
+-/-- The configuration that is ON exactly on L. -/
+-def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p
+-
+-/-- The configuration that is ON everywhere except on D. -/
+-def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)
+-
+-/-- The cells of C that are OFF after one step from s. -/
+-def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => !(step rule s p))
+-
+-/-- The cells of C that are ON after one step from s. -/
+-def onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => step rule s p)
+-
+-/-- A and B have the same members. -/
+-def sameSet (A B : List Cell) : Bool :=
+-  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)
+-
+ /-! ## Generic lemmas (any rule) -/
+-
+-theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :
+-    A.contains q = B.contains q := by
+-  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h
+-  cases hA : A.contains q <;> cases hB : B.contains q
+-  · rfl
+-  · have := h.2 q (by simpa using hB)
+-    simp_all
+-  · have := h.1 q (by simpa using hA)
+-    simp_all
+-  · rfl
+-
+-theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    coFin A = coFin B := by
+-  funext q
+-  simp only [coFin, h q]
+-
+-theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :
+-    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧
+-      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by
+-  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →
+-      (cands L).contains r = true := by
+-    intro q hq r hr
+-    simp only [cands, List.contains_iff_mem, List.mem_flatMap]
+-    exact ⟨q, hq, hr⟩
+-  obtain ⟨x, y⟩ := p
+-  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-
+-theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by
+-  simp only [offAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/
+-theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :
+-    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands L).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]
+-    exact h0
+-  · simp
+-
+-/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/
+-theorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :
+-    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]
+-    exact h9
+-  · simp
+-
+-theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by
+-  funext p
+-  simp [caState, finOn]
+-
+-theorem contains_onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (onAfter rule s C).contains p = (C.contains p && step rule s p) := by
+-  simp only [onAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-theorem finOn_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    finOn A = finOn B := by
+-  funext q
+-  simp only [finOn, h q]
+-
+-/-- Bit 9 clear: from ON-except-D, the next stage is ON only on candidates near D. -/
+-theorem step_coFin0 {rule : Nat} (h9 : Nat.testBit rule 9 = false) (D : List Cell) :
+-    step rule (coFin D) = finOn (onAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [finOn, contains_onAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true,
+-      Bool.false_and]
+-    exact h9
+-  · simp
+ 
+ /-! ## The stages of Rules 261 .. 765: the origin is the only cell that differs at odd stages -/
+ 
+@@ -198,17 +67,6 @@
+ /-! ## The OEIS count and the main theorems -/
+ namespace LT2D
+ 
+-/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-/-- Number of cells of window g ON at stage g; a(n) is this count at g = 2^n - 1. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  rw [window, Finset.card_product, Int.card_Icc, sq]
+-  congr 1 <;> omega
+-
+ theorem onCount_coFin {r g : Nat} (h : caState r g = coFin O1) : onCount r g = (2 * g + 1) ^ 2 - 1 := by
+   unfold onCount
+   rw [h]
+--- site #mwmf0sdo-ipq6x7
++++ LT2D/Early/A271061_Part2.lean
+@@ -1,5 +1,5 @@
+ import Mathlib
+-import LongTable.P_mwmezycj_p4n3xa
++import LT2D.Early.A271061_Part1
+ /-
+   A271061: Rule 261 and the 35 rules of the entry's comment. Part 2 of 3: classes A and B (19 rules).
+   Definitions and lemmas are in part 1 (namespace LT2D); each theorem below says that the rule has
+--- site #mwmf1fyp-ayyx2x
++++ LT2D/Early/A271061_Part3.lean
+@@ -1,5 +1,5 @@
+ import Mathlib
+-import LongTable.P_mwmezycj_p4n3xa
++import LT2D.Early.A271061_Part1
+ /-
+   A271061: Rule 261 and the 35 rules of the entry's comment. Part 3 of 3: class C (16 rules).
+   Definitions and lemmas are in part 1 (namespace LT2D); each theorem below says that the rule has
+--- site #mwmnzbwy-gx846h
++++ LT2D/Early/A273310_Core.lean
+@@ -1,3 +1,4 @@
++import LT2D.Basic
+ /-
+   A273310 (Rule 641 and Rules 649, 897, 905), core part, no imports. Definitions for any rule, a
+   finite-list device used only in proofs, kernel `decide` checks of the stages: the cells OFF at stage 1
+@@ -5,128 +6,23 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+ 
+-/-- Each cell of L together with its four axial neighbours. -/
+-def cands (L : List Cell) : List Cell :=
+-  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])
+-
+-/-- The configuration that is ON exactly on L. -/
+-def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p
+-
+-/-- The configuration that is ON everywhere except on D. -/
+-def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)
+-
+-/-- The cells of C that are OFF after one step from s. -/
+-def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => !(step rule s p))
+-
+-/-- A and B have the same members. -/
+-def sameSet (A B : List Cell) : Bool :=
+-  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)
+-
+ /-! ## Generic lemmas (any rule) -/
+-
+-theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :
+-    A.contains q = B.contains q := by
+-  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h
+-  cases hA : A.contains q <;> cases hB : B.contains q
+-  · rfl
+-  · have := h.2 q (by simpa using hB)
+-    simp_all
+-  · have := h.1 q (by simpa using hA)
+-    simp_all
+-  · rfl
+-
+-theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    coFin A = coFin B := by
+-  funext q
+-  simp only [coFin, h q]
+-
+-theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :
+-    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧
+-      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by
+-  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →
+-      (cands L).contains r = true := by
+-    intro q hq r hr
+-    simp only [cands, List.contains_iff_mem, List.mem_flatMap]
+-    exact ⟨q, hq, hr⟩
+-  obtain ⟨x, y⟩ := p
+-  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-
+-theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by
+-  simp only [offAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/
+-theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :
+-    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands L).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]
+-    exact h0
+-  · simp
+-
+-/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/
+-theorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :
+-    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]
+-    exact h9
+-  · simp
+-
+-theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by
+-  funext p
+-  simp [caState, finOn]
+ 
+ /-! ## Stages of a rule with bits 0 and 9 set that passes the four checks of `stages`: OFF cells D1, D2, D3, D2, D3, ... -/
+ 
+ /-- OFF cells at stage 1: the seed and its four axial neighbours. -/
+-def D1 : List Cell := [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]
++def D1_r641 : List Cell := [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]
+ /-- OFF cells at even stages >= 2: the 8 cells around the seed. -/
+ def D2 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+ /-- OFF cells at odd stages >= 3: the 3 x 3 block. -/
+ def D3 : List Cell := (0, 0) :: D2
+ 
+-theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)
+-    (E1 : sameSet (offAfter r (finOn [(0, 0)]) (cands [(0, 0)])) D1 = true) :
+-    caState r 1 = coFin D1 := by
+-  show step r (caState r 0) = coFin D1
++private theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)
++    (E1 : sameSet (offAfter r (finOn [(0, 0)]) (cands [(0, 0)])) D1_r641 = true) :
++    caState r 1 = coFin D1_r641 := by
++  show step r (caState r 0) = coFin D1_r641
+   rw [caState_zero, step_finOn h0]
+   exact coFin_congr (sameSet_contains E1)
+ 
+@@ -138,12 +34,12 @@
+   exact coFin_congr (sameSet_contains E)
+ 
+ /-- Stage 1 has OFF cells D1, stage 2 D2, stage 3 D3, stage 4 D2 again: period 2 from stage 2. -/
+-theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = true ∧
+-    sameSet (offAfter r (finOn [(0, 0)]) (cands [(0, 0)])) D1 = true ∧
+-    sameSet (offAfter r (coFin D1) (cands D1)) D2 = true ∧
++private theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = true ∧
++    sameSet (offAfter r (finOn [(0, 0)]) (cands [(0, 0)])) D1_r641 = true ∧
++    sameSet (offAfter r (coFin D1_r641) (cands D1_r641)) D2 = true ∧
+     sameSet (offAfter r (coFin D2) (cands D2)) D3 = true ∧
+     sameSet (offAfter r (coFin D3) (cands D3)) D2 = true) :
+-    caState r 1 = coFin D1 ∧
++    caState r 1 = coFin D1_r641 ∧
+       ∀ m, caState r (2 + 2 * m) = coFin D2 ∧ caState r (3 + 2 * m) = coFin D3 := by
+   obtain ⟨h0, h9, E1, E2, E3, E4⟩ := h
+   have s1 := stage1 h0 E1
+@@ -160,16 +56,16 @@
+       rw [show 3 + 2 * (m + 1) = (2 + 2 * (m + 1)) + 1 by omega]
+       exact stage_succ h9 E3 a⟩
+ 
+-theorem r641_stages : caState 641 1 = coFin D1 ∧
++theorem r641_stages : caState 641 1 = coFin D1_r641 ∧
+     ∀ m, caState 641 (2 + 2 * m) = coFin D2 ∧ caState 641 (3 + 2 * m) = coFin D3 :=
+   stages (by decide)
+-theorem r649_stages : caState 649 1 = coFin D1 ∧
++theorem r649_stages : caState 649 1 = coFin D1_r641 ∧
+     ∀ m, caState 649 (2 + 2 * m) = coFin D2 ∧ caState 649 (3 + 2 * m) = coFin D3 :=
+   stages (by decide)
+-theorem r897_stages : caState 897 1 = coFin D1 ∧
++theorem r897_stages : caState 897 1 = coFin D1_r641 ∧
+     ∀ m, caState 897 (2 + 2 * m) = coFin D2 ∧ caState 897 (3 + 2 * m) = coFin D3 :=
+   stages (by decide)
+-theorem r905_stages : caState 905 1 = coFin D1 ∧
++theorem r905_stages : caState 905 1 = coFin D1_r641 ∧
+     ∀ m, caState 905 (2 + 2 * m) = coFin D2 ∧ caState 905 (3 + 2 * m) = coFin D3 :=
+   stages (by decide)
+ 
+--- site #mwmo00d2-zk3ahq
++++ LT2D/Early/A273310_M.lean
+@@ -5,7 +5,8 @@
+ import Mathlib.Tactic.Ring
+ import Mathlib.Tactic.Linarith
+ import Mathlib.Tactic.NormNum
+-import LongTable.P_mwmnzbwy_gx846h
++import LT2D.Early.A273310_Core
++import LT2D.Basic
+ /-
+   A273310 (Rule 641 and Rules 649, 897, 905), Mathlib part. The core file defines Cell, ruleOut, nbrOn,
+   step, caState (lines 8-31 of lean/NextStatements.lean, verbatim) and proves the stages: OFF cells D1
+@@ -15,19 +16,6 @@
+ namespace LT2D
+ 
+ /-! ## The window and the OEIS count -/
+-
+-/-- The window [-g,g]^2 around the seed. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  simp only [window, Finset.card_product, Int.card_Icc]
+-  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega
+-  rw [this]; ring
+ 
+ theorem D3_filter (g : Nat) (hg : 1 ≤ g) :
+     (window g).filter (fun p : Cell => D3.contains p = true) = D3.toFinset := by
+@@ -54,7 +42,7 @@
+   have := card_window g
+   omega
+ 
+-theorem onCount_odd {r : Nat} (hr : ∀ m, caState r (3 + 2 * m) = coFin D3) (n : Nat) (hn : 2 ≤ n) :
++private theorem onCount_odd {r : Nat} (hr : ∀ m, caState r (3 + 2 * m) = coFin D3) (n : Nat) (hn : 2 ≤ n) :
+     onCount r (2 ^ n - 1) = (2 * (2 ^ n - 1) + 1) ^ 2 - 9 := by
+   have h4 : 4 ≤ 2 ^ n := by
+     calc 4 = 2 ^ 2 := by norm_num
+@@ -88,8 +76,8 @@
+ 
+ /-- Two rules with OFF cells D1 at stage 1, then D2, D3, D2, ...: same plane at every stage. -/
+ theorem caState_eq {r s : Nat}
+-    (hr : caState r 1 = coFin D1 ∧ ∀ m, caState r (2 + 2 * m) = coFin D2 ∧ caState r (3 + 2 * m) = coFin D3)
+-    (hs : caState s 1 = coFin D1 ∧ ∀ m, caState s (2 + 2 * m) = coFin D2 ∧ caState s (3 + 2 * m) = coFin D3)
++    (hr : caState r 1 = coFin D1_r641 ∧ ∀ m, caState r (2 + 2 * m) = coFin D2 ∧ caState r (3 + 2 * m) = coFin D3)
++    (hs : caState s 1 = coFin D1_r641 ∧ ∀ m, caState s (2 + 2 * m) = coFin D2 ∧ caState s (3 + 2 * m) = coFin D3)
+     (g : Nat) : caState r g = caState s g := by
+   rcases Nat.lt_or_ge g 2 with h | h
+   · obtain rfl | rfl : g = 0 ∨ g = 1 := by omega
+--- site #mwmbp99x-ymn9an
++++ LT2D/Early/A273385.lean
+@@ -1,4 +1,5 @@
+ import Mathlib
++import LT2D.Basic
+ 
+ /-
+   A273385: Rule 659 and the eleven rules of the entry's comment. Definitions for any rule, a
+@@ -6,130 +7,18 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+ 
+-/-- Each cell of L together with its four axial neighbours. -/
+-def cands (L : List Cell) : List Cell :=
+-  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])
+-
+-/-- The configuration that is ON exactly on L. -/
+-def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p
+-
+-/-- The configuration that is ON everywhere except on D. -/
+-def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)
+-
+-/-- The cells of C that are OFF after one step from s. -/
+-def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => !(step rule s p))
+-
+-/-- A and B have the same members. -/
+-def sameSet (A B : List Cell) : Bool :=
+-  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)
+-
+ /-! ## Generic lemmas (any rule) -/
+-
+-theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :
+-    A.contains q = B.contains q := by
+-  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h
+-  cases hA : A.contains q <;> cases hB : B.contains q
+-  · rfl
+-  · have := h.2 q (by simpa using hB)
+-    simp_all
+-  · have := h.1 q (by simpa using hA)
+-    simp_all
+-  · rfl
+-
+-theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    coFin A = coFin B := by
+-  funext q
+-  simp only [coFin, h q]
+-
+-theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :
+-    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧
+-      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by
+-  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →
+-      (cands L).contains r = true := by
+-    intro q hq r hr
+-    simp only [cands, List.contains_iff_mem, List.mem_flatMap]
+-    exact ⟨q, hq, hr⟩
+-  obtain ⟨x, y⟩ := p
+-  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-
+-theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by
+-  simp only [offAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/
+-theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :
+-    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands L).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]
+-    exact h0
+-  · simp
+-
+-/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/
+-theorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :
+-    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]
+-    exact h9
+-  · simp
+-
+-theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by
+-  funext p
+-  simp [caState, finOn]
+-
+-/-- Bit 9 set: the all-ON plane is a fixed point. -/
+-theorem step_allOn {rule : Nat} (h9 : Nat.testBit rule 9 = true) :
+-    step rule (fun _ => true) = fun _ => true := by
+-  funext p
+-  simp only [step, ruleOut, nbrOn, Bool.toNat_true]
+-  exact h9
+ 
+ /-! ## Stages of a rule with bits 0 and 9 set -/
+ 
+ /-- OFF cells at stage 1 for all twelve rules: the four axial neighbours of the seed. -/
+-def D1 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1)]
++private def D1 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1)]
+ /-- OFF cells at stage 2 for Rules 659, 667, 723, 731: 3 x 3 square minus its centre. -/
+-def D2 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
++private def D2 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+ 
+-theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)
++private theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)
+     (E1 : sameSet (offAfter r (finOn [(0, 0)]) (cands [(0, 0)])) D1 = true) :
+     caState r 1 = coFin D1 := by
+   show step r (caState r 0) = coFin D1
+@@ -171,17 +60,6 @@
+ /-! ## The OEIS count and the main theorems -/
+ namespace LT2D
+ 
+-/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-/-- Number of cells of window g ON at stage g; a(n) is this count at g = 2^n - 1. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  rw [window, Finset.card_product, Int.card_Icc, sq]
+-  congr 1 <;> omega
+-
+ theorem onCount_allOn {rule g : Nat} (h : caState rule g = fun _ => true) :
+     onCount rule g = (2 * g + 1) ^ 2 := by
+   unfold onCount
+@@ -198,7 +76,7 @@
+ 
+ /-- Two rules with OFF cells D1 at stage 1 and all ON from stage 3 on (stage 0 is the same seed)
+ have the same count at stage 2^n - 1 for every n. -/
+-theorem same_counts {r s : Nat} (hr : caState r 1 = coFin D1 ∧ ∀ g, 3 ≤ g → caState r g = fun _ => true)
++private theorem same_counts {r s : Nat} (hr : caState r 1 = coFin D1 ∧ ∀ g, 3 ≤ g → caState r g = fun _ => true)
+     (hs : caState s 1 = coFin D1 ∧ ∀ g, 3 ≤ g → caState s g = fun _ => true)
+     (n : Nat) : onCount r (2 ^ n - 1) = onCount s (2 ^ n - 1) := by
+   match n with
+--- site #mwmbjanx-5lciqx
++++ LT2D/Early/A273446.lean
+@@ -1,4 +1,5 @@
+ import Mathlib
++import LT2D.Basic
+ 
+ /-
+   A273446 (Rule 721) and Rule 729. Plane-wide definitions for any rule number, a finite-list
+@@ -7,128 +8,16 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+-
+-/-- Each cell of L together with its four axial neighbours. -/
+-def cands (L : List Cell) : List Cell :=
+-  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])
+-
+-/-- The configuration that is ON exactly on L. -/
+-def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p
+-
+-/-- The configuration that is ON everywhere except on D. -/
+-def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)
+-
+-/-- The cells of C that are OFF after one step from s. -/
+-def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => !(step rule s p))
+-
+-/-- A and B have the same members. -/
+-def sameSet (A B : List Cell) : Bool :=
+-  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)
+ 
+ /-! ## Generic lemmas (any rule) -/
+ 
+-theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :
+-    A.contains q = B.contains q := by
+-  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h
+-  cases hA : A.contains q <;> cases hB : B.contains q
+-  · rfl
+-  · have := h.2 q (by simpa using hB)
+-    simp_all
+-  · have := h.1 q (by simpa using hA)
+-    simp_all
+-  · rfl
+-
+-theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    coFin A = coFin B := by
+-  funext q
+-  simp only [coFin, h q]
+-
+-theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :
+-    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧
+-      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by
+-  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →
+-      (cands L).contains r = true := by
+-    intro q hq r hr
+-    simp only [cands, List.contains_iff_mem, List.mem_flatMap]
+-    exact ⟨q, hq, hr⟩
+-  obtain ⟨x, y⟩ := p
+-  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-
+-theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by
+-  simp only [offAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.contains_iff_mem, List.mem_filter]
+-
+-/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/
+-theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :
+-    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands L).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]
+-    exact h0
+-  · simp
+-
+-/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/
+-theorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :
+-    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands D).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]
+-    exact h9
+-  · simp
+-
+-theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by
+-  funext p
+-  simp [caState, finOn]
+-
+-/-- Bit 9 set: the all-ON plane is a fixed point. -/
+-theorem step_allOn {rule : Nat} (h9 : Nat.testBit rule 9 = true) :
+-    step rule (fun _ => true) = fun _ => true := by
+-  funext p
+-  simp only [step, ruleOut, nbrOn, Bool.toNat_true]
+-  exact h9
+-
+ /-! ## Rules 721 and 729: finite checks (kernel decide). Same device as Rule 659. -/
+ 
+-def P5 : List Cell := [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]
++private def P5 : List Cell := [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]
+ def X4 : List Cell := [(1, 1), (1, -1), (-1, 1), (-1, -1)]
+ def Q8 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+-def O1 : List Cell := [(0, 0)]
++private def O1 : List Cell := [(0, 0)]
+ 
+ theorem r721_bit0 : Nat.testBit 721 0 = true := by decide
+ theorem r721_bit9 : Nat.testBit 721 9 = true := by decide
+@@ -155,7 +44,7 @@
+   | 3 => coFin Q8
+   | _ => coFin O1
+ 
+-theorem stages {rule : Nat} (h0 : Nat.testBit rule 0 = true) (h9 : Nat.testBit rule 9 = true)
++private theorem stages {rule : Nat} (h0 : Nat.testBit rule 0 = true) (h9 : Nat.testBit rule 9 = true)
+     (E1 : sameSet (offAfter rule (finOn O1) (cands O1)) P5 = true)
+     (E2 : sameSet (offAfter rule (coFin P5) (cands P5)) X4 = true)
+     (E3 : sameSet (offAfter rule (coFin X4) (cands X4)) Q8 = true)
+@@ -189,18 +78,6 @@
+ 
+ /-! ## Mathlib part: the OEIS count and the main theorems for A273446 (Rules 721 and 729) -/
+ namespace LT2D
+-
+-/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  rw [window, Finset.card_product, Int.card_Icc, sq]
+-  congr 1 <;> omega
+ 
+ theorem onCount_origin {rule g : Nat} (h : caState rule g = coFin [(0, 0)]) :
+     onCount rule g = (2 * g + 1) ^ 2 - 1 := by
+--- site #mwmc69rp-fpejr2
++++ LT2D/Early/R245_A.lean
+@@ -1,93 +1,8 @@
++import LT2D.Basic
+ /- R245_A (Claude congress Leader, 18 Nov 2026): core part for A271005 (Rules 245, 501); no imports. -/
+ namespace LT2D
+ 
+-abbrev Cell := Int × Int
+-
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device: a finite ON list (`finOn`) or ON except a finite list (`coFin`) -/
+-
+-def cands (L : List Cell) : List Cell :=
+-  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])
+-def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p
+-def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)
+-def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => !(step rule s p))
+-def sameSet (A B : List Cell) : Bool :=
+-  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)
+-def onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=
+-  C.filter (fun p => step rule s p)
+-
+-theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :
+-    A.contains q = B.contains q := by
+-  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h
+-  cases hA : A.contains q <;> cases hB : B.contains q
+-  · rfl
+-  · have := h.2 q (by simpa using hB)
+-    simp_all
+-  · have := h.1 q (by simpa using hA)
+-    simp_all
+-  · rfl
+-
+-theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    coFin A = coFin B := by
+-  funext q
+-  simp only [coFin, h q]
+-
+-theorem finOn_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :
+-    finOn A = finOn B := by
+-  funext q
+-  simp only [finOn, h q]
+-
+-theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :
+-    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧
+-      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by
+-  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →
+-      (cands L).contains r = true := by
+-    intro q hq r hr
+-    simp only [cands, List.contains_iff_mem, List.mem_flatMap]
+-    exact ⟨q, hq, hr⟩
+-  obtain ⟨x, y⟩ := p
+-  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-  · have := key _ hc (x, y) (by simp); simp_all
+-
+-theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by
+-  simp only [offAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.mem_filter]
+-
+-theorem contains_onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :
+-    (onAfter rule s C).contains p = (C.contains p && step rule s p) := by
+-  simp only [onAfter]
+-  cases hs : step rule s p <;> cases hc : C.contains p <;>
+-    simp_all [List.mem_filter]
+-
+-theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :
+-    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by
+-  funext p
+-  simp only [coFin, contains_offAfter]
+-  cases hc : (cands L).contains p
+-  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc
+-    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]
+-    exact h0
+-  · simp
+ 
+ theorem step_coFin_off {rule : Nat} (h9 : Nat.testBit rule 9 = false) (D : List Cell) :
+     step rule (coFin D) = finOn (onAfter rule (coFin D) (cands D)) := by
+@@ -99,16 +14,12 @@
+     exact h9
+   · simp
+ 
+-theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by
+-  funext p
+-  simp [caState, finOn]
+-
+ /-! ## Stages 1..6 of Rules 245 and 501 -/
+ 
+-def D1 : List Cell := [(0, 0)]
++private def D1 : List Cell := [(0, 0)]
+ def L2 : List Cell := [(-1, 0), (0, -1), (0, 1), (1, 0)]
+ def L2' : List Cell := [(-1, 0), (0, -1), (0, 0), (0, 1), (1, 0)]
+-def D3 : List Cell := [(-1, 0), (0, -1), (0, 0), (0, 1), (1, 0)]
++private def D3 : List Cell := [(-1, 0), (0, -1), (0, 0), (0, 1), (1, 0)]
+ def L4 : List Cell := [(-2, 0), (-1, -1), (-1, 0), (-1, 1), (0, -2), (0, -1), (0, 0), (0, 1), (0, 2),
+   (1, -1), (1, 0), (1, 1), (2, 0)]
+ def D5 : List Cell := [(-2, 0), (-1, 0), (0, -2), (0, -1), (0, 0), (0, 1), (0, 2), (1, 0), (2, 0)]
+@@ -119,7 +30,7 @@
+ abbrev Stages (r : Nat) : Prop := caState r 1 = coFin D1 ∧ caState r 3 = coFin D3 ∧
+   caState r 4 = finOn L4 ∧ caState r 5 = coFin D5 ∧ caState r 6 = finOn L6
+ 
+-theorem stages {r : Nat} (M : List Cell) (b0 : Nat.testBit r 0 = true) (b9 : Nat.testBit r 9 = false)
++private theorem stages {r : Nat} (M : List Cell) (b0 : Nat.testBit r 0 = true) (b9 : Nat.testBit r 9 = false)
+     (e : (sameSet (offAfter r (finOn [(0, 0)]) (cands [(0, 0)])) D1 &&
+       sameSet (onAfter r (coFin D1) (cands D1)) M && sameSet (offAfter r (finOn M) (cands M)) D3 &&
+       sameSet (onAfter r (coFin D3) (cands D3)) L4 && sameSet (offAfter r (finOn L4) (cands L4)) D5 &&
+--- site #mwmc7dqp-lya7v1
++++ LT2D/Early/R245_B.lean
+@@ -1,5 +1,6 @@
+ import Mathlib
+-import LongTable.P_mwmc69rp_fpejr2
++import LT2D.Early.R245_A
++import LT2D.Basic
+ 
+ /- R245_B (Claude congress Leader, 18 Nov 2026): Mathlib part for A271005; imports the core part R245_A. -/
+ /-! ## Mathlib part: the OEIS count and the main theorems for A271005 (Rules 245 and 501) -/
+@@ -7,8 +8,8 @@
+ 
+ /-! ## Base: stage 6 is the E-shape for h = 3 -/
+ 
+-def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+-theorem base_box : box9.all (fun x => box9.all (fun y => finOn L6 (x, y) == Ecf 3 (x, y))) = true := by
++private def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]
++private theorem base_box : box9.all (fun x => box9.all (fun y => finOn L6 (x, y) == Ecf 3 (x, y))) = true := by
+   decide
+ theorem L6_small : L6.all (fun p => decide (-4 < p.1 ∧ p.1 < 4 ∧ -4 < p.2 ∧ p.2 < 4)) = true := by
+   decide
+@@ -75,25 +76,13 @@
+     · rw [(r501_closed m).1, (r245_closed m).1]
+     · rw [(r501_closed m).2, (r245_closed m).2]
+ 
+-/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  rw [window, Finset.card_product, Int.card_Icc, sq]
+-  congr 1 <;> omega
+-
+ /-- The OFF cells of the O-shape: vertical arm, horizontal arm without the origin, 4 diagonal cells. -/
+-def offSet (h : Nat) : Finset Cell :=
++private def offSet (h : Nat) : Finset Cell :=
+   (({0} : Finset Int) ×ˢ Finset.Icc (-(h : Int)) h) ∪
+   (((Finset.Icc (-(h : Int)) h).erase 0) ×ˢ ({0} : Finset Int)) ∪
+   ({(1, 1), (1, -1), (-1, 1), (-1, -1)} : Finset Cell)
+ 
+-theorem card_offSet (h : Nat) : (offSet h).card = 4 * h + 5 := by
++private theorem card_offSet (h : Nat) : (offSet h).card = 4 * h + 5 := by
+   have hA : (({0} : Finset Int) ×ˢ Finset.Icc (-(h : Int)) h).card = 2 * h + 1 := by
+     rw [Finset.card_product, Finset.card_singleton, Int.card_Icc]
+     omega
+@@ -139,7 +128,7 @@
+   omega
+ 
+ /-- The count formula from the closed form at odd stages (used for Rules 245 and 501). -/
+-theorem count_formula {rule : Nat} (hcl : ∀ m : Nat, caState rule (2 * m + 7) = Ocf ((m : Int) + 3))
++private theorem count_formula {rule : Nat} (hcl : ∀ m : Nat, caState rule (2 * m + 7) = Ocf ((m : Int) + 3))
+     (n : Nat) (hn : 3 ≤ n) : (onCount rule (2 ^ n - 1) : Int) = 4 * 4 ^ n - 6 * 2 ^ n := by
+   obtain ⟨k, rfl⟩ : ∃ k, n = k + 3 := ⟨n - 3, by omega⟩
+   have hP : 1 ≤ 2 ^ k := Nat.one_le_two_pow
+--- site #mwmfcf3a-sdo7h1
++++ LT2D/Early/R323_A.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmc69rp_fpejr2
++import LT2D.Early.R245_A
+ /- R323_A (Chair B, 18 Nov 2026): core part for A271254 (Rule 323); imports the posted R245_A
+    (#mwmc69rp-fpejr2: LT2D definitions, finite-list device, features fe/fe3, T17, fe3_mem, EF/OF/EF1, Ecf/Ocf).
+    Rule 323 has bit 0 = 1 and bit 9 = 0 (background alternates OFF/ON/OFF...). Its diagram is the complement of
+@@ -85,8 +85,8 @@
+   exact e
+ 
+ /-- Base: stage 6 is E3 3. -/
+-def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+-theorem base_box : box9.all (fun x => box9.all (fun y => finOn W6 (x, y) == E3 3 (x, y))) = true := by
++private def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]
++private theorem base_box : box9.all (fun x => box9.all (fun y => finOn W6 (x, y) == E3 3 (x, y))) = true := by
+   decide
+ theorem W6_small : W6.all (fun p => decide (-4 < p.1 ∧ p.1 < 4 ∧ -4 < p.2 ∧ p.2 < 4)) = true := by
+   decide
+--- site #mwmfdcb8-xvayfc
++++ LT2D/Early/R323_B.lean
+@@ -1,28 +1,17 @@
+ import Mathlib
+-import LongTable.P_mwmfcf3a_sdo7h1
++import LT2D.Early.R323_A
++import LT2D.Basic
+ /- R323_B (Chair B, 18 Nov 2026): Mathlib part for A271254 (Rule 323): the window count and the main theorem.
+    Imports R323_A (closed forms: stage 2m+6 = E3 (m+3), stage 2m+7 = O3 (m+3), and stage 3 = coFin W3). -/
+ namespace LT2D
+ 
+-/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+-
+-theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by
+-  rw [window, Finset.card_product, Int.card_Icc, sq]
+-  congr 1 <;> omega
+-
+ /-- The OFF cells of the odd-stage shape O3 h: two crossing 3-wide strips and four tips. -/
+-def offSet (h : Nat) : Finset Cell :=
++private def offSet (h : Nat) : Finset Cell :=
+   (Finset.Icc (-1 : Int) 1 ×ˢ Finset.Icc (-(h : Int)) h) ∪ (Finset.Icc (2 : Int) h ×ˢ Finset.Icc (-1 : Int) 1) ∪
+   (Finset.Icc (-(h : Int)) (-2) ×ˢ Finset.Icc (-1 : Int) 1) ∪
+   ({(0, (h : Int) + 1), (0, -(h : Int) - 1), ((h : Int) + 1, 0), (-(h : Int) - 1, 0)} : Finset Cell)
+ 
+-theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by
++private theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by
+   have hA : (Finset.Icc (-1 : Int) 1 ×ˢ Finset.Icc (-(h : Int)) h).card = 3 * (2 * h + 1) := by
+     rw [Finset.card_product, Int.card_Icc, Int.card_Icc]
+     congr 1 <;> omega
+@@ -68,7 +57,7 @@
+   rfl
+ 
+ /-- Count at a stage with the odd shape O3 h (1 ≤ h, h + 1 ≤ g): all window cells but the 12h+1 OFF cells. -/
+-theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :
++private theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :
+     onCount rule g + (12 * h + 1) = (2 * g + 1) ^ 2 := by
+   have e : (window g).filter (fun p => ¬ caState rule g p = true) = offSet h := by
+     ext ⟨x, y⟩
+@@ -86,12 +75,12 @@
+   unfold onCount
+   omega
+ 
+-theorem count_three : onCount 323 3 = 36 := by
++private theorem count_three : onCount 323 3 = 36 := by
+   unfold onCount
+   rw [stages323.1]
+   decide
+ 
+-theorem count_large (n : Nat) (hn : 3 ≤ n) : (onCount 323 (2 ^ n - 1) : Int) = 4 * 4 ^ n - 10 * 2 ^ n + 12 := by
++private theorem count_large (n : Nat) (hn : 3 ≤ n) : (onCount 323 (2 ^ n - 1) : Int) = 4 * 4 ^ n - 10 * 2 ^ n + 12 := by
+   obtain ⟨k, rfl⟩ : ∃ k, n = k + 3 := ⟨n - 3, by omega⟩
+   have hP : 1 ≤ 2 ^ k := Nat.one_le_two_pow
+   have h2 : 2 ^ (k + 3) = 8 * 2 ^ k := by rw [pow_add]; ring
+--- site #mwnwg6gt-0aiokf
++++ LT2D/Groups/NT1/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Instances NT_R641 (Rule 641) and NT_R261 (Rule 261) of the VN library, core file (core Lean only, no Mathlib).
+   Each instance is a table literal (gen/kernel.py, tables/R641.json and tables/R261.json) with the kernel checks
+--- site #mwnwg6mq-o3lkfp
++++ LT2D/Groups/NT1/M.lean
+@@ -1,7 +1,7 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmq4rm3_0e92a0
+-import LongTable.P_mwmqefff_czcc3e
+-import LongTable.P_mwnwg6gt_0aiokf
++import LT2D.VN.M2
++import LT2D.Groups.VBG1.M
++import LT2D.Groups.VBG2.M
++import LT2D.Groups.NT1.C
+ /-
+   Group NT1, Mathlib file: equal-count statements between two rules of the OEIS entries' comparisons.
+   Closed forms: LT2D.vn_count (library VN_M2) for the new instances NT_R641 and NT_R261 (file NT_C); the closed forms of
+--- site #mwmq3o2e-6yejx0
++++ LT2D/Groups/VBG1/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group VBG1 of the VN library instances (Chair B, 18 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (gen/kernel.py; Chair A's tables R<rule>.json) per entry, with the kernel checks ok2 (F2),
+--- site #mwmq4rm3-0e92a0
++++ LT2D/Groups/VBG1/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmq3o2e_6yejx0
++import LT2D.VN.M2
++import LT2D.Groups.VBG1.C
+ /-
+   Group VBG1, Mathlib file: one theorem per OEIS statement, each a few lines from LT2D.vn_count / LT2D.vn_twin_count
+   (library files VN_K1..VN_M2). Generated by emit2.py and assembled by assemble.py.
+--- site #mwmqdq1s-kqg7vk
++++ LT2D/Groups/VBG2/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group VBG2 of the VN library instances (Chair B, 18 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (gen/kernel.py; Chair A's tables R<rule>.json) per rule (the entry's rule and the twin rule
+--- site #mwmqefff-czcc3e
++++ LT2D/Groups/VBG2/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmqdq1s_kqg7vk
++import LT2D.VN.M2
++import LT2D.Groups.VBG2.C
+ /-
+   Group VBG2, Mathlib file: one theorem per OEIS statement. The closed forms are a few lines from LT2D.vn_count; the
+   equal-count theorems use decide +kernel at n = 0, 1 and the two closed forms for n >= 2 (vn_twin_count is not used)
+--- site #mwmqf3gw-3p2oj0
++++ LT2D/Groups/VBG3/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group VBG3 of the VN library instances (Chair B, 18 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (gen/kernel.py; Chair A's tables R<rule>.json) per entry, with the kernel checks ok2 (F2),
+--- site #mwmqfzor-jaus5f
++++ LT2D/Groups/VBG3/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmqf3gw_3p2oj0
++import LT2D.VN.M2
++import LT2D.Groups.VBG3.C
+ /-
+   Group VBG3, Mathlib file: one theorem per OEIS statement, each a few lines from LT2D.vn_count / LT2D.vn_twin_count
+   (library files VN_K1..VN_M2). Generated by emit2.py and assembled by assemble.py.
+--- site #mwmqi7x4-t06lnp
++++ LT2D/Groups/VBG4/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group VBG4 of the VN library instances (Chair B, 18 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (gen/kernel.py; Chair A's tables R<rule>.json) per entry, with the kernel checks ok2 (F2),
+--- site #mwmqj724-ichycl
++++ LT2D/Groups/VBG4/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmqi7x4_t06lnp
++import LT2D.VN.M2
++import LT2D.Groups.VBG4.C
+ /-
+   Group VBG4, Mathlib file: one theorem per OEIS statement, each a few lines from LT2D.vn_count / LT2D.vn_twin_count
+   (library files VN_K1..VN_M2). Generated by emit2.py and assembled by assemble.py.
+--- site #mwmqk4xg-4j1zij
++++ LT2D/Groups/VBG5/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group VBG5 of the VN library instances (Chair B, 18 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (gen/kernel.py; Chair A's tables R<rule>.json) per entry, with the kernel checks ok2 (F2),
+--- site #mwmqklkd-j5nf9x
++++ LT2D/Groups/VBG5/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmqk4xg_4j1zij
++import LT2D.VN.M2
++import LT2D.Groups.VBG5.C
+ /-
+   Group VBG5, Mathlib file: one theorem per OEIS statement, each a few lines from LT2D.vn_count / LT2D.vn_twin_count
+   (library files VN_K1..VN_M2). Generated by emit2.py and assembled by assemble.py.
+--- site #mwmqle98-1qk5up
++++ LT2D/Groups/VBG6/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group VBG6 of the VN library instances (Chair B, 18 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (gen/kernel.py; Chair A's tables R<rule>.json) per entry, with the kernel checks ok2 (F2),
+--- site #mwmqy7yi-hpzoks
++++ LT2D/Groups/VBG6/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmqle98_1qk5up
++import LT2D.VN.M2
++import LT2D.Groups.VBG6.C
+ /-
+   Group VBG6, Mathlib file: one theorem per OEIS statement, each a few lines from LT2D.vn_count / LT2D.vn_twin_count
+   (library files VN_K1..VN_M2). Generated by emit2.py and assembled by assemble.py; the last theorem, a273418_eq_a273313,
+--- site #mwnlmvsh-e24urv
++++ LT2D/Groups/W2A1/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group W2A1 of the VN library instances (Chair A, 19 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (tables/R<rule>.json of the 18-19 Nov classification, not trusted: the kernel re-checks it) per class,
+--- site #mwnlo2f2-r026o1
++++ LT2D/Groups/W2A1/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwnlmvsh_e24urv
++import LT2D.VN.M2
++import LT2D.Groups.W2A1.C
+ /-
+   Group W2A1, Mathlib file: for each class, a count theorem for the class rule R (a few proof lines from LT2D.vn_count)
+   and, for the other rules of the class, one twin theorem (a short term from LT2D.vn_twin). Library files VN_K1..VN_M2.
+--- site #mwnn3me8-tv2sqv
++++ LT2D/Groups/W2A2/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group W2A2 of the VN library instances (Chair A, 19 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (tables/R<rule>.json of the 18-19 Nov classification, not trusted: the kernel re-checks it) per class,
+--- site #mwnn503e-jvcbxq
++++ LT2D/Groups/W2A2/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwnn3me8_tv2sqv
++import LT2D.VN.M2
++import LT2D.Groups.W2A2.C
+ /-
+   Group W2A2, Mathlib file: for each class, a count theorem for the class rule R (a few proof lines from LT2D.vn_count)
+   and, for the other rules of the class, one twin theorem (a short term from LT2D.vn_twin). Library files VN_K1..VN_M2.
+--- site #mwnn40c6-8innug
++++ LT2D/Groups/W2A3/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group W2A3 of the VN library instances (Chair A, 19 Nov 2026), core file (core Lean only, no Mathlib):
+   one table literal (tables/R<rule>.json of the 18-19 Nov classification, not trusted: the kernel re-checks it) per class,
+--- site #mwnn5h1v-r2u2ac
++++ LT2D/Groups/W2A3/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwnn40c6_8innug
++import LT2D.VN.M2
++import LT2D.Groups.W2A3.C
+ /-
+   Group W2A3, Mathlib file: for each class, a count theorem for the class rule R (a few proof lines from LT2D.vn_count)
+   and, for the other rules of the class, one twin theorem (a short term from LT2D.vn_twin). Library files VN_K1..VN_M2.
+--- site #mwnkf9tw-m0l8ee
++++ LT2D/Groups/W2B_A22/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group W2B_A22, core file (core Lean only, no Mathlib) (Chair B, 19 Nov 2026): the tables of the three classes 163, 771 and
+   803 (Chair A's R<rule>.json; 12, 12 and 16 states), each with the kernel checks ok2 (F2), ok1 (F1 with the used-index
+--- site #mwnkgxmx-t5x2ye
++++ LT2D/Groups/W2B_A22/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmsrn5l_qc19s7
+-import LongTable.P_mwnkf9tw_m0l8ee
++import LT2D.Instances.LB4_R131.M
++import LT2D.Groups.W2B_A22.C
+ /-
+   Group W2B_A22, Mathlib file: the 16 rules of the comment of A270222 (Lars Blomberg, Apr 30 2016), one theorem per rule:
+   Rules 163, 171, 227, 235, 771, 787, 803, 811, 819, 827, 835, 851, 867, 875, 883 and 891 have the same count as Rule 131 at
+--- site #mwnl5smw-zwimkn
++++ LT2D/Groups/W2B_G7/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ /-
+   Group W2B_G7 of the VN library instances (Chair B, 19 Nov 2026), core file (core Lean only, no Mathlib): one table literal
+   (gen/kernel.py; Chair A's tables R<rule>.json) per class, each with the kernel checks ok2 (F2), ok1 (F1 with the
+--- site #mwnl73l3-qntwy3
++++ LT2D/Groups/W2B_G7/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwnl5smw_zwimkn
++import LT2D.VN.M2
++import LT2D.Groups.W2B_G7.C
+ /-
+   Group W2B_G7, Mathlib file: one theorem per OEIS statement (A273676, A273767, A273828, A273832, A273848). The formula
+   theorems call LT2D.vn_count (VN_M2) and the twin-count theorems call LT2D.vn_twin_count (VN_M1); emit_instance.py
+--- site #mwmrdi6x-7ac11s
++++ LT2D/Instances/LB3_R35/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance LB3_R35 of the VN library (Rule 35), core file (core Lean only, no Mathlib): the 109-state table
+ -- (gen/kernel.py, tables/R35.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.LB3_R35
+--- site #mwmrevwa-6onari
++++ LT2D/Instances/LB3_R35/C_R35r43.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ -- Instance LB3_R35r43 of the VN library (Rule 43), core file (core Lean only, no Mathlib): the 30-state table
+ -- (gen/kernel.py, tables/R43.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.LB3_R35r43
+--- site #mwmrf8m5-amxjkk
++++ LT2D/Instances/LB3_R35/C_R35r59.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K5
++import LT2D.VN.K7
+ -- Instance LB3_R35r59 of the VN library (Rule 59), core file (core Lean only, no Mathlib): the 30-state table
+ -- (gen/kernel.py, tables/R59.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.LB3_R35r59
+--- site #mwmrei0q-3r7dvg
++++ LT2D/Instances/LB3_R35/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmrdi6x_7ac11s
++import LT2D.Instances.LB3_R35.C
+ -- Instance LB3_R35, chunked CHECK F1 (VN_K8): 4 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 3).
+ namespace VN.LB3_R35
+--- site #mwmrfmp7-smlbkc
++++ LT2D/Instances/LB3_R35/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwmrei0q_3r7dvg
++import LT2D.VN.M3
++import LT2D.Instances.LB3_R35.D
+ /-
+   Instance LB3_R35 of the VN library (Rule 35), Mathlib file: a short proof from LT2D.vn_count_chunked (VN_M3).
+   Generated by emit_instance.py.
+--- site #mwmrg0zj-d1dfbt
++++ LT2D/Instances/LB3_R35/Twins.lean
+@@ -1,7 +1,7 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwmrei0q_3r7dvg
+-import LongTable.P_mwmrevwa_6onari
+-import LongTable.P_mwmrf8m5_amxjkk
++import LT2D.VN.M3
++import LT2D.Instances.LB3_R35.D
++import LT2D.Instances.LB3_R35.C_R35r43
++import LT2D.Instances.LB3_R35.C_R35r59
+ /-
+   Instance LB3_R35 (A269815), twin file (block 3 test, written by script from a template, not yet by
+   emit_instance.py): Rules 43 and 59 have the same count as Rule 35 at every stage 2^n - 1.
+--- site #mwmsbqi4-5k6x8y
++++ LT2D/Instances/LB4_R131/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance LB4_R131 of the VN library (Rule 131), core file (core Lean only, no Mathlib): the 50-state table
+ -- (gen/kernel.py, tables/R131.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.LB4_R131
+--- site #mwmscsmm-ns0cjf
++++ LT2D/Instances/LB4_R131/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmsbqi4_5k6x8y
++import LT2D.Instances.LB4_R131.C
+ -- Instance LB4_R131, chunked CHECK F1 (VN_K8): 5 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 4; chunking added in block 3).
+ namespace VN.LB4_R131
+--- site #mwmsrn5l-qc19s7
++++ LT2D/Instances/LB4_R131/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwmscsmm_ns0cjf
++import LT2D.VN.M3
++import LT2D.Instances.LB4_R131.D
+ /-
+   Instance LB4_R131 of the VN library (Rule 131), Mathlib file: a short proof from the chunked theorem
+   LT2D.vn_count_chunked (VN_M3). Generated by emit_instance.py.
+--- site #mwmslexh-6vdxrm
++++ LT2D/Instances/LB4_R619/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance LB4_R619 of the VN library (Rule 619, twins 635), core file (core Lean only, no Mathlib): the 50-state table
+ -- (gen/kernel.py, tables/R619.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.LB4_R619
+--- site #mwmspb17-thtl7c
++++ LT2D/Instances/LB4_R619/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmsn5zn_jc4kar
++import LT2D.Instances.LB4_R619.D2
+ -- Instance LB4_R619, chunked CHECK F1 (VN_K8): 8 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 4; chunking added in block 3).
+ namespace VN.LB4_R619
+--- site #mwmsmhru-fync82
++++ LT2D/Instances/LB4_R619/D1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmslexh_6vdxrm
++import LT2D.Instances.LB4_R619.C
+ -- Instance LB4_R619, chunked CHECK F1 (VN_K8): data words only (part 1 of 2); the slice checks are in LB4_R619_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.LB4_R619
+--- site #mwmsn5zn-jc4kar
++++ LT2D/Instances/LB4_R619/D2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmsmhru_fync82
++import LT2D.Instances.LB4_R619.D1
+ -- Instance LB4_R619, chunked CHECK F1 (VN_K8): data words only (part 2 of 2); the slice checks are in LB4_R619_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.LB4_R619
+--- site #mwmsq798-j4mekm
++++ LT2D/Instances/LB4_R619/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwmspb17_thtl7c
++import LT2D.VN.M3
++import LT2D.Instances.LB4_R619.D
+ /-
+   Instance LB4_R619 of the VN library (Rule 619), Mathlib file: a short proof per theorem from the
+   chunked theorems LT2D.vn_count_chunked and LT2D.vn_twin_count_chunked (VN_M3). Generated by emit_instance.py.
+--- site #mwohw76m-eku82y
++++ LT2D/Instances/LC_R654/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwnljuqb_b5nmyt
++import LT2D.VN.K8
++import LT2D.VN.K9
+ -- Instance LC_R654 of the VN library (Rule 654: new state = bit (c + 2k) of 654; A273331), core file (core Lean only,
+ -- no Mathlib): the 104-state table (2-kernel of the space-time diagram, found from x, y, t < 1024 and checked
+ -- against a direct simulation on every cell with x, y, t < 1024), CHECK F2, the extended CHECK REC (VN_K9,
+--- site #mwohw8oj-47oqnq
++++ LT2D/Instances/LC_R654/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwohw8ku_sbtbs1
++import LT2D.Instances.LC_R654.D2
+ -- Instance LC_R654, chunked CHECK F1 (VN_K8): 15 slices of at most 300 product states, one kernel declaration each.
+ namespace VN.LC_R654
+ def w12 : Nat := ofDigits 576 [0xDD99151600404366745458010104D9CDCDE0040413663636801010312901020040434484343801010CD1D0D0E00404114734348010104520CCCE0040404644141801010119505060,
+--- site #mwohw8h0-ylki35
++++ LT2D/Instances/LC_R654/D1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwohw76m_eku82y
++import LT2D.Instances.LC_R654.C
+ -- Instance LC_R654, packed F1 slices (data only; checked in the chunk file).
+ namespace VN.LC_R654
+ def w4 : Nat := ofDigits 576 [0x689C101205011501104048165009898101203227530C04048064309830101200D0D4B41040481283128301012058345834040480CCCD710C1012057112434040480CC44644410120,
+--- site #mwohw8ku-sbtbs1
++++ LT2D/Instances/LC_R654/D2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwohw8h0_ylki35
++import LT2D.Instances.LC_R654.D1
+ -- Instance LC_R654, packed F1 slices (data only; checked in the chunk file).
+ namespace VN.LC_R654
+ def w8 : Nat := ofDigits 576 [0xC901012043434333040480D0D0D15C1012043344311040480A10505001012229414127040488450D0C44101205D29293204048834A0A030101220D29292704048890A0A09810122,
+--- site #mwohw8te-7hf3fs
++++ LT2D/Instances/LC_R654/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnlksna_88ktqn
+-import LongTable.P_mwohw8oj_47oqnq
++import LT2D.VN.M4
++import LT2D.Instances.LC_R654.D
+ /-
+   Instance LC_R654 of the VN library (Rule 654, A273331), Mathlib file: short proofs from LT2D.vn_count_rec_chunked
+   (VN_M4). CHECK REC is VN_K9's extended check with annihilator (x-1)(x-2)(x-4), from n0 = 3.
+--- site #mwo4zkjy-ghsy1s
++++ LT2D/Instances/LC_R926/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwnljuqb_b5nmyt
++import LT2D.VN.K8
++import LT2D.VN.K9
+ -- Instance LC_R926 of the VN library (Rule 926 (new state = bit (c + 2k) of 926); twin Rule 990 via the mask U = 959 (bit 6, index c = 0, k = 3, never used)), core file (core Lean only, no Mathlib):
+ -- the 166-state table (2-kernel of the space-time diagram, found from x, y, t < 1024 and checked against a
+ -- direct simulation on every cell with x, y, t < 1024), CHECK F2, the extended CHECK REC (VN_K9, annihilator
+--- site #mwo4zlyl-wcwutp
++++ LT2D/Instances/LC_R926/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwo4zkjy_ghsy1s
++import LT2D.Instances.LC_R926.C
+ -- Instance LC_R926, chunked CHECK F1 (VN_K8): 5 slices of at most 300 product states, one kernel declaration each.
+ namespace VN.LC_R926
+ def w3 : Nat := ofDigits 576 [0x40B9A41200A510A6E320EA060586028440A82854280F310EA00C4C0CA0443A83F533F320A02A03D203CC4A03A8385238110302A16D456DB8C43A81850180A1102A0453C44C4283A8,
+--- site #mwo4zm8d-20tg2a
++++ LT2D/Instances/LC_R926/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnlksna_88ktqn
+-import LongTable.P_mwo4zlyl_wcwutp
++import LT2D.VN.M4
++import LT2D.Instances.LC_R926.D
+ /-
+   Instance LC_R926 of the VN library (Rules 926 and 990), Mathlib file: short proofs from LT2D.vn_count_rec_chunked and
+   LT2D.vn_twin_count_chunked / LT2D.vn_twin_chunked (VN_M4, VN_M3). CHECK REC is VN_K9's extended check (annihilator
+--- site #mwnllao8-qtpg9r
++++ LT2D/Instances/LW1_R425/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwnljuqb_b5nmyt
++import LT2D.VN.K5
++import LT2D.VN.K9
+ -- Instance LW1_R425 of the VN library (Rule 425), core file (core Lean only, no Mathlib): the 18-state table
+ -- (gen/kernel.py, tables/R425.json) and the kernel checks. Generated by emit_instance.py.
+ -- CHECK REC is VN_K9's extended check (checkRecX): the annihilator (x-1)(x-2)(x-4)(x+1), p = [-8, 6, 7, -6].
+--- site #mwnmqh6d-exwujz
++++ LT2D/Instances/LW1_R526/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwnljuqb_b5nmyt
++import LT2D.VN.K8
++import LT2D.VN.K9
+ -- Instance LW1_R526 of the VN library (Rule 526), core file (core Lean only, no Mathlib): the 60-state table
+ -- (gen/kernel.py, tables/R526.json) and the kernel checks. Generated by emit_instance.py.
+ -- CHECK REC is VN_K9's extended check (checkRecX): the annihilator (x-1)(x-2)(x-4)(x-1)(x-3), p = [-24, 74, -85, 45, -11].
+--- site #mwnmrta1-tsvxc4
++++ LT2D/Instances/LW1_R526/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnmqh6d_exwujz
++import LT2D.Instances.LW1_R526.C
+ -- Instance LW1_R526, chunked CHECK F1 (VN_K8): 9 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W1; chunking added in block 3).
+ namespace VN.LW1_R526
+--- site #mwnn1n84-eg8wv3
++++ LT2D/Instances/LW1_R526/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnlksna_88ktqn
+-import LongTable.P_mwnmrta1_tsvxc4
++import LT2D.VN.M4
++import LT2D.Instances.LW1_R526.D
+ /-
+   Instance LW1_R526 of the VN library (Rule 526), Mathlib file: a short proof from LT2D.vn_count_rec_chunked (VN_M4); CHECK REC is
+   VN_K9's extended check (annihilator (x-1)(x-2)(x-4)(x-1)(x-3)). Generated by emit_instance.py --rec-extra=1,3 (block 6).
+--- site #mwnll4ay-f1lmvg
++++ LT2D/Instances/LW1_R598/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmotahy_3afbeh
+-import LongTable.P_mwnljuqb_b5nmyt
++import LT2D.VN.K5
++import LT2D.VN.K9
+ -- Instance LW1_R598 of the VN library (Rule 598), core file (core Lean only, no Mathlib): the 11-state table
+ -- (gen/kernel.py, tables/R598.json) and the kernel checks. Generated by emit_instance.py.
+ -- CHECK REC is VN_K9's extended check (checkRecX): the annihilator (x-1)(x-2)(x-4)(x+1), p = [-8, 6, 7, -6].
+--- site #mwnn1uyv-6wud06
++++ LT2D/Instances/LW1_R598/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnlksna_88ktqn
+-import LongTable.P_mwnll4ay_f1lmvg
++import LT2D.VN.M4
++import LT2D.Instances.LW1_R598.C
+ /-
+   Instance LW1_R598 of the VN library (Rule 598), Mathlib file: a short proof from LT2D.vn_count_rec (VN_M4); CHECK REC is
+   VN_K9's extended check (annihilator (x-1)(x-2)(x-4)(x+1)). Generated by emit_instance.py --rec-extra=-1 (block 6).
+--- site #mwnwdiwa-i2wmaa
++++ LT2D/Instances/W3A558/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance W3A558 of the VN library (Rule 558, twins 686), core file (core Lean only, no Mathlib): the 19-state table
+ -- (gen/kernel.py, tables/R558.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.W3A558
+--- site #mwnwdjmz-2s5vo0
++++ LT2D/Instances/W3A558/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwdiwa_i2wmaa
++import LT2D.Instances.W3A558.C
+ -- Instance W3A558, chunked CHECK F1 (VN_K8): 5 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W3; chunking added in block 3).
+ namespace VN.W3A558
+--- site #mwnwdkfh-f5rc11
++++ LT2D/Instances/W3A558/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwnwdjmz_2s5vo0
++import LT2D.VN.M3
++import LT2D.Instances.W3A558.D
+ 
+ /-
+   Instance W3A558 of the VN library (Rule 558), Mathlib file: a short proof per theorem from the chunked theorems LT2D.vn_count_chunked and LT2D.vn_twin_chunked (VN_M3).
+--- site #mwnwf9wg-wgv1df
++++ LT2D/Instances/W3B_R129/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance W3B_R129 of the VN library (Rule 129, twins 385), core file (core Lean only, no Mathlib): the 43-state table
+ -- (gen/kernel.py, tables/R129.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.W3B_R129
+--- site #mwnwfamb-cdadkw
++++ LT2D/Instances/W3B_R129/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwf9wg_wgv1df
++import LT2D.Instances.W3B_R129.C
+ -- Instance W3B_R129, chunked CHECK F1 (VN_K8): 4 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W3; chunking added in block 3).
+ namespace VN.W3B_R129
+--- site #mwnwfbfk-1iz6aq
++++ LT2D/Instances/W3B_R129/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwnwfamb_cdadkw
++import LT2D.VN.M3
++import LT2D.Instances.W3B_R129.D
+ 
+ /-
+   Instance W3B_R129 of the VN library (Rule 129), Mathlib file: a short proof from the chunked theorem LT2D.vn_count_chunked (VN_M3).
+--- site #mwnwfc7v-bd2b2s
++++ LT2D/Instances/W3B_R465/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance W3B_R465 of the VN library (Rule 465), core file (core Lean only, no Mathlib): the 43-state table
+ -- (gen/kernel.py, tables/R465.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.W3B_R465
+--- site #mwnwfdms-kb7kof
++++ LT2D/Instances/W3B_R465/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwfcxd_q7gcq0
++import LT2D.Instances.W3B_R465.D1
+ -- Instance W3B_R465, chunked CHECK F1 (VN_K8): 6 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W3; chunking added in block 3).
+ namespace VN.W3B_R465
+--- site #mwnwfcxd-q7gcq0
++++ LT2D/Instances/W3B_R465/D1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwfc7v_bd2b2s
++import LT2D.Instances.W3B_R465.C
+ -- Instance W3B_R465, chunked CHECK F1 (VN_K8): data words only (part 1 of 1); the slice checks are in W3B_R465_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R465
+--- site #mwnvejgo-lhl4eq
++++ LT2D/Instances/W3B_R505/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance W3B_R505 of the VN library (Rule 505), core file (core Lean only, no Mathlib): the 146-state table
+ -- (gen/kernel.py, tables/R505.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.W3B_R505
+--- site #mwnvekj2-63xfne
++++ LT2D/Instances/W3B_R505/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvek8b_q1fy92
++import LT2D.Instances.W3B_R505.D3
+ -- Instance W3B_R505, chunked CHECK F1 (VN_K8): 10 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W3; chunking added in block 3).
+ namespace VN.W3B_R505
+--- site #mwnvejq2-r2pql6
++++ LT2D/Instances/W3B_R505/D1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvejgo_lhl4eq
++import LT2D.Instances.W3B_R505.C
+ -- Instance W3B_R505, chunked CHECK F1 (VN_K8): data words only (part 1 of 3); the slice checks are in W3B_R505_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R505
+--- site #mwnvejz7-d3yvfj
++++ LT2D/Instances/W3B_R505/D2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvejq2_r2pql6
++import LT2D.Instances.W3B_R505.D1
+ -- Instance W3B_R505, chunked CHECK F1 (VN_K8): data words only (part 2 of 3); the slice checks are in W3B_R505_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R505
+--- site #mwnvek8b-q1fy92
++++ LT2D/Instances/W3B_R505/D3.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvejz7_d3yvfj
++import LT2D.Instances.W3B_R505.D2
+ -- Instance W3B_R505, chunked CHECK F1 (VN_K8): data words only (part 3 of 3); the slice checks are in W3B_R505_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R505
+--- site #mwnvekt3-6yexo1
++++ LT2D/Instances/W3B_R505/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwnvekj2_63xfne
++import LT2D.VN.M3
++import LT2D.Instances.W3B_R505.D
+ 
+ /-
+   Instance W3B_R505 of the VN library (Rule 505), Mathlib file: a short proof from the chunked theorem LT2D.vn_count_chunked (VN_M3).
+--- site #mwnvdsn7-1ziukn
++++ LT2D/Instances/W3B_R507/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance W3B_R507 of the VN library (Rule 507), core file (core Lean only, no Mathlib): the 148-state table
+ -- (gen/kernel.py, tables/R507.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.W3B_R507
+--- site #mwnvdude-zkvuk1
++++ LT2D/Instances/W3B_R507/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvdu9g_e0awen
++import LT2D.Instances.W3B_R507.D3
+ -- Instance W3B_R507, chunked CHECK F1 (VN_K8): 10 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W3; chunking added in block 3).
+ namespace VN.W3B_R507
+--- site #mwnvdu19-gtygu2
++++ LT2D/Instances/W3B_R507/D1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvdsn7_1ziukn
++import LT2D.Instances.W3B_R507.C
+ -- Instance W3B_R507, chunked CHECK F1 (VN_K8): data words only (part 1 of 3); the slice checks are in W3B_R507_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R507
+--- site #mwnvdu5e-849wl2
++++ LT2D/Instances/W3B_R507/D2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvdu19_gtygu2
++import LT2D.Instances.W3B_R507.D1
+ -- Instance W3B_R507, chunked CHECK F1 (VN_K8): data words only (part 2 of 3); the slice checks are in W3B_R507_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R507
+--- site #mwnvdu9g-e0awen
++++ LT2D/Instances/W3B_R507/D3.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnvdu5e_849wl2
++import LT2D.Instances.W3B_R507.D2
+ -- Instance W3B_R507, chunked CHECK F1 (VN_K8): data words only (part 3 of 3); the slice checks are in W3B_R507_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R507
+--- site #mwnvdui2-q3bfde
++++ LT2D/Instances/W3B_R507/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwnvdude_zkvuk1
++import LT2D.VN.M3
++import LT2D.Instances.W3B_R507.D
+ 
+ /-
+   Instance W3B_R507 of the VN library (Rule 507), Mathlib file: a short proof from the chunked theorem LT2D.vn_count_chunked (VN_M3).
+--- site #mwnwff73-bcemw3
++++ LT2D/Instances/W3B_R553/C.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrbjl0_kqyrep
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K8
++import LT2D.VN.K7
+ -- Instance W3B_R553 of the VN library (Rule 553), core file (core Lean only, no Mathlib): the 53-state table
+ -- (gen/kernel.py, tables/R553.json) and the kernel checks. Generated by emit_instance.py.
+ namespace VN.W3B_R553
+--- site #mwnwfhb7-hcm3na
++++ LT2D/Instances/W3B_R553/D.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwfgmc_8e6g2b
++import LT2D.Instances.W3B_R553.D2
+ -- Instance W3B_R553, chunked CHECK F1 (VN_K8): 9 slices of at most 300 product states, one kernel declaration each.
+ -- Generated by emit_instance.py --chunk 300 (block 6, W3; chunking added in block 3).
+ namespace VN.W3B_R553
+--- site #mwnwffwd-gyxz7s
++++ LT2D/Instances/W3B_R553/D1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwff73_bcemw3
++import LT2D.Instances.W3B_R553.C
+ -- Instance W3B_R553, chunked CHECK F1 (VN_K8): data words only (part 1 of 2); the slice checks are in W3B_R553_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R553
+--- site #mwnwfgmc-8e6g2b
++++ LT2D/Instances/W3B_R553/D2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwffwd_gyxz7s
++import LT2D.Instances.W3B_R553.D1
+ -- Instance W3B_R553, chunked CHECK F1 (VN_K8): data words only (part 2 of 2); the slice checks are in W3B_R553_D.lean.
+ -- Generated by emit_instance.py --chunk 300 (block 4: data split over several files).
+ namespace VN.W3B_R553
+--- site #mwnxok07-ae6p28
++++ LT2D/LDR/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnwdkfh_f5rc11
+-import LongTable.P_mwnxoilb_9g0p2s
++import LT2D.Instances.W3A558.M
++import LT2D.LDR.C
+ /-
+   Leader file LDR_M (Mathlib through the library imports only): Rules 469 and 337 from the posted Rule 558 proof (W3A558).
+   Step 1: the W3A558 certificate (used-index mask 895, bit 7 clear) shows no ON cell of Rule 558 ever has exactly 3 ON neighbours.
+--- site #mwnxok4b-hg5zi9
++++ LT2D/LDR/M2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnxok07_ae6p28
++import LT2D.LDR.M
+ /-
+   Leader file LDR_M2: the counts. A272417 (Rule 469) from LDR_M's parity theorem, Rule 558's cone and the posted r558_count.
+ -/
+--- site #mwnxokni-x0ee8w
++++ LT2D/LDR/M3b.lean
+@@ -1,6 +1,6 @@
+-import LongTable.P_mwnxok4b_hg5zi9
+-import LongTable.P_mwnxokig_canyj3
+-import LongTable.P_mwnvekt3_6yexo1
++import LT2D.LDR.M2
++import LT2D.LDR.T3
++import LT2D.Instances.W3B_R505.M
+ /-
+   Leader file LDR_M3b: Rule 337 (A271286's own rule) from LDR_M's parity theorem and the 4-tip lemma LT2D.r558_tips
+   (LDR_T3), and the comment's Rule 505 from the posted a271286_r505_formula (#mwnvekt3-6yexo1).
+--- site #mwnxok9e-iyuvs8
++++ LT2D/LDR/T1.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnwdiwa_i2wmaa
++import LT2D.Instances.W3A558.C
+ /-
+   Leader file LDR_T1 (core Lean only, no Mathlib): two kernel checks on the posted Rule 558 table VN.W3A558.tab (W3A558_C),
+   used by LDR_T2 for the stage-2^k count of Rule 558 ("4 tips").
+--- site #mwnxokdn-5km651
++++ LT2D/LDR/T2.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnxok07_ae6p28
+-import LongTable.P_mwnxok9e_iyuvs8
++import LT2D.LDR.M
++import LT2D.LDR.T1
+ /-
+   Leader file LDR_T2 (Mathlib through the library imports only): lemmas on the posted W3A558 table for the "4 tips" lemma
+   onCount 558 (2^k) = onCount 558 (2^k - 1) + 4, which LDR_T3 proves (LT2D.r558_tips), from LDR_T1's kernel checks.
+--- site #mwnxokig-canyj3
++++ LT2D/LDR/T3.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwnxokdn_5km651
++import LT2D.LDR.T2
+ /-
+   Leader file LDR_T3 (Mathlib through the library imports only): the 4-tip lemma for Rule 558,
+   onCount 558 (2^k) = onCount 558 (2^k - 1) + 4 for every k (LT2D.r558_tips).
+--- site #mwovso0u-zo7yt3
++++ LT2D/R750/B.lean
+@@ -1,7 +1,7 @@
+ -- Rule 750 (OEIS A169707), file B (core Lean only, no Mathlib): the two copy lemmas of the proof post
+ -- #mwou7t5l-1hx9ra for a radius N whose shell x + y = N is ON at stage N (M = N + 1 there):
+ -- forward copy T1 (PA) and backward copy T2 (PB), proved together by induction on the time s.
+-import LongTable.P_mwovsmlu_4bs08b
++import LT2D.R750.A
+ namespace R750
+ 
+ /-- a cell at distance N + 1 off the axes is still OFF at stage N + 1 (its two inner neighbours are ON) -/
+--- site #mwovso3m-45nref
++++ LT2D/R750/C.lean
+@@ -1,7 +1,7 @@
+ -- Rule 750 (OEIS A169707), file C (core Lean only, no Mathlib): freezing (E3), and the induction over
+ -- the radii N_k = 2^k - 1 of the proof post #mwou7t5l-1hx9ra: the shell x + y = N_k is ON at stage N_k,
+ -- and the diamond of radius N_k is saturated at stage N_k (statement S).
+-import LongTable.P_mwovso0u_zo7yt3
++import LT2D.R750.B
+ namespace R750
+ 
+ /-- the shell x + y = N is ON at stage N -/
+--- site #mwovso6t-bu7ej5
++++ LT2D/R750/D.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmg80g1_t2b1mg
+-import LongTable.P_mwovso3m_45nref
++import LT2D.A272706.M2
++import LT2D.R750.C
+ /-
+   Rule 750 (OEIS A169707), file D (Mathlib): the count. The quadrant model R750.W is stage g of
+   LT2D.caState 750 at (|x|, |y|) (bridge), the number q of ON cells of stage N in the square [0, N]^2
+--- site #mwoxnsd8-h9dv68
++++ LT2D/R750/M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmg73qw_sgejby
+-import LongTable.P_mwovso6t_bu7ej5
++import LT2D.A272706.M1
++import LT2D.R750.D
+ /-
+   Rule 750 (OEIS A169707), file M (Mathlib): the main theorem alone, restated from R750D
+   (#mwovso6t-bu7ej5), and the fact that the window of onCount holds every ON cell. Both statements use
+--- site #mwnwfj19-kbuy86
++++ LT2D/Relations/A270218_R385_R465_R553.lean
+@@ -1,7 +1,7 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwnwfamb_cdadkw
+-import LongTable.P_mwnwfdms_kb7kof
+-import LongTable.P_mwnwfhb7_hcm3na
++import LT2D.VN.M3
++import LT2D.Instances.W3B_R129.D
++import LT2D.Instances.W3B_R465.D
++import LT2D.Instances.W3B_R553.D
+ 
+ /-
+   A270218, the comment of Lars Blomberg (Apr 30 2016): Rules 385, 465 and 553 have the same count as Rule 129 at every stage 2^n - 1.
+--- site #mwnwfjvo-qjm0j3
++++ LT2D/Relations/A270218_R425.lean
+@@ -1,6 +1,6 @@
+-import LongTable.P_mwnlksna_88ktqn
+-import LongTable.P_mwnllao8_qtpg9r
+-import LongTable.P_mwnwfamb_cdadkw
++import LT2D.VN.M4
++import LT2D.Instances.LW1_R425.C
++import LT2D.Instances.W3B_R129.D
+ 
+ /-
+   A270218, the comment of Lars Blomberg (Apr 30 2016), the last of its four rules: Rule 425 has the same count as Rule 129 at every
+--- site #mwnl7g6d-kzxjxp
++++ LT2D/Relations/A273676_eq_A270222.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmsrn5l_qc19s7
+-import LongTable.P_mwnl5smw_zwimkn
++import LT2D.Instances.LB4_R131.M
++import LT2D.Groups.W2B_G7.C
+ /-
+   A273676 (Rule 833), R. J. Mathar's line "a(n) = A270222(n) for n>1" (Chair B, 19 Nov 2026). Hand-written. It uses the Rule 833
+   table of W2B_G7_C and LT2D.a270222_formula of the posted Rule 131 file (LB4_R131_M), both closed forms 1 - 4*2^n + 3*4^n.
+--- site #mwnwfkqn-5o2x6y
++++ LT2D/Relations/NT2_M.lean
+@@ -1,6 +1,6 @@
+-import LongTable.P_mwnvdui2_q3bfde
+-import LongTable.P_mwnvekt3_6yexo1
+-import LongTable.P_mwnwfbfk_1iz6aq
++import LT2D.Instances.W3B_R507.M
++import LT2D.Instances.W3B_R505.M
++import LT2D.Instances.W3B_R129.M
+ /-
+   Group NT2, Mathlib file: A272586 (Rule 507) against Rule 505, and A270218 (Rule 129) against A006095.
+   Closed forms from the posted theorems LT2D.a272586_formula (Rule 507) and LT2D.a271286_r505_formula (Rule 505),
+--- site #mwnoit4s-h6577d
++++ LT2D/Relations/W2B_NC2_M.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwnn503e_jvcbxq
+-import LongTable.P_mwnn1uyv_6wud06
++import LT2D.Groups.W2A2.M
++import LT2D.Instances.LW1_R598.M
+ /-
+   W2B_NC2_M (Chair B, 19 Nov 2026, hand-written): two more statements of Robert Price's comments, derived in a few lines from class
+   count theorems: LT2D.r737_count (W2A2_M, Chair A) for A060867's Rule 737 comment, and LT2D.r598_count (LW1_R598_M, the Leader's W1
+--- site #mwno601r-2dtevv
++++ LT2D/Relations/W2B_NC_M.lean
+@@ -1,6 +1,6 @@
+-import LongTable.P_mwnlo2f2_r026o1
+-import LongTable.P_mwnn503e_jvcbxq
+-import LongTable.P_mwnn5h1v_r2u2ac
++import LT2D.Groups.W2A1.M
++import LT2D.Groups.W2A2.M
++import LT2D.Groups.W2A3.M
+ /-
+   W2B_NC_M (Chair B, 19 Nov 2026, hand-written): OEIS statements of Robert Price's comments (and one Blomberg conjecture) about the
+   stage 2^n - 1 counts of classes certified by Chair A, each derived in a few lines from Chair A's class count theorems
+--- site #mwmoq73s-s9tagw
++++ LT2D/VN/K2.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmopes9_d1domp
++import LT2D.VN.K1
+ -- VN library, file K2 (core Lean only): certificate checker (BT, explore, certOK, ofList), L7-L9, mix.
+ -- Copied from A272706 K1b (#mwmflun2-e55jk4) = A273331 K1b (#mwlxl791-zobq6n): namespace renamed to VN; the
+ -- duplicates find_sound' and prun_succ_eq' removed, their uses now cite BT.find_sound and VN_K1's prun_succ_eq.
+--- site #mwmor81y-3b5r9w
++++ LT2D/VN/K3.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmoq73s_s9tagw
++import LT2D.VN.K2
+ -- VN library, file K3 (core Lean only): lanes = one table run fed with a number computed on the fly
+ -- (carry or borrow bit). Generic version of A272706 K2 (#mwmfn54e-48boes); the table is the parameter A.
+ -- The south-lane lemmas (lS_step_aux, lS_run, lS_borrow) are in K4.
+--- site #mwmos68t-qq9dpg
++++ LT2D/VN/K4.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmor81y_3b5r9w
++import LT2D.VN.K3
+ -- VN library, file K4 (core Lean only): the south lane (from A272706 K4), the F2 product (seed check)
+ -- and F2_V. Generic version of the F2 part of A272706 K3 (#mwmg2qh7-qxah27); the table is the parameter A.
+ namespace VN
+--- site #mwmotahy-3afbeh
++++ LT2D/VN/K5.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmos68t_qq9dpg
++import LT2D.VN.K4
+ -- VN library, file K5 (core Lean only): the F1 product (one CA step of rule R, with the mask U of used rule
+ -- indices), CHECK F1, and F1_V / U_V. Generic version of the F1 parts of A272706 K3 (#mwmg2qh7-qxah27) and
+ -- K4 (#mwmg413f-bj9quu): table A, rule R and mask U are parameters; Rule 515's bit-3 conjunct becomes
+--- site #mwmouaen-iyun3b
++++ LT2D/VN/K6.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmopes9_d1domp
++import LT2D.VN.K1
+ -- VN library, file K6 (core Lean only): the counts of V over the square [0, 2^n)^2, its two axes and
+ -- the origin at time 2^n, as digit-string sums through the table (backward linear representation).
+ -- Generic version of A272706 K5 (#mwmg59dp-dtai66); the table is the parameter A.
+--- site #mwmov2n4-tdc56b
++++ LT2D/VN/K7.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmouaen_iyun3b
++import LT2D.VN.K6
+ -- VN library, file K7 (core Lean only): CHECK REC. The four digit-sum vectors (square, two axes, origin)
+ -- satisfy the recurrence of (x-1)(x-2)(x-4) at index nb for every state, and D * (4Q + O - 2X - 2Y)
+ -- equals a*4^n + b*2^n + c at n = n0 .. nb+2. The recurrence propagates to every n >= nb by linearity
+--- site #mwmrbjl0-kqyrep
++++ LT2D/VN/K8.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmotahy_3afbeh
++import LT2D.VN.K5
+ -- VN library extension, file K8 (core Lean only): CHUNKED CHECK F1. The F1 product states are given as a LIST
+ -- certificate (packed in numbers, unpacked by the kernel) cut into slices; each slice is checked against the index tree
+ -- of the whole list in its own declaration (one `decide +kernel` theorem per slice in the instance), so no single
+--- site #mwnljuqb-b5nmyt
++++ LT2D/VN/K9.lean
+@@ -1,4 +1,4 @@
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.K7
+ -- VN library extension, file K9 (core Lean only): EXTENDED CHECK REC. The four digit-sum vectors satisfy the
+ -- recurrence of a monic polynomial P = p ++ [1] (integer coefficients, lowest first; e.g. (x-1)(x-2)(x-4)(x+1) or
+ -- (x-1)^2(x-2)(x-3)(x-4)) at index nb for every state; P(1) = P(2) = P(4) = P(L) = 0; and D * (4Q + O - 2X - 2Y)
+--- site #mwmovuz3-8p5t1y
++++ LT2D/VN/M1.lean
+@@ -5,7 +5,8 @@
+ import Mathlib.Tactic.Ring
+ import Mathlib.Tactic.Linarith
+ import Mathlib.Tactic.NormNum
+-import LongTable.P_mwmotahy_3afbeh
++import LT2D.VN.K5
++import LT2D.Basic
+ /-
+   VN library, file M1 (Mathlib, seven narrow imports): the posted plane-wide definitions of 18 Nov
+   (#mwmbjanx-5lciqx, lines 8-41 of lean/NextStatements.lean, verbatim), Lemma 1 (scan/Lemma1.lean, verbatim),
+@@ -14,38 +15,7 @@
+ -/
+ namespace LT2D
+ 
+-/-- A cell of the plane. -/
+-abbrev Cell := Int × Int
+-
+-/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the
+-cell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/
+-def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=
+-  Nat.testBit rule (c.toNat + 2 * k)
+-
+-/-- k = number of ON cells among the four axial neighbours of p. -/
+-def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=
+-  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +
+-  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat
+-
+-/-- One synchronous step of the rule on the whole plane. -/
+-def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=
+-  fun p => ruleOut rule (s p) (nbrOn s p)
+-
+-/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.
+-For an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/
+-def caState (rule : Nat) : Nat → Cell → Bool
+-  | 0 => fun p => decide (p = (0, 0))
+-  | g + 1 => step rule (caState rule g)
+-
+ /-! ## Finite-list device (proof only; not used in any statement about the sequence) -/
+-
+-/-- The window [-g,g]^2 around the seed. -/
+-def window (g : Nat) : Finset Cell :=
+-  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g
+-
+-/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/
+-def onCount (rule g : Nat) : Nat :=
+-  ((window g).filter (fun p => caState rule g p = true)).card
+ 
+ end LT2D
+ 
+@@ -68,40 +38,6 @@
+     exact hu g hg p
+ 
+ theorem ruleOut_eq (R : Nat) (c : Bool) (k : Nat) : ruleOut R c k = VN.rule R c k := rfl
+-
+-/-- B3: the neighbour count of a state that depends only on (|x|, |y|) -/
+-theorem nbrOn_abs (s : Cell → Bool) (W : Nat → Nat → Bool)
+-    (hs : ∀ x y : Int, s (x, y) = W x.natAbs y.natAbs) (x y : Int) :
+-    nbrOn s (x, y) =
+-      (W (x.natAbs + 1) y.natAbs).toNat +
+-      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat +
+-      (W x.natAbs (y.natAbs + 1)).toNat +
+-      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by
+-  have hx : (W (x + 1).natAbs y.natAbs).toNat + (W (x - 1).natAbs y.natAbs).toNat =
+-      (W (x.natAbs + 1) y.natAbs).toNat +
+-      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat := by
+-    rcases lt_trichotomy x 0 with h | h | h
+-    · rw [show (x + 1).natAbs = x.natAbs - 1 by omega, show (x - 1).natAbs = x.natAbs + 1 by omega,
+-        if_neg (by omega)]
+-      omega
+-    · subst h
+-      rfl
+-    · rw [show (x + 1).natAbs = x.natAbs + 1 by omega, show (x - 1).natAbs = x.natAbs - 1 by omega,
+-        if_neg (by omega)]
+-  have hy : (W x.natAbs (y + 1).natAbs).toNat + (W x.natAbs (y - 1).natAbs).toNat =
+-      (W x.natAbs (y.natAbs + 1)).toNat +
+-      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by
+-    rcases lt_trichotomy y 0 with h | h | h
+-    · rw [show (y + 1).natAbs = y.natAbs - 1 by omega, show (y - 1).natAbs = y.natAbs + 1 by omega,
+-        if_neg (by omega)]
+-      omega
+-    · subst h
+-      rfl
+-    · rw [show (y + 1).natAbs = y.natAbs + 1 by omega, show (y - 1).natAbs = y.natAbs - 1 by omega,
+-        if_neg (by omega)]
+-  unfold nbrOn
+-  simp only [hs]
+-  omega
+ 
+ /-- THE BRIDGE: if CHECK F2 and CHECK F1 pass, stage g of rule R at (x, y) is V A at (|x|, |y|), time g + 1 -/
+ theorem caState_V (A : VN.Tab) (R U : Nat) (h2 : VN.checkF2 A = true) (h1 : VN.checkF1 A R U = true)
+--- site #mwmowkxn-5swdpn
++++ LT2D/VN/M2.lean
+@@ -1,5 +1,6 @@
+-import LongTable.P_mwmovuz3_8p5t1y
+-import LongTable.P_mwmov2n4_tdc56b
++import LT2D.VN.M1
++import LT2D.VN.K7
++import LT2D.Basic
+ /-
+   VN library, file M2 (Mathlib, via M1): the window count folded onto the quadrant (S1-S3, from A272706 M2
+   #mwmg80g1-t2b1mg), the closed form of the count combination for every n >= n0, and the COUNT THEOREM vn_count.
+@@ -13,50 +14,6 @@
+   induction m with
+   | zero => rfl
+   | succ m ih => rw [Finset.sum_range_succ, ← ih]; rfl
+-
+-/-- S2: a sum over [-g, g] of a function of |x| -/
+-theorem sum_Icc_natAbs (h : Nat → Int) (g : Nat) :
+-    ∑ x ∈ Icc (-(g : Int)) g, h x.natAbs = 2 * ∑ a ∈ range (g + 1), h a - h 0 := by
+-  induction g with
+-  | zero => simp <;> ring
+-  | succ g ih =>
+-    have e : Icc (-((g + 1 : Nat) : Int)) ((g + 1 : Nat) : Int) =
+-        insert (-((g : Int) + 1)) (insert ((g : Int) + 1) (Icc (-(g : Int)) g)) := by
+-      ext x
+-      simp only [Finset.mem_Icc, Finset.mem_insert]
+-      push_cast
+-      omega
+-    have n1 : ((g : Int) + 1) ∉ Icc (-(g : Int)) g := by
+-      simp only [Finset.mem_Icc]
+-      omega
+-    have n2 : -((g : Int) + 1) ∉ insert ((g : Int) + 1) (Icc (-(g : Int)) g) := by
+-      simp only [Finset.mem_insert, Finset.mem_Icc]
+-      omega
+-    rw [e, Finset.sum_insert n2, Finset.sum_insert n1, ih, Finset.sum_range_succ h (g + 1)]
+-    rw [show (-((g : Int) + 1)).natAbs = g + 1 by omega, show ((g : Int) + 1).natAbs = g + 1 by omega]
+-    ring
+-
+-/-- S3: the window count of a stage that depends only on (|x|, |y|) -/
+-theorem onCount_fold (rule g : Nat) (W : Nat → Nat → Bool)
+-    (hW : ∀ x y : Int, caState rule g (x, y) = W x.natAbs y.natAbs) :
+-    (onCount rule g : Int) =
+-      4 * ∑ a ∈ range (g + 1), ∑ b ∈ range (g + 1), ((W a b).toNat : Int)
+-      - 2 * ∑ a ∈ range (g + 1), ((W a 0).toNat : Int)
+-      - 2 * ∑ b ∈ range (g + 1), ((W 0 b).toNat : Int) + ((W 0 0).toNat : Int) := by
+-  have h1 : (onCount rule g : Int) = ∑ x ∈ Icc (-(g : Int)) g, ∑ y ∈ Icc (-(g : Int)) g,
+-      ((W x.natAbs y.natAbs).toNat : Int) := by
+-    unfold onCount window
+-    rw [Finset.card_filter, Nat.cast_sum, Finset.sum_product]
+-    refine Finset.sum_congr rfl (fun x _ => Finset.sum_congr rfl (fun y _ => ?_))
+-    rw [hW x y]
+-    cases W x.natAbs y.natAbs <;> simp
+-  have inner : ∀ x : Int, ∑ y ∈ Icc (-(g : Int)) g, ((W x.natAbs y.natAbs).toNat : Int) =
+-      2 * ∑ b ∈ range (g + 1), ((W x.natAbs b).toNat : Int) - ((W x.natAbs 0).toNat : Int) :=
+-    fun x => sum_Icc_natAbs (fun b => ((W x.natAbs b).toNat : Int)) g
+-  rw [h1, Finset.sum_congr rfl (fun x _ => inner x), Finset.sum_sub_distrib, ← Finset.mul_sum,
+-    sum_Icc_natAbs (fun a => ∑ b ∈ range (g + 1), ((W a b).toNat : Int)) g,
+-    sum_Icc_natAbs (fun a => ((W a 0).toNat : Int)) g]
+-  ring
+ 
+ /-- the closed form of the count combination 4Q + O - 2X - 2Y for every n ≥ n0 -/
+ theorem cnt_closed (A : VN.Tab) (D a b c : Int) (n0 nb : Nat) (h : VN.checkRec A D a b c n0 nb = true) :
+--- site #mwmrc8p0-rlc5a9
++++ LT2D/VN/M3.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmowkxn_5swdpn
+-import LongTable.P_mwmrbjl0_kqyrep
++import LT2D.VN.M2
++import LT2D.VN.K8
+ /-
+   VN library extension, file M3 (Mathlib, via VN_M2 and VN_K8; no new Mathlib import): the bridge, the twin theorems
+   and the COUNT THEOREM with the CHUNKED F1 hypothesis (start state + every slice of a list certificate, VN_K8) in
+--- site #mwnlksna-88ktqn
++++ LT2D/VN/M4.lean
+@@ -1,5 +1,5 @@
+-import LongTable.P_mwmrc8p0_rlc5a9
+-import LongTable.P_mwnljuqb_b5nmyt
++import LT2D.VN.M3
++import LT2D.VN.K9
+ /-
+   VN library extension, file M4 (Mathlib, via VN_M3 and VN_K9; no new Mathlib import): the closed form of the count
+   combination from the EXTENDED CHECK REC (VN_K9: a monic annihilator P = p ++ [1] with P(1) = P(2) = P(4) = 0) and

@@ -1,0 +1,2730 @@
+[
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  rw [window, Finset.card_product, Int.card_Icc, sq]\n  congr 1 <;> omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_allOn",
+  "before": "/-- Bit 9 set: the all-ON plane is a fixed point. -/\ntheorem step_allOn {rule : Nat} (h9 : Nat.testBit rule 9 = true) :\n    step rule (fun _ => true) = fun _ => true := by\n  funext p\n  simp only [step, ruleOut, nbrOn, Bool.toNat_true]\n  exact h9\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.caState_zero",
+  "before": "theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by\n  funext p\n  simp [caState, finOn]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin",
+  "before": "/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/\ntheorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :\n    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_finOn",
+  "before": "/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/\ntheorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :\n    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands L).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]\n    exact h0\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_offAfter",
+  "before": "theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by\n  simp only [offAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_cands_false",
+  "before": "theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :\n    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧\n      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by\n  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →\n      (cands L).contains r = true := by\n    intro q hq r hr\n    simp only [cands, List.contains_iff_mem, List.mem_flatMap]\n    exact ⟨q, hq, hr⟩\n  obtain ⟨x, y⟩ := p\n  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin_congr",
+  "before": "theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    coFin A = coFin B := by\n  funext q\n  simp only [coFin, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet_contains",
+  "before": "theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :\n    A.contains q = B.contains q := by\n  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h\n  cases hA : A.contains q <;> cases hB : B.contains q\n  · rfl\n  · have := h.2 q (by simpa using hB)\n    simp_all\n  · have := h.1 q (by simpa using hA)\n    simp_all\n  · rfl\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet",
+  "before": "/-- A and B have the same members. -/\ndef sameSet (A B : List Cell) : Bool :=\n  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.offAfter",
+  "before": "/-- The cells of C that are OFF after one step from s. -/\ndef offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => !(step rule s p))\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin",
+  "before": "/-- The configuration that is ON everywhere except on D. -/\ndef coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn",
+  "before": "/-- The configuration that is ON exactly on L. -/\ndef finOn (L : List Cell) : Cell → Bool := fun p => L.contains p\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.cands",
+  "before": "/-- Each cell of L together with its four axial neighbours. -/\ndef cands (L : List Cell) : List Cell :=\n  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.O1",
+  "before": "def O1 : List Cell := [(0, 0)]",
+  "after": "private def O1 : List Cell := [(0, 0)]"
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.P5",
+  "before": "def P5 : List Cell := [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]",
+  "after": "private def P5 : List Cell := [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]"
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.stages",
+  "before": "theorem stages {rule : Nat} (h0 : Nat.testBit rule 0 = true) (h9 : Nat.testBit rule 9 = true)",
+  "after": "private theorem stages {rule : Nat} (h0 : Nat.testBit rule 0 = true) (h9 : Nat.testBit rule 9 = true)"
+ },
+ {
+  "post": "mwmbjanx-5lciqx",
+  "module": "LT2D.Early.A273446",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  rw [window, Finset.card_product, Int.card_Icc, sq]\n  congr 1 <;> omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- Number of cells of window g ON at stage g; a(n) is this count at g = 2^n - 1. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_allOn",
+  "before": "/-- Bit 9 set: the all-ON plane is a fixed point. -/\ntheorem step_allOn {rule : Nat} (h9 : Nat.testBit rule 9 = true) :\n    step rule (fun _ => true) = fun _ => true := by\n  funext p\n  simp only [step, ruleOut, nbrOn, Bool.toNat_true]\n  exact h9\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.caState_zero",
+  "before": "theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by\n  funext p\n  simp [caState, finOn]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin",
+  "before": "/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/\ntheorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :\n    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_finOn",
+  "before": "/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/\ntheorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :\n    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands L).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]\n    exact h0\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_offAfter",
+  "before": "theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by\n  simp only [offAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_cands_false",
+  "before": "theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :\n    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧\n      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by\n  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →\n      (cands L).contains r = true := by\n    intro q hq r hr\n    simp only [cands, List.contains_iff_mem, List.mem_flatMap]\n    exact ⟨q, hq, hr⟩\n  obtain ⟨x, y⟩ := p\n  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin_congr",
+  "before": "theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    coFin A = coFin B := by\n  funext q\n  simp only [coFin, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet_contains",
+  "before": "theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :\n    A.contains q = B.contains q := by\n  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h\n  cases hA : A.contains q <;> cases hB : B.contains q\n  · rfl\n  · have := h.2 q (by simpa using hB)\n    simp_all\n  · have := h.1 q (by simpa using hA)\n    simp_all\n  · rfl\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet",
+  "before": "/-- A and B have the same members. -/\ndef sameSet (A B : List Cell) : Bool :=\n  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.offAfter",
+  "before": "/-- The cells of C that are OFF after one step from s. -/\ndef offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => !(step rule s p))\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin",
+  "before": "/-- The configuration that is ON everywhere except on D. -/\ndef coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn",
+  "before": "/-- The configuration that is ON exactly on L. -/\ndef finOn (L : List Cell) : Cell → Bool := fun p => L.contains p\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.cands",
+  "before": "/-- Each cell of L together with its four axial neighbours. -/\ndef cands (L : List Cell) : List Cell :=\n  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.D1",
+  "before": "def D1 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1)]",
+  "after": "private def D1 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1)]"
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.D2",
+  "before": "def D2 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]",
+  "after": "private def D2 : List Cell := [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]"
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.same_counts",
+  "before": "have the same count at stage 2^n - 1 for every n. -/",
+  "after": "private theorem same_counts {r s : Nat} (hr : caState r 1 = coFin D1 ∧ ∀ g, 3 ≤ g → caState r g = fun _ => true)"
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.stage1",
+  "before": "theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)",
+  "after": "private theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)"
+ },
+ {
+  "post": "mwmbp99x-ymn9an",
+  "module": "LT2D.Early.A273385",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  simp only [window, Finset.card_product, Int.card_Icc]\n  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega\n  rw [this]; ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The window [-g,g]^2 around the seed. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.onCount_odd",
+  "before": "theorem onCount_odd (g : Nat) (hg : 3 ≤ g) (ho : g % 2 = 1) :",
+  "after": "private theorem onCount_odd (g : Nat) (hg : 3 ≤ g) (ho : g % 2 = 1) :"
+ },
+ {
+  "post": "mwmeo46j-i1w8jl",
+  "module": "LT2D.Early.A271055",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  rw [window, Finset.card_product, Int.card_Icc, sq]\n  congr 1 <;> omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- Number of cells of window g ON at stage g; a(n) is this count at g = 2^n - 1. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin0",
+  "before": "/-- Bit 9 clear: from ON-except-D, the next stage is ON only on candidates near D. -/\ntheorem step_coFin0 {rule : Nat} (h9 : Nat.testBit rule 9 = false) (D : List Cell) :\n    step rule (coFin D) = finOn (onAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [finOn, contains_onAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true,\n      Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn_congr",
+  "before": "theorem finOn_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    finOn A = finOn B := by\n  funext q\n  simp only [finOn, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_onAfter",
+  "before": "theorem contains_onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (onAfter rule s C).contains p = (C.contains p && step rule s p) := by\n  simp only [onAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.caState_zero",
+  "before": "theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by\n  funext p\n  simp [caState, finOn]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin",
+  "before": "/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/\ntheorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :\n    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_finOn",
+  "before": "/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/\ntheorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :\n    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands L).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]\n    exact h0\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_offAfter",
+  "before": "theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by\n  simp only [offAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_cands_false",
+  "before": "theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :\n    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧\n      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by\n  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →\n      (cands L).contains r = true := by\n    intro q hq r hr\n    simp only [cands, List.contains_iff_mem, List.mem_flatMap]\n    exact ⟨q, hq, hr⟩\n  obtain ⟨x, y⟩ := p\n  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin_congr",
+  "before": "theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    coFin A = coFin B := by\n  funext q\n  simp only [coFin, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet_contains",
+  "before": "theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :\n    A.contains q = B.contains q := by\n  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h\n  cases hA : A.contains q <;> cases hB : B.contains q\n  · rfl\n  · have := h.2 q (by simpa using hB)\n    simp_all\n  · have := h.1 q (by simpa using hA)\n    simp_all\n  · rfl\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet",
+  "before": "/-- A and B have the same members. -/\ndef sameSet (A B : List Cell) : Bool :=\n  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.onAfter",
+  "before": "/-- The cells of C that are ON after one step from s. -/\ndef onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => step rule s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.offAfter",
+  "before": "/-- The cells of C that are OFF after one step from s. -/\ndef offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => !(step rule s p))\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin",
+  "before": "/-- The configuration that is ON everywhere except on D. -/\ndef coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn",
+  "before": "/-- The configuration that is ON exactly on L. -/\ndef finOn (L : List Cell) : Cell → Bool := fun p => L.contains p\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.cands",
+  "before": "/-- Each cell of L together with its four axial neighbours. -/\ndef cands (L : List Cell) : List Cell :=\n  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmezycj-p4n3xa",
+  "module": "LT2D.Early.A271061_Part1",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmf0sdo-ipq6x7",
+  "module": "LT2D.Early.A271061_Part2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmezycj_p4n3xa",
+  "after": "import LT2D.Early.A271061_Part1"
+ },
+ {
+  "post": "mwmf1fyp-ayyx2x",
+  "module": "LT2D.Early.A271061_Part3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmezycj_p4n3xa",
+  "after": "import LT2D.Early.A271061_Part1"
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.caState_zero",
+  "before": "theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by\n  funext p\n  simp [caState, finOn]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_finOn",
+  "before": "theorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :\n    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands L).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]\n    exact h0\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_onAfter",
+  "before": "theorem contains_onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (onAfter rule s C).contains p = (C.contains p && step rule s p) := by\n  simp only [onAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_offAfter",
+  "before": "theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by\n  simp only [offAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_cands_false",
+  "before": "theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :\n    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧\n      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by\n  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →\n      (cands L).contains r = true := by\n    intro q hq r hr\n    simp only [cands, List.contains_iff_mem, List.mem_flatMap]\n    exact ⟨q, hq, hr⟩\n  obtain ⟨x, y⟩ := p\n  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn_congr",
+  "before": "theorem finOn_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    finOn A = finOn B := by\n  funext q\n  simp only [finOn, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin_congr",
+  "before": "theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    coFin A = coFin B := by\n  funext q\n  simp only [coFin, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet_contains",
+  "before": "theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :\n    A.contains q = B.contains q := by\n  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h\n  cases hA : A.contains q <;> cases hB : B.contains q\n  · rfl\n  · have := h.2 q (by simpa using hB)\n    simp_all\n  · have := h.1 q (by simpa using hA)\n    simp_all\n  · rfl\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.onAfter",
+  "before": "def onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => step rule s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet",
+  "before": "def sameSet (A B : List Cell) : Bool :=\n  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.offAfter",
+  "before": "def offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => !(step rule s p))\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin",
+  "before": "def coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn",
+  "before": "def finOn (L : List Cell) : Cell → Bool := fun p => L.contains p\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.cands",
+  "before": "def cands (L : List Cell) : List Cell :=\n  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "def caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "def step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "def nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "def ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "abbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.D1",
+  "before": "def D1 : List Cell := [(0, 0)]",
+  "after": "private def D1 : List Cell := [(0, 0)]"
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.D3",
+  "before": "def D3 : List Cell := [(-1, 0), (0, -1), (0, 0), (0, 1), (1, 0)]",
+  "after": "private def D3 : List Cell := [(-1, 0), (0, -1), (0, 0), (0, 1), (1, 0)]"
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.stages",
+  "before": "theorem stages {r : Nat} (M : List Cell) (b0 : Nat.testBit r 0 = true) (b9 : Nat.testBit r 9 = false)",
+  "after": "private theorem stages {r : Nat} (M : List Cell) (b0 : Nat.testBit r 0 = true) (b9 : Nat.testBit r 9 = false)"
+ },
+ {
+  "post": "mwmc69rp-fpejr2",
+  "module": "LT2D.Early.R245_A",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  rw [window, Finset.card_product, Int.card_Icc, sq]\n  congr 1 <;> omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.base_box",
+  "before": "theorem base_box : box9.all (fun x => box9.all (fun y => finOn L6 (x, y) == Ecf 3 (x, y))) = true := by",
+  "after": "private theorem base_box : box9.all (fun x => box9.all (fun y => finOn L6 (x, y) == Ecf 3 (x, y))) = true := by"
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.box9",
+  "before": "def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]",
+  "after": "private def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]"
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.card_offSet",
+  "before": "theorem card_offSet (h : Nat) : (offSet h).card = 4 * h + 5 := by",
+  "after": "private theorem card_offSet (h : Nat) : (offSet h).card = 4 * h + 5 := by"
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.count_formula",
+  "before": "theorem count_formula {rule : Nat} (hcl : ∀ m : Nat, caState rule (2 * m + 7) = Ocf ((m : Int) + 3))",
+  "after": "private theorem count_formula {rule : Nat} (hcl : ∀ m : Nat, caState rule (2 * m + 7) = Ocf ((m : Int) + 3))"
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.offSet",
+  "before": "def offSet (h : Nat) : Finset Cell :=",
+  "after": "private def offSet (h : Nat) : Finset Cell :="
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmc69rp_fpejr2",
+  "after": "import LT2D.Early.R245_A"
+ },
+ {
+  "post": "mwmc7dqp-lya7v1",
+  "module": "LT2D.Early.R245_B",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmfcf3a-sdo7h1",
+  "module": "LT2D.Early.R323_A",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.base_box",
+  "before": "theorem base_box : box9.all (fun x => box9.all (fun y => finOn W6 (x, y) == E3 3 (x, y))) = true := by",
+  "after": "private theorem base_box : box9.all (fun x => box9.all (fun y => finOn W6 (x, y) == E3 3 (x, y))) = true := by"
+ },
+ {
+  "post": "mwmfcf3a-sdo7h1",
+  "module": "LT2D.Early.R323_A",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.box9",
+  "before": "def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]",
+  "after": "private def box9 : List Int := [-4, -3, -2, -1, 0, 1, 2, 3, 4]"
+ },
+ {
+  "post": "mwmfcf3a-sdo7h1",
+  "module": "LT2D.Early.R323_A",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmc69rp_fpejr2",
+  "after": "import LT2D.Early.R245_A"
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  rw [window, Finset.card_product, Int.card_Icc, sq]\n  congr 1 <;> omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The (2g+1) x (2g+1) square around the seed: cells (x, y) with -g ≤ x ≤ g and -g ≤ y ≤ g. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.card_offSet",
+  "before": "theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by",
+  "after": "private theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by"
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.count_large",
+  "before": "theorem count_large (n : Nat) (hn : 3 ≤ n) : (onCount 323 (2 ^ n - 1) : Int) = 4 * 4 ^ n - 10 * 2 ^ n + 12 := by",
+  "after": "private theorem count_large (n : Nat) (hn : 3 ≤ n) : (onCount 323 (2 ^ n - 1) : Int) = 4 * 4 ^ n - 10 * 2 ^ n + 12 := by"
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.count_three",
+  "before": "theorem count_three : onCount 323 3 = 36 := by",
+  "after": "private theorem count_three : onCount 323 3 = 36 := by"
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.offSet",
+  "before": "def offSet (h : Nat) : Finset Cell :=",
+  "after": "private def offSet (h : Nat) : Finset Cell :="
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.onCount_O3",
+  "before": "theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :",
+  "after": "private theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :"
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmfcf3a_sdo7h1",
+  "after": "import LT2D.Early.R323_A"
+ },
+ {
+  "post": "mwmfdcb8-xvayfc",
+  "module": "LT2D.Early.R323_B",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmo5b4i-ozwrjo",
+  "module": "LT2D.Early.A270084_Core",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmfcf3a_sdo7h1",
+  "after": "import LT2D.Early.R323_A"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  simp only [window, Finset.card_product, Int.card_Icc]\n  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega\n  rw [this]; ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The window [-g,g]^2 around the seed. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.card_offSet",
+  "before": "theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by",
+  "after": "private theorem card_offSet (h : Nat) (h1 : 1 ≤ h) : (offSet h).card = 12 * h + 1 := by"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.count_formula",
+  "before": "theorem count_formula {r : Nat} (hr : Shape r) (n : Nat) (hn : 2 ≤ n) :",
+  "after": "private theorem count_formula {r : Nat} (hr : Shape r) (n : Nat) (hn : 2 ≤ n) :"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.count_large",
+  "before": "theorem count_large {r : Nat} (hr : ∀ m : Nat, caState r (2 * m + 7) = O3 ((m : Int) + 3))",
+  "after": "private theorem count_large {r : Nat} (hr : ∀ m : Nat, caState r (2 * m + 7) = O3 ((m : Int) + 3))"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.count_three",
+  "before": "theorem count_three {r : Nat} (h : caState r 3 = coFin W3) : onCount r 3 = 36 := by",
+  "after": "private theorem count_three {r : Nat} (h : caState r 3 = coFin W3) : onCount r 3 = 36 := by"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.offSet",
+  "before": "def offSet (h : Nat) : Finset Cell :=",
+  "after": "private def offSet (h : Nat) : Finset Cell :="
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.onCount_O3",
+  "before": "theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :",
+  "after": "private theorem onCount_O3 {rule g h : Nat} (hs : caState rule g = O3 (h : Int)) (h1 : 1 ≤ h) (hg : h + 1 ≤ g) :"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmo5b4i_ozwrjo",
+  "after": "import LT2D.Early.A270084_Core"
+ },
+ {
+  "post": "mwmo64bd-kg91iu",
+  "module": "LT2D.Early.A270084_M",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.caState_zero",
+  "before": "theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by\n  funext p\n  simp [caState, finOn]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin",
+  "before": "/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/\ntheorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :\n    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_finOn",
+  "before": "/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/\ntheorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :\n    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands L).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]\n    exact h0\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_offAfter",
+  "before": "theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by\n  simp only [offAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_cands_false",
+  "before": "theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :\n    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧\n      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by\n  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →\n      (cands L).contains r = true := by\n    intro q hq r hr\n    simp only [cands, List.contains_iff_mem, List.mem_flatMap]\n    exact ⟨q, hq, hr⟩\n  obtain ⟨x, y⟩ := p\n  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin_congr",
+  "before": "theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    coFin A = coFin B := by\n  funext q\n  simp only [coFin, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet_contains",
+  "before": "theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :\n    A.contains q = B.contains q := by\n  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h\n  cases hA : A.contains q <;> cases hB : B.contains q\n  · rfl\n  · have := h.2 q (by simpa using hB)\n    simp_all\n  · have := h.1 q (by simpa using hA)\n    simp_all\n  · rfl\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet",
+  "before": "/-- A and B have the same members. -/\ndef sameSet (A B : List Cell) : Bool :=\n  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.offAfter",
+  "before": "/-- The cells of C that are OFF after one step from s. -/\ndef offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => !(step rule s p))\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin",
+  "before": "/-- The configuration that is ON everywhere except on D. -/\ndef coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn",
+  "before": "/-- The configuration that is ON exactly on L. -/\ndef finOn (L : List Cell) : Cell → Bool := fun p => L.contains p\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.cands",
+  "before": "/-- Each cell of L together with its four axial neighbours. -/\ndef cands (L : List Cell) : List Cell :=\n  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.stage1",
+  "before": "theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)",
+  "after": "private theorem stage1 {r : Nat} (h0 : Nat.testBit r 0 = true)"
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.stages",
+  "before": "theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = true ∧",
+  "after": "private theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = true ∧"
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "rename D1 -> D1_r641 (two public LT2D.D1 with different values: Rule 641 lineage vs Rule 3 lineage)",
+  "name": "LT2D.D1",
+  "before": "12 occurrences of D1",
+  "after": "12 occurrences of D1_r641"
+ },
+ {
+  "post": "mwmnzbwy-gx846h",
+  "module": "LT2D.Early.A273310_Core",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  simp only [window, Finset.card_product, Int.card_Icc]\n  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega\n  rw [this]; ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The window [-g,g]^2 around the seed. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.onCount_odd",
+  "before": "theorem onCount_odd {r : Nat} (hr : ∀ m, caState r (3 + 2 * m) = coFin D3) (n : Nat) (hn : 2 ≤ n) :",
+  "after": "private theorem onCount_odd {r : Nat} (hr : ∀ m, caState r (3 + 2 * m) = coFin D3) (n : Nat) (hn : 2 ≤ n) :"
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "rename D1 -> D1_r641 (two public LT2D.D1 with different values: Rule 641 lineage vs Rule 3 lineage)",
+  "name": "LT2D.D1",
+  "before": "2 occurrences of D1",
+  "after": "2 occurrences of D1_r641"
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmnzbwy_gx846h",
+  "after": "import LT2D.Early.A273310_Core"
+ },
+ {
+  "post": "mwmo00d2-zk3ahq",
+  "module": "LT2D.Early.A273310_M",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin0",
+  "before": "/-- Bit 9 clear: from ON-except-D, the next stage is ON only on candidates near D. -/\ntheorem step_coFin0 {rule : Nat} (h9 : Nat.testBit rule 9 = false) (D : List Cell) :\n    step rule (coFin D) = finOn (onAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [finOn, contains_onAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true,\n      Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn_congr",
+  "before": "theorem finOn_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    finOn A = finOn B := by\n  funext q\n  simp only [finOn, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_onAfter",
+  "before": "theorem contains_onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (onAfter rule s C).contains p = (C.contains p && step rule s p) := by\n  simp only [onAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.caState_zero",
+  "before": "theorem caState_zero (rule : Nat) : caState rule 0 = finOn [(0, 0)] := by\n  funext p\n  simp [caState, finOn]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_coFin",
+  "before": "/-- Bit 9 set: from ON-except-D, the next stage is ON except on candidates near D. -/\ntheorem step_coFin {rule : Nat} (h9 : Nat.testBit rule 9 = true) (D : List Cell) :\n    step rule (coFin D) = coFin (offAfter rule (coFin D) (cands D)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands D).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, coFin, h1, h2, h3, h4, h5, Bool.not_false, Bool.toNat_true, Bool.false_and]\n    exact h9\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.step_finOn",
+  "before": "/-- Odd rule: from a finite ON set, the next stage is ON except on finitely many candidates. -/\ntheorem step_finOn {rule : Nat} (h0 : Nat.testBit rule 0 = true) (L : List Cell) :\n    step rule (finOn L) = coFin (offAfter rule (finOn L) (cands L)) := by\n  funext p\n  simp only [coFin, contains_offAfter]\n  cases hc : (cands L).contains p\n  · obtain ⟨h1, h2, h3, h4, h5⟩ := contains_cands_false hc\n    simp only [step, ruleOut, nbrOn, finOn, h1, h2, h3, h4, h5, Bool.toNat_false, Bool.false_and, Bool.not_false]\n    exact h0\n  · simp\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_offAfter",
+  "before": "theorem contains_offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) (p : Cell) :\n    (offAfter rule s C).contains p = (C.contains p && !(step rule s p)) := by\n  simp only [offAfter]\n  cases hs : step rule s p <;> cases hc : C.contains p <;>\n    simp_all [List.contains_iff_mem, List.mem_filter]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.contains_cands_false",
+  "before": "theorem contains_cands_false {L : List Cell} {p : Cell} (h : (cands L).contains p = false) :\n    L.contains p = false ∧ L.contains (p.1 + 1, p.2) = false ∧ L.contains (p.1 - 1, p.2) = false ∧\n      L.contains (p.1, p.2 + 1) = false ∧ L.contains (p.1, p.2 - 1) = false := by\n  have key : ∀ q, q ∈ L → ∀ r, r ∈ [q, (q.1 + 1, q.2), (q.1 - 1, q.2), (q.1, q.2 + 1), (q.1, q.2 - 1)] →\n      (cands L).contains r = true := by\n    intro q hq r hr\n    simp only [cands, List.contains_iff_mem, List.mem_flatMap]\n    exact ⟨q, hq, hr⟩\n  obtain ⟨x, y⟩ := p\n  refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> (rw [Bool.eq_false_iff]; intro hc; rw [List.contains_iff_mem] at hc)\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n  · have := key _ hc (x, y) (by simp); simp_all\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin_congr",
+  "before": "theorem coFin_congr {A B : List Cell} (h : ∀ q, A.contains q = B.contains q) :\n    coFin A = coFin B := by\n  funext q\n  simp only [coFin, h q]\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet_contains",
+  "before": "theorem sameSet_contains {A B : List Cell} (h : sameSet A B = true) (q : Cell) :\n    A.contains q = B.contains q := by\n  simp only [sameSet, Bool.and_eq_true, List.all_eq_true] at h\n  cases hA : A.contains q <;> cases hB : B.contains q\n  · rfl\n  · have := h.2 q (by simpa using hB)\n    simp_all\n  · have := h.1 q (by simpa using hA)\n    simp_all\n  · rfl\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.onAfter",
+  "before": "/-- The cells of C that are ON after one step from s. -/\ndef onAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => step rule s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sameSet",
+  "before": "/-- A and B have the same members. -/\ndef sameSet (A B : List Cell) : Bool :=\n  A.all (fun p => B.contains p) && B.all (fun p => A.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.offAfter",
+  "before": "/-- The cells of C that are OFF after one step from s. -/\ndef offAfter (rule : Nat) (s : Cell → Bool) (C : List Cell) : List Cell :=\n  C.filter (fun p => !(step rule s p))\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.coFin",
+  "before": "/-- The configuration that is ON everywhere except on D. -/\ndef coFin (D : List Cell) : Cell → Bool := fun p => !(D.contains p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.finOn",
+  "before": "/-- The configuration that is ON exactly on L. -/\ndef finOn (L : List Cell) : Cell → Bool := fun p => L.contains p\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.cands",
+  "before": "/-- Each cell of L together with its four axial neighbours. -/\ndef cands (L : List Cell) : List Cell :=\n  L.flatMap (fun p => [p, (p.1 + 1, p.2), (p.1 - 1, p.2), (p.1, p.2 + 1), (p.1, p.2 - 1)])\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.O1",
+  "before": "def O1 : List Cell := [(0, 0)]",
+  "after": "private def O1 : List Cell := [(0, 0)]"
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.stages",
+  "before": "theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = false ∧",
+  "after": "private theorem stages {r : Nat} (h : Nat.testBit r 0 = true ∧ Nat.testBit r 9 = false ∧"
+ },
+ {
+  "post": "mwmo3omz-3d6q7j",
+  "module": "LT2D.Early.A269911_Core",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmo4lkh-4j151k",
+  "module": "LT2D.Early.A269911_M",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.card_window",
+  "before": "theorem card_window (g : Nat) : (window g).card = (2 * g + 1) ^ 2 := by\n  simp only [window, Finset.card_product, Int.card_Icc]\n  have : ((g : Int) + 1 - -(g : Int)).toNat = 2 * g + 1 := by omega\n  rw [this]; ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo4lkh-4j151k",
+  "module": "LT2D.Early.A269911_M",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo4lkh-4j151k",
+  "module": "LT2D.Early.A269911_M",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The window [-g,g]^2 around the seed. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmo4lkh-4j151k",
+  "module": "LT2D.Early.A269911_M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmo3omz_3d6q7j",
+  "after": "import LT2D.Early.A269911_Core"
+ },
+ {
+  "post": "mwmo4lkh-4j151k",
+  "module": "LT2D.Early.A269911_M",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmflun2-e55jk4",
+  "module": "LT2D.A272706.K1b",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmfkzh5_8rq7id",
+  "after": "import LT2D.A272706.K1a"
+ },
+ {
+  "post": "mwmfn54e-48boes",
+  "module": "LT2D.A272706.K2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmflun2_e55jk4",
+  "after": "import LT2D.A272706.K1b"
+ },
+ {
+  "post": "mwmg2qh7-qxah27",
+  "module": "LT2D.A272706.K3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmfn54e_48boes",
+  "after": "import LT2D.A272706.K2"
+ },
+ {
+  "post": "mwmg413f-bj9quu",
+  "module": "LT2D.A272706.K4",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmg2qh7_qxah27",
+  "after": "import LT2D.A272706.K3"
+ },
+ {
+  "post": "mwmg59dp-dtai66",
+  "module": "LT2D.A272706.K5",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmfkzh5_8rq7id",
+  "after": "import LT2D.A272706.K1a"
+ },
+ {
+  "post": "mwmg681k-0v8jc7",
+  "module": "LT2D.A272706.K6",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmg59dp_dtai66",
+  "after": "import LT2D.A272706.K5"
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.nbrOn_abs",
+  "before": "/-- B3: the neighbour count of a state that depends only on (|x|, |y|) -/\ntheorem nbrOn_abs (s : Cell → Bool) (W : Nat → Nat → Bool)\n    (hs : ∀ x y : Int, s (x, y) = W x.natAbs y.natAbs) (x y : Int) :\n    nbrOn s (x, y) =\n      (W (x.natAbs + 1) y.natAbs).toNat +\n      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat +\n      (W x.natAbs (y.natAbs + 1)).toNat +\n      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by\n  have hx : (W (x + 1).natAbs y.natAbs).toNat + (W (x - 1).natAbs y.natAbs).toNat =\n      (W (x.natAbs + 1) y.natAbs).toNat +\n      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat := by\n    rcases lt_trichotomy x 0 with h | h | h\n    · rw [show (x + 1).natAbs = x.natAbs - 1 by omega, show (x - 1).natAbs = x.natAbs + 1 by omega,\n        if_neg (by omega)]\n      omega\n    · subst h\n      rfl\n    · rw [show (x + 1).natAbs = x.natAbs + 1 by omega, show (x - 1).natAbs = x.natAbs - 1 by omega,\n        if_neg (by omega)]\n  have hy : (W x.natAbs (y + 1).natAbs).toNat + (W x.natAbs (y - 1).natAbs).toNat =\n      (W x.natAbs (y.natAbs + 1)).toNat +\n      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by\n    rcases lt_trichotomy y 0 with h | h | h\n    · rw [show (y + 1).natAbs = y.natAbs - 1 by omega, show (y - 1).natAbs = y.natAbs + 1 by omega,\n        if_neg (by omega)]\n      omega\n    · subst h\n      rfl\n    · rw [show (y + 1).natAbs = y.natAbs + 1 by omega, show (y - 1).natAbs = y.natAbs - 1 by omega,\n        if_neg (by omega)]\n  unfold nbrOn\n  simp only [hs]\n  omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The window [-g,g]^2 around the seed. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmg413f_bj9quu",
+  "after": "import LT2D.A272706.K4"
+ },
+ {
+  "post": "mwmg73qw-sgejby",
+  "module": "LT2D.A272706.M1",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmg80g1-t2b1mg",
+  "module": "LT2D.A272706.M2",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.onCount_fold",
+  "before": "/-- S3: the window count of a stage that depends only on (|x|, |y|) -/\ntheorem onCount_fold (rule g : Nat) (W : Nat → Nat → Bool)\n    (hW : ∀ x y : Int, caState rule g (x, y) = W x.natAbs y.natAbs) :\n    (onCount rule g : Int) =\n      4 * ∑ a ∈ range (g + 1), ∑ b ∈ range (g + 1), ((W a b).toNat : Int)\n      - 2 * ∑ a ∈ range (g + 1), ((W a 0).toNat : Int)\n      - 2 * ∑ b ∈ range (g + 1), ((W 0 b).toNat : Int) + ((W 0 0).toNat : Int) := by\n  have h1 : (onCount rule g : Int) = ∑ x ∈ Icc (-(g : Int)) g, ∑ y ∈ Icc (-(g : Int)) g,\n      ((W x.natAbs y.natAbs).toNat : Int) := by\n    unfold onCount window\n    rw [Finset.card_filter, Nat.cast_sum, Finset.sum_product]\n    refine Finset.sum_congr rfl (fun x _ => Finset.sum_congr rfl (fun y _ => ?_))\n    rw [hW x y]\n    cases W x.natAbs y.natAbs <;> simp\n  have inner : ∀ x : Int, ∑ y ∈ Icc (-(g : Int)) g, ((W x.natAbs y.natAbs).toNat : Int) =\n      2 * ∑ b ∈ range (g + 1), ((W x.natAbs b).toNat : Int) - ((W x.natAbs 0).toNat : Int) :=\n    fun x => sum_Icc_natAbs (fun b => ((W x.natAbs b).toNat : Int)) g\n  rw [h1, Finset.sum_congr rfl (fun x _ => inner x), Finset.sum_sub_distrib, ← Finset.mul_sum,\n    sum_Icc_natAbs (fun a => ∑ b ∈ range (g + 1), ((W a b).toNat : Int)) g,\n    sum_Icc_natAbs (fun a => ((W a 0).toNat : Int)) g]\n  ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg80g1-t2b1mg",
+  "module": "LT2D.A272706.M2",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sum_Icc_natAbs",
+  "before": "/-- S2: a sum over [-g, g] of a function of |x| -/\ntheorem sum_Icc_natAbs (h : Nat → Int) (g : Nat) :\n    ∑ x ∈ Icc (-(g : Int)) g, h x.natAbs = 2 * ∑ a ∈ range (g + 1), h a - h 0 := by\n  induction g with\n  | zero => simp <;> ring\n  | succ g ih =>\n    have e : Icc (-((g + 1 : Nat) : Int)) ((g + 1 : Nat) : Int) =\n        insert (-((g : Int) + 1)) (insert ((g : Int) + 1) (Icc (-(g : Int)) g)) := by\n      ext x\n      simp only [Finset.mem_Icc, Finset.mem_insert]\n      push_cast\n      omega\n    have n1 : ((g : Int) + 1) ∉ Icc (-(g : Int)) g := by\n      simp only [Finset.mem_Icc]\n      omega\n    have n2 : -((g : Int) + 1) ∉ insert ((g : Int) + 1) (Icc (-(g : Int)) g) := by\n      simp only [Finset.mem_insert, Finset.mem_Icc]\n      omega\n    rw [e, Finset.sum_insert n2, Finset.sum_insert n1, ih, Finset.sum_range_succ h (g + 1)]\n    rw [show (-((g : Int) + 1)).natAbs = g + 1 by omega, show ((g : Int) + 1).natAbs = g + 1 by omega]\n    ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmg80g1-t2b1mg",
+  "module": "LT2D.A272706.M2",
+  "kind": "private (same name, different declaration in another file; not used outside this file)",
+  "name": "LT2D.sumTo_eq_sum",
+  "before": "theorem sumTo_eq_sum (h : Nat → Nat) (m : Nat) : A272706.sumTo h m = ∑ i ∈ range m, h i := by",
+  "after": "private theorem sumTo_eq_sum (h : Nat → Nat) (m : Nat) : A272706.sumTo h m = ∑ i ∈ range m, h i := by"
+ },
+ {
+  "post": "mwmg80g1-t2b1mg",
+  "module": "LT2D.A272706.M2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmg73qw_sgejby\nimport LongTable.P_mwmg681k_0v8jc7",
+  "after": "import LT2D.A272706.M1\nimport LT2D.A272706.K6"
+ },
+ {
+  "post": "mwmg80g1-t2b1mg",
+  "module": "LT2D.A272706.M2",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmoq73s-s9tagw",
+  "module": "LT2D.VN.K2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmopes9_d1domp",
+  "after": "import LT2D.VN.K1"
+ },
+ {
+  "post": "mwmor81y-3b5r9w",
+  "module": "LT2D.VN.K3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmoq73s_s9tagw",
+  "after": "import LT2D.VN.K2"
+ },
+ {
+  "post": "mwmos68t-qq9dpg",
+  "module": "LT2D.VN.K4",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmor81y_3b5r9w",
+  "after": "import LT2D.VN.K3"
+ },
+ {
+  "post": "mwmotahy-3afbeh",
+  "module": "LT2D.VN.K5",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmos68t_qq9dpg",
+  "after": "import LT2D.VN.K4"
+ },
+ {
+  "post": "mwmouaen-iyun3b",
+  "module": "LT2D.VN.K6",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmopes9_d1domp",
+  "after": "import LT2D.VN.K1"
+ },
+ {
+  "post": "mwmov2n4-tdc56b",
+  "module": "LT2D.VN.K7",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmouaen_iyun3b",
+  "after": "import LT2D.VN.K6"
+ },
+ {
+  "post": "mwmrbjl0-kqyrep",
+  "module": "LT2D.VN.K8",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh",
+  "after": "import LT2D.VN.K5"
+ },
+ {
+  "post": "mwnljuqb-b5nmyt",
+  "module": "LT2D.VN.K9",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K7"
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.nbrOn_abs",
+  "before": "/-- B3: the neighbour count of a state that depends only on (|x|, |y|) -/\ntheorem nbrOn_abs (s : Cell → Bool) (W : Nat → Nat → Bool)\n    (hs : ∀ x y : Int, s (x, y) = W x.natAbs y.natAbs) (x y : Int) :\n    nbrOn s (x, y) =\n      (W (x.natAbs + 1) y.natAbs).toNat +\n      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat +\n      (W x.natAbs (y.natAbs + 1)).toNat +\n      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by\n  have hx : (W (x + 1).natAbs y.natAbs).toNat + (W (x - 1).natAbs y.natAbs).toNat =\n      (W (x.natAbs + 1) y.natAbs).toNat +\n      (if x.natAbs = 0 then W 1 y.natAbs else W (x.natAbs - 1) y.natAbs).toNat := by\n    rcases lt_trichotomy x 0 with h | h | h\n    · rw [show (x + 1).natAbs = x.natAbs - 1 by omega, show (x - 1).natAbs = x.natAbs + 1 by omega,\n        if_neg (by omega)]\n      omega\n    · subst h\n      rfl\n    · rw [show (x + 1).natAbs = x.natAbs + 1 by omega, show (x - 1).natAbs = x.natAbs - 1 by omega,\n        if_neg (by omega)]\n  have hy : (W x.natAbs (y + 1).natAbs).toNat + (W x.natAbs (y - 1).natAbs).toNat =\n      (W x.natAbs (y.natAbs + 1)).toNat +\n      (if y.natAbs = 0 then W x.natAbs 1 else W x.natAbs (y.natAbs - 1)).toNat := by\n    rcases lt_trichotomy y 0 with h | h | h\n    · rw [show (y + 1).natAbs = y.natAbs - 1 by omega, show (y - 1).natAbs = y.natAbs + 1 by omega,\n        if_neg (by omega)]\n      omega\n    · subst h\n      rfl\n    · rw [show (y + 1).natAbs = y.natAbs + 1 by omega, show (y - 1).natAbs = y.natAbs - 1 by omega,\n        if_neg (by omega)]\n  unfold nbrOn\n  simp only [hs]\n  omega\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.onCount",
+  "before": "/-- The OEIS count: number of ON cells of stage g inside the (2g+1) x (2g+1) square around the seed. -/\ndef onCount (rule g : Nat) : Nat :=\n  ((window g).filter (fun p => caState rule g p = true)).card\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.window",
+  "before": "/-- The window [-g,g]^2 around the seed. -/\ndef window (g : Nat) : Finset Cell :=\n  Finset.Icc (-(g : Int)) g ×ˢ Finset.Icc (-(g : Int)) g\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.caState",
+  "before": "/-- Stage g of the rule on the whole plane, from one ON cell at the origin at stage 0.\nFor an odd rule (bit 0 = 1) every cell far from the seed is ON at stage 1. -/\ndef caState (rule : Nat) : Nat → Cell → Bool\n  | 0 => fun p => decide (p = (0, 0))\n  | g + 1 => step rule (caState rule g)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.step",
+  "before": "/-- One synchronous step of the rule on the whole plane. -/\ndef step (rule : Nat) (s : Cell → Bool) : Cell → Bool :=\n  fun p => ruleOut rule (s p) (nbrOn s p)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.nbrOn",
+  "before": "/-- k = number of ON cells among the four axial neighbours of p. -/\ndef nbrOn (s : Cell → Bool) (p : Cell) : Nat :=\n  (s (p.1 + 1, p.2)).toNat + (s (p.1 - 1, p.2)).toNat +\n  (s (p.1, p.2 + 1)).toNat + (s (p.1, p.2 - 1)).toNat\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.ruleOut",
+  "before": "/-- Outer totalistic von Neumann rule: new state = bit (c + 2k) of the rule number, where c is the\ncell's own state (0/1) and k the number of ON cells among its four axial neighbours. -/\ndef ruleOut (rule : Nat) (c : Bool) (k : Nat) : Bool :=\n  Nat.testBit rule (c.toNat + 2 * k)\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "delete (moved to LT2D/Defs.lean)",
+  "name": "LT2D.Cell",
+  "before": "/-- A cell of the plane. -/\nabbrev Cell := Int × Int\n",
+  "after": ""
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh",
+  "after": "import LT2D.VN.K5"
+ },
+ {
+  "post": "mwmovuz3-8p5t1y",
+  "module": "LT2D.VN.M1",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmowkxn-5swdpn",
+  "module": "LT2D.VN.M2",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.onCount_fold",
+  "before": "/-- S3: the window count of a stage that depends only on (|x|, |y|) -/\ntheorem onCount_fold (rule g : Nat) (W : Nat → Nat → Bool)\n    (hW : ∀ x y : Int, caState rule g (x, y) = W x.natAbs y.natAbs) :\n    (onCount rule g : Int) =\n      4 * ∑ a ∈ range (g + 1), ∑ b ∈ range (g + 1), ((W a b).toNat : Int)\n      - 2 * ∑ a ∈ range (g + 1), ((W a 0).toNat : Int)\n      - 2 * ∑ b ∈ range (g + 1), ((W 0 b).toNat : Int) + ((W 0 0).toNat : Int) := by\n  have h1 : (onCount rule g : Int) = ∑ x ∈ Icc (-(g : Int)) g, ∑ y ∈ Icc (-(g : Int)) g,\n      ((W x.natAbs y.natAbs).toNat : Int) := by\n    unfold onCount window\n    rw [Finset.card_filter, Nat.cast_sum, Finset.sum_product]\n    refine Finset.sum_congr rfl (fun x _ => Finset.sum_congr rfl (fun y _ => ?_))\n    rw [hW x y]\n    cases W x.natAbs y.natAbs <;> simp\n  have inner : ∀ x : Int, ∑ y ∈ Icc (-(g : Int)) g, ((W x.natAbs y.natAbs).toNat : Int) =\n      2 * ∑ b ∈ range (g + 1), ((W x.natAbs b).toNat : Int) - ((W x.natAbs 0).toNat : Int) :=\n    fun x => sum_Icc_natAbs (fun b => ((W x.natAbs b).toNat : Int)) g\n  rw [h1, Finset.sum_congr rfl (fun x _ => inner x), Finset.sum_sub_distrib, ← Finset.mul_sum,\n    sum_Icc_natAbs (fun a => ∑ b ∈ range (g + 1), ((W a b).toNat : Int)) g,\n    sum_Icc_natAbs (fun a => ((W a 0).toNat : Int)) g]\n  ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmowkxn-5swdpn",
+  "module": "LT2D.VN.M2",
+  "kind": "delete (moved to LT2D/Basic.lean)",
+  "name": "LT2D.sum_Icc_natAbs",
+  "before": "/-- S2: a sum over [-g, g] of a function of |x| -/\ntheorem sum_Icc_natAbs (h : Nat → Int) (g : Nat) :\n    ∑ x ∈ Icc (-(g : Int)) g, h x.natAbs = 2 * ∑ a ∈ range (g + 1), h a - h 0 := by\n  induction g with\n  | zero => simp <;> ring\n  | succ g ih =>\n    have e : Icc (-((g + 1 : Nat) : Int)) ((g + 1 : Nat) : Int) =\n        insert (-((g : Int) + 1)) (insert ((g : Int) + 1) (Icc (-(g : Int)) g)) := by\n      ext x\n      simp only [Finset.mem_Icc, Finset.mem_insert]\n      push_cast\n      omega\n    have n1 : ((g : Int) + 1) ∉ Icc (-(g : Int)) g := by\n      simp only [Finset.mem_Icc]\n      omega\n    have n2 : -((g : Int) + 1) ∉ insert ((g : Int) + 1) (Icc (-(g : Int)) g) := by\n      simp only [Finset.mem_insert, Finset.mem_Icc]\n      omega\n    rw [e, Finset.sum_insert n2, Finset.sum_insert n1, ih, Finset.sum_range_succ h (g + 1)]\n    rw [show (-((g : Int) + 1)).natAbs = g + 1 by omega, show ((g : Int) + 1).natAbs = g + 1 by omega]\n    ring\n",
+  "after": ""
+ },
+ {
+  "post": "mwmowkxn-5swdpn",
+  "module": "LT2D.VN.M2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmovuz3_8p5t1y\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.M1\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmowkxn-5swdpn",
+  "module": "LT2D.VN.M2",
+  "kind": "imports (add LT2D.Basic: this file declared moved definitions)",
+  "name": "",
+  "before": "",
+  "after": "import LT2D.Basic"
+ },
+ {
+  "post": "mwmrc8p0-rlc5a9",
+  "module": "LT2D.VN.M3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmrbjl0_kqyrep",
+  "after": "import LT2D.VN.M2\nimport LT2D.VN.K8"
+ },
+ {
+  "post": "mwnlksna-88ktqn",
+  "module": "LT2D.VN.M4",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwnljuqb_b5nmyt",
+  "after": "import LT2D.VN.M3\nimport LT2D.VN.K9"
+ },
+ {
+  "post": "mwovso0u-zo7yt3",
+  "module": "LT2D.R750.B",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwovsmlu_4bs08b",
+  "after": "import LT2D.R750.A"
+ },
+ {
+  "post": "mwovso3m-45nref",
+  "module": "LT2D.R750.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwovso0u_zo7yt3",
+  "after": "import LT2D.R750.B"
+ },
+ {
+  "post": "mwovso6t-bu7ej5",
+  "module": "LT2D.R750.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmg80g1_t2b1mg\nimport LongTable.P_mwovso3m_45nref",
+  "after": "import LT2D.A272706.M2\nimport LT2D.R750.C"
+ },
+ {
+  "post": "mwoxnsd8-h9dv68",
+  "module": "LT2D.R750.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmg73qw_sgejby\nimport LongTable.P_mwovso6t_bu7ej5",
+  "after": "import LT2D.A272706.M1\nimport LT2D.R750.D"
+ },
+ {
+  "post": "mwnxok07-ae6p28",
+  "module": "LT2D.LDR.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwdkfh_f5rc11\nimport LongTable.P_mwnxoilb_9g0p2s",
+  "after": "import LT2D.Instances.W3A558.M\nimport LT2D.LDR.C"
+ },
+ {
+  "post": "mwnxok4b-hg5zi9",
+  "module": "LT2D.LDR.M2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnxok07_ae6p28",
+  "after": "import LT2D.LDR.M"
+ },
+ {
+  "post": "mwnxok9e-iyuvs8",
+  "module": "LT2D.LDR.T1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwdiwa_i2wmaa",
+  "after": "import LT2D.Instances.W3A558.C"
+ },
+ {
+  "post": "mwnxokdn-5km651",
+  "module": "LT2D.LDR.T2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnxok07_ae6p28\nimport LongTable.P_mwnxok9e_iyuvs8",
+  "after": "import LT2D.LDR.M\nimport LT2D.LDR.T1"
+ },
+ {
+  "post": "mwnxokig-canyj3",
+  "module": "LT2D.LDR.T3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnxokdn_5km651",
+  "after": "import LT2D.LDR.T2"
+ },
+ {
+  "post": "mwnxokni-x0ee8w",
+  "module": "LT2D.LDR.M3b",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnxok4b_hg5zi9\nimport LongTable.P_mwnxokig_canyj3\nimport LongTable.P_mwnvekt3_6yexo1",
+  "after": "import LT2D.LDR.M2\nimport LT2D.LDR.T3\nimport LT2D.Instances.W3B_R505.M"
+ },
+ {
+  "post": "mwnl7g6d-kzxjxp",
+  "module": "LT2D.Relations.A273676_eq_A270222",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmsrn5l_qc19s7\nimport LongTable.P_mwnl5smw_zwimkn",
+  "after": "import LT2D.Instances.LB4_R131.M\nimport LT2D.Groups.W2B_G7.C"
+ },
+ {
+  "post": "mwno601r-2dtevv",
+  "module": "LT2D.Relations.W2B_NC_M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnlo2f2_r026o1\nimport LongTable.P_mwnn503e_jvcbxq\nimport LongTable.P_mwnn5h1v_r2u2ac",
+  "after": "import LT2D.Groups.W2A1.M\nimport LT2D.Groups.W2A2.M\nimport LT2D.Groups.W2A3.M"
+ },
+ {
+  "post": "mwnoit4s-h6577d",
+  "module": "LT2D.Relations.W2B_NC2_M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnn503e_jvcbxq\nimport LongTable.P_mwnn1uyv_6wud06",
+  "after": "import LT2D.Groups.W2A2.M\nimport LT2D.Instances.LW1_R598.M"
+ },
+ {
+  "post": "mwnwfj19-kbuy86",
+  "module": "LT2D.Relations.A270218_R385_R465_R553",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwnwfamb_cdadkw\nimport LongTable.P_mwnwfdms_kb7kof\nimport LongTable.P_mwnwfhb7_hcm3na",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.W3B_R129.D\nimport LT2D.Instances.W3B_R465.D\nimport LT2D.Instances.W3B_R553.D"
+ },
+ {
+  "post": "mwnwfjvo-qjm0j3",
+  "module": "LT2D.Relations.A270218_R425",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnlksna_88ktqn\nimport LongTable.P_mwnllao8_qtpg9r\nimport LongTable.P_mwnwfamb_cdadkw",
+  "after": "import LT2D.VN.M4\nimport LT2D.Instances.LW1_R425.C\nimport LT2D.Instances.W3B_R129.D"
+ },
+ {
+  "post": "mwnwfkqn-5o2x6y",
+  "module": "LT2D.Relations.NT2_M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvdui2_q3bfde\nimport LongTable.P_mwnvekt3_6yexo1\nimport LongTable.P_mwnwfbfk_1iz6aq",
+  "after": "import LT2D.Instances.W3B_R507.M\nimport LT2D.Instances.W3B_R505.M\nimport LT2D.Instances.W3B_R129.M"
+ },
+ {
+  "post": "mwnwg6gt-0aiokf",
+  "module": "LT2D.Groups.NT1.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnwg6mq-o3lkfp",
+  "module": "LT2D.Groups.NT1.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmq4rm3_0e92a0\nimport LongTable.P_mwmqefff_czcc3e\nimport LongTable.P_mwnwg6gt_0aiokf",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG1.M\nimport LT2D.Groups.VBG2.M\nimport LT2D.Groups.NT1.C"
+ },
+ {
+  "post": "mwmq3o2e-6yejx0",
+  "module": "LT2D.Groups.VBG1.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmq4rm3-0e92a0",
+  "module": "LT2D.Groups.VBG1.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmq3o2e_6yejx0",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG1.C"
+ },
+ {
+  "post": "mwmqdq1s-kqg7vk",
+  "module": "LT2D.Groups.VBG2.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmqefff-czcc3e",
+  "module": "LT2D.Groups.VBG2.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmqdq1s_kqg7vk",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG2.C"
+ },
+ {
+  "post": "mwmqf3gw-3p2oj0",
+  "module": "LT2D.Groups.VBG3.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmqfzor-jaus5f",
+  "module": "LT2D.Groups.VBG3.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmqf3gw_3p2oj0",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG3.C"
+ },
+ {
+  "post": "mwmqi7x4-t06lnp",
+  "module": "LT2D.Groups.VBG4.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmqj724-ichycl",
+  "module": "LT2D.Groups.VBG4.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmqi7x4_t06lnp",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG4.C"
+ },
+ {
+  "post": "mwmqk4xg-4j1zij",
+  "module": "LT2D.Groups.VBG5.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmqklkd-j5nf9x",
+  "module": "LT2D.Groups.VBG5.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmqk4xg_4j1zij",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG5.C"
+ },
+ {
+  "post": "mwmqle98-1qk5up",
+  "module": "LT2D.Groups.VBG6.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmqy7yi-hpzoks",
+  "module": "LT2D.Groups.VBG6.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwmqle98_1qk5up",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.VBG6.C"
+ },
+ {
+  "post": "mwnkf9tw-m0l8ee",
+  "module": "LT2D.Groups.W2B_A22.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnkgxmx-t5x2ye",
+  "module": "LT2D.Groups.W2B_A22.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmsrn5l_qc19s7\nimport LongTable.P_mwnkf9tw_m0l8ee",
+  "after": "import LT2D.Instances.LB4_R131.M\nimport LT2D.Groups.W2B_A22.C"
+ },
+ {
+  "post": "mwnl5smw-zwimkn",
+  "module": "LT2D.Groups.W2B_G7.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnl73l3-qntwy3",
+  "module": "LT2D.Groups.W2B_G7.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwnl5smw_zwimkn",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.W2B_G7.C"
+ },
+ {
+  "post": "mwnlmvsh-e24urv",
+  "module": "LT2D.Groups.W2A1.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnlo2f2-r026o1",
+  "module": "LT2D.Groups.W2A1.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwnlmvsh_e24urv",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.W2A1.C"
+ },
+ {
+  "post": "mwnn3me8-tv2sqv",
+  "module": "LT2D.Groups.W2A2.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnn40c6-8innug",
+  "module": "LT2D.Groups.W2A3.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnn503e-jvcbxq",
+  "module": "LT2D.Groups.W2A2.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwnn3me8_tv2sqv",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.W2A2.C"
+ },
+ {
+  "post": "mwnn5h1v-r2u2ac",
+  "module": "LT2D.Groups.W2A3.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmowkxn_5swdpn\nimport LongTable.P_mwnn40c6_8innug",
+  "after": "import LT2D.VN.M2\nimport LT2D.Groups.W2A3.C"
+ },
+ {
+  "post": "mwmrdi6x-7ac11s",
+  "module": "LT2D.Instances.LB3_R35.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmrei0q-3r7dvg",
+  "module": "LT2D.Instances.LB3_R35.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrdi6x_7ac11s",
+  "after": "import LT2D.Instances.LB3_R35.C"
+ },
+ {
+  "post": "mwmrevwa-6onari",
+  "module": "LT2D.Instances.LB3_R35.C_R35r43",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmrf8m5-amxjkk",
+  "module": "LT2D.Instances.LB3_R35.C_R35r59",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmrfmp7-smlbkc",
+  "module": "LT2D.Instances.LB3_R35.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwmrei0q_3r7dvg",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.LB3_R35.D"
+ },
+ {
+  "post": "mwmrg0zj-d1dfbt",
+  "module": "LT2D.Instances.LB3_R35.Twins",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwmrei0q_3r7dvg\nimport LongTable.P_mwmrevwa_6onari\nimport LongTable.P_mwmrf8m5_amxjkk",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.LB3_R35.D\nimport LT2D.Instances.LB3_R35.C_R35r43\nimport LT2D.Instances.LB3_R35.C_R35r59"
+ },
+ {
+  "post": "mwmsbqi4-5k6x8y",
+  "module": "LT2D.Instances.LB4_R131.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmscsmm-ns0cjf",
+  "module": "LT2D.Instances.LB4_R131.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmsbqi4_5k6x8y",
+  "after": "import LT2D.Instances.LB4_R131.C"
+ },
+ {
+  "post": "mwmsrn5l-qc19s7",
+  "module": "LT2D.Instances.LB4_R131.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwmscsmm_ns0cjf",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.LB4_R131.D"
+ },
+ {
+  "post": "mwmslexh-6vdxrm",
+  "module": "LT2D.Instances.LB4_R619.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwmsmhru-fync82",
+  "module": "LT2D.Instances.LB4_R619.D1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmslexh_6vdxrm",
+  "after": "import LT2D.Instances.LB4_R619.C"
+ },
+ {
+  "post": "mwmsn5zn-jc4kar",
+  "module": "LT2D.Instances.LB4_R619.D2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmsmhru_fync82",
+  "after": "import LT2D.Instances.LB4_R619.D1"
+ },
+ {
+  "post": "mwmspb17-thtl7c",
+  "module": "LT2D.Instances.LB4_R619.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmsn5zn_jc4kar",
+  "after": "import LT2D.Instances.LB4_R619.D2"
+ },
+ {
+  "post": "mwmsq798-j4mekm",
+  "module": "LT2D.Instances.LB4_R619.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwmspb17_thtl7c",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.LB4_R619.D"
+ },
+ {
+  "post": "mwnll4ay-f1lmvg",
+  "module": "LT2D.Instances.LW1_R598.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwnljuqb_b5nmyt",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K9"
+ },
+ {
+  "post": "mwnn1uyv-6wud06",
+  "module": "LT2D.Instances.LW1_R598.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnlksna_88ktqn\nimport LongTable.P_mwnll4ay_f1lmvg",
+  "after": "import LT2D.VN.M4\nimport LT2D.Instances.LW1_R598.C"
+ },
+ {
+  "post": "mwnllao8-qtpg9r",
+  "module": "LT2D.Instances.LW1_R425.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmotahy_3afbeh\nimport LongTable.P_mwnljuqb_b5nmyt",
+  "after": "import LT2D.VN.K5\nimport LT2D.VN.K9"
+ },
+ {
+  "post": "mwnmqh6d-exwujz",
+  "module": "LT2D.Instances.LW1_R526.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwnljuqb_b5nmyt",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K9"
+ },
+ {
+  "post": "mwnmrta1-tsvxc4",
+  "module": "LT2D.Instances.LW1_R526.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnmqh6d_exwujz",
+  "after": "import LT2D.Instances.LW1_R526.C"
+ },
+ {
+  "post": "mwnn1n84-eg8wv3",
+  "module": "LT2D.Instances.LW1_R526.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnlksna_88ktqn\nimport LongTable.P_mwnmrta1_tsvxc4",
+  "after": "import LT2D.VN.M4\nimport LT2D.Instances.LW1_R526.D"
+ },
+ {
+  "post": "mwnvdsn7-1ziukn",
+  "module": "LT2D.Instances.W3B_R507.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnvdu19-gtygu2",
+  "module": "LT2D.Instances.W3B_R507.D1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvdsn7_1ziukn",
+  "after": "import LT2D.Instances.W3B_R507.C"
+ },
+ {
+  "post": "mwnvdu5e-849wl2",
+  "module": "LT2D.Instances.W3B_R507.D2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvdu19_gtygu2",
+  "after": "import LT2D.Instances.W3B_R507.D1"
+ },
+ {
+  "post": "mwnvdu9g-e0awen",
+  "module": "LT2D.Instances.W3B_R507.D3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvdu5e_849wl2",
+  "after": "import LT2D.Instances.W3B_R507.D2"
+ },
+ {
+  "post": "mwnvdude-zkvuk1",
+  "module": "LT2D.Instances.W3B_R507.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvdu9g_e0awen",
+  "after": "import LT2D.Instances.W3B_R507.D3"
+ },
+ {
+  "post": "mwnvdui2-q3bfde",
+  "module": "LT2D.Instances.W3B_R507.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwnvdude_zkvuk1",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.W3B_R507.D"
+ },
+ {
+  "post": "mwnvejgo-lhl4eq",
+  "module": "LT2D.Instances.W3B_R505.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnvejq2-r2pql6",
+  "module": "LT2D.Instances.W3B_R505.D1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvejgo_lhl4eq",
+  "after": "import LT2D.Instances.W3B_R505.C"
+ },
+ {
+  "post": "mwnvejz7-d3yvfj",
+  "module": "LT2D.Instances.W3B_R505.D2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvejq2_r2pql6",
+  "after": "import LT2D.Instances.W3B_R505.D1"
+ },
+ {
+  "post": "mwnvek8b-q1fy92",
+  "module": "LT2D.Instances.W3B_R505.D3",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvejz7_d3yvfj",
+  "after": "import LT2D.Instances.W3B_R505.D2"
+ },
+ {
+  "post": "mwnvekj2-63xfne",
+  "module": "LT2D.Instances.W3B_R505.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnvek8b_q1fy92",
+  "after": "import LT2D.Instances.W3B_R505.D3"
+ },
+ {
+  "post": "mwnvekt3-6yexo1",
+  "module": "LT2D.Instances.W3B_R505.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwnvekj2_63xfne",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.W3B_R505.D"
+ },
+ {
+  "post": "mwnwdiwa-i2wmaa",
+  "module": "LT2D.Instances.W3A558.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnwdjmz-2s5vo0",
+  "module": "LT2D.Instances.W3A558.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwdiwa_i2wmaa",
+  "after": "import LT2D.Instances.W3A558.C"
+ },
+ {
+  "post": "mwnwdkfh-f5rc11",
+  "module": "LT2D.Instances.W3A558.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwnwdjmz_2s5vo0",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.W3A558.D"
+ },
+ {
+  "post": "mwnwf9wg-wgv1df",
+  "module": "LT2D.Instances.W3B_R129.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnwfamb-cdadkw",
+  "module": "LT2D.Instances.W3B_R129.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwf9wg_wgv1df",
+  "after": "import LT2D.Instances.W3B_R129.C"
+ },
+ {
+  "post": "mwnwfbfk-1iz6aq",
+  "module": "LT2D.Instances.W3B_R129.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrc8p0_rlc5a9\nimport LongTable.P_mwnwfamb_cdadkw",
+  "after": "import LT2D.VN.M3\nimport LT2D.Instances.W3B_R129.D"
+ },
+ {
+  "post": "mwnwfc7v-bd2b2s",
+  "module": "LT2D.Instances.W3B_R465.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnwfcxd-q7gcq0",
+  "module": "LT2D.Instances.W3B_R465.D1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwfc7v_bd2b2s",
+  "after": "import LT2D.Instances.W3B_R465.C"
+ },
+ {
+  "post": "mwnwfdms-kb7kof",
+  "module": "LT2D.Instances.W3B_R465.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwfcxd_q7gcq0",
+  "after": "import LT2D.Instances.W3B_R465.D1"
+ },
+ {
+  "post": "mwnwff73-bcemw3",
+  "module": "LT2D.Instances.W3B_R553.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwmov2n4_tdc56b",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K7"
+ },
+ {
+  "post": "mwnwffwd-gyxz7s",
+  "module": "LT2D.Instances.W3B_R553.D1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwff73_bcemw3",
+  "after": "import LT2D.Instances.W3B_R553.C"
+ },
+ {
+  "post": "mwnwfgmc-8e6g2b",
+  "module": "LT2D.Instances.W3B_R553.D2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwffwd_gyxz7s",
+  "after": "import LT2D.Instances.W3B_R553.D1"
+ },
+ {
+  "post": "mwnwfhb7-hcm3na",
+  "module": "LT2D.Instances.W3B_R553.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnwfgmc_8e6g2b",
+  "after": "import LT2D.Instances.W3B_R553.D2"
+ },
+ {
+  "post": "mwo4zkjy-ghsy1s",
+  "module": "LT2D.Instances.LC_R926.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwnljuqb_b5nmyt",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K9"
+ },
+ {
+  "post": "mwo4zlyl-wcwutp",
+  "module": "LT2D.Instances.LC_R926.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwo4zkjy_ghsy1s",
+  "after": "import LT2D.Instances.LC_R926.C"
+ },
+ {
+  "post": "mwo4zm8d-20tg2a",
+  "module": "LT2D.Instances.LC_R926.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnlksna_88ktqn\nimport LongTable.P_mwo4zlyl_wcwutp",
+  "after": "import LT2D.VN.M4\nimport LT2D.Instances.LC_R926.D"
+ },
+ {
+  "post": "mwohw76m-eku82y",
+  "module": "LT2D.Instances.LC_R654.C",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwmrbjl0_kqyrep\nimport LongTable.P_mwnljuqb_b5nmyt",
+  "after": "import LT2D.VN.K8\nimport LT2D.VN.K9"
+ },
+ {
+  "post": "mwohw8h0-ylki35",
+  "module": "LT2D.Instances.LC_R654.D1",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwohw76m_eku82y",
+  "after": "import LT2D.Instances.LC_R654.C"
+ },
+ {
+  "post": "mwohw8ku-sbtbs1",
+  "module": "LT2D.Instances.LC_R654.D2",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwohw8h0_ylki35",
+  "after": "import LT2D.Instances.LC_R654.D1"
+ },
+ {
+  "post": "mwohw8oj-47oqnq",
+  "module": "LT2D.Instances.LC_R654.D",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwohw8ku_sbtbs1",
+  "after": "import LT2D.Instances.LC_R654.D2"
+ },
+ {
+  "post": "mwohw8te-7hf3fs",
+  "module": "LT2D.Instances.LC_R654.M",
+  "kind": "imports (post id -> module)",
+  "name": "",
+  "before": "import LongTable.P_mwnlksna_88ktqn\nimport LongTable.P_mwohw8oj_47oqnq",
+  "after": "import LT2D.VN.M4\nimport LT2D.Instances.LC_R654.D"
+ }
+]
