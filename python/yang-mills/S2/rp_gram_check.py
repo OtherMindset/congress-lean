@@ -36,6 +36,6 @@ def r(x):
 
 for beta in (1.0, 0.1, 0.0, -0.1, -1.0):
     ev = np.linalg.eigvalsh(gram(beta))
-    print("beta = %+.1f  min eigenvalue = %+.6f  max = %+.6f  E[conj(B_11) A_11] = %+.6f"
-          % (beta, r(ev[0]), r(ev[-1]), r(gram(beta)[1, 1].real)))
-print("first-order prediction for E[conj(B_11) A_11]: beta/8 = %+.6f at beta = 0.1" % (0.1 / 8))
+    print("beta = {:+.1f}  min eigenvalue = {:+.6f}  max = {:+.6f}  E[conj(B_11) A_11] = {:+.6f}".format(
+          beta, r(ev[0]), r(ev[-1]), r(gram(beta)[1, 1].real)))
+print("first-order prediction for E[conj(B_11) A_11]: beta/8 = {:+.6f} at beta = 0.1".format(0.1 / 8))
