@@ -20,3 +20,5 @@
   changed, three wrong rules, a moved seed, and two sentences that must hold. `expected.txt` gives each
   expected answer, checked beforehand in Python on x, y < 32. Run: `sh negative/run_negative.sh` from a kit
   folder where `run_walnut.sh` has built Walnut, with `negative/`'s files copied in.
+- `negative/results/walnut_negative.log`: the run of 20 Nov 2026, 15:32 EST, same laptop and Walnut commit,
+  4 GB heap: every one of the ten answers is the expected one (six FALSE, four TRUE), in 3.63 s and 560 MB.
