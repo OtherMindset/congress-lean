@@ -1,0 +1,6 @@
+a=0:1 states - 0ms
+ b=0:1 states - 0ms
+  (a=0&b=0):1 states - 0ms
+   (V654(a,b,1))<=>(a=0&b=0)):1 states - 0ms
+    (A a , b (V654(a,b,1))<=>(a=0&b=0))):1 states - 0ms
+Total computation time: 0ms.

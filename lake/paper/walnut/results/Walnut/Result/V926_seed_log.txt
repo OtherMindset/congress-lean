@@ -1,0 +1,6 @@
+a=0:1 states - 1ms
+ b=0:1 states - 0ms
+  (a=0&b=0):1 states - 0ms
+   (V926(a,b,1))<=>(a=0&b=0)):1 states - 1ms
+    (A a , b (V926(a,b,1))<=>(a=0&b=0))):1 states - 0ms
+Total computation time: 21ms.

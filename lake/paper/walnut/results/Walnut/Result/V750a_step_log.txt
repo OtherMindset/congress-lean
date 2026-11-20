@@ -1,0 +1,17 @@
+c>=1:2 states - 1ms
+ (V750a((a+1),b,c))&V750a(a,(b+1),c))):11013 states - 122ms
+  b=0:1 states - 0ms
+   (b=0&V750a(a,1,c))):6 states - 0ms
+    (v+1)=b:2 states - 0ms
+     ((v+1)=b&V750a(a,v,c))):406 states - 4ms
+      (E v ((v+1)=b&V750a(a,v,c)))):406 states - 2ms
+       ((b=0&V750a(a,1,c)))|(E v ((v+1)=b&V750a(a,v,c))))):422 states - 5ms
+        ((V750a((a+1),b,c))&V750a(a,(b+1),c)))&((b=0&V750a(a,1,c)))|(E v ((v+1)=b&V750a(a,v,c)))))):108185 states - 1323ms
+         a=0:1 states - 0ms
+          (a=0&V750a(1,b,c))):6 states - 0ms
+           (u+1)=a:2 states - 1ms
+            ((u+1)=a&V750a(u,b,c))):406 states - 2ms
+             (E u ((u+1)=a&V750a(u,b,c)))):406 states - 3ms
+              ((a=0&V750a(1,b,c)))|(E u ((u+1)=a&V750a(u,b,c))))):422 states - 2ms
+               ~((a=0&V750a(1,b,c)))|(E u ((u+1)=a&V750a(u,b,c))))):422 states - 1ms
+                (((V750a((a+1),b,c))&V750a(a,(b+1),c)))&((b=0&V750a(a,1,c)))|(E v ((v+1)=b&V750a(a,v,c))))))&~((a=0&V750a(1,b,c)))|(E u ((u+1)=a&V750a(u,b,c)))))):1828557 states - 14196ms

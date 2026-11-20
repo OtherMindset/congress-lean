@@ -1,0 +1,4 @@
+V926 {"sizes": {"S": 166, "X": 13, "Y": 13, "O": 1}, "dimension": 196, "checked_n": "0..198", "padding_stable": true, "formula_holds": true, "first_terms": [1, 5, 21, 85, 341, 1365, 5461, 21845, 87381, 349525], "seconds": 0.0}
+V654 {"sizes": {"S": 111, "X": 11, "Y": 11, "O": 1}, "dimension": 137, "checked_n": "3..142", "padding_stable": true, "formula_holds": true, "first_terms": [1, 5, 17, 69, 281, 1129, 4521, 18089, 72361, 289449], "seconds": 0.0}
+V926 matches direct simulation n<=9: True [1, 5, 21, 85, 341, 1365, 5461, 21845, 87381, 349525]
+V654 matches direct simulation n<=9: True [1, 5, 17, 69, 281, 1129, 4521, 18089, 72361, 289449]

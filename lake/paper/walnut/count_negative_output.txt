@@ -1,0 +1,8 @@
+V926  3c(n) = 4*4^n + 0*2^n + -1, n >= 0  [correct (control of the control)]: formula_holds = true
+V926  3c(n) = 4*4^n + 0*2^n + 1, n >= 0  [constant -1 -> +1]: formula_holds = false (first failure at n = 0)
+V926  3c(n) = 4*4^n + 1*2^n + -1, n >= 0  [coefficient of 2^n 0 -> 1]: formula_holds = false (first failure at n = 0)
+V926  3c(n) = 5*4^n + 0*2^n + -1, n >= 1  [leading coefficient 4 -> 5]: formula_holds = false (first failure at n = 1)
+V654  48c(n) = 53*4^n + 0*2^n + -80, n >= 3  [correct (control of the control)]: formula_holds = true
+V654  48c(n) = 53*4^n + 0*2^n + -79, n >= 3  [constant -80 -> -79]: formula_holds = false (first failure at n = 3)
+V654  48c(n) = 53*4^n + 0*2^n + -80, n >= 2  [starting index 3 -> 2]: formula_holds = false (first failure at n = 2)
+V654  47c(n) = 53*4^n + 0*2^n + -80, n >= 3  [denominator 48 -> 47]: formula_holds = false (first failure at n = 3)

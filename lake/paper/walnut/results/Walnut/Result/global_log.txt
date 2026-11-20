@@ -1,0 +1,99 @@
+>>> eval V750b_seed "?lsd_2 Aa,b ($V750b(a,b,1) <=> (a=0 & b=0))";
+computing V750b(...)
+computed V750b(a,b,1))
+computing a=0
+computed a=0
+a=0:1 states - 1ms
+ computing b=0
+ computed b=0
+ b=0:1 states - 0ms
+  computing a=0&b=0
+  computed a=0&b=0
+  (a=0&b=0):1 states - 0ms
+   computing V750b(a,b,1))<=>(a=0&b=0)
+   computed V750b(a,b,1))<=>(a=0&b=0)
+   (V750b(a,b,1))<=>(a=0&b=0)):1 states - 0ms
+    computing quantifier A
+    computed quantifier (A a , b (V750b(a,b,1))<=>(a=0&b=0)))
+    (A a , b (V750b(a,b,1))<=>(a=0&b=0))):1 states - 1ms
+Total computation time: 26ms.
+
+>>> eval V750b_step "?lsd_2 Aa,b,c (c>=1) => ($V750b(a,b,c+1) <=> ($V750b(a,b,c) | ($V750b(a+1,b,c) & $V750b(a,b+1,c) & ((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | ($V750b(a+1,b,c) & $V750b(a,b+1,c) & ((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c))))) | ($V750b(a+1,b,c) & ((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~$V750b(a,b+1,c)) | ($V750b(a,b+1,c) & ((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~$V750b(a+1,b,c)) | ($V750b(a+1,b,c) & ~$V750b(a,b+1,c) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | ($V750b(a,b+1,c) & ~$V750b(a+1,b,c) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | (((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~$V750b(a+1,b,c) & ~$V750b(a,b+1,c) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | (((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~$V750b(a+1,b,c) & ~$V750b(a,b+1,c) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))))))";
+computing c>=1
+computed c>=1
+c>=1:2 states - 1ms
+ computing c+1
+ computed c+1
+ computing V750b(...)
+ computed V750b(a,b,(c+1)))
+ computing V750b(...)
+ computed V750b(a,b,c))
+ computing a+1
+ computed a+1
+ computing V750b(...)
+ computed V750b((a+1),b,c))
+ computing b+1
+ computed b+1
+ computing V750b(...)
+ computed V750b(a,(b+1),c))
+ computing V750b((a+1),b,c))&V750b(a,(b+1),c))
+ computed V750b((a+1),b,c))&V750b(a,(b+1),c))
+ (V750b((a+1),b,c))&V750b(a,(b+1),c))):8955 states - 65ms
+  computing b=0
+  computed b=0
+  b=0:1 states - 0ms
+   computing V750b(...)
+   computed V750b(a,1,c))
+   computing b=0&V750b(a,1,c))
+   computed b=0&V750b(a,1,c))
+   (b=0&V750b(a,1,c))):6 states - 0ms
+    computing v+1
+    computed v+1
+    computing (v+1)=b
+    computed (v+1)=b
+    (v+1)=b:2 states - 0ms
+     computing V750b(...)
+     computed V750b(a,v,c))
+     computing (v+1)=b&V750b(a,v,c))
+     computed (v+1)=b&V750b(a,v,c))
+     ((v+1)=b&V750b(a,v,c))):435 states - 7ms
+      computing quantifier E
+      computed quantifier (E v ((v+1)=b&V750b(a,v,c))))
+      (E v ((v+1)=b&V750b(a,v,c)))):435 states - 2ms
+       computing (b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))
+       computed (b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))
+       ((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))):451 states - 6ms
+        computing (V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c)))))
+        computed (V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c)))))
+        ((V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c)))))):72632 states - 676ms
+         computing a=0
+         computed a=0
+         a=0:1 states - 0ms
+          computing V750b(...)
+          computed V750b(1,b,c))
+          computing a=0&V750b(1,b,c))
+          computed a=0&V750b(1,b,c))
+          (a=0&V750b(1,b,c))):6 states - 0ms
+           computing u+1
+           computed u+1
+           computing (u+1)=a
+           computed (u+1)=a
+           (u+1)=a:2 states - 0ms
+            computing V750b(...)
+            computed V750b(u,b,c))
+            computing (u+1)=a&V750b(u,b,c))
+            computed (u+1)=a&V750b(u,b,c))
+            ((u+1)=a&V750b(u,b,c))):435 states - 3ms
+             computing quantifier E
+             computed quantifier (E u ((u+1)=a&V750b(u,b,c))))
+             (E u ((u+1)=a&V750b(u,b,c)))):435 states - 2ms
+              computing (a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c))))
+              computed (a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c))))
+              ((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c))))):451 states - 2ms
+               computing ~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c)))))
+               computed ~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c)))))
+               ~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c))))):451 states - 1ms
+                computing ((V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))))&~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c)))))
+                computed ((V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))))&~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c)))))
+                (((V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))))&~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c)))))):1106503 states - 6770ms
+                 computing V750b(a,b,c))|(((V750b((a+1),b,c))&V750b(a,(b+1),c)))&((b=0&V750b(a,1,c)))|(E v ((v+1)=b&V750b(a,v,c))))))&~((a=0&V750b(1,b,c)))|(E u ((u+1)=a&V750b(u,b,c))))))

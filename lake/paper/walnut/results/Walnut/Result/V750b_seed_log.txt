@@ -1,0 +1,6 @@
+a=0:1 states - 1ms
+ b=0:1 states - 0ms
+  (a=0&b=0):1 states - 0ms
+   (V750b(a,b,1))<=>(a=0&b=0)):1 states - 0ms
+    (A a , b (V750b(a,b,1))<=>(a=0&b=0))):1 states - 1ms
+Total computation time: 26ms.

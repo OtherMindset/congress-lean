@@ -1,0 +1,5 @@
+x<=g:2 states - 0ms
+ y<=g:2 states - 0ms
+  (x<=g&y<=g):4 states - 0ms
+   ((x<=g&y<=g)&V654(x,y,(g+1)))):111 states - 0ms
+Total computation time: 2ms.

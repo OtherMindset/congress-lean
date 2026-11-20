@@ -1,0 +1,179 @@
+Walnut commit: 3bf0ece983279f34cbf657481fa472c1f1ab3932
+==== vn_compare.txt (limit 60 min) Fri Nov 20 06:01:43 EST 2026
+# ---- V926: rule 926, 166 states
+eval V926_seed "?lsd_2 Aa,b ($V926(a,b,1) <=> (a=0 & b=0))";
+Converted from brics:2 states - 5ms
+Converted from brics:1 states - 1ms
+____
+TRUE
+eval V926_step "?lsd_2 Aa,b,c (c>=1) => ($V926(a,b,c+1) <=> (($V926(a,b,c) & $V926(a+1,b,c) & $V926(a,b+1,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c))))) | ($V926(a,b,c) & $V926(a+1,b,c) & $V926(a,b+1,c) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b,c) & $V926(a+1,b,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b,c) & $V926(a,b+1,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a+1,b,c) & $V926(a,b+1,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b,c) & ~$V926(a,b+1,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a+1,b,c) & ~$V926(a,b,c) & ~$V926(a,b+1,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c))))) | ($V926(a+1,b,c) & ~$V926(a,b,c) & ~$V926(a,b+1,c) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a+1,b,c) & ~$V926(a,b,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b+1,c) & ~$V926(a,b,c) & ~$V926(a+1,b,c) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b+1,c) & ~$V926(a+1,b,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | (((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~$V926(a+1,b,c) & ~$V926(a,b+1,c) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | (((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c)))) & ~$V926(a,b,c) & ~$V926(a+1,b,c) & ~$V926(a,b+1,c)) | (((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c)))) & ~$V926(a,b,c) & ~$V926(a+1,b,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c))))) | (((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c)))) & ~$V926(a+1,b,c) & ~$V926(a,b+1,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))))))";
+____
+TRUE
+eval V926_step990 "?lsd_2 Aa,b,c (c>=1) => ($V926(a,b,c+1) <=> (($V926(a+1,b,c) & ~$V926(a,b,c)) | ($V926(a,b+1,c) & ~$V926(a,b,c)) | (((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c)))) & ~$V926(a,b,c)) | ($V926(a+1,b,c) & $V926(a,b+1,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c))))) | ($V926(a+1,b,c) & $V926(a,b+1,c) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a+1,b,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b+1,c) & ((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b,c) & ~$V926(a,b+1,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | ($V926(a,b+1,c) & ~$V926(a+1,b,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | (((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))) & ~$V926(a+1,b,c) & ~$V926(a,b+1,c) & ~((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c))))) | (((a=0 & $V926(1,b,c)) | (Eu (u+1=a & $V926(u,b,c)))) & ~$V926(a+1,b,c) & ~$V926(a,b+1,c) & ~((b=0 & $V926(a,1,c)) | (Ev (v+1=b & $V926(a,v,c)))))))";
+____
+TRUE
+def V926_S g "?lsd_2 x<=g & y<=g & $V926(x,y,g+1)";
+Matrix files:
+  Maple: Result/V926_S.mpl
+  MATLAB/Octave: Result/V926_S.m
+  Mathematica: Result/V926_S.wl
+  Sage: Result/V926_S.sage
+def V926_X g "?lsd_2 y<=g & $V926(0,y,g+1)";
+Matrix files:
+  Maple: Result/V926_X.mpl
+  MATLAB/Octave: Result/V926_X.m
+  Mathematica: Result/V926_X.wl
+  Sage: Result/V926_X.sage
+def V926_Y g "?lsd_2 x<=g & $V926(x,0,g+1)";
+Matrix files:
+  Maple: Result/V926_Y.mpl
+  MATLAB/Octave: Result/V926_Y.m
+  Mathematica: Result/V926_Y.wl
+  Sage: Result/V926_Y.sage
+def V926_O g "?lsd_2 $V926(0,0,g+1)";
+Matrix files:
+  Maple: Result/V926_O.mpl
+  MATLAB/Octave: Result/V926_O.m
+  Mathematica: Result/V926_O.wl
+  Sage: Result/V926_O.sage
+# ---- V654: rule 654, 104 states
+eval V654_seed "?lsd_2 Aa,b ($V654(a,b,1) <=> (a=0 & b=0))";
+____
+TRUE
+eval V654_step "?lsd_2 Aa,b,c (c>=1) => ($V654(a,b,c+1) <=> (($V654(a,b,c) & $V654(a+1,b,c) & $V654(a,b+1,c) & ((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c))))) | ($V654(a,b,c) & $V654(a+1,b,c) & $V654(a,b+1,c) & ((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | ($V654(a,b,c) & $V654(a+1,b,c) & ((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))) & ((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | ($V654(a,b,c) & $V654(a,b+1,c) & ((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))) & ((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | ($V654(a,b,c) & ~$V654(a,b+1,c) & ~((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))) & ~((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | ($V654(a+1,b,c) & ~$V654(a,b+1,c) & ~((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))) & ~((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | ($V654(a,b+1,c) & ~$V654(a+1,b,c) & ~((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))) & ~((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | (((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))) & ~$V654(a+1,b,c) & ~$V654(a,b+1,c) & ~((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c))))) | (((a=0 & $V654(1,b,c)) | (Eu (u+1=a & $V654(u,b,c)))) & ~$V654(a+1,b,c) & ~$V654(a,b+1,c) & ~((b=0 & $V654(a,1,c)) | (Ev (v+1=b & $V654(a,v,c)))))))";
+____
+TRUE
+def V654_S g "?lsd_2 x<=g & y<=g & $V654(x,y,g+1)";
+Matrix files:
+  Maple: Result/V654_S.mpl
+  MATLAB/Octave: Result/V654_S.m
+  Mathematica: Result/V654_S.wl
+  Sage: Result/V654_S.sage
+def V654_X g "?lsd_2 y<=g & $V654(0,y,g+1)";
+Matrix files:
+  Maple: Result/V654_X.mpl
+  MATLAB/Octave: Result/V654_X.m
+  Mathematica: Result/V654_X.wl
+  Sage: Result/V654_X.sage
+def V654_Y g "?lsd_2 x<=g & $V654(x,0,g+1)";
+Matrix files:
+  Maple: Result/V654_Y.mpl
+  MATLAB/Octave: Result/V654_Y.m
+  Mathematica: Result/V654_Y.wl
+  Sage: Result/V654_Y.sage
+def V654_O g "?lsd_2 $V654(0,0,g+1)";
+Matrix files:
+  Maple: Result/V654_O.mpl
+  MATLAB/Octave: Result/V654_O.m
+  Mathematica: Result/V654_O.wl
+  Sage: Result/V654_O.sage
+quit;
+        1.34 real         2.78 user         0.08 sys
+           311083008  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               20159  page reclaims
+                  18  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  11  voluntary context switches
+                3041  involuntary context switches
+         33879273751  instructions retired
+          9190795216  cycles elapsed
+           291357680  peak memory footprint
+==== vn_compare.txt done Fri Nov 20 06:01:44 EST 2026
+==== vn_750a.txt (limit 30 min) Fri Nov 20 06:01:44 EST 2026
+# ---- V750a: rule 750, 367 states
+eval V750a_seed "?lsd_2 Aa,b ($V750a(a,b,1) <=> (a=0 & b=0))";
+Converted from brics:2 states - 4ms
+Converted from brics:1 states - 1ms
+____
+TRUE
+eval V750a_step "?lsd_2 Aa,b,c (c>=1) => ($V750a(a,b,c+1) <=> ($V750a(a,b,c) | ($V750a(a+1,b,c) & $V750a(a,b+1,c) & ((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))) & ~((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c))))) | ($V750a(a+1,b,c) & $V750a(a,b+1,c) & ((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c)))) & ~((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c))))) | ($V750a(a+1,b,c) & ((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))) & ((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c)))) & ~$V750a(a,b+1,c)) | ($V750a(a,b+1,c) & ((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))) & ((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c)))) & ~$V750a(a+1,b,c)) | ($V750a(a+1,b,c) & ~$V750a(a,b+1,c) & ~((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))) & ~((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c))))) | ($V750a(a,b+1,c) & ~$V750a(a+1,b,c) & ~((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))) & ~((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c))))) | (((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))) & ~$V750a(a+1,b,c) & ~$V750a(a,b+1,c) & ~((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c))))) | (((a=0 & $V750a(1,b,c)) | (Eu (u+1=a & $V750a(u,b,c)))) & ~$V750a(a+1,b,c) & ~$V750a(a,b+1,c) & ~((b=0 & $V750a(a,1,c)) | (Ev (v+1=b & $V750a(a,v,c)))))))";
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.ArrayList.grow(ArrayList.java:239)
+	at java.base/java.util.ArrayList.grow(ArrayList.java:244)
+	at java.base/java.util.ArrayList.add(ArrayList.java:483)
+	at java.base/java.util.ArrayList.add(ArrayList.java:496)
+	at Automata.FA.ProductStrategies$SparseInputs.<init>(ProductStrategies.java:87)
+	at Automata.FA.ProductStrategies.crossProductAndMinimize(ProductStrategies.java:307)
+	at Automata.FA.ProductStrategies.crossProductAndMinimize(ProductStrategies.java:296)
+	at Automata.AutomatonLogicalOps.totalizeCrossProduct(AutomatonLogicalOps.java:119)
+	at Automata.AutomatonLogicalOps.or(AutomatonLogicalOps.java:74)
+	at Main.EvalComputations.Token.LogicalOperator.act(LogicalOperator.java:84)
+	at Main.Commands.EvalDef.compute(EvalDef.java:148)
+	at Main.Commands.EvalDef.compute(EvalDef.java:136)
+	at Main.Commands.EvalDef.evalDefCommand(EvalDef.java:67)
+	at Main.Prover.evalDefCommands(Prover.java:619)
+	at Main.Prover.processCommand(Prover.java:508)
+	at Main.Prover.dispatch(Prover.java:431)
+	at Main.Prover.readBuffer(Prover.java:395)
+	at Main.Prover.run(Prover.java:337)
+	at Main.Prover.main(Prover.java:298)
+       32.40 real        90.99 user        11.89 sys
+          4408426496  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             2568427  page reclaims
+                   0  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                  10  signals received
+                   4  voluntary context switches
+              256169  involuntary context switches
+        873336960792  instructions retired
+        299592526503  cycles elapsed
+          4473130872  peak memory footprint
+==== vn_750a.txt done Fri Nov 20 06:02:17 EST 2026
+==== vn_750b.txt (limit 30 min) Fri Nov 20 06:02:17 EST 2026
+# ---- V750b: rule 750, 401 states
+eval V750b_seed "?lsd_2 Aa,b ($V750b(a,b,1) <=> (a=0 & b=0))";
+Converted from brics:2 states - 4ms
+Converted from brics:1 states - 1ms
+____
+TRUE
+eval V750b_step "?lsd_2 Aa,b,c (c>=1) => ($V750b(a,b,c+1) <=> ($V750b(a,b,c) | ($V750b(a+1,b,c) & $V750b(a,b+1,c) & ((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | ($V750b(a+1,b,c) & $V750b(a,b+1,c) & ((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c))))) | ($V750b(a+1,b,c) & ((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~$V750b(a,b+1,c)) | ($V750b(a,b+1,c) & ((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~$V750b(a+1,b,c)) | ($V750b(a+1,b,c) & ~$V750b(a,b+1,c) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | ($V750b(a,b+1,c) & ~$V750b(a+1,b,c) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | (((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))) & ~$V750b(a+1,b,c) & ~$V750b(a,b+1,c) & ~((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c))))) | (((a=0 & $V750b(1,b,c)) | (Eu (u+1=a & $V750b(u,b,c)))) & ~$V750b(a+1,b,c) & ~$V750b(a,b+1,c) & ~((b=0 & $V750b(a,1,c)) | (Ev (v+1=b & $V750b(a,v,c)))))))";
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at Automata.FA.ProductStrategies.crossProductInternalDFA(ProductStrategies.java:218)
+	at Automata.FA.ProductStrategies.crossProductAndMinimize(ProductStrategies.java:307)
+	at Automata.FA.ProductStrategies.crossProductAndMinimize(ProductStrategies.java:296)
+	at Automata.AutomatonLogicalOps.totalizeCrossProduct(AutomatonLogicalOps.java:119)
+	at Automata.AutomatonLogicalOps.or(AutomatonLogicalOps.java:74)
+	at Main.EvalComputations.Token.LogicalOperator.act(LogicalOperator.java:84)
+	at Main.Commands.EvalDef.compute(EvalDef.java:148)
+	at Main.Commands.EvalDef.compute(EvalDef.java:136)
+	at Main.Commands.EvalDef.evalDefCommand(EvalDef.java:67)
+	at Main.Prover.evalDefCommands(Prover.java:619)
+	at Main.Prover.processCommand(Prover.java:508)
+	at Main.Prover.dispatch(Prover.java:431)
+	at Main.Prover.readBuffer(Prover.java:395)
+	at Main.Prover.run(Prover.java:337)
+	at Main.Prover.main(Prover.java:298)
+       31.46 real       112.83 user         8.83 sys
+          4387110912  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1761308  page reclaims
+                  18  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                  14  signals received
+                   6  voluntary context switches
+              145997  involuntary context switches
+       1039473013158  instructions retired
+        354582242679  cycles elapsed
+          4472229776  peak memory footprint
+==== vn_750b.txt done Fri Nov 20 06:02:48 EST 2026

@@ -1,0 +1,3 @@
+y<=g:2 states - 0ms
+ (y<=g&V926(0,y,(g+1)))):13 states - 0ms
+Total computation time: 1ms.

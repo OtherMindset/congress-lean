@@ -39,6 +39,12 @@ read (printed in the paper's Appendix A).
 
 Check them with `lake env lean paper/<file>.lean` (no output means they hold).
 
+## Walnut comparison (paper, Section 8.3)
+
+`walnut/`: the Walnut inputs, the run script, the record of the run of 20 Nov 2026, the post-processing that
+derives the closed forms from Walnut's linear representations, and negative controls for both the
+post-processing and Walnut itself. See `walnut/README.md`.
+
 ## Data
 
 - `data_in/results.csv`: the oeis-new-terms ledger export of 19 Nov 2026 used for the paper's tables.

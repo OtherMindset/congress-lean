@@ -1,0 +1,3 @@
+y<=g:2 states - 0ms
+ (y<=g&V654(0,y,(g+1)))):11 states - 0ms
+Total computation time: 1ms.
