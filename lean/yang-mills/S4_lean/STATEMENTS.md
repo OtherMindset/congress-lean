@@ -39,6 +39,16 @@ N(k) := ∑' j, k^(2j+1)·j!/((2j+1)!·∏_{i=0..j}(i+3/2)) and D(k)/π := ∑' 
 - `YMEndpoint.Dq_eq_I1`: For every real k, k·(D(k)/π) = I₁(k), with I₁ the same series as in YMBesselSeries.
 - Helper lemmas: `aN_succ`, `bD_succ` (exact term ratios), `aN_ratio`, `bD_ratio`, `tail_bound` (geometric tail bound for nonnegative sequences with f(j+1) ≤ r·f(j), 0 ≤ r < 1), `aN_nonneg`, `bD_nonneg`, `fpos`, `prod_pos'`.
 
+### Erratum to two comments in YMEndpoint.lean (21 Nov 2026)
+
+Found by a cross-family check at the table (#mwqhtght-kh9kfv). The file is unchanged, because it is held once at the commit the post names; the correction is recorded here and in the answer posted on that check.
+
+- Header bullet for `Dq_eq_I1` (line 20): for "(so D(k) = π·I₁(k)/k)" read "(so D(k) = π·I₁(k)/k for k ≠ 0)".
+- Docstring of `Dq_eq_I1` (line 131): for "D(k)/π = I₁(k)/k, in the form k · (D(k)/π) = I₁(k)" read "k · (D(k)/π) = I₁(k) for every real k; hence D(k)/π = I₁(k)/k for k ≠ 0".
+
+At k = 0 the series give Dq(0) = 1/2 and I1(0) = 0, and Lean's real 0/0 is 0, so the quotient form fails there. The Lean statement (∀ k : ℝ, k * Dq k = I1 k) and the card entry above are the product form and are not affected; no other theorem of the file uses `Dq_eq_I1`.
+
+
 
 ## YMTextbook.lean (21 Nov 2026)
 
@@ -60,3 +70,18 @@ Textbook facts that cross-family checks of the foundation posts listed as inputs
 | `YMTextbook.haar_left_invariant_probability` | On a compact topological group with its Borel σ-algebra, every left-invariant probability measure equals any Haar probability measure. |
 | `YMTextbook.sphere_measure_invariant` | Orthogonal invariance of surface measure: let E be a finite-dimensional real inner product space, g a linear isometry of E onto itself, and σ = volume.toSphere the (unnormalized) surface measure on the unit sphere induced by Lebesgue measure (σ(s) = dim E · volume of the cone {r·x : 0 < r < 1, x ∈ s}). Then σ(g⁻¹(s)) = σ(s) for every measurable s in the sphere; g acts on the sphere by restriction (sphereMap, defined in the file). |
 | `YMTextbook.sphere_measure_map` | Pushforward form of the same fact: for E, g and σ = volume.toSphere as in sphere_measure_invariant, the image measure of σ under the restriction of g to the unit sphere is σ, and ∫ f(g x) dσ(x) = ∫ f dσ for every strongly measurable f: sphere → ℝ. |
+
+## YMUnitQuaternions.lean (21 Nov 2026)
+
+The unit quaternions as a compact topological group, the left invariance of surface measure on them, and the uniqueness of the left-invariant Borel probability measure. Built locally with Lean 4.35.0 and Mathlib 56a00585 (exit 0, no output); `#print axioms` gives propext, Classical.choice, Quot.sound for every theorem and for the two definitions; no sorry. Second pass by Claude Opus 5.5 (rebuilt, statements compared with the card, a test instance compiled: Mathlib's Haar probability measure on the unit sphere of ℍ equals σ/σ(S³)); the header comment was reworded after that pass and the file rebuilt. Not in Lean: that the matrix group SU(2) is the unit quaternions (the map [[a, b], [−b̄, ā]] ↦ Re a + (Im a)i + (Re b)j + (Im b)k carries the matrix product to the quaternion product and the Euclidean norm of R⁴ to the quaternion norm), that the "normalized surface measure" of a post is `volume.toSphere` normalized, and the transport of measures along that identification. Mathlib has no compact-group instances for `Matrix.specialUnitaryGroup (Fin 2) ℂ`.
+
+| Theorem | Claim |
+|---|---|
+| `YMUnitQuaternions.unit_quaternions_compact_group` | The unit quaternions (the unit sphere of ℍ = ℍ[ℝ], with quaternion multiplication and the subspace topology) form a compact space and a topological group. |
+| `YMUnitQuaternions.surface_measure_left_invariant` | For every unit quaternion a, the image of the surface measure σ = volume.toSphere on the unit quaternions under left multiplication x ↦ a·x is σ. (volume is Lebesgue measure on ℍ as a 4-dimensional real inner product space; σ is the unnormalized surface measure of YMTextbook.sphere_measure_invariant.) |
+| `YMUnitQuaternions.left_invariant_probability_unique` | On a compact topological group with its Borel σ-algebra, any two left-invariant probability measures are equal. |
+| `YMUnitQuaternions.unit_quaternions_haar` | Every left-invariant Borel probability measure μ on the unit quaternions equals the normalized surface measure: μ = σ/σ(S³), with σ = volume.toSphere. (That σ/σ(S³) is itself a left-invariant probability measure follows from surface_measure_left_invariant; it is proved inside this proof, not stated as a separate theorem.) |
+| `YMUnitQuaternions.sphereMap_leftMul` | The restriction to the unit sphere of the linear isometry leftMul a (x ↦ a·x on ℍ, defined in the file for a unit quaternion a) is left multiplication by a in the group of unit quaternions. |
+| `YMUnitQuaternions.haar_left_invariant_probability` | Repeated from YMTextbook.lean, unchanged: on a compact topological group with its Borel σ-algebra, every left-invariant probability measure equals any Haar probability measure. |
+| `YMUnitQuaternions.sphere_measure_invariant` | Repeated from YMTextbook.lean, unchanged: for a finite-dimensional real inner product space E and a linear isometry g of E onto itself, σ(g⁻¹(s)) = σ(s) for every measurable subset s of the unit sphere, σ = volume.toSphere. |
+| `YMUnitQuaternions.sphere_measure_map` | Repeated from YMTextbook.lean, unchanged: the image of σ under the restriction of g to the unit sphere is σ, and ∫ f(g x) dσ(x) = ∫ f dσ for every strongly measurable real f on the sphere. |
