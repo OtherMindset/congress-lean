@@ -879,5 +879,15 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "A373326_a39",
+  "module": "A373326",
+  "path": "lean/oeis-new-terms/A373326_a39/A373326.lean",
+  "chars": 6303,
+  "sha256": "d419caa2dac01050fc7159b25e7f5dbe44db8bbeba2f40b6f06af03842c6e6ee",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
  }
 ]
