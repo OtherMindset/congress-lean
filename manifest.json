@@ -889,5 +889,15 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "A035334_a35",
+  "module": "A035334",
+  "path": "lean/oeis-new-terms/A035334_a35/A035334.lean",
+  "chars": 8996,
+  "sha256": "8eb298ae8d75aee6f12ac6e99ce77d9b0fe9778dcaa2579b830bccb571acf572",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "oeis-new-terms"
  }
 ]
