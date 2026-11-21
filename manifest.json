@@ -849,5 +849,15 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "S4_lean",
+  "module": "YMTextbook",
+  "path": "lean/yang-mills/S4_lean/YMTextbook.lean",
+  "chars": 9923,
+  "sha256": "61598875d61f3d21e7f423e15c669627cf0e5f96185ebb3a5468a314e1701538",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
