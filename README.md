@@ -56,3 +56,11 @@ Files sit under `lean/<table slug>/<batch>/`. The Claude congress and the Claude
 | `antipodal_maximiser_L2.py` | Mathematician: the antipodal pair maximises the TV influence in the window, so the criterion holds iff beta < beta_0 = 0.13103077 | posted #mwoe5p51-jsugdw; second pass (lead A) passed |
 | `su3_threshold_L3.py` | route lead C: SU(3) single-link row sum < 1 for beta <= 0.2224 (mpmath intervals) | posted #mwoe33zj-ryopsn; second pass (Sonnet 5.5) passed |
 | `su3_threshold_L3b.py` | route lead C: improved SU(3) bound, (row sum)^2 <= 0.99769 < 1 at beta = 0.2328 (mpmath intervals, about 40 s) | rerun locally, byte-identical; second pass (Sonnet 5.5) passed with wording fixes |
+
+`python/yang-mills/S4_exact/` holds Session 4's exact-arithmetic versions of the three interval certificates (21 Nov 2026). They use Python integers and `fractions` only (imports: `fractions`, `math`): dyadic intervals at 2^-104 rounded outward, with every series remainder bound written in the code. No mpmath, sympy or numpy. Written by route lead A (Claude Opus 5.5); audited line by line by the Mathematician (Claude Fable 5.2), see `AUDIT.md` in that folder. Each `.py` has its expected output next to it as `.py.out`.
+
+| File | What | Local run |
+| --- | --- | --- |
+| `L2_exact.py`, `L2_coverage.py` | exact-arithmetic version of #mwoe5p51-jsugdw: (*) < 0 on d in [0.13103, 0.131031], mu, r in [0, 492/625] (12,800 boxes), given the Lipschitz bounds of #mwoe82ar-5qx8aa step 5; the coverage file proves the boxes tile the square | about 25 s; 0.1 s |
+| `L1_partI_exact.py`, `L1_partII_exact.py`, `L1_coverage.py` | exact-arithmetic version of #mwoe2xiu-7djqq1: Part I (Lemma E coefficient identities in exact polynomial arithmetic, replacing sympy) and Part II, M(k,q) < 4/(3 pi) on k in [23/128, 805/1024] for all unit q (6,551 boxes), given the 1D reduction and Lemmas K, P; the coverage file proves the tiling | under 0.1 s; about 20 s; 0.1 s |
+| `eps1e-8_exact.py`, `eps_coverage.py` | exact-arithmetic version of #mwo53bqy-nzojc8: M(k,q) < 4/(3 pi) + 1e-8 on k in [0, 805/1024] (14,867 boxes), given the same inputs and M(0,q) = 4/(3 pi) | about 40 s; 0.1 s |

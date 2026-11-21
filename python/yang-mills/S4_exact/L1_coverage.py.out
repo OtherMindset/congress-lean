@@ -1,0 +1,4 @@
+symbols: 13101 ; accepted boxes: 6551 ; splits: 6550
+exact total area = 999189/1048576 = (805/1024 - 23/128) * 1609/1024
+split-tree fingerprint = 983100138181022303
+CERTIFIED: the 6551 accepted boxes of the tree tile [23/128, 805/1024] x [0, 1609/1024] (k x phi)

@@ -1,0 +1,6 @@
+chunk 1 of 1; pi in [3.141592653589793, 3.141592653589794]
+d in [13103/100000, 131031/1000000], mu in [0, 492/625], r in [0, 492/625]
+boxes checked = 12800 (centre enclosure + Lipschitz slack < 0)
+largest box upper bound of (*) <= -0.00118991
+max q at centres <= 0.685300 ; max c <= 0.191215
+CERTIFIED: (*) < 0 for all d in [13103/100000, 131031/1000000], mu in [0, 492/625], r in [0, 492/625], given the Lipschitz bounds |d(*)/dmu| <= 117/100, |d(*)/dr| <= 237/500 r of #mwoe82ar-5qx8aa step 5

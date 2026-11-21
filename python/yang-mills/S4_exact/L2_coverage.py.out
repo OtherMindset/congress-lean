@@ -1,0 +1,3 @@
+chunks: 1 ; boxes per chunk: [12800] ; total: 12800
+each box: 123/25000 x 123/12500; total area = 242064/390625 = SIDE^2
+CERTIFIED: the boxes of chunks 1..1 tile [0, 492/625] x [0, 492/625] (mu x r) with no hole and no overlap

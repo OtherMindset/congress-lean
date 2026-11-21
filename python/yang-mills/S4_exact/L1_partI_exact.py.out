@@ -1,0 +1,4 @@
+alpha_0..3 = 1/3, pi a/16, (1+a^2)/30, pi a/192 ; beta_0..2 = pi/4, a/3, pi/32 (exact, checked)
+k^1 coefficient = 0, k^3 coefficient = 0, D_2 = (4+9a^2)/120 (exact, checked)
+C(K0) <= 0.242729 ; 1/30 - 4 K0^2 C(K0) >= 0.001984
+CERTIFIED: the Lemma E coefficient identities hold exactly and 1/30 - 4 K0^2 C(K0) > 0 for K0 = 23/128; with Lemma E (#mwoe7gvj-dios46) M(k,q) < 4/(3pi) for 0 < k <= 23/128, all unit q

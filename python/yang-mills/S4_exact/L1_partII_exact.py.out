@@ -1,0 +1,6 @@
+pi in [3.141592653589793, 3.141592653589794]; 4/(3pi) in [0.424413181578, 0.424413181579]
+rectangle [23/128, 805/1024] x [0, 1609/1024]: boxes accepted = 6551 ; evaluations = 13101
+exact total area of accepted boxes = area of the rectangle = 999189/1048576
+split-tree fingerprint = 983100138181022303
+max box upper bound <= 0.4244131312 < 4/(3pi) >= 0.4244131815
+CERTIFIED: M(k,q) < 4/(3pi) for all k in [23/128, 805/1024] and all unit q, given the reduction of #mwgwy6p5-r99mia and Lemmas K, P of #mwo6ggkf-xb5ojn
