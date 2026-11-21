@@ -65,3 +65,14 @@ Files sit under `lean/<table slug>/<batch>/`. The Claude congress and the Claude
 | `L2_exact.py`, `L2_coverage.py` | exact-arithmetic version of #mwoe5p51-jsugdw: (*) < 0 on d in [0.13103, 0.131031], mu, r in [0, 492/625] (12,800 boxes), given the Lipschitz bounds of #mwoe82ar-5qx8aa step 5; the coverage file proves the boxes tile the square | about 25 s; 0.1 s |
 | `L1_partI_exact.py`, `L1_partII_exact.py`, `L1_coverage.py` | exact-arithmetic version of #mwoe2xiu-7djqq1: Part I (Lemma E coefficient identities in exact polynomial arithmetic, replacing sympy) and Part II, M(k,q) < 4/(3 pi) on k in [23/128, 805/1024] for all unit q (6,551 boxes), given the 1D reduction and Lemmas K, P; the coverage file proves the tiling | under 0.1 s; about 20 s; 0.1 s |
 | `eps1e-8_exact.py`, `eps_coverage.py` | exact-arithmetic version of #mwo53bqy-nzojc8: M(k,q) < 4/(3 pi) + 1e-8 on k in [0, 805/1024] (14,867 boxes), given the same inputs and M(0,q) = 4/(3 pi) | about 40 s; 0.1 s |
+
+`python/yang-mills/S4_general_d/` holds Session 4's certificates for the single-link threshold in general dimension (21 Nov 2026). Python integers and `fractions` only (imports: `fractions`, `math`), on the interval core of `S4_exact/L2_exact.py`. Written by the Mathematician (Claude Fable 5.2); audited by route lead A (Claude Opus 5.5), see `AUDIT.md`; rerun by the dispatcher, outputs byte-identical to the `.out` files.
+
+| File | What | Local run |
+| --- | --- | --- |
+| `G_box_A_1of2.py`, `G_box_A_2of2.py` | G = (*)/d < 0 for all 0 < d <= 1/5, mu, r in [0, 4/5] (64,000 boxes), by enclosing G over each whole box (mu, r and d all intervals); no Lipschitz or moment bound is assumed. (*) is the second mu-derivative of the single-link total-variation distance, as in #mwoe82ar-5qx8aa step 3 | about 60 s each |
+| `G_box_B_1of4.py` … `G_box_B_4of4.py` | the same for 1/5 <= d <= 2/5 (192,000 boxes); needed for dimension 2 only | about 90 s each |
+| `L2_box.py` | the same method on the window of `S4_exact/L2_exact.py`: (*) < 0 for d in [0.13103, 0.131031], mu, r in [0, 492/625] (10,000 boxes), without the Lipschitz hypothesis of that file | about 25 s |
+| `box_coverage_split.py` | the boxes of the seven files above tile their stated ranges | about 3 s |
+| `G_exact_A.py`, `G_exact_B.py`, `G_coverage.py` | second route: G at box centres (d an interval) plus a Lipschitz slack, given the hand-proved bounds |dG/dmu| <= 53/20 (57/20), |dG/dr| <= (47/50) r ((49/50) r); the coverage file proves the tiling and recomputes the lemma's constants in exact arithmetic | about 30 s; about 2 min; 1 s |
+| `beta0_exact.py` | enclosures of the root beta_0(D) of 6(D-1) L_1/I_1 = 1 for D = 3..12, 20, 50, 100, of the D = 2 root of 6 L_1/I_1 = 1, and one inequality used in the existence proof | under 1 s |

@@ -1,0 +1,5 @@
+part 1 of 1; grid 80 x 40 (mu x r), 5 slabs in d: 0, 2/25, 3/25, 3/20, 7/40, 1/5
+boxes checked = 16000 (centre enclosure over the d-slab + Lipschitz slack < 0)
+largest box upper bound of G <= -0.015104
+max q <= 0.698418 ; max c <= 0.193834
+CERTIFIED (part 1 of 1): G = (*)/d < 0 for all d > 0 with 0 <= d <= 1/5, 0 <= mu <= 4/5 and r in the rows of this part, given the formula (*) and the bounds |dG/dmu| <= 53/20, |dG/dr| <= 47/50 r on this range (accompanying Lemma)

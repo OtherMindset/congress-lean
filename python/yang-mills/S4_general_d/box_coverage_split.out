@@ -1,0 +1,4 @@
+L2_box.py: boxes per part [10000], total 10000; they tile [0, 492/625] x [0, 492/625] x [13103/100000, 131031/1000000]
+G_box_A_1of2.py, G_box_A_2of2.py: boxes per part [32000, 32000], total 64000; they tile [0, 4/5] x [0, 4/5] x [0, 1/5]
+G_box_B_1of4.py .. G_box_B_4of4.py: boxes per part [48000, 48000, 48000, 48000], total 192000; they tile [0, 4/5] x [0, 4/5] x [1/5, 2/5]
+CERTIFIED: for each configuration the boxes of all parts tile the stated range, no hole, no overlap

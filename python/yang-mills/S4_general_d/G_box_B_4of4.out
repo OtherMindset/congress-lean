@@ -1,0 +1,5 @@
+part 4 of 4; grid 160 x 80 (mu x r), 15 slabs in d: 1/5, 219/1000, 59/250, 253/1000, 67/250, 283/1000, 37/125, 31/100, 161/500, 67/200, 173/500, 179/500, 369/1000, 379/1000, 39/100, 2/5
+boxes checked = 48000 (interval enclosure of G over the whole box < 0)
+largest box upper bound of G <= -0.014924
+max q <= 0.690742 ; max c <= 0.192397
+CERTIFIED (part 4 of 4): (*)/d < 0, hence (*) < 0, for all d > 0 with 1/5 <= d <= 2/5, 0 <= mu <= 4/5, 3/5 <= r <= 4/5; no Lipschitz or moment bound is assumed; (*) is the expression in the header

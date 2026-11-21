@@ -1,0 +1,5 @@
+G_exact_A.py: 16000 boxes tile [0, 4/5] x [0, 4/5] x [0, 1/5]; volume 16/125
+  Lemma constants for a = b = 4/5, dbar = 1/5: qbar <= 0.907463, lambda = 1.320000, LGmu <= 2.641743 <= 53/20, LGr/3 <= 0.937372 <= 47/50
+G_exact_B.py: 57600 boxes tile [0, 4/5] x [0, 4/5] x [1/5, 2/5]; volume 16/125
+  Lemma constants for a = b = 4/5, dbar = 2/5: qbar <= 1.012982, lambda = 1.593671, LGmu <= 2.839926 <= 57/20, LGr/3 <= 0.977584 <= 49/50
+CERTIFIED: each file's boxes tile its range with no hole and no overlap, and its constants LMU, LR are at least the Lemma's LGmu, LGr/3 for that range
