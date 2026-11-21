@@ -8,14 +8,15 @@ Labels: [P] proved here; [L] proved in `YMSlabArith.lean` in this folder (built 
 
 ## 0. Prior work
 
-H. T. Rajabu, "Explicit strong-coupling mass gap and a robust landing interface for four-dimensional SU(2) lattice Yang–Mills theory", version 2.2, 29 October 2026, in Zenodo doi:10.5281/zenodo.23691339 (unrefereed; I read this paper's introduction, §2, §3 and reference list, and none of its proofs). It uses the same weight exp((β/2)Σ_p tr U_p). Its introduction reports, from the author's Parts I and II (working notes of 26 October 2026 in the same record, **not read by me**):
+The route of this note is not new. It is in two working notes by H. T. Rajabu, both dated 26 October 2026 and included in Zenodo doi:10.5281/zenodo.23691339 (unrefereed). I have read both in their LaTeX source; I have not checked their computer-assisted certificates. They use the same weight exp((β/2)Σ_p tr U_p).
 
-- Part I: Wilson's area law for β < 0.577, "via the slab σ-model of Durhuus and Fröhlich", from a geodesic Wasserstein single-link constant 1/(2√3);
-- Part II: a chordal single-link constant 1/4, giving the area law for β < 2/3.
+- **Part I**, "An explicit strong-coupling mass gap and area law for four-dimensional SU(2) lattice Yang–Mills: Kantorovich contraction, the sharp single-link constant, and a line gauge". Its Corollary 6.5 is the area law on tori for β < 1/√3 ≈ 0.577: Dobrushin's condition in Wasserstein form (geodesic metric, single-link constant 1/(2√3)) on the height-1 slab σ-model, then the Durhuus–Fröhlich theorem in the form of Cao–Nissim–Sheffield (Definition 2.1, Theorem 2.3). The proof contains the reduction of §2 below: boundary fields A = e^{ia}A₀, B = e^{ib}B₀ give staples cos(a − b)·(a unit vector), six neighbours for L ≥ 3, and L ≤ 2 handled separately. It also notes that d = 3 gives β < √3/2 by the same argument.
+- **Part II**, "Past the single-site ceiling by exact decimation and the chordal metric: explicit mass gap up to β_W = 0.393 and area law up to β_W = 2/3 …". Its Theorem 7.6 is W₁(ν_s, ν_{s′}) ≤ ¼|s − s′| in the chordal metric for |s|, |s′| ≤ 4, and its Corollary 7.7(iii) is the area law on tori for β < 2/3. Its Proposition 7.3 gives the exact chordal constant q(κ) for changes perpendicular to the field, which contains the remark of §9 below.
+- A later paper in the same record ("Multiscale covariance transfer and a conditional continuum mass gap …", version 2.1, Proposition 7.1) shows that no use of the slab model that is uniform in the boundary fields can pass β = 4G₃(0) ≈ 1.011.
 
-A second paper in the same record, "Multiscale covariance transfer and a conditional continuum mass gap for four-dimensional SU(2) lattice Yang–Mills theory", version 2.1, 29 October 2026 (I read its abstract, §7 and Remark 8.1), is more specific. Its Remark 7.2 says the area law on tori for β < 2/3 is proved in Part II, Corollary 7.7(iii), by feeding the chordal constant 1/4 into the slab σ-model in the form of Theorem 2.3 of Cao–Nissim–Sheffield, and that for boundary fields A_e = e^{ia}A₀, B_e = e^{ib}B₀ with A₀, B₀ ∈ SU(2) the slab coupling is cos(a − b)⟨q_x, M_e q_y⟩ with M_e orthogonal, so that the kernels are von Mises–Fisher laws with field of norm at most 6β. That is the reduction of §2 below. Its Proposition 7.1 also bounds every such route: no single-site Dobrushin condition for the ungauged Wilson specification, and no use of the slab model that is uniform in the boundary fields, can hold beyond β = 4G₃(0) ≈ 1.011.
+On the total-variation criterion itself, Part I has one sentence (§8, "Comparison"): total-variation Dobrushin has small-β slope 4/(3π) per neighbour, hence at most π/16 in the line gauge. It is stated without proof and as a leading-order remark; the note does not treat the total-variation coefficient at finite β.
 
-So the route of this note (Dobrushin's condition on the height-1 slab, then the Durhuus–Fröhlich theorem), including the reduction of §2, is already claimed there, in Wasserstein form, with a range larger than the one in §7. What this note adds is only the total-variation form of the condition, which rests on the constant 4/(3π) of the table and reaches less far (π/8 at d = 4, and no further than β₁ ≈ 0.3963: §5). I have not checked the claims of Parts I and II. §2 and §§5–7 below were written before I read these papers and are kept as an independent derivation, not as a new one.
+What this note adds is therefore only the total-variation form of the slab condition, which rests on the constant 4/(3π) of the table and reaches less far than either of Rajabu's ranges (π/8 at d = 4, and no further than β₁ ≈ 0.3963: §5). §2 and §§5–7 below were written before I read these notes and are kept as an independent derivation, not as a new one.
 
 ## 1. Setting
 
@@ -101,12 +102,12 @@ Let ν = vMF(κe₁), n a unit vector orthogonal to e₁, and f: R⁴ → R 1-Li
 
 Proof. The reflection Ru = u − 2⟨n, u⟩n preserves ν and changes the sign of ⟨U, n⟩. So E_ν⟨U, n⟩ = 0 and Cov_ν(f, ⟨U, n⟩) = E_ν[f·⟨U, n⟩] = E_ν[f_odd·⟨U, n⟩] with f_odd = (f − f∘R)/2, and |f_odd(u)| ≤ |⟨n, u⟩| [L: `odd_part_le`]. ∎
 
-So the derivative of the Wasserstein-1 distance (Euclidean metric on S³) of vMF(θ) in a direction orthogonal to θ is at most 1/4 per unit of |Δθ|, and at θ = 0 in every direction. Whether the same holds in the direction of θ for θ ≠ 0 I have not proved. [O] The bound in every direction is claimed elsewhere: Rajabu's paper (§0) quotes its Part II, Theorem 7.6, as ‖(⟨u, v⟩ − E⟨u, v⟩)ν_H‖_ch ≤ ¼|v| for |H| ≤ 4, and a bound W₁(vMF(θ), vMF(θ′)) ≤ |θ − θ′|/4 is stated in Zenodo 10.5281/zenodo.23490028; both are unrefereed and neither proof has been checked by us. With that bound the argument of §§5–7 in Wasserstein form gives the row sum 2(d−1)β/4 and the range β < 2/(d−1), which is 2/3 at d = 4: the range Rajabu states. This note proves only the transverse case above.
+So the derivative of the Wasserstein-1 distance (Euclidean metric on S³) of vMF(θ) in a direction orthogonal to θ is at most 1/4 per unit of |Δθ|, and at θ = 0 in every direction. Whether the same holds in the direction of θ for θ ≠ 0 I have not proved. [O] The bound in every direction is claimed elsewhere: Rajabu's Part II (§0), Theorems 7.5–7.6, for |θ| ≤ 4, by divergence-free flows in the ball and a computer-assisted series inequality; and a bound W₁(vMF(θ), vMF(θ′)) ≤ |θ − θ′|/4 is stated in Zenodo 10.5281/zenodo.23490028. Both are unrefereed, and we have not checked either proof's certificate. With that bound the argument of §§5–7 in Wasserstein form gives the row sum 2(d−1)β/4 and the range β < 2/(d−1), which is 2/3 at d = 4: the range Rajabu states. This note proves only the transverse case above.
 
 ## 10. Open items before any post
 
 1. (H_K) on (805/1024, 19/8]: the rigorous certificate.
 2. §6 written out for the finite site set, with the comparison theorem's hypotheses checked.
 3. The cases L = 1, 2 (not treated).
-4. Reading Durhuus–Fröhlich 1980 and Rajabu's Parts I and II.
+4. Reading Durhuus–Fröhlich 1980.
 5. A second pass by a different model, then cross-family checks.
