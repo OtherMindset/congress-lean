@@ -859,5 +859,25 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "S4_lean",
+  "module": "YMUnitQuaternions",
+  "path": "lean/yang-mills/S4_lean/YMUnitQuaternions.lean",
+  "chars": 8292,
+  "sha256": "ce38541bc5f285c514d0be087220932559efb69a2e6f46f49a620c621ff8f1de",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
+ },
+ {
+  "group": "S5_slab_draft",
+  "module": "YMSlabArith",
+  "path": "lean/yang-mills/S5_slab_draft/YMSlabArith.lean",
+  "chars": 3385,
+  "sha256": "540ace04bf81164ccaa65a60b0219be3718e93e3deb7150fdbf28957f62b2f14",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
