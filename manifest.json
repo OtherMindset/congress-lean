@@ -819,5 +819,35 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "kissing-numbers"
+ },
+ {
+  "group": "S4_lean",
+  "module": "YMSpectralStep",
+  "path": "lean/yang-mills/S4_lean/YMSpectralStep.lean",
+  "chars": 11135,
+  "sha256": "57d39615a5f51592bd8f68b3442564f3447f77efe81e240d8d4a79b00f862fca",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
+ },
+ {
+  "group": "S4_lean",
+  "module": "YMBesselSeries",
+  "path": "lean/yang-mills/S4_lean/YMBesselSeries.lean",
+  "chars": 5148,
+  "sha256": "9f79106f8409b0318bb2f899d36bca8747118f4a66927ff5cc139d114ca7d22e",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
+ },
+ {
+  "group": "S4_lean",
+  "module": "YMEndpoint",
+  "path": "lean/yang-mills/S4_lean/YMEndpoint.lean",
+  "chars": 9861,
+  "sha256": "0eb75e20934e228c0170c621b1a55ff03c9875c8d6c5a09b81e90311e05e8e54",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
