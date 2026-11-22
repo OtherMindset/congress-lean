@@ -1,0 +1,51 @@
+== machine
+Sun Nov 22 20:04:51 UTC 2026
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+2
+model name	: Intel(R) Xeon(R) Processor @ 2.30GHz
+== hashes
+02f55220b054392dd1e11693abf2068aedb0dbd2cb23df5c3c5e9f7e545d8e27  ../../../../python/yang-mills/S6_threshold/G_affine_cert.py
+012e7361e8cf841770b2b846c6110141eea0eb1a11a78ce6ba34c65d61603bde  ../../../../python/yang-mills/S6_threshold/G_affine_reference.txt
+bec71ef5d12d2bec35463b5fd9a19830bf8b29e78d861a34a23bd94818023dea  GAffineEval.lean
+7a170f95daa8a40d08f5ed2717eb2702226486309696e3607ec0743319c616d3  GAffineEvalRef.lean
+06c610500e5d10e7bb4269cdbc76eb928dd62fe3fd1e7bf0ac6ec72372e26ef9  ../../../../python/yang-mills/S6_threshold/G_affine_reference_sc.py
+694e4bf8c4723b56777834c9a0543a518efd0c56f66bb6c106f5d8b5f1b8ebf2  full_table_check.py
+635c2b3deca49a14f07e63f30b84639300cfbf3dd8d5e6553aad5b46bb73795c  make_lean.py
+3d64c920a2f6369fec65e113a17d1c9b7cf3305b22f14f5eecc683835fd7e102  ../pilot/GBoxPilot.lean
+== self-contained reference program, run alone, against G_affine_reference.txt
+identical, 22 lines
+== closed form of the full table
+QFULL entries checked: 320 (k <= 7, n < 47 - 2k); all equal the closed form and are >= 0
+used by the evaluator: k <= 7, n <= 31
+== GAffineEvalRef.lean is the evaluator plus the 20 theorems, rebuilt from the sources
+rebuilt: unchanged
+prefix identical to GAffineEval.lean
+== #eval against the Python program on all 128 boxes (g; lo, hi of q and c; check): count, mismatches
+128
+0
+== kernel: elaboration of the evaluator alone (start-up baseline), 3 runs
+GAffineEval.lean .681600913 s
+GAffineEval.lean .681519448 s
+GAffineEval.lean .658463936 s
+== kernel: one box (reference box), profiler, 3 runs; the pilot (one box) beside it
+Eval:  type checking took 1.29s
+pilot: type checking took 4.18s
+Eval:  type checking took 1.16s
+pilot: type checking took 4.15s
+Eval:  type checking took 1.12s
+pilot: type checking took 4.39s
+== whole files, wall clock: one box, the pilot
+one box 1.496269819 s
+pilot 4.629022211 s
+one box 1.795488911 s
+pilot 4.686129920 s
+one box 1.730963795 s
+pilot 4.564279909 s
+== the 20 reference theorems (GAffineEvalRef.lean), wall clock
+all 20 pass: 23.853446537 s
+== all 128 boxes, check b = true by decide +kernel, one file, wall clock
+all 128 pass: 144.789867551 s
+== mutation: the kernel refuses a wrong e (ref01, e - 1) and accepts check = false on the whole range as one box
+mut.lean:456:105: error: (kernel) application type mismatch
+== done
+Sun Nov 22 20:08:36 UTC 2026
