@@ -6,11 +6,30 @@
 # product of the three partitions, each box once.  (3) and (4) give: every point of the range lies in a box.
 # (5) as a second, independent argument: all boxes lie in the range, their interiors are pairwise disjoint and
 # their volumes add up to the volume of the range.
-import sys, os
+# Self-contained: the box generator below (BEGIN COPY ... END COPY) is copied character for character from
+# G_affine_cert.py; it must stay identical to the lines there.
 from fractions import Fraction as Fr
 from itertools import product
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import G_affine_cert as ga
+
+# BEGIN COPY (G_affine_cert.py)
+PART, NPART = 1, 1
+NMU, NR, ND = 8, 8, 2
+SIDE, DTOP = Fr(4, 5), Fr(1, 5)
+
+
+def edges(n, top):
+    return [top * i / n for i in range(n + 1)]
+
+
+def boxes(part=PART, npart=NPART):
+    em, er, ed = edges(NMU, SIDE), edges(NR, SIDE), edges(ND, DTOP)
+    for i in range(NMU):
+        if i % npart != part - 1:
+            continue
+        for j in range(NR):
+            for k in range(ND):
+                yield (em[i], em[i + 1], er[j], er[j + 1], ed[k], ed[k + 1])
+# END COPY
 
 
 def need(ok, msg):
@@ -19,8 +38,8 @@ def need(ok, msg):
         raise SystemExit(1)
 
 
-TOP = (ga.SIDE, ga.SIDE, ga.DTOP)
-parts = [list(ga.boxes(p, ga.NPART)) for p in range(1, ga.NPART + 1)]
+TOP = (SIDE, SIDE, DTOP)
+parts = [list(boxes(p, NPART)) for p in range(1, NPART + 1)]
 allb = [b for pt in parts for b in pt]
 need(len(set(allb)) == len(allb), "a box occurs twice (within or across parts)")
 for b in allb:
@@ -41,6 +60,6 @@ for x, y in ((x, y) for k, x in enumerate(allb) for y in allb[k + 1:]):
     need(any(max(x[2 * i], y[2 * i]) >= min(x[2 * i + 1], y[2 * i + 1]) for i in range(3)), "interiors overlap")
 vol = sum((b[1] - b[0]) * (b[3] - b[2]) * (b[5] - b[4]) for b in allb)
 need(vol == TOP[0] * TOP[1] * TOP[2], "volumes do not add up")
-print("parts = %d, boxes = %d, axis cells = %d x %d x %d" % (ga.NPART, len(allb), *(len(p) for p in proj)))
+print("parts = %d, boxes = %d, axis cells = %d x %d x %d" % (NPART, len(allb), *(len(p) for p in proj)))
 print("TILING OK: the boxes of G_affine_cert.py cover [0,%s] x [0,%s] x [0,%s] (mu, r, d); exact rationals"
       % TOP)
