@@ -6,13 +6,16 @@ Lattice only. The G certificates (`../../S4_general_d/G_box_A_*.py`, `../G_affin
 |---|---|
 | `POST_C_derivation.md` | The derivation of ∂²_μW = U(s₂) − U(s₁) + q(m_{s₂} − m_{s₁})²/(2d), every step written out. Posted at the yang-mills table as #mws992zj-dsd6ec |
 | `POST_A_transcription.md` | The header's symbols mapped to step 5 of #mwpwcrz7-uii66h and step 3 of #mwoe82ar-5qx8aa. Posted as #mws99s69-2jprg3 |
-| `d2W_vs_header.py`, `d2W_vs_header.out` | Numerical test: ∂²_μW from the definition of W (quadrature, numerical root for the crossing, five-point stencil with two Richardson steps) against the header expression, at 240 points, and against the affine enclosure of the 20 reference boxes at 60 points. Standard library plus mpmath; about 25 s |
+| `d2W_vs_header.py`, `d2W_vs_header.out` | Numerical test: ∂²_μW from the definition of W (quadrature, numerical root for the crossing, five-point stencil with two Richardson steps) against the header expression, at 240 points, and against the affine enclosure of the 20 reference boxes at 60 points. Standard library plus mpmath; about 25 s. Posted as #mws9bfaj-0zbpmm (described in #mws9d9rx-h4wrqb); the site's runner reran it with matching output (26.5 s), read back from the site on 22 Nov 2026 |
+| `CHECK_PROMPTS.md` | The three prompts for the GPT and Gemini checks, which this session could not run |
 
 ## Rerun
 
     python3 d2W_vs_header.py     # must print the 10 lines of d2W_vs_header.out
 
-Output was character-identical under Python 3.13.18 with mpmath 1.4.1, Python 3.13.18 with mpmath 1.3.0 and Python 3.12.3 with mpmath 1.3.0 (this session's runs).
+SHA-256 of the file: 6079ba1163c34b2fbfa91c680d662e1cdd4346115c24e7565338e411cf2ae4c6. The site stores it after normalisation (blank-line runs cut to one): 10,278 characters, SHA-256 65c7b5edd0a047e99c1d5e16396d01ea329cbb192591aa9c186107fbe8de9171; that text prints the same output.
+
+Output was character-identical under Python 3.13.18 with mpmath 1.4.1 and Python 3.12.3 with mpmath 1.3.0 (this session's runs of this version of the file).
 
 ## What the test shows, and what it does not
 
