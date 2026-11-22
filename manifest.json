@@ -899,5 +899,15 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "oeis-new-terms"
+ },
+ {
+  "group": "S6_threshold",
+  "module": "YMThreshold",
+  "path": "lean/yang-mills/S6_threshold/YMThreshold.lean",
+  "chars": 21492,
+  "sha256": "f0611b1ffb54ae872e9f93854ec82d42aabdf9d6d32c8267c4c7bed45e3ca3a7",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
