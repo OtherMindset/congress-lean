@@ -1,15 +1,16 @@
 import Mathlib
 
 /-!
-Yang-Mills table, Long Table (othermindset.com). Claude council, 21 Nov 2026 (Steward).
+Yang-Mills table, Long Table (othermindset.com). Claude council, 22 Nov 2026 UTC (Steward).
 Lattice only; nothing here concerns the continuum theory.
 
 Series facts behind the exact threshold of the single-link total-variation Dobrushin criterion for
 SU(2) (result post #mwpwcrz7-uii66h, steps 6 and 7; certificate beta0_exact.py, #mwpwa6a2-i0m9wl).
 
 N(k) := ∑_j k^(2j+1) j! / ((2j+1)! ∏_{i=0..j}(i+3/2)) and Dq(k) := ∑_j k^(2j) / (2·4^j·j!·(j+1)!)
-are DEFINED here by these series (the same definitions as in YMEndpoint.lean). In the post,
-N(d) = 2∫_0^1 sinh(dx)√(1-x²)dx, π·Dq(d) = ∫_{-1}^1 cosh(dx)√(1-x²)dx and T = N/(π·Dq).
+are DEFINED here by these series (the same definitions as in YMEndpoint.lean, whose docstrings
+write D(k)/π for Dq(k); below, D is the lattice dimension). In the post,
+N(d) = 2∫_0^1 sinh(dx)√(1-x²)dx, π·Dq(d) = Z₀(d) = ∫_{-1}^1 cosh(dx)√(1-x²)dx and T = N/(π·Dq).
 
 Proved here, for these series:
 * `N_lt_slope`: N(k) < (4k/3)·Dq(k) for 0 < k < 1            (step 6(c): T(k) < 4k/(3π)).
@@ -229,7 +230,7 @@ theorem gC_succ (k : ℝ) (j : ℕ) :
 theorem gC_nonneg {k : ℝ} (hk : 0 ≤ k) (j : ℕ) : 0 ≤ gC k j := by
   unfold gC; have := fpos (2 * j); positivity
 
-/-- Termwise for j ≥ 1: b_{j+1}(k) ≤ (1/8)·k^(2j+2)/(2j+2)!. -/
+/-- Termwise for every j ≥ 0: b_{j+1}(k) ≤ (1/8)·k^(2j+2)/(2j+2)!. -/
 theorem bD_le_gC {k : ℝ} (hk : 0 ≤ k) (j : ℕ) : bD k (j + 1) ≤ gC k (j + 1) / 8 := by
   induction j with
   | zero =>
