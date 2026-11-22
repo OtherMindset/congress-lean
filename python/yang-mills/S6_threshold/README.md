@@ -2,7 +2,7 @@
 
 This is Part A of `lean/yang-mills/S6_threshold/SPEC_small_certificate_and_kernel_checker.md` (phase 1). Lattice only.
 
-**Status: built and run here, not yet checked by anyone else.** Gate 1 needs three things: runner reruns with matching output, a second pass by a different Claude model, and code reads by two model families. None of them has happened. Nothing has been posted, and there is no ledger entry. The paper's theorems keep resting on the present certificate, `python/yang-mills/S4_general_d/G_box_A_*.py` (ledger l-mwpwfqjt-6ak431), which is unchanged.
+**Status:** built and run here, with a second pass by a different Claude model done (below). Gate 1 also needs runner reruns with matching output and code reads by two model families. Neither has happened. Nothing has been posted, and there is no ledger entry. The paper's theorems keep resting on the present certificate, `python/yang-mills/S4_general_d/G_box_A_*.py` (ledger l-mwpwfqjt-6ak431), which is unchanged.
 
 ## Claim
 
@@ -37,6 +37,24 @@ From this folder:
 
 These checks are evidence that the program does what its header says. They are not a proof of it: the proof is the code read.
 
+## Second pass (claude-sonnet-5-5, 22 Nov 2026 UTC)
+
+An independent hard read of `G_affine_cert.py`, `G_affine_tiling.py` and `G_box_A_1of2.py`.
+
+**Verdict: sound.** Each of the 12 points below was derived from the source and found sound, with every rounding direction checked.
+
+Its own tests, which did not use `G_affine_checks.py`:
+- 4,800 random rule cases at P = 8, 12, 20 and 64, with the truth computed independently to 90 digits: no violation of (ENC).
+- At 40 points, G evaluated by quadrature straight from the header's definition: the affine enclosure agrees to better than 10⁻¹¹ in every case.
+- Reruns of the certificate and the tiling program: outputs identical to the `.out` files.
+
+It found no defect that could make the certificate wrong. Its three documentation and robustness points were then fixed:
+- The header's wording on where tails must hold: at points of the box, not on the slightly larger ε-cube.
+- An assertion of the box count.
+- The NE and NA differences from `G_box_A_1of2.py`, now stated.
+
+It did not check that the header expression equals the paper's (*), or the reference file.
+
 ## Points to derive in the code reads (spec 2.5)
 
 The header of `G_affine_cert.py` states each rule. A reader should derive, from the source:
@@ -60,7 +78,7 @@ The header of `G_affine_cert.py` states each rule. A reader should derive, from 
     - The series tail of `G_box_A_1of2.py`, at the upper corner of the box, added to every E_n and O_n. It is monotone in μ, r, d ≥ 0, and the length of [c, 1] is ≤ 2.
     - The artanh tail ≤ 2·hi(u₂)^13 for 0 ≤ u₂ < 1/4.
     - The φ tail ≤ z^(2KR+2)·cosh z/(2KR+3)! for z ≥ 0.
-11. **The evaluator follows `G_box_A_1of2.py`:** the same series degrees (JS, JD, KR = 18, 5, 7), the same pair algebra, and G = 2U_o + 2q·m_o².
+11. **The evaluator follows `G_box_A_1of2.py`:** the same series degrees (JS, JD, KR = 18, 5, 7), the same pair algebra, and G = 2U_o + 2q·m_o². The elementary-function series are not the same: NE = 40 and NA = 30 here, against 50 and 40 there, each with its own remainder bound. asin(c) is a function rule here.
 12. **Tiling** (`G_affine_tiling.py`): the product-partition argument and the volume argument.
 
 ## Not done

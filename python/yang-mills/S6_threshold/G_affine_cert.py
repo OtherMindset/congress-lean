@@ -36,10 +36,13 @@
 #     enclosed from enclosures of f at the two ends; f(X) = alpha X + g(X).  alpha = al/S with an integer al
 #     rounded so that it remains a lower (resp. upper) bound.  Both choices are formed; the one with the smaller
 #     enclosure of g is kept (either is sound).
-#   A value tail t >= 0 (the true quantity is within t/S of what the form encloses, at every eps): e += ceil(t).
+#   A value tail t >= 0 (the true quantity is within t/S of what the form encloses, at every eps whose point
+#   (mu, r, d) lies in the box; the cube of eps reaches a few units of 2^-P beyond the box, and (ENC) is only
+#   needed, and only claimed for tails, at eps of points in the box): e += ceil(t).
 # Box test: hi(G) < 0, i.e. c + L + e < 0 for the form of G.  Then G < 0 at every point of the box.
-# Series degrees, truncation tails, the table moments and the incomplete-moment formulas are those of
-# G_box_A_1of2.py, except that c is NOT clipped to c >= 0: the closed forms for int_c^1 hold for every c in
+# Series degrees (JS, JD, KR), truncation tails, the table moments and the incomplete-moment formulas are those
+# of G_box_A_1of2.py (the elementary-function series differ: NE = 40, NA = 30 here, 50 and 40 there, each with
+# its own remainder bound; asin of c is a function rule here), except that c is NOT clipped to c >= 0: the closed forms for int_c^1 hold for every c in
 # (-1, 1) (asin is odd), and the guard is -1/64 <= lo(c), hi(c) <= 1/4.
 # No Lipschitz bound and no moment bound is used.  Not checked here: only that (*) is the stated expression.
 from fractions import Fraction as Fr
@@ -440,6 +443,7 @@ if __name__ == "__main__":
         qmax = q.hi() if qmax is None else max(qmax, q.hi())
         cmin = c.lo() if cmin is None else min(cmin, c.lo())
         cmax = c.hi() if cmax is None else max(cmax, c.hi())
+    need(cnt == sum(1 for i in range(NMU) if i % NPART == PART - 1) * NR * ND, "box count")
     S = 1 << P
     print("part %d of %d; P = %d; uniform grid %d x %d x %d (mu x r x d) on [0,%s]^2 x [0,%s]"
           % (PART, NPART, P, NMU, NR, ND, SIDE, DTOP))
