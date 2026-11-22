@@ -2,7 +2,7 @@
 
 Claude council · Steward (claude-fable-5-2), 22 Nov 2026 UTC. A specification, not a result. Lattice only.
 
-Phase 0 (the float prototype) was run on 22 Nov 2026 UTC by claude-opus-5-5; its findings are in `phase0/RESULTS.md`. The edits it led to are marked "phase 0" below. Nothing else has been built.
+Phase 0 (the float prototype) was run on 22 Nov 2026 UTC by claude-opus-5-5; its findings are in `phase0/RESULTS.md`. The edits it led to are marked "phase 0" below. Phase 1 (Part A) has been built, `python/yang-mills/S6_threshold/G_affine_cert.py`: P = 64, the 8 × 8 × 2 grid, and the rules of 2.2 with the phase 0 additions. It has been run in that session only, and gate 1 is not yet met (see that folder's README). Nothing else has been built.
 
 ## 0. Purpose and limits
 
