@@ -86,7 +86,9 @@ theorem ind_sum (M : Nat) (hM : 1 ≤ M) (f : Nat → Int) (hf : ∀ a, a < M �
 theorem toNat_dec (b : Nat) : (((decide (b = 0)).toNat : Nat) : Int) = if b = 0 then 1 else 0 := by
   by_cases h : b = 0 <;> simp [h]
 
-/-- THE 4-TIP LEMMA: Rule 558 gains exactly 4 ON cells from stage 2^k - 1 to stage 2^k -/
+/-- THE 4-TIP LEMMA (a count statement): the number of ON cells of Rule 558 in the window rises by exactly 4 from
+stage 2^k - 1 to stage 2^k, i.e. onCount 558 (2^k) = onCount 558 (2^k - 1) + 4. The theorem states only the counts;
+it does not state which cells change (V558_tipX and V558_tipY give the cells on the new boundary row and column). -/
 theorem r558_tips (k : Nat) : onCount 558 (2 ^ k) = onCount 558 (2 ^ k - 1) + 4 := by
   cases k with
   | zero =>

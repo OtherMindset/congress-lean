@@ -26,7 +26,7 @@ def w3 : Nat := ofDigits 576 [0x6593D9C0821860E6302085D7417828AAAA042216A6A66108
   0x8E39239A38228A48A68A05148D4A9481452252952041085095080F3DD3D53E038E74E54E80A28F2992A028A38A60A8239249083205228A220C8218608483207DF41F20C822924908,
   0x7924925928132CB2DC2E048B2CB6CB8238E39268E08A28A49A28145148EA520514522A5480B2CB7962E03CF3DD54F80E38E7553A028A28F64A80A28A3982A0]
 
-/-- each packed word of this data file has fewer than 42 * 300 = 12600 bits: it holds the 300 product states that VN.unpack 6 300 reads and nothing beyond them (kernel check on the data). -/
+/-- each packed word of this data file is below 2 ^ (42 * 300) = 2 ^ 12600, i.e. has at most 12600 bits: it holds the 300 product states that VN.unpack 6 300 reads and nothing beyond them (kernel check on the data). -/
 theorem words_fit_D1 : w3 < 2 ^ 12600 := by decide +kernel
 
 end VN.W3B_R465

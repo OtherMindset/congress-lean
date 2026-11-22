@@ -62,7 +62,7 @@ def w5 : Nat := ofDigits 576 [0xADADF42A00D2B6A6A450A80B0C0E0E0582A02B3038387C0A
   0xC910B87604871714832518190A192243D4E05F285F880F528108650A00346E044644487331D81117D1218C476048294B4B355181286A0604D1D60421980800D1B8134692524D1D20,
   0x6273736268768111C9]
 
-/-- each packed word of this data file has fewer than 54 * 300 = 16200 bits: it holds the 300 product states that VN.unpack 8 300 reads and nothing beyond them (kernel check on the data). -/
+/-- each packed word of this data file is below 2 ^ (54 * 300) = 2 ^ 16200, i.e. has at most 16200 bits: it holds the 300 product states that VN.unpack 8 300 reads and nothing beyond them (kernel check on the data). -/
 theorem words_fit_D2 : w4 < 2 ^ 16200 ∧ w5 < 2 ^ 16200 := by decide +kernel
 
 end VN.W3B_R505

@@ -28,8 +28,8 @@
   "group": "W3L1r_rules_505_507",
   "module": "W3B_R505_D1",
   "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D1.lean",
-  "chars": 9040,
-  "sha256": "c639a1a8b33773de115a296119edf37a3f592ef345f4387e93e7cb1eb27763b2",
+  "chars": 9068,
+  "sha256": "491c58c8f37ea0ec0752ca83fc55952904e60493bde6a8c5e1776fba27fcbae8",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R505_C"
@@ -40,8 +40,8 @@
   "group": "W3L1r_rules_505_507",
   "module": "W3B_R505_D2",
   "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D2.lean",
-  "chars": 9046,
-  "sha256": "37ff854052b77bc43fe266ad6d27cd96afb2eebd68c82eed4c981cf9bd045828",
+  "chars": 9074,
+  "sha256": "cd526d2748abbc1538a36445e42349e2faabaab8c7e6f04989a52a98a7920029",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R505_D1"
@@ -52,8 +52,8 @@
   "group": "W3L1r_rules_505_507",
   "module": "W3B_R505_D3",
   "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R505_D3.lean",
-  "chars": 9047,
-  "sha256": "cd5be29f1dbec481e4149bece042965d402d88ac1830bedd1dd73f9ffd4ef4a4",
+  "chars": 9075,
+  "sha256": "74d0a2c526f5f5f7dd012f337184f2682bf2711a0ffffdda3518a9288d790ef2",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R505_D2"
@@ -103,8 +103,8 @@
   "group": "W3L1r_rules_505_507",
   "module": "W3B_R507_D1",
   "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D1.lean",
-  "chars": 9042,
-  "sha256": "5bfce1d9c611346daa2c0c9243617a128884b35ebdc9c1a8209a397cb7dca530",
+  "chars": 9070,
+  "sha256": "2f4674abe7597853821d6b86f0e0189d05f30bbb9f6dadcaacfc5275baa442e3",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R507_C"
@@ -115,8 +115,8 @@
   "group": "W3L1r_rules_505_507",
   "module": "W3B_R507_D2",
   "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D2.lean",
-  "chars": 9045,
-  "sha256": "5add58b9216d108fe2a0d4aa40ba47a55c08ef27273636710647563d11c43de7",
+  "chars": 9073,
+  "sha256": "33cf9586e96750cc4c6fa421d1202cac0888d4f9462eda1c35d99cc748f4c4d6",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R507_D1"
@@ -127,8 +127,8 @@
   "group": "W3L1r_rules_505_507",
   "module": "W3B_R507_D3",
   "path": "lean/oeis-new-terms/W3L1r_rules_505_507/W3B_R507_D3.lean",
-  "chars": 9046,
-  "sha256": "68b031ca46b8eb79ac7cb02a7838990bb9eea5cbd19d4238a8d0974647de950a",
+  "chars": 9074,
+  "sha256": "ad4f5a58604b5cf5747b04b52711596d8d0abd337c99415bdd79fc115c7979c3",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R507_D2"
@@ -338,8 +338,8 @@
   "group": "W3B_A270218_rules_129_465_553_425",
   "module": "W3B_R465_D1",
   "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R465_D1.lean",
-  "chars": 3836,
-  "sha256": "6d303c2e7cc908000daa661390630a8a9fde9e4bf5964f85112f31ea082bd652",
+  "chars": 3864,
+  "sha256": "a3a658a6a29733c7d7355f5f1f913dbbc2cd1369383f240d807994022baf1704",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R465_C"
@@ -389,8 +389,8 @@
   "group": "W3B_A270218_rules_129_465_553_425",
   "module": "W3B_R553_D1",
   "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_D1.lean",
-  "chars": 10488,
-  "sha256": "ace606581fb8055d7d5933ec4d541c5c7573f9d6e6cef7dcf3cb9af66b965397",
+  "chars": 10516,
+  "sha256": "91f929c2ea4c12d0b5fed10d595be037876d6df7f4647a8ce2f2dc7c910f63e1",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R553_C"
@@ -401,8 +401,8 @@
   "group": "W3B_A270218_rules_129_465_553_425",
   "module": "W3B_R553_D2",
   "path": "lean/oeis-new-terms/W3B_A270218_rules_129_465_553_425/W3B_R553_D2.lean",
-  "chars": 3837,
-  "sha256": "750cfffaf2e5ed0841c190d10658eeeb87ac8feb6959e58bcd9417fc84560ce1",
+  "chars": 3865,
+  "sha256": "3d12c5a6d0e348cf12ed69802a6c4a574cba188d0343463305e15d7233bdc069",
   "imports_posted": [],
   "imports_in_bundle": [
    "W3B_R553_D1"
@@ -595,8 +595,8 @@
   "group": "LDR_rules_469_337",
   "module": "LDR_T3",
   "path": "lean/oeis-new-terms/LDR_rules_469_337/LDR_T3.lean",
-  "chars": 7435,
-  "sha256": "0ddd4cc5d438f92e4c503daca85704c7a0efa1d2eab85961df77aec48bf181d0",
+  "chars": 7692,
+  "sha256": "93b56cf20922a9f5ab121b20f7fe1b158355f9ae9311088399c8266ea905a768",
   "imports_posted": [],
   "imports_in_bundle": [
    "LDR_T2"
@@ -681,8 +681,8 @@
   "group": "S4_rule_654_A273331",
   "module": "R654core",
   "path": "lean/oeis-new-terms/S4_rule_654_A273331/R654core.lean",
-  "chars": 16874,
-  "sha256": "cec6af8f36c967ac4d7627bc725c9865dbf1887ae821a2fd7627caf4388490f0",
+  "chars": 17327,
+  "sha256": "08928d4933cf32cb30ffd3a13e65de488c0ec94b1d7527971a2d6416891cc0e3",
   "imports_posted": [
    "mwmrbjl0-kqyrep",
    "mwnljuqb-b5nmyt"

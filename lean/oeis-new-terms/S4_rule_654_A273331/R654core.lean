@@ -1,10 +1,14 @@
 import LongTable.P_mwmrbjl0_kqyrep
 import LongTable.P_mwnljuqb_b5nmyt
 -- Instance LC_R654 of the VN library (Rule 654: new state = bit (c + 2k) of 654; A273331), core file (core Lean only,
--- no Mathlib): the 104-state table (2-kernel of the space-time diagram, found from x, y, t < 1024 and checked
--- against a direct simulation on every cell with x, y, t < 1024), CHECK F2, the extended CHECK REC (VN_K9,
--- annihilator (x-1)(x-2)(x-4), p = [-8, 14, -7]; D = 48, a = 53, b = 0, c = -80, from n0 = 3, recurrence at nb = 3),
--- and the first packed F1 slices. Every index c + 2k occurs (mask U = 1023).
+-- no Mathlib): the 104-state table, CHECK F2, the extended CHECK REC (VN_K9, annihilator (x-1)(x-2)(x-4),
+-- p = [-8, 14, -7]; D = 48, a = 53, b = 0, c = -80, from n0 = 3, recurrence at nb = 3), and the first packed F1 slices.
+-- What this file proves: only ok2 (CHECK F2 on the table) and okr (CHECK REC on the table). It does not show that the
+-- table follows Rule 654: that is CHECK F1, whose slice checks (rule 654, mask 1023) are in R654chunk.lean, and
+-- LT2D.vn_count_rec_chunked in R654M.lean combines F1, F2 and REC into the count theorems on LT2D.onCount 654.
+-- The table was found from the space-time diagram for x, y, t < 1024 and compared there with a direct simulation;
+-- that comparison was done outside Lean and nothing here depends on it. The mask U = 1023 admits every index c + 2k
+-- (it excludes none); it does not say that every index occurs.
 -- Pattern: the Rule 926 instance LC_R926 (#mwo4zkjy-ghsy1s). Every check below is decided by the kernel.
 namespace VN.LC_R654
 
