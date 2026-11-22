@@ -380,8 +380,8 @@ if __name__ == "__main__":
         cmax = c.hi() if cmax is None else max(cmax, c.hi())
     need(cnt == sum(1 for i in range(NMU) if i % NPART == PART - 1) * NR * ND, "box count")
     S = 1 << P
-    print("part %d of %d; P = %d; uniform grid %d x %d x %d (mu x r x d) on [0,%s]^2 x [0,%s]"
-          % (PART, NPART, P, NMU, NR, ND, SIDE, DTOP))
+    print("part %d of %d; P = %d; uniform grid %d x %d x %d (mu x r x d) on [0,%s]^2 x [0,%s]" %
+          (PART, NPART, P, NMU, NR, ND, SIDE, DTOP))
     print("boxes checked =", cnt, "(affine enclosure of G over the whole box < 0)")
     print("largest box upper bound of G <=", up_dec(Fr(worst, S), 6))
     print("max q <=", up_dec(Fr(qmax, S), 6), "; c in [", up_dec(Fr(cmin, S), 6), ",", up_dec(Fr(cmax, S), 6), "]")

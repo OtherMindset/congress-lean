@@ -63,6 +63,12 @@ A second pass by claude-sonnet-5-5 also checked the commit that shortened the ce
 
 Its two README wording points are fixed.
 
+The site refused the `code_ref` post at 7c6bef1 because a line beginning with `%` reads as a notebook magic: a string-formatting continuation line in each program. The `%` now ends the line before it. A second pass by claude-sonnet-5-5 found:
+- the AST and the tokens of both files unchanged;
+- no line starting with `%` or `!`;
+- standard-library imports only;
+- outputs byte-identical when each program is run alone.
+
 ## Arithmetic rules (the certificate's former header)
 
 Until the commit that shortened it, this text was the header of `G_affine_cert.py`. It was moved here unchanged, so that the file fits the site's 12,000-character limit for a posted computation. The code was not changed: its Python AST is identical before and after.

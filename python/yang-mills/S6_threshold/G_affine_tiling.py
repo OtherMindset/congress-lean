@@ -61,5 +61,5 @@ for x, y in ((x, y) for k, x in enumerate(allb) for y in allb[k + 1:]):
 vol = sum((b[1] - b[0]) * (b[3] - b[2]) * (b[5] - b[4]) for b in allb)
 need(vol == TOP[0] * TOP[1] * TOP[2], "volumes do not add up")
 print("parts = %d, boxes = %d, axis cells = %d x %d x %d" % (NPART, len(allb), *(len(p) for p in proj)))
-print("TILING OK: the boxes of G_affine_cert.py cover [0,%s] x [0,%s] x [0,%s] (mu, r, d); exact rationals"
-      % TOP)
+print("TILING OK: the boxes of G_affine_cert.py cover [0,%s] x [0,%s] x [0,%s] (mu, r, d); exact rationals" %
+      TOP)
