@@ -1,0 +1,20 @@
+Timings of the S6 phase 2 run2 session, 23 Nov 2026 UTC. Machine: 2 vCPU, Intel Xeon @ 2.10 GHz, 7 GB.
+Lean 4.35.0 (commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc), core only, installed from the GitHub release.
+"kernel" = the profiler's "type checking took" for the theorem (lean -j1, set_option Elab.async false,
+set_option profiler true). "net wall" = wall clock of the file minus that of the same file without the theorem.
+
+One box: mu in [2/5, 81/200], r in [2/5, 41/100], d in [63/500, 77/500] (the pilot's box and the 20th reference box)
+
+  run2 Eval (check b = true by decide +kernel), kernel:      1.68  1.55  1.49  |  final file: 1.56  1.63  1.60  s
+  run2 Eval, net wall:                                       1.60  1.48  1.58  1.63  1.57  s
+  pilot/GBoxPilot.lean (its one theorem), kernel:            4.84  4.88  4.74  |  same session: 4.74  4.89  4.68  4.75  s
+  pilot, net wall:                                           4.80  4.72  4.50  4.42  4.35  s
+  the other phase 2 evaluator (branch claude/s6-phase2-eval, GAffineEval.lean at bec71ef5...), kernel: 1.68  1.30  1.48  s
+
+All 128 boxes of the grid, one theorem each, one file (local/All128_timing.lean; per box in All128_timing.csv):
+
+  run2 Eval, run 1:  total kernel 206.33 s, mean 1.612 s, min 1.39 s, max 2.11 s, wall 207.2 s
+  run2 Eval, run 2:  total kernel 198.45 s, mean 1.550 s, min 1.37 s, max 1.94 s, wall 199.2 s  (the committed file)
+  other evaluator:   total kernel 151.54 s, mean 1.184 s, min 0.99 s, max 1.49 s, wall 152.4 s  (same 128 theorems)
+
+GAffReference.lean (20 reference theorems, default settings, 2 cores): 33.4 s and 32.9 s wall.
