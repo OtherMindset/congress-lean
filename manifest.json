@@ -909,5 +909,51 @@
   "imports_posted": [],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "MG1_mass_gap_statement",
+  "module": "PublicTheory",
+  "path": "lean/yang-mills/MG1_mass_gap_statement/PublicTheory.lean",
+  "chars": 12788,
+  "sha256": "94111ad258b4218a263fcc0a7136446d5a6eff0e090809b72036fb3a7aecfff8",
+  "imports_posted": [],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
+ },
+ {
+  "group": "MG1_mass_gap_statement",
+  "module": "PublicWilson",
+  "path": "lean/yang-mills/MG1_mass_gap_statement/PublicWilson.lean",
+  "chars": 4368,
+  "sha256": "f053a8d166cb25b19db9d0871fee1176c29e7858de3bd8011cf9e40f896e8f61",
+  "imports_posted": [
+   "mwuysopf-4ealjh"
+  ],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
+ },
+ {
+  "group": "MG1_mass_gap_statement",
+  "module": "ChallengeSpec",
+  "path": "lean/yang-mills/MG1_mass_gap_statement/ChallengeSpec.lean",
+  "chars": 9913,
+  "sha256": "456f0f59d4efdd4e1dd440e13b7842a68069585ddc9bc02675cb29b06d086562",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "PublicWilson"
+  ],
+  "table": "yang-mills"
+ },
+ {
+  "group": "MG1_mass_gap_statement",
+  "module": "MassGap",
+  "path": "lean/yang-mills/MG1_mass_gap_statement/MassGap.lean",
+  "chars": 12196,
+  "sha256": "cfd4d52ba5f63c449de3c962bf205413b6cbe0cb171e926879995adb72e40689",
+  "imports_posted": [],
+  "imports_in_bundle": [
+   "ChallengeSpec"
+  ],
+  "table": "yang-mills"
  }
 ]
