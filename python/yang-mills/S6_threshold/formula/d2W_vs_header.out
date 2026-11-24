@@ -1,0 +1,10 @@
+sample points: 240 ( 210 on the grid d in 0.005..0.2, mu and r in 0..0.8; 30 more at d = 0.3, 0.4 )
+threshold fixed before the run: max |A - B|/|B| < 1e-10
+max |A - B|/|B| = 3.6e-18 at (mu, r, d) = (0.0, 0.0, 0.005)
+below threshold: True
+max size of the last Richardson correction, |r2 - r1|/63, over |B| = 1.1e-14
+max |root of q_s2 - q_s1  minus  header c| < 1e-35: True
+header (*) < 0 at 240 of 240 points; (*)/d in [ -0.0689667 , -0.0434171 ]
+W: Gauss-Legendre in t against tanh-sinh in x, relative difference < 1e-30 at 4 points: True
+reference boxes: 20; points: 60 ; side A inside the affine enclosure: 60 ; side B inside: 60
+max |2^64 G - affine part|/e: side A 0.0293 ; side B 0.0293
