@@ -1,0 +1,2 @@
+parts = 1, boxes = 128, axis cells = 8 x 8 x 2
+TILING OK: the boxes of G_affine_cert.py cover [0,4/5] x [0,4/5] x [0,1/5] (mu, r, d); exact rationals

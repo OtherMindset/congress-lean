@@ -1,0 +1,5 @@
+part 1 of 1; P = 64; uniform grid 8 x 8 x 2 (mu x r x d) on [0,4/5]^2 x [0,1/5]
+boxes checked = 128 (affine enclosure of G over the whole box < 0)
+largest box upper bound of G <= -0.016143
+max q <= 0.695060 ; c in [ -0.000308 , 0.195490 ]
+CERTIFIED (part 1 of 1): (*)/d < 0, hence (*) < 0, for all d > 0 with d <= 1/5, 0 <= mu <= 4/5, 0 <= r <= 4/5, on the mu-columns of this part; no Lipschitz or moment bound is assumed; (*) is the expression in the header

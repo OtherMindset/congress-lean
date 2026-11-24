@@ -1,0 +1,8 @@
+1. P = 64 vs P = 104
+   largest upper bound: P=64 -0.016143809, P=104 -0.016143809; largest box-by-box difference 2.07e-16
+2. present certificate's point values inside the affine boxes (P = 64)
+   1536 points (incl. both corners of every box), outside: 0; smallest (upper bound - point value) 0.0044
+3. reference box mu [0.400,0.405], r [0.40,0.41], d [0.126,0.154]
+   present certificate [-0.074852, -0.047796]; affine [-0.061665, -0.061008]; inside: True
+4. rule tests
+   30000 results checked, outside: 0
