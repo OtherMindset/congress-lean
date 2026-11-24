@@ -967,5 +967,17 @@
   ],
   "imports_in_bundle": [],
   "table": "yang-mills"
+ },
+ {
+  "group": "MG1_mass_gap_statement",
+  "module": "Boosts",
+  "path": "lean/yang-mills/MG1_mass_gap_statement/Boosts.lean",
+  "chars": 12745,
+  "sha256": "cebbe2efc1b36b123de83f4fcc02da299ade43afb40f7c90d2a8952865404517",
+  "imports_posted": [
+   "mwv1wkid-o4yjf7"
+  ],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
