@@ -34,3 +34,13 @@ Theorems (all with the standard axioms only).
 Not proved: `HasEnergyGap` giving `HasMassGap` (needs Lorentz invariance of the measure); any relation between `ClusterDecay` and the spectral forms; `HasExcitations` from `Properties.nonfree`.
 
 Which form the Clay statement needs: one theory per gauge group with a gap and the finiteness clause. `JointExistenceWithFiniteGap` is the closest here and asks more (a gap for every volume sequence).
+
+## `Lorentz.lean` (added 24 November 2026, after Session 1)
+
+Imports the posted `MassGap` (#mwuyw6ne-1irnyq). For every public `WightmanTheory` with W0:
+- `WightmanTheory.diagonal_map`: for a symmetry g with Lorentz part Λ and no translation part, the diagonal energy–momentum measure of `onStates g ψ`, pushed forward by the adjoint of Λ, is that of ψ.
+- `WightmanTheory.projection_lorentz`: a measurable null set S of the energy–momentum measure has a null preimage under `Λ.onMomenta` (the adjoint of Λ⁻¹), for every `Λ : ProperLorentz`.
+- `BoostsBelow m` (a definition, not proved): every nonzero k in the forward cone with `minkowskiSquare k < m²` is sent into `energyRegion m` by `Λ.onMomenta` for some Λ.
+- `WightmanTheory.HasEnergyGap.massGap`: under W0 and `BoostsBelow m`, `HasEnergyGap m` gives `HasMassGap m`.
+
+Left to do: prove `BoostsBelow m` for m > 0 (explicit axis boosts as elements of `ProperLorentz`).
