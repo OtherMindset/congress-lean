@@ -1,0 +1,142 @@
+import LongTable.GAffineEval
+
+/-! ## All 128 boxes of the grid: the box test by the kernel (a timing file, not a result)
+
+For each box of the 8 x 8 x 2 grid of `python/yang-mills/S6_threshold/G_affine_cert.py` at commit 95d0843,
+in the order of its `boxes()`, the theorem `check b = true`, proved by `decide +kernel`: every guard holds and
+the upper end of the affine form of G is negative. This file measures the runner's kernel time for the whole
+grid. It proves nothing about G by itself: `check` has no soundness proof yet, and that the boxes cover the
+range is `Cover`'s job (phase 3). Box fields: mu lo, mu hi, r lo, r hi, d lo, d hi, each as numerator,
+denominator. -/
+namespace GAff
+
+theorem box000 : check ⟨0, 1, 1, 10, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box001 : check ⟨0, 1, 1, 10, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box002 : check ⟨0, 1, 1, 10, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box003 : check ⟨0, 1, 1, 10, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box004 : check ⟨0, 1, 1, 10, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box005 : check ⟨0, 1, 1, 10, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box006 : check ⟨0, 1, 1, 10, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box007 : check ⟨0, 1, 1, 10, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box008 : check ⟨0, 1, 1, 10, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box009 : check ⟨0, 1, 1, 10, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box010 : check ⟨0, 1, 1, 10, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box011 : check ⟨0, 1, 1, 10, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box012 : check ⟨0, 1, 1, 10, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box013 : check ⟨0, 1, 1, 10, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box014 : check ⟨0, 1, 1, 10, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box015 : check ⟨0, 1, 1, 10, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box016 : check ⟨1, 10, 1, 5, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box017 : check ⟨1, 10, 1, 5, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box018 : check ⟨1, 10, 1, 5, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box019 : check ⟨1, 10, 1, 5, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box020 : check ⟨1, 10, 1, 5, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box021 : check ⟨1, 10, 1, 5, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box022 : check ⟨1, 10, 1, 5, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box023 : check ⟨1, 10, 1, 5, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box024 : check ⟨1, 10, 1, 5, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box025 : check ⟨1, 10, 1, 5, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box026 : check ⟨1, 10, 1, 5, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box027 : check ⟨1, 10, 1, 5, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box028 : check ⟨1, 10, 1, 5, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box029 : check ⟨1, 10, 1, 5, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box030 : check ⟨1, 10, 1, 5, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box031 : check ⟨1, 10, 1, 5, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box032 : check ⟨1, 5, 3, 10, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box033 : check ⟨1, 5, 3, 10, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box034 : check ⟨1, 5, 3, 10, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box035 : check ⟨1, 5, 3, 10, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box036 : check ⟨1, 5, 3, 10, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box037 : check ⟨1, 5, 3, 10, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box038 : check ⟨1, 5, 3, 10, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box039 : check ⟨1, 5, 3, 10, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box040 : check ⟨1, 5, 3, 10, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box041 : check ⟨1, 5, 3, 10, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box042 : check ⟨1, 5, 3, 10, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box043 : check ⟨1, 5, 3, 10, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box044 : check ⟨1, 5, 3, 10, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box045 : check ⟨1, 5, 3, 10, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box046 : check ⟨1, 5, 3, 10, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box047 : check ⟨1, 5, 3, 10, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box048 : check ⟨3, 10, 2, 5, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box049 : check ⟨3, 10, 2, 5, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box050 : check ⟨3, 10, 2, 5, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box051 : check ⟨3, 10, 2, 5, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box052 : check ⟨3, 10, 2, 5, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box053 : check ⟨3, 10, 2, 5, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box054 : check ⟨3, 10, 2, 5, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box055 : check ⟨3, 10, 2, 5, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box056 : check ⟨3, 10, 2, 5, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box057 : check ⟨3, 10, 2, 5, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box058 : check ⟨3, 10, 2, 5, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box059 : check ⟨3, 10, 2, 5, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box060 : check ⟨3, 10, 2, 5, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box061 : check ⟨3, 10, 2, 5, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box062 : check ⟨3, 10, 2, 5, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box063 : check ⟨3, 10, 2, 5, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box064 : check ⟨2, 5, 1, 2, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box065 : check ⟨2, 5, 1, 2, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box066 : check ⟨2, 5, 1, 2, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box067 : check ⟨2, 5, 1, 2, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box068 : check ⟨2, 5, 1, 2, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box069 : check ⟨2, 5, 1, 2, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box070 : check ⟨2, 5, 1, 2, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box071 : check ⟨2, 5, 1, 2, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box072 : check ⟨2, 5, 1, 2, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box073 : check ⟨2, 5, 1, 2, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box074 : check ⟨2, 5, 1, 2, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box075 : check ⟨2, 5, 1, 2, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box076 : check ⟨2, 5, 1, 2, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box077 : check ⟨2, 5, 1, 2, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box078 : check ⟨2, 5, 1, 2, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box079 : check ⟨2, 5, 1, 2, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box080 : check ⟨1, 2, 3, 5, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box081 : check ⟨1, 2, 3, 5, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box082 : check ⟨1, 2, 3, 5, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box083 : check ⟨1, 2, 3, 5, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box084 : check ⟨1, 2, 3, 5, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box085 : check ⟨1, 2, 3, 5, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box086 : check ⟨1, 2, 3, 5, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box087 : check ⟨1, 2, 3, 5, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box088 : check ⟨1, 2, 3, 5, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box089 : check ⟨1, 2, 3, 5, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box090 : check ⟨1, 2, 3, 5, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box091 : check ⟨1, 2, 3, 5, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box092 : check ⟨1, 2, 3, 5, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box093 : check ⟨1, 2, 3, 5, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box094 : check ⟨1, 2, 3, 5, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box095 : check ⟨1, 2, 3, 5, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box096 : check ⟨3, 5, 7, 10, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box097 : check ⟨3, 5, 7, 10, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box098 : check ⟨3, 5, 7, 10, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box099 : check ⟨3, 5, 7, 10, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box100 : check ⟨3, 5, 7, 10, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box101 : check ⟨3, 5, 7, 10, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box102 : check ⟨3, 5, 7, 10, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box103 : check ⟨3, 5, 7, 10, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box104 : check ⟨3, 5, 7, 10, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box105 : check ⟨3, 5, 7, 10, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box106 : check ⟨3, 5, 7, 10, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box107 : check ⟨3, 5, 7, 10, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box108 : check ⟨3, 5, 7, 10, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box109 : check ⟨3, 5, 7, 10, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box110 : check ⟨3, 5, 7, 10, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box111 : check ⟨3, 5, 7, 10, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box112 : check ⟨7, 10, 4, 5, 0, 1, 1, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box113 : check ⟨7, 10, 4, 5, 0, 1, 1, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box114 : check ⟨7, 10, 4, 5, 1, 10, 1, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box115 : check ⟨7, 10, 4, 5, 1, 10, 1, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box116 : check ⟨7, 10, 4, 5, 1, 5, 3, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box117 : check ⟨7, 10, 4, 5, 1, 5, 3, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box118 : check ⟨7, 10, 4, 5, 3, 10, 2, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box119 : check ⟨7, 10, 4, 5, 3, 10, 2, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box120 : check ⟨7, 10, 4, 5, 2, 5, 1, 2, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box121 : check ⟨7, 10, 4, 5, 2, 5, 1, 2, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box122 : check ⟨7, 10, 4, 5, 1, 2, 3, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box123 : check ⟨7, 10, 4, 5, 1, 2, 3, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box124 : check ⟨7, 10, 4, 5, 3, 5, 7, 10, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box125 : check ⟨7, 10, 4, 5, 3, 5, 7, 10, 1, 10, 1, 5⟩ = true := by decide +kernel
+theorem box126 : check ⟨7, 10, 4, 5, 7, 10, 4, 5, 0, 1, 1, 10⟩ = true := by decide +kernel
+theorem box127 : check ⟨7, 10, 4, 5, 7, 10, 4, 5, 1, 10, 1, 5⟩ = true := by decide +kernel
+
+end GAff
