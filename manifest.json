@@ -955,5 +955,17 @@
    "ChallengeSpec"
   ],
   "table": "yang-mills"
+ },
+ {
+  "group": "MG1_mass_gap_statement",
+  "module": "Lorentz",
+  "path": "lean/yang-mills/MG1_mass_gap_statement/Lorentz.lean",
+  "chars": 7504,
+  "sha256": "2be623ed53b24c3343c25ae394101b748308d3145195782fcecda6bf377348c5",
+  "imports_posted": [
+   "mwuyw6ne-1irnyq"
+  ],
+  "imports_in_bundle": [],
+  "table": "yang-mills"
  }
 ]
