@@ -1,7 +1,7 @@
 import LongTable.PublicWilson
 /- Ported copy (24 November 2026) of a file of OpenAI's Yang–Mills submission,
-github.com/yang-mills-group/OpenAI-YM-20261028 at commit
-3456e5e75cf8d4cd558955a5c7638fba2d68f464, Apache-2.0 (LICENSE.upstream, NOTICE.upstream).
+https://github.com/yang-mills-group/OpenAI-YM-20261028/blob/3456e5e75cf8d4cd558955a5c7638fba2d68f464/ChallengeSpec.lean
+(Apache-2.0; LICENSE.upstream, NOTICE.upstream).
 Changed from the original: this notice and the import line only. -/
 
 /-! The joint target. All correlation terms, including every spectator in the OPE,

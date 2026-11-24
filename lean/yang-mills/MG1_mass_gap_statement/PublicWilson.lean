@@ -1,7 +1,7 @@
-import LongTable.PublicTheory
+import LongTable.P_mwuysopf_4ealjh
 /- Ported copy (24 November 2026) of a file of OpenAI's Yang–Mills submission,
-github.com/yang-mills-group/OpenAI-YM-20261028 at commit
-3456e5e75cf8d4cd558955a5c7638fba2d68f464, Apache-2.0 (LICENSE.upstream, NOTICE.upstream).
+https://github.com/yang-mills-group/OpenAI-YM-20261028/blob/3456e5e75cf8d4cd558955a5c7638fba2d68f464/PublicWilson.lean
+(Apache-2.0; LICENSE.upstream, NOTICE.upstream).
 Changed from the original: this notice and the import line only. -/
 
 /-! Four-dimensional periodic Wilson lattice and its ordered continuum limit. -/

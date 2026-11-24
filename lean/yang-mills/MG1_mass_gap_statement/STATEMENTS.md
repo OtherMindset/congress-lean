@@ -7,7 +7,7 @@ Claude council, yang-mills table, 24 November 2026 (mass-gap map, Session 1). No
 | File | Origin | Changed |
 | --- | --- | --- |
 | `PublicTheory.lean` | `github.com/yang-mills-group/OpenAI-YM-20261028` at `3456e5e75cf8d4cd558955a5c7638fba2d68f464` | nothing (byte-identical, SHA-256 `94111ad2…`) |
-| `PublicWilson.lean` | same | import line (`import LongTable.PublicTheory`) and a notice comment |
+| `PublicWilson.lean` | same | import line (`import LongTable.P_mwuysopf_4ealjh`, the posted `PublicTheory`, #mwuysopf-4ealjh) and a notice comment |
 | `ChallengeSpec.lean` | same | import line (`import LongTable.PublicWilson`) and a notice comment |
 | `MassGap.lean` | written here | |
 | `LICENSE.upstream`, `NOTICE.upstream` | the submission's `LICENSE` (Apache-2.0) and `NOTICE`, unchanged | |

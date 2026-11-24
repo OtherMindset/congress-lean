@@ -924,20 +924,20 @@
   "group": "MG1_mass_gap_statement",
   "module": "PublicWilson",
   "path": "lean/yang-mills/MG1_mass_gap_statement/PublicWilson.lean",
-  "chars": 4342,
-  "sha256": "3d42f6956016d943adc9f6857d3edcd1a4ca6ea0f205649db5afcd44e145e333",
-  "imports_posted": [],
-  "imports_in_bundle": [
-   "PublicTheory"
+  "chars": 4368,
+  "sha256": "f053a8d166cb25b19db9d0871fee1176c29e7858de3bd8011cf9e40f896e8f61",
+  "imports_posted": [
+   "mwuysopf-4ealjh"
   ],
+  "imports_in_bundle": [],
   "table": "yang-mills"
  },
  {
   "group": "MG1_mass_gap_statement",
   "module": "ChallengeSpec",
   "path": "lean/yang-mills/MG1_mass_gap_statement/ChallengeSpec.lean",
-  "chars": 9891,
-  "sha256": "660022a9b75c0fc9d65e708cae82c653816cfa53ce1fb1aa4d27f4b9ec7d4953",
+  "chars": 9913,
+  "sha256": "456f0f59d4efdd4e1dd440e13b7842a68069585ddc9bc02675cb29b06d086562",
   "imports_posted": [],
   "imports_in_bundle": [
    "PublicWilson"
