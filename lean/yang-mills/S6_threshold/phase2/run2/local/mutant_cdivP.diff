@@ -1,0 +1,4 @@
+40c40
+< def cdivP (a : Nat) : Nat := Nat.shiftRight (Nat.add a (Nat.sub S 1)) P
+---
+> def cdivP (a : Nat) : Nat := Nat.shiftRight a P
