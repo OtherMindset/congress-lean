@@ -7,9 +7,9 @@
 | `ContinuousLinearMap.adjoint` | Mathlib/Analysis/InnerProductSpace/Adjoint.lean | 109-114 | PP2SemigroupGap |
 | `innerSL` | Mathlib/Analysis/InnerProductSpace/LinearMap.lean | 161-166 | PP2SemigroupGap |
 | `ContinuousLinearMap.smulRight` | Mathlib/Topology/Algebra/Module/ContinuousLinearMap/Basic.lean | 696-701 | PP2SemigroupGap |
-| `RCLike` | Mathlib/Analysis/RCLike/Basic.lean | 58-85 | both |
-| `RCLike.re` | Mathlib/Analysis/RCLike/Basic.lean | 64-64 | both |
-| `Inner` | Mathlib/Analysis/InnerProductSpace/Defs.lean | 81-84 | both |
+| `RCLike` | Mathlib/Analysis/RCLike/Basic.lean | 58-85 | PP2SemigroupGap |
+| `RCLike.re` | Mathlib/Analysis/RCLike/Basic.lean | 64-64 | PP2SemigroupGap |
+| `Inner` | Mathlib/Analysis/InnerProductSpace/Defs.lean | 81-84 | PP2SemigroupGap |
 | `closure` | Mathlib/Topology/Defs/Basic.lean | 123-125 | PP2SemigroupGap |
 | `Dense` | Mathlib/Topology/Defs/Basic.lean | 143-145 | PP2SemigroupGap |
 | `Real.exp` | Mathlib/Analysis/Complex/Exponential.lean | 79-82 | both |
