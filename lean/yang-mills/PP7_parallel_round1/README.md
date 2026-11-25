@@ -1,6 +1,6 @@
-# P(φ)₂ parallel tracks, rounds 1–6 (25 Nov 2026)
+# P(φ)₂ parallel tracks, rounds 1–7 (25 Nov 2026)
 
-Twenty-nine Lean files from parallel seats (Opus 5.5: medium effort for routine nodes, high for M3; second passes by Sonnet; route reviews by Fable). All build on Lean 4.35.0 / Mathlib 56a00585 with axioms propext, Classical.choice, Quot.sound only. Imports use local module names (`LongTable.PP2Green` etc.); for site posting they must be rewritten to posted `P_<id>` modules.
+Thirty-four Lean files from parallel seats (Opus 5.5: medium effort for routine nodes, high for M3; second passes by Sonnet; route reviews by Fable). All build on Lean 4.35.0 / Mathlib 56a00585 with axioms propext, Classical.choice, Quot.sound only. Imports use local module names (`LongTable.PP2Green` etc.); for site posting they must be rewritten to posted `P_<id>` modules.
 
 | File | Node | Content |
 |---|---|---|
@@ -32,6 +32,11 @@ Twenty-nine Lean files from parallel seats (Opus 5.5: medium effort for routine 
 | PP2FreeVar2 | M5c | strip estimate, region operator, domain monotonicity, Wick defect 0 ≤ b(x) ≤ (π/4)(1+log⁺(1/(m₀r(x)))) |
 | PP2Lebowitz2 | M9 | symmetry, multilinear u₄ expansion, Taylor step; UniformQuarticNegativity ⇒ every limit point non-Gaussian |
 | PP2OSRecon | H3 | OS Hilbert space (completion), ψ with ⟪ψf,ψg⟫ = Z(g−Θf), density, vacuum norm |
+| PP2Region | M5 F1–F2 | free region measure = ε⁻²·regionGreen; exit bound; free boundary sum ≤ 2/cosh(κl) uniformly (SmallBoundarySum at λ = 0) |
+| PP2GreenLp | M5 F3 | ε²Σ_y C(x,y)^p ≤ K_p/m₀² for all p ≥ 2; rough part ≤ K_p·T (box) |
+| PP2Modes | M5 G1 | free box measure = image of standard Gaussians under the sine-mode map; independent heat-kernel split |
+| PP2DoubleIBP | M5 I1, G3 | double integration by parts (box, region, generic) with constants 12, 16; misordered Wick covariance table j,k ≤ 4 |
+| PP2OSShift | H4 | OS time-shift operators: self-adjoint contraction semigroup, TΩ = Ω, matrix elements = Z(τ_t g − Θf) |
 | PP2WickSplit | M5d | Wick binomial with split constant (all degrees), Gaussian orthogonality (degree ≤ 4) |
 
 Route findings: (1) M5 via pphi2 port ≈ 20–30 sessions; replaced by a native sine-basis/heat-kernel route ≈ 11–16 (Fable). (2) Pointwise `UniformBaseBound` in M6 is a real gap; fix by smeared decay + region susceptibility (Fable). (3) Wick ordering makes α < 4 on fine lattices; PP2SimonLieb3 shows a weight e^{c'Στ} still contracts, so R4 is proved as planned.
@@ -39,3 +44,5 @@ Route findings: (1) M5 via pphi2 port ≈ 20–30 sessions; replaced by a native
 Status after round 5 (superseded): `clustering_of_simonLieb_newman` gives FiniteCutoffClustering from three remaining lattice inputs: RegionGriffithsI (Griffiths I for region measures), SmallBoundarySum and RegionSusceptibility (the M5 fixed-box estimates).
 
 Status after round 6: `phiFourTwoGapV3_of_M5` reduces the V3 target to (i) M5Inputs (SmallBoundarySum, RegionSusceptibility) at weak coupling, (ii) UniformQuarticNegativity (or another route to non-Gaussianity), (iii) SchwartzSeparable. Fable's M5 plan (17–24 sessions before rounds 5–6 progress) ends exactly at (i).
+
+Round 7: M5 plan in M5_PLAN.md; done F2, F3 (box), G1 (box), G3, I1. Remaining M5: region versions of F3/G1, F4 region, G2 tail, G4 (Nelson on region), I2, conclusions. M9 route (Fable): reduce to BFS skeleton inequality (CMP 91 (1.4)) + M5.
