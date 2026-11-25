@@ -30,8 +30,11 @@ STATEMENT CARD (definitions).
   the generating functional of the lattice measure, the field smeared against f.
 * `IsNonGaussian Z`: Z is not exp(i ℓ(f) − ½ B(f, f)) for any linear ℓ and bilinear B
   (the limit is not a Gaussian measure, i.e. the theory is interacting).
-* `HasUniformClustering Z`: ∃ m > 0, ∀ f g, ∃ C, ∀ a ∈ ℝ², ‖Z(f + τ_a g) − Z(f) Z(g)‖ ≤ C e^(−m‖a‖),
-  τ_a g = g(· − a). One m for all pairs (not one per pair).
+* `HasUniformClustering Z`: ∃ m > 0, ∀ f g compactly supported, ∃ C, ∀ a ∈ ℝ²,
+  ‖Z(f + τ_a g) − Z(f) Z(g)‖ ≤ C e^(−m‖a‖), τ_a g = g(· − a). One m for all pairs (not one per
+  pair). Compact support is needed: for general Schwartz f, g the bound is false in every
+  massive theory, because Schwartz tails decay only faster than every polynomial. The
+  convergence of `Zlat` is asked for every Schwartz f.
 * `PhiFourTwoWeakCouplingGap`: for every m₀ > 0 there is λ₀ > 0 such that for every
   λ ∈ (0, λ₀), with P = X⁴, the generating functionals `Zlat n` converge pointwise as n → ∞
   (ε → 0 and L → ∞ together) to some Z with `IsNonGaussian Z` and `HasUniformClustering Z`.
@@ -44,7 +47,10 @@ NOT in this file: proofs; the OS axioms; reflection positivity; OS reconstructio
 Hamiltonian; the lattice measure as a `Measure` on distributions (only its generating
 functional on test functions). The regularization (periodic lattice, joint limit along
 ε = 2^(-n), L = 2^n, Wick ordering at the lattice free-field variance with the same m₀) is
-a choice of this file; a second-pass reader should judge it.
+a choice of this file. The joint limit is not stated verbatim in Glimm-Jaffe-Spencer; it is
+expected from cluster-expansion bounds uniform in the cutoff and the volume, and proving it is
+part of the plan (nodes N5-N6). `PPhiTwoWeakCouplingGap` takes "semibounded" as even degree
+with positive leading coefficient (lower-order terms arbitrary, odd ones included).
 
 Toolchain: leanprover/lean4:v4.35.0, Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679.
 -/
@@ -129,9 +135,12 @@ def IsNonGaussian (Z : TestFn → ℂ) : Prop :=
   ¬ ∃ (ℓ : TestFn →ₗ[ℝ] ℝ) (B : TestFn →ₗ[ℝ] TestFn →ₗ[ℝ] ℝ),
       ∀ f, Z f = Complex.exp (Complex.I * (ℓ f : ℂ) - ((B f f : ℝ) : ℂ) / 2)
 
-/-- Exponential clustering at one rate m > 0, common to all pairs of test functions. -/
+/-- Exponential clustering at one rate m > 0, common to all pairs of compactly supported test
+functions. (For general Schwartz f, g the bound fails in any interacting or free massive theory:
+Schwartz tails decay only faster than every polynomial, not exponentially.) -/
 def HasUniformClustering (Z : TestFn → ℂ) : Prop :=
-  ∃ m : ℝ, 0 < m ∧ ∀ f g : TestFn, ∃ C : ℝ, ∀ a : Plane,
+  ∃ m : ℝ, 0 < m ∧ ∀ f g : TestFn, HasCompactSupport ⇑f → HasCompactSupport ⇑g →
+    ∃ C : ℝ, ∀ a : Plane,
     ‖Z (f + translate a g) - Z f * Z g‖ ≤ C * Real.exp (-m * ‖a‖)
 
 /-- Convergence of the lattice generating functionals, with an interacting, uniformly

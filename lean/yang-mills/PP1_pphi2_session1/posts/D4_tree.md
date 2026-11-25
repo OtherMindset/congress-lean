@@ -11,12 +11,12 @@ N5 The cluster expansion, convergent for λ < λ₀ uniformly in ε and L. M.
   N5c per-tree bounds uniform in the UV cutoff: resolvent/vertex bounds, renormalised tadpoles over scales. M. 10–14
   N5d truncated correlations decay at one rate m, with n-point bounds. M. 2
 N6 Convergence of Zlat as n → ∞ (Cauchy from N5's uniformity). M. 3
-N7 Non-Gaussianity of the limit (first-order u₄ ≠ 0 plus N5 remainder). Partly E on the torus (pphi2, axiom-free by its README). 2 ∥
-N8 Uniform clustering of Z from N5d. M. 2
+N7 Non-Gaussianity of the limit (first-order u₄ ≠ 0 plus N5 remainder). Partly E (pphi2, fixed torus only, axiom-free by its README). 2 ∥
+N8 Uniform clustering of Z, for compactly supported f, g, from N5d. M. 2
 — T done here (≈ 34–38).
 N9 Reflection positivity of the lattice measures and of the limit. Partly E/A (pphi2 OS3 files; gaussian_rp_cov_perfect_square is an axiom). 3 ∥
 N10 OS Hilbert space and transfer semigroup T(t) = e^{−tH}, self-adjoint, from N9 in 1+1. E in 4D only (P3r0o0, MIT); M in 2D. 4 ∥
-N11 Gap from clustering: E (`PP2Gap.semigroup_gap`, this session, D6) + density of the exp(iφ(f)) vectors. 1
+N11 Gap from clustering: E (`PP2Gap.semigroup_gap`, this session, D6) + density of the vectors exp(iφ(f)), f compactly supported at positive time. 1
 N12 Bridge to a d-parametric Wightman interface (MG1 forms in 1+1). M. 2 ∥
 — T′ adds ≈ 10.
 
