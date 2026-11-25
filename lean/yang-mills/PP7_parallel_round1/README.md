@@ -1,6 +1,6 @@
-# P(φ)₂ parallel tracks, rounds 1–5 (25 Nov 2026)
+# P(φ)₂ parallel tracks, rounds 1–6 (25 Nov 2026)
 
-Twenty-four Lean files from parallel seats (Opus 5.5: medium effort for routine nodes, high for M3; second passes by Sonnet; route reviews by Fable). All build on Lean 4.35.0 / Mathlib 56a00585 with axioms propext, Classical.choice, Quot.sound only. Imports use local module names (`LongTable.PP2Green` etc.); for site posting they must be rewritten to posted `P_<id>` modules.
+Thirty-one Lean files from parallel seats (Opus 5.5: medium effort for routine nodes, high for M3; second passes by Sonnet; route reviews by Fable). All build on Lean 4.35.0 / Mathlib 56a00585 with axioms propext, Classical.choice, Quot.sound only. Imports use local module names (`LongTable.PP2Green` etc.); for site posting they must be rewritten to posted `P_<id>` modules.
 
 | File | Node | Content |
 |---|---|---|
@@ -27,8 +27,15 @@ Twenty-four Lean files from parallel seats (Opus 5.5: medium effort for routine 
 | PP2Chaos | M5e | route: L²→L^{2m} by induction on variables; one-variable moment bound proved |
 | PP2FreeVar | M5c | ε⁻²·dirGreen(a,a) ≤ freeVar at every site; centre-site midpoint identity and strip bound reduced to explicit integrals |
 | PP2Lebowitz | M9 | Lebowitz inequality u₄ ≤ 0 for the quartic box; IsNonGaussian reduced to QuarticDeficit |
+| PP2Assembly | — | RegionGriffithsI proved; `clustering_of_M5`, `limitPoint_of_M5`, `phiFourTwoGapV3_of_M5` (V3 target from M5 inputs + non-Gaussianity + Schwartz separability) |
+| PP2Chaos2 | M5e | explicit ρ_m, n-variable hypercontractive moment bound, degree-d corollary ‖F‖_q ≲ q^{12}‖F‖₂ |
+| PP2FreeVar2 | M5c | strip estimate, region operator, domain monotonicity, Wick defect 0 ≤ b(x) ≤ (π/4)(1+log⁺(1/(m₀r(x)))) |
+| PP2Lebowitz2 | M9 | symmetry, multilinear u₄ expansion, Taylor step; UniformQuarticNegativity ⇒ every limit point non-Gaussian |
+| PP2OSRecon | H3 | OS Hilbert space (completion), ψ with ⟪ψf,ψg⟫ = Z(g−Θf), density, vacuum norm |
 | PP2WickSplit | M5d | Wick binomial with split constant (all degrees), Gaussian orthogonality (degree ≤ 4) |
 
 Route findings: (1) M5 via pphi2 port ≈ 20–30 sessions; replaced by a native sine-basis/heat-kernel route ≈ 11–16 (Fable). (2) Pointwise `UniformBaseBound` in M6 is a real gap; fix by smeared decay + region susceptibility (Fable). (3) Wick ordering makes α < 4 on fine lattices; PP2SimonLieb3 shows a weight e^{c'Στ} still contracts, so R4 is proved as planned.
 
-Status after round 5: `clustering_of_simonLieb_newman` gives FiniteCutoffClustering from three remaining lattice inputs: RegionGriffithsI (Griffiths I for region measures), SmallBoundarySum and RegionSusceptibility (the M5 fixed-box estimates).
+Status after round 5 (superseded): `clustering_of_simonLieb_newman` gives FiniteCutoffClustering from three remaining lattice inputs: RegionGriffithsI (Griffiths I for region measures), SmallBoundarySum and RegionSusceptibility (the M5 fixed-box estimates).
+
+Status after round 6: `phiFourTwoGapV3_of_M5` reduces the V3 target to (i) M5Inputs (SmallBoundarySum, RegionSusceptibility) at weak coupling, (ii) UniformQuarticNegativity (or another route to non-Gaussianity), (iii) SchwartzSeparable. Fable's M5 plan (17–24 sessions before rounds 5–6 progress) ends exactly at (i).

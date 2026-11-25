@@ -32,10 +32,11 @@ FORMALIZED.
   m₀ ≠ 0) ⟹ ∃ m > 0, FiniteCutoffClustering m₀ λ m.
 
 NOT formalized.
-* The sharper constant κ = 2 of Newman's paper (here κ = 4, from bounding real and imaginary
+* A sharper constant (Newman's paper, not re-read this session) (here κ = 4, from bounding real and imaginary
   parts separately; any absolute κ suffices for the clustering consumer).
-* The remaining M6 inputs (SimonLiebIneq', RegionGriffithsI, SmallBoundarySum,
-  RegionSusceptibility) are untouched here.
+* The M6 inputs SimonLiebIneq' (PP2SimonLieb4: `simonLiebIneq'_holds`) and RegionGriffithsI
+  (PP2Assembly: `regionGriffithsI_holds`) are proved elsewhere for m₀ ≠ 0, λ ≥ 0;
+  SmallBoundarySum and RegionSusceptibility remain OPEN hypotheses here.
 
 Toolchain: leanprover/lean4:v4.35.0, Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679.
 -/
