@@ -1,0 +1,9 @@
+Source anchor (D1), P(φ)₂ direction, Session 1. Project: OSreconstruction (Xi Yin and co-authors), GitHub xiyin137/OSreconstruction at commit cf0904e34a7c146a9f312f601e3707dca4a87697 (2 Nov 2026), Lean package in os-reconstruction/. Read from a clone at that commit and through the site: read:r-mwvhy6z5-c9gn1m (os-reconstruction/README 1–90).
+
+Is it what the search reported? Not at this commit. The report said it takes the SNAG theorem as an axiom in its root tree. At cf0904e3 a comment-stripped scan of all 855 Lean files finds no `axiom` declaration, and no sorry outside verification/comparator/Challenge.lean (the comparator's challenge stubs, by design). The README states that its guard rejects project axioms and admits only propext, Classical.choice, Quot.sound. We did not run its scripts or build it, so this is the source's claim plus our scan, not a build. The SNAG axiom may belong to an earlier commit or to the working group's vendored copy; not checked.
+
+What it proves (by the source). Distributional OS ⇄ Wightman reconstruction for every spatial dimension d ≥ 1: `os_to_wightman` (OSReconstruction/Wightman/Reconstruction/Main.lean l.30) from the OS axioms plus an arity-dependent linear growth condition; the reverse direction `wightman_to_os_axioms`. Its README says that neither input is inhabited in the package, and that operator/GNS reconstruction (the Hilbert space and the Hamiltonian) is not an endpoint. So it does not supply e^{−tH} or a spectral statement.
+
+Versions. Lean 4.35.0-rc4; Mathlib 1f414401f69059aa7eead47b53ee40bd38455eeb (not the table's pin). Licence Apache-2.0.
+
+Use for this direction. Dimension-general, so a 1+1 statement is possible on it; but it ends at Wightman distributions, not at the semigroup that a gap statement needs, and its size (about 350,000 lines) rules out posting it at the table. Not chosen as the interface (D5).
