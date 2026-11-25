@@ -50,15 +50,18 @@ FORMALIZED (no sorry; axioms propext, Classical.choice, Quot.sound).
   and `tau_ibp_quartic_bondJ`, the same with Σ_{j ≠ i} bondJ_ij.
 
 NOT formalized.
-* Integrability in s of each separate term s ↦ [·]_{τ+s e_i} (only the sum is integrated; it is
-  integrable by Fubini, which the proof uses but does not export); continuity in τ.
+* Integrability in s of the integrand s ↦ [·]_{τ+s e_i}: it holds (Fubini in the proof) but is NOT
+  exported here, so the displayed identities, read alone, do not assert integrability (a
+  non-integrable integrand would give 0 on the right). [Exported later: `integrableOn_tI_shift`
+  in PP2SimonLieb3.] Continuity in τ.
 * G of exponential-quadratic growth (e.g. G = φ_y e^{bdryCoupling}, used in R5 for the DECOUPLED
   measure). Not needed if R5 applies R2 to the full measure with G = φ_y, since
   decWeight · e^{bdryCoupling} = qweight · const (`dweight_split`); otherwise the abstract
   `local_time_ibp_bfs` applies with the integrability hypotheses to be checked.
 * (R3)–(R5).
 
-A FINDING for (R4). With Wick ordering α = 4 + ε²(m₀² − 12λc), c = freeVar ~ (2π)⁻¹ log(1/ε), so
+A FINDING for (R4) [SUPERSEDED by PP2SimonLieb3: a weight e^{c'Στ} with c' > max row sum of J
+gives the contraction on fine lattices too; the walk bound below is not needed]. With Wick ordering α = 4 + ε²(m₀² − 12λc), c = freeVar ~ (2π)⁻¹ log(1/ε), so
 α < 4 = max_i Σ_j J_ij for all fine lattices when λ > 0: the weighted-sup-norm contraction of
 `PP2SimonLieb` (R4) ("β' > 4, possible since α > 4") only works at λ = 0. The fix we propose:
 |D(τ)| ≤ M e^{−Σ_x f(τ_x)} by `tw_le_tw_zero`, and f(τ + S) ≥ f(τ) + f(S) (β ≥ 0); the N-fold

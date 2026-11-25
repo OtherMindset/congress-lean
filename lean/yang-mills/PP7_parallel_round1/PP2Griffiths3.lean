@@ -23,7 +23,9 @@ FORMALIZED.
   is pair-positive.
 * `InCone A` (A = g · e^Q, g, Q ∈ IsPosPoly). `signSum_dupG_nonneg` (pointwise, via the exponential
   series, no convergence theorem needed) and
-  **`griffiths_second_dup`**: for w_x even, ≥ 0, A, B ∈ 𝒞, Q ∈ IsPosPoly,
+  **`griffiths_second_dup`**: for w_x even, ≥ 0, A, B ∈ 𝒞, Q ∈ IsPosPoly (ANY polynomial with
+  nonnegative coefficients, not only quadratic; no integrability hypothesis, so for a
+  non-integrable integrand it reads 0 ≤ 0 by the Bochner convention),
     0 ≤ ∫ (A(t) − A(s))(B(t) − B(s)) e^{Q(t)+Q(s)} ∏_x w_x(t_x) w_x(s_x)
   (and `griffiths_second_dup_prod` on (ι → ℝ) × (ι → ℝ)).
 * `integral_dup_expand` (Fubini) and **`griffiths_second_cone`**: with ρ = e^Q ∏ w_x and the four
@@ -31,8 +33,9 @@ FORMALIZED.
 * `griffithsSecond_of_integrable`: session 2's `GriffithsSecond w J` (J ≥ 0, w_x even ≥ 0) from
   integrability of the monomial moments of ferroDensity w J.
 * `GinibreSite w` (the one-site condition, all four sign choices) and `ginibreSite_of_even`:
-  it holds for EVERY even nonnegative w; `ginibreSite_quartic`: for exp(−αy⁴ − βy²), any α, β.
-  NOTE: no Ginibre hypothesis is needed anywhere above. With pair (quadratic) ferromagnetic
+  it holds for EVERY even nonnegative w (as an integral; 0 by convention if not integrable); `ginibreSite_quartic`: for exp(−αy⁴ − βy²), any α, β.
+  NOTE: no Ginibre-type hypothesis beyond evenness and w ≥ 0 is needed anywhere above (only
+  `griffiths_second_cone` and the model results carry integrability hypotheses). With pair (quadratic) ferromagnetic
   couplings, Griffiths II holds for arbitrary even single-site weights (this is Ginibre's
   theorem): in (u, v) coordinates w(t)w(s) is even in u_x and in v_x separately, for any even w.
   The session-2 docstring remark "not true for every even w" is wrong for this setting.

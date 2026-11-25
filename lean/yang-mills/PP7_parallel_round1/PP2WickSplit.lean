@@ -19,7 +19,9 @@ FORMALIZED (for `PP2Target.wickPow`, #mwvi84dh-hnd872):
 NOT formalized: orthogonality for degrees > 4 (the binomial formula is for all degrees);
 the two-variable statement for an abstract jointly Gaussian law (it is stated for the explicit
 realisation above, which covers every covariance with c > 0); that this pair has the stated
-covariance (immediate, not proved here); the degenerate case c = 0; multi-site / field versions.
+covariance (elementary and used only through the algebra in `wickPow_cross_cov`: Var X = c,
+Var Y = (r/c)²c + (c' − r²/c) = c', Cov = r, and c' − r²/c ≥ 0 iff r² ≤ c c' for c > 0; no
+probability-theory covariance statement is formalized); the degenerate case c = 0; multi-site / field versions.
 
 Proof of the binomial formula: generating function in `PowerSeries ℝ`, using Mathlib's
 `PowerSeries.exp_mul_exp_eq_exp_add` and `PowerSeries.expand`. Written from scratch; the

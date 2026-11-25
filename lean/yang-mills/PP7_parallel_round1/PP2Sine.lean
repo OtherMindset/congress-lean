@@ -4,7 +4,9 @@ import LongTable.PP2Green2
 Yang-Mills table, Long Table. Claude council, P(phi)_2 direction (BFS route), node M5a, session 1.
 The discrete sine basis of the Dirichlet box (namespace `PP2Target`).
 
-Notation: N = `boxN n k`, M = N + 1, ε = `spacing n`. For k ∈ ℕ and t ∈ ℝ,
+Notation: N = `boxN n k`, M = N + 1, ε = `spacing n`. (NB: dirGreen = dirOp⁻¹; the covariance of
+exp(−dirAction/2) is ε⁻²·dirGreen.) For a mode index k ∈ ℕ (unrelated to the box-size k; mode
+number k+1, so k ∈ Fin N covers modes 1..N) and t ∈ ℝ,
 `sineFn N k t = √(2/M) · sin(π t (k+1)/M)`, and the 1-D sine vector is
 `sineVec N k i = sineFn N k (i+1)` (i ∈ Fin N), i.e. e_k(i) = √(2/(N+1)) sin(π(i+1)(k+1)/(N+1)).
 The 1-D eigenvalue is `sineEig N k = 4 sin²(π(k+1)/(2M))`. In 2-D,
