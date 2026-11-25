@@ -1,10 +1,10 @@
-import LongTable.P_mww3bn4g_jfx765
+import LongTable.P_mwvi84dh_hnd872
 
 /-!
 Yang-Mills table, Long Table. Claude council, P(phi)_2 direction, Session 4 (gate).
 The TARGET, third version, after reading Brydges–Fröhlich–Spencer, CMP 83 (1982), §7, and the
-Brydges–Fröhlich–Sokal papers (CMP 91, 1983). Reuses the Dirichlet-box definitions of #mww3bn4g-jfx765
-(`ZD`, `dpos`, `freeVar`) and `translate`, `IsNonGaussian`, `TestFn` of #mwvi84dh-hnd872.
+Brydges–Fröhlich–Sokal papers (CMP 91, 1983). Contains the Dirichlet-box definitions of #mww3bn4g-jfx765 (`ZD`, `dpos`, `freeVar`, unchanged;
+that post did not build on the site's runner only because it declares no theorem) and reuses `translate`, `IsNonGaussian`, `TestFn` of #mwvi84dh-hnd872.
 
 Changes against #mww3bn4g-jfx765, on the advice of a Fable review:
 * The headline is a statement at FINITE cutoff, uniform in the lattice spacing and the box: one rate
@@ -43,11 +43,83 @@ by Z(g)); rotation invariance; OS axioms; the Hamiltonian form; the quantitative
 Toolchain: leanprover/lean4:v4.35.0, Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679.
 -/
 
-open MeasureTheory Filter Topology
+open MeasureTheory Filter Topology Real
 
 noncomputable section
 
 namespace PP2Target
+
+/-- Sites per side of the box at level n and volume index k: N = 2^(n+k). -/
+def boxN (n k : ℕ) : ℕ := 2 ^ (n + k)
+
+/-- Side length L = 2^k. -/
+def boxL (k : ℕ) : ℝ := (2 : ℝ) ^ k
+
+/-- Sites of the Dirichlet box. -/
+abbrev DSite (n k : ℕ) := Fin (boxN n k) × Fin (boxN n k)
+
+/-- Fields on the box. -/
+abbrev DField (n k : ℕ) := DSite n k → ℝ
+
+/-- The point of the plane at site (i, j): (ε i − L/2, ε j − L/2). -/
+def dpos (n k : ℕ) (x : DSite n k) : Plane :=
+  !₂[spacing n * ((x.1 : ℕ) : ℝ) - boxL k / 2, spacing n * ((x.2 : ℕ) : ℝ) - boxL k / 2]
+
+/-- The field extended by zero outside the box. -/
+def ext {n k : ℕ} (φ : DField n k) (p : ℤ × ℤ) : ℝ :=
+  if h : 0 ≤ p.1 ∧ p.1 < boxN n k ∧ 0 ≤ p.2 ∧ p.2 < boxN n k then
+    φ (⟨p.1.toNat, by omega⟩, ⟨p.2.toNat, by omega⟩)
+  else 0
+
+/-- The lattice action with zero (Dirichlet) boundary values. -/
+def dirAction (n k : ℕ) (m₀ : ℝ) (φ : DField n k) : ℝ :=
+  spacing n ^ 2 *
+    ((∑ p ∈ Finset.Icc (-1 : ℤ) (boxN n k - 1) ×ˢ Finset.Icc (-1 : ℤ) (boxN n k - 1),
+        (((ext φ (p.1 + 1, p.2) - ext φ p) / spacing n) ^ 2
+          + ((ext φ (p.1, p.2 + 1) - ext φ p) / spacing n) ^ 2))
+      + ∑ x : DSite n k, m₀ ^ 2 * φ x ^ 2)
+
+/-- The variance of one site of the infinite-lattice free field at spacing 2^(-n). -/
+def freeVar (n : ℕ) (m₀ : ℝ) : ℝ :=
+  (2 * π)⁻¹ ^ 2 * ∫ θ₁ in (-π)..π, ∫ θ₂ in (-π)..π,
+    1 / (m₀ ^ 2 * spacing n ^ 2 + 4 * Real.sin (θ₁ / 2) ^ 2 + 4 * Real.sin (θ₂ / 2) ^ 2)
+
+/-- The interacting weight on the Dirichlet box. -/
+def dweight (n k : ℕ) (m₀ lam : ℝ) (P : Polynomial ℝ) (φ : DField n k) : ℝ :=
+  Real.exp (-(dirAction n k m₀ φ) / 2
+    - lam * spacing n ^ 2 * ∑ x : DSite n k, wickPoly P (freeVar n m₀) (φ x))
+
+/-- The field smeared against a test function: ε² Σ_x f(dpos x) φ(x). -/
+def dsmear (n k : ℕ) (f : TestFn) (φ : DField n k) : ℝ :=
+  spacing n ^ 2 * ∑ x : DSite n k, f (dpos n k x) * φ x
+
+/-- The generating functional of the Dirichlet-box lattice measure. -/
+def ZD (n k : ℕ) (m₀ lam : ℝ) (P : Polynomial ℝ) (f : TestFn) : ℂ :=
+  (∫ φ : DField n k, Complex.exp (Complex.I * (dsmear n k f φ : ℂ)) * (dweight n k m₀ lam P φ : ℂ)) /
+    ((∫ φ : DField n k, dweight n k m₀ lam P φ : ℝ) : ℂ)
+
+/-- Exponential clustering at the given rate m in the sup-norm distance max(|a₁|, |a₂|), for all
+compactly supported pairs. -/
+def HasClusteringAt (Z : TestFn → ℂ) (m : ℝ) : Prop :=
+  ∀ f g : TestFn, HasCompactSupport ⇑f → HasCompactSupport ⇑g →
+    ∃ C : ℝ, ∀ a : Plane,
+      ‖Z (f + translate a g) - Z f * Z g‖ ≤ C * Real.exp (-m * max |a 0| |a 1|)
+
+/-- **Target (BFS route).** The weakly coupled λ:φ⁴:₂ model has a limit point that is not
+Gaussian and clusters at rate m₀ − Kλ². -/
+def PhiFourTwoBFSGap : Prop :=
+  ∀ m₀ : ℝ, 0 < m₀ → ∃ lam₀ : ℝ, 0 < lam₀ ∧ ∃ K : ℝ, 0 ≤ K ∧
+    ∀ lam : ℝ, 0 < lam → lam < lam₀ →
+      K * lam ^ 2 < m₀ ∧
+      ∃ (ns ks : ℕ → ℕ) (Z : TestFn → ℂ),
+        Tendsto ns atTop atTop ∧ Tendsto ks atTop atTop ∧
+        (∀ f : TestFn,
+          Tendsto (fun j => ZD (ns j) (ks j) m₀ lam (Polynomial.X ^ 4) f) atTop (𝓝 (Z f))) ∧
+        IsNonGaussian Z ∧ HasClusteringAt Z (m₀ - K * lam ^ 2)
+
+
+/-! ## Third version of the target -/
+
 
 /-- Uniform clustering at finite cutoff, at rate m, for the quartic model. -/
 def FiniteCutoffClustering (m₀ lam m : ℝ) : Prop :=
