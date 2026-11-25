@@ -1,0 +1,708 @@
+[
+ {
+  "module": "PP2Green",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Green.lean",
+  "chars": 13996,
+  "sha256": "3822268b8b4379b9e3e6cbe876bce7640f33af6f089330b5e46b8feeb768e8a0",
+  "local_imports": [],
+  "posted_imports": [
+   "mww4cze7-bk8bxu"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.dirAction_eq_quad",
+    "claim": "The Dirichlet-box lattice action equals ε² times the quadratic form of the matrix dirOp."
+   },
+   {
+    "theorem": "PP2Target.dirAction_ge",
+    "claim": "Mass lower bound: the Dirichlet action is at least m₀² ε² Σ_x φ_x²."
+   },
+   {
+    "theorem": "PP2Target.dirOp_posDef",
+    "claim": "For m₀ ≠ 0 the Dirichlet operator dirOp is a positive definite matrix."
+   },
+   {
+    "theorem": "PP2Target.dirOp_offDiag_nonpos",
+    "claim": "Off-diagonal entries of dirOp are ≤ 0 (Z-matrix property)."
+   },
+   {
+    "theorem": "PP2Target.dirGreen_nonneg",
+    "claim": "For m₀ ≠ 0 the Dirichlet Green function dirGreen = dirOp⁻¹ is entrywise nonnegative (dirOp is a Stieltjes matrix)."
+   },
+   {
+    "theorem": "PP2Target.dirGreen_posDef",
+    "claim": "For m₀ ≠ 0 the Dirichlet Green function is positive definite."
+   }
+  ]
+ },
+ {
+  "module": "PP2GaussIBP",
+  "path": "lean/yang-mills/PP8_post_chain/PP2GaussIBP.lean",
+  "chars": 15175,
+  "sha256": "5567f0b799e90ee1ac4fa3149fbd87f989765756dcd8c04399a7697747b08f09",
+  "local_imports": [],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2GaussIBP.gauss_ibp",
+    "claim": "Gaussian integration by parts on ℝ^ι: for a positive definite A and F differentiable with F and ∂_x F bounded by C·exp(a Σ|φ_i|), ∫ (Aφ)_x F(φ) ρ_A(φ) dφ = ∫ ∂_x F(φ) ρ_A(φ) dφ, ρ_A = exp(−½⟨φ, Aφ⟩)."
+   },
+   {
+    "theorem": "PP2GaussIBP.gauss_ibp_cov",
+    "claim": "Covariance form of Gaussian integration by parts: ∫ φ_x F ρ_A = Σ_y (A⁻¹)_{xy} ∫ ∂_y F ρ_A, for F with exponentially bounded derivative."
+   }
+  ]
+ },
+ {
+  "module": "PP2Green2",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Green2.lean",
+  "chars": 14563,
+  "sha256": "000531b7e065e1e38f7745fad5ce321d0d0a658e7eaf480a59852f461a2da41c",
+  "local_imports": [
+   "PP2Green",
+   "PP2GaussIBP"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.dirOp_diag",
+    "claim": "Diagonal entries of the Dirichlet operator: dirOp x x = 4/ε² + m₀²."
+   },
+   {
+    "theorem": "PP2Target.dirOp_nn",
+    "claim": "Nearest-neighbour entries of the Dirichlet operator equal −1/ε²."
+   },
+   {
+    "theorem": "PP2Target.dirOp_far",
+    "claim": "All entries of dirOp between distinct non-neighbouring sites vanish."
+   },
+   {
+    "theorem": "PP2Target.gauss_cov",
+    "claim": "Covariance of the Dirichlet free field: with weight exp(−½ dirAction), ⟨φ_x φ_y⟩ = ε⁻² dirGreen x y."
+   },
+   {
+    "theorem": "PP2Target.dirGreen_diag_le",
+    "claim": "Diagonal bound for the Dirichlet Green function: dirGreen x x ≤ 1/m₀²."
+   },
+   {
+    "theorem": "PP2Target.dirGreen_antitone_mass",
+    "claim": "The Dirichlet Green function decreases entrywise as m₀² increases."
+   }
+  ]
+ },
+ {
+  "module": "PP2Griffiths",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Griffiths.lean",
+  "chars": 12735,
+  "sha256": "cf57633edda346dcb22ccdb4a88e420ab00cf1eaa18ee675b2f9c6ed92bdc2c5",
+  "local_imports": [],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Griffiths.griffiths_first_general",
+    "claim": "Griffiths I, general form: for an even nonnegative single-site weight and polynomials with nonnegative coefficients, the integral of the observable times exp(interaction) times the product weight is ≥ 0."
+   },
+   {
+    "theorem": "PP2Griffiths.griffiths_first",
+    "claim": "Griffiths' first inequality: for an even nonnegative single-site weight w and ferromagnetic couplings J ≥ 0, ∫ ∏_x φ_x^{a_x} · exp(Σ J_xy φ_x φ_y) ∏_x w(φ_x) dφ ≥ 0."
+   },
+   {
+    "theorem": "PP2Griffiths.griffiths_first_field",
+    "claim": "Griffiths I remains true with a nonnegative external field added to the ferromagnetic interaction."
+   }
+  ]
+ },
+ {
+  "module": "PP2Griffiths2A",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Griffiths2A.lean",
+  "chars": 14713,
+  "sha256": "75f336091ab08ee5bce89f9b8b5ab5d042b3aa9ff400762660bf3248f1a35ec4",
+  "local_imports": [
+   "PP2Griffiths"
+  ],
+  "posted_imports": [
+   "mww4cze7-bk8bxu",
+   "mww0oo05-8eieqb"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Griffiths.griffiths_first_sites",
+    "claim": "Griffiths' first inequality with site-dependent even nonnegative weights w_x and couplings J ≥ 0: ∫ ∏ φ_x^{a_x} exp(Σ J_xy φ_x φ_y) ∏ w_x(φ_x) ≥ 0."
+   },
+   {
+    "theorem": "PP2Griffiths.griffiths_first_dweight",
+    "claim": "Griffiths I for the quartic Dirichlet-box weight: for all m₀, λ and exponents a, ∫ ∏_x φ_x^{a_x} · dweight(φ) dφ ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2Griffiths2B",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Griffiths2B.lean",
+  "chars": 14506,
+  "sha256": "d667081d752c24489a312b3057b511be4993d8341f8bfd1bfe54e43d9e52949f",
+  "local_imports": [
+   "PP2Griffiths2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Griffiths.dweight_eq_ferro",
+    "claim": "Ferromagnetic decomposition: the Dirichlet-box weight equals exp(Σ_{x,y} J_xy φ_x φ_y) ∏_x w_x(φ_x) with nearest-neighbour couplings J ≥ 0 and explicit site weights."
+   },
+   {
+    "theorem": "PP2Griffiths.integrable_dweight",
+    "claim": "For m₀ ≠ 0 and λ ≥ 0 the quartic Dirichlet-box weight is integrable."
+   },
+   {
+    "theorem": "PP2Griffiths.integral_dweight_pos",
+    "claim": "For m₀ ≠ 0 and λ ≥ 0 the quartic Dirichlet-box partition function is strictly positive."
+   },
+   {
+    "theorem": "PP2Griffiths.dexpect_mono_nonneg",
+    "claim": "Griffiths I for the normalised quartic box measure: every monomial moment ⟨∏ φ_x^{a_x}⟩ is ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2Griffiths3A",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Griffiths3A.lean",
+  "chars": 17924,
+  "sha256": "1dbfb5067bb8731b9bbdb6a3e0a4090a5ad14d1e538e8bcbd825e770545adac9",
+  "local_imports": [
+   "PP2Griffiths2B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Griffiths.integrable_mono_dweight",
+    "claim": "For λ ≥ 0, m₀ ≠ 0 every monomial times the quartic Dirichlet-box weight is integrable."
+   },
+   {
+    "theorem": "PP2Griffiths.griffiths_first_gibbs",
+    "claim": "Griffiths I in genuine form: for λ ≥ 0, m₀ ≠ 0 the quartic box Gibbs measure is a probability measure, each monomial is integrable, and its expectation equals the normalised moment and is ≥ 0."
+   },
+   {
+    "theorem": "PP2Griffiths.integral_nonneg_of_actSum_nonneg",
+    "claim": "Sign-averaging lemma for doubled variables: if W ≥ 0 is invariant under the doubled sign-flip group and the group average of f is ≥ 0 pointwise, then ∫ f W ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2Griffiths3B",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Griffiths3B.lean",
+  "chars": 17056,
+  "sha256": "1ec5d1badbe84b3b5e87c6bb868258b1eb3e4b6a5ff289dcd9609a6b75fe5531",
+  "local_imports": [
+   "PP2Griffiths3A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Griffiths.griffiths_second_cone",
+    "claim": "Griffiths II in the cone (unnormalised): for site-dependent even weights, Q with nonnegative coefficients, A, B in the cone 𝒞 and ρ = e^Q ∏ w_x, (∫ABρ)(∫ρ) ≥ (∫Aρ)(∫Bρ), given integrability."
+   },
+   {
+    "theorem": "PP2Griffiths.griffithsSecond_of_integrable",
+    "claim": "Griffiths' second inequality holds for site-dependent even weights and J ≥ 0 whenever the monomial moments are integrable; no Ginibre-type condition beyond evenness is needed."
+   },
+   {
+    "theorem": "PP2Griffiths.griffithsSecond_dweight",
+    "claim": "Griffiths II for the quartic Dirichlet-box weight, for λ ≥ 0, m₀ ≠ 0."
+   },
+   {
+    "theorem": "PP2Griffiths.griffiths_second_dexpect",
+    "claim": "Griffiths II for the normalised quartic box measure: for λ ≥ 0, m₀ ≠ 0, ⟨φ^a φ^b⟩ ≥ ⟨φ^a⟩⟨φ^b⟩ for all monomials."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLiebA",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLiebA.lean",
+  "chars": 19943,
+  "sha256": "1f0a34b104895724e572b0c3365d86808dc4a7f8b389d187f343754b0c7ce964",
+  "local_imports": [
+   "PP2Green"
+  ],
+  "posted_imports": [
+   "mww55rjp-sgsnkh"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.bondJ_nonneg",
+    "claim": "The Simon–Lieb bond coupling bondJ u v = −ε² dirOp(m₀=0) u v is nonnegative."
+   },
+   {
+    "theorem": "PP2Target.supDist_bondJ",
+    "claim": "If bondJ u v ≠ 0 then the physical sup-distance between u and v is at most the lattice spacing ε."
+   },
+   {
+    "theorem": "PP2Target.dirAction_split",
+    "claim": "Splitting the action across a region B: dirAction φ = dirAction(φ|_B) + dirAction(φ|_{Bᶜ}) − 2 Σ_{u∈B, v∉B} J_uv φ_u φ_v."
+   },
+   {
+    "theorem": "PP2Target.dweight_split",
+    "claim": "Factorisation across ∂B (BFS (6.2)): the box weight equals the decoupled weight times exp(Σ_{u∈B,v∉B} J_uv φ_u φ_v) times an explicit constant."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLiebB",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLiebB.lean",
+  "chars": 13332,
+  "sha256": "4d0c05d9edd3683d55d2418a61992533018fada6dcf00b5fc1a1e17948875b40",
+  "local_imports": [
+   "PP2SimonLiebA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.integral_decoupled",
+    "claim": "Zero-coupling factorisation: the decoupled integral of G(φ|_B) is the region-B integral times the complement partition function, with no integrability hypothesis."
+   },
+   {
+    "theorem": "PP2Target.decoupled_twoPt",
+    "claim": "The decoupled two-point function of fields in B equals the Dirichlet region two-point function regionTwoPt B (given a nonzero complement partition function)."
+   },
+   {
+    "theorem": "PP2Target.twoPt_eq_decoupled",
+    "claim": "BFS (6.2): the box two-point function equals ⟨φ_x φ_y Φ⟩_dec / ⟨Φ⟩_dec with Φ = exp(Σ_{u∈B,v∉B} J_uv φ_u φ_v)."
+   },
+   {
+    "theorem": "PP2Target.m6Consumer",
+    "claim": "Conditional: Simon–Lieb, Griffiths I for regions, a small boundary sum < 1 and a uniform base bound imply exponential decay of the two-point function uniformly in the cutoff and volume."
+   },
+   {
+    "theorem": "PP2Target.clustering_of_simonLieb",
+    "claim": "Conditional end-to-end: the M6 inputs plus Newman's inequality and |ZD| ≤ 1 give finite-cutoff clustering at some rate m > 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb2A",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb2A.lean",
+  "chars": 17617,
+  "sha256": "37244b0d65e290c70d20d57254b96c01e12b661df046d261ff139845054e91e4",
+  "local_imports": [
+   "PP2SimonLiebB",
+   "PP2Griffiths2B",
+   "PP2Green2"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2LocalTime.tw_shift",
+    "claim": "Shifting the local time at site i by s multiplies the weight W_τ by an explicit exponential factor in f(φ_i²/2+τ_i+s) − f(φ_i²/2+τ_i)."
+   },
+   {
+    "theorem": "PP2LocalTime.ibp_fixed",
+    "claim": "One-site integration by parts at fixed local time: ∫ ∂_i R · W_σ = ∫ R · φ_i f′(φ_i²/2 + σ_i) · W_σ, given integrability."
+   },
+   {
+    "theorem": "PP2LocalTime.integrable_shift",
+    "claim": "Integrability against W_τ of a continuous observable is preserved when the local time at one site is raised by s ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb2B",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb2B.lean",
+  "chars": 16565,
+  "sha256": "01cb3cc30f2713427997a7753a931cebb32e1a0b139186f574cfb1a6fd69cca3",
+  "local_imports": [
+   "PP2SimonLieb2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2LocalTime.local_time_ibp",
+    "claim": "One-site local-time integration by parts: for W_τ = ∏ e^{−f(φ_x²/2+τ_x)}, f(u) = au + bu², ∫ φ_i R W_τ = ∫_0^∞ ds ∫ ∂_i R · W_{τ+s e_i}, under continuity and integrability assumptions."
+   },
+   {
+    "theorem": "PP2LocalTime.local_time_ibp_bfs",
+    "claim": "BFS form: with [F]_τ = ∫ F e^{Q_K} W_τ and J = K + Kᵀ, [φ_i G]_τ = ∫_0^∞ ds [∂_i G + Σ_j J_ij φ_j G]_{τ+s e_i}."
+   },
+   {
+    "theorem": "PP2LocalTime.tw_le_tw_zero",
+    "claim": "For τ ≥ 0 and b ≥ 0, W_τ ≤ e^{−Σ_x f(τ_x)} W_0."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb2C",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb2C.lean",
+  "chars": 15971,
+  "sha256": "54dbd16c913e894f073d48eb59ed5bb53ec8aad2441b2e91a4b18951f710a41c",
+  "local_imports": [
+   "PP2SimonLieb2B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.Jsym_eq_bondJ",
+    "claim": "The BFS coupling J_xy = Jnn_xy + Jnn_yx equals the Simon–Lieb coupling bondJ_xy for x ≠ y."
+   },
+   {
+    "theorem": "PP2Target.qweight_eq_tw",
+    "claim": "The quartic Dirichlet weight equals a constant times e^{Σ Jnn φφ} · W_0 with site exponent f(s) = αs + βs² (the Wick constant factors out)."
+   },
+   {
+    "theorem": "PP2Target.integrable_tau",
+    "claim": "For m₀ ≠ 0, λ ≥ 0, τ ≥ 0, every observable bounded by C e^{aΣ|φ|} (all polynomials) is integrable against the τ-shifted quartic weight."
+   },
+   {
+    "theorem": "PP2Target.tau_ibp_quartic",
+    "claim": "R2 for the quartic Dirichlet box: for m₀ ≠ 0, λ ≥ 0, τ ≥ 0, [φ_i G]_τ = ∫_0^∞ ([∂_i G]_{τ+se_i} + Σ_j J_ij [φ_j G]_{τ+se_i}) ds for G of exponential-linear growth with such a derivative."
+   },
+   {
+    "theorem": "PP2Target.tau_ibp_quartic_bondJ",
+    "claim": "The same local-time integration by parts with the Simon–Lieb coupling Σ_{j≠i} bondJ_ij."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb3A",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb3A.lean",
+  "chars": 21715,
+  "sha256": "ed3e4879cd08c00bc313a0ebb196992a1ae3ecb460042019e18569f9894fbf7e",
+  "local_imports": [
+   "PP2SimonLieb2C",
+   "PP2Griffiths3B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2SGD.mass_mono_cone",
+    "claim": "Raising site masses lowers cone expectations: for even weights w_x ≥ 0, Q with nonnegative coefficients, H in the cone 𝒞, γ ≥ 0 and ρ′ = e^{−Σγ_xφ_x²}ρ, (∫Hρ′)(∫ρ) ≤ (∫Hρ)(∫ρ′), given integrability."
+   },
+   {
+    "theorem": "PP2SGD.volterra_nonneg",
+    "claim": "Volterra positivity lemma: if J ≥ 0 has row sums ≤ r < c, D_i(τ) = ∫_0^∞ E_i(τ,s) ds with E_i(τ,s) ≥ Σ_k J_ik D_k(τ+se_i), and −D_i(τ) ≤ M e^{−cΣτ}, then D ≥ 0 on [0,∞)^ι."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb3B",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb3B.lean",
+  "chars": 20667,
+  "sha256": "d9d1f223639712f53c34060ceed4d90803bff8c092a15ee8731e893ed0934c0f",
+  "local_imports": [
+   "PP2SimonLieb3A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2SGD.tI_mono",
+    "claim": "Griffiths II monotonicity in local times: for K ≥ 0, b ≥ 0, τ ≤ τ′ and H in the cone 𝒞, [H]_{τ′}[1]_τ ≤ [H]_τ[1]_{τ′}, i.e. ⟨H⟩_τ decreases in τ."
+   },
+   {
+    "theorem": "PP2SGD.tI_ibp",
+    "claim": "Local-time integration by parts for a general pair matrix K and admissible G: [φ_i G]_τ = ∫_0^∞ ([∂_i G]_{τ+se_i} + Σ_j (K_ij+K_ji)[φ_j G]_{τ+se_i}) ds."
+   },
+   {
+    "theorem": "PP2SGD.integrableOn_tI_shift",
+    "claim": "For admissible H, s ↦ [H]_{τ+s e_i} is integrable on (0, ∞)."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb3C",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb3C.lean",
+  "chars": 18921,
+  "sha256": "0bcb81b89673ccaa5589a4a48da3dc9ee0455a716efcda41f78870d0d1e66b97",
+  "local_imports": [
+   "PP2SimonLieb3B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2SGD.strong_gaussian_domination",
+    "claim": "Strong Gaussian domination (BFS Thm 5.1), abstract finite-dimensional form: for ferromagnetic K ≥ 0, site exponent au+bu², and admissible G with derivatives in the cone 𝒞, [φ_i G]_0 ≤ Σ_j ⟨∂_j G⟩_0 [φ_i φ_j]_0."
+   },
+   {
+    "theorem": "PP2Target.tauInt_mono",
+    "claim": "For the quartic box (m₀ ≠ 0, λ ≥ 0), cone expectations ⟨H⟩_τ decrease in each local time τ_x."
+   },
+   {
+    "theorem": "PP2Target.Jsym_row_le",
+    "claim": "Row sums of the BFS coupling are at most 4: Σ_y J_xy ≤ 4."
+   },
+   {
+    "theorem": "PP2Target.strong_gaussian_domination_box",
+    "claim": "Strong Gaussian domination for the quartic Dirichlet box (m₀ ≠ 0, λ ≥ 0): ⟨φ_i G⟩ ≤ Σ_j ⟨∂_j G⟩⟨φ_i φ_j⟩ for G of exponential-linear growth whose derivatives lie in the cone 𝒞 (e.g. polynomials with nonnegative coefficients)."
+   }
+  ]
+ },
+ {
+  "module": "PP2M6Smeared",
+  "path": "lean/yang-mills/PP8_post_chain/PP2M6Smeared.lean",
+  "chars": 20869,
+  "sha256": "c862d6f9ee9a55ca255f4bb6dd0436455fe555968a003c37bf0fad89e42bb1a2",
+  "local_imports": [
+   "PP2SimonLiebB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.smeared_decay",
+    "claim": "Conditional smeared decay: Simon–Lieb with local term, Griffiths I for regions, boundary sum ≤ γ < 1 and region susceptibility ≤ A imply the smeared two-point function against 0 ≤ w ≤ 1 supported at distance ≥ N(l+1) is ≤ A/(1−γ)·γ^N."
+   },
+   {
+    "theorem": "PP2Target.m6Consumer'",
+    "claim": "The smeared M6 consumer: the four inputs (Simon–Lieb with local term, region Griffiths I, small boundary sum, region susceptibility) give uniform smeared exponential decay of the two-point function."
+   },
+   {
+    "theorem": "PP2Target.conditional_clustering'",
+    "claim": "Conditional clustering with smeared decay: a Newman-type bound plus uniform smeared decay of G give finite-cutoff clustering of the generating functional ZD."
+   },
+   {
+    "theorem": "PP2Target.clustering_of_simonLieb'",
+    "claim": "Conditional end-to-end (smeared): the M6' inputs and Newman's inequality with G = twoPt give finite-cutoff clustering at some rate m > 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb4A",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb4A.lean",
+  "chars": 17081,
+  "sha256": "bbac307faa97a095c7dc54fc82459fa3b1a9b2f81112a2831381d2849dda0079",
+  "local_imports": [
+   "PP2SimonLieb3C",
+   "PP2M6Smeared"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.hint_dec",
+    "claim": "For m₀ ≠ 0, λ ≥ 0, every admissible observable with envelope 1 + e^{bdryCoupling} is integrable against the decoupled measure e^{Q_decJ} W_0."
+   },
+   {
+    "theorem": "PP2Target.tI_decJ_eq",
+    "claim": "Local-time expectations for the decoupled coupling decJ equal explicit constant multiples of integrals against the decoupled weight decWeight_B."
+   },
+   {
+    "theorem": "PP2Target.regionTwoPt_eq_tI",
+    "claim": "For x, j ∈ B the region two-point function regionTwoPt B x j equals the decoupled ratio [φ_x φ_j]_0 / [1]_0 (m₀ ≠ 0, λ ≥ 0)."
+   }
+  ]
+ },
+ {
+  "module": "PP2SimonLieb4B",
+  "path": "lean/yang-mills/PP8_post_chain/PP2SimonLieb4B.lean",
+  "chars": 15327,
+  "sha256": "76efe340de33f2d726069140ae696a82c05051603a2e863decfc4702bad69b40",
+  "local_imports": [
+   "PP2SimonLieb4A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.simonLieb_box",
+    "claim": "Simon–Lieb inequality with local term for the quartic Dirichlet box (m₀ ≠ 0, λ ≥ 0): for x ∈ B and any y, twoPt x y ≤ regionTwoPt B x y + Σ_{u∈B} Σ_{v∉B} bondJ u v · regionTwoPt B x u · twoPt v y."
+   },
+   {
+    "theorem": "PP2Target.simonLiebIneq'_holds",
+    "claim": "The proposition SimonLiebIneq' m₀ λ (Simon–Lieb with local term, all cutoffs, regions and sites) holds for every m₀ ≠ 0 and λ ≥ 0."
+   },
+   {
+    "theorem": "PP2Target.simonLiebIneq_holds",
+    "claim": "The Simon–Lieb inequality SimonLiebIneq m₀ λ (for y ∉ B) holds for every m₀ ≠ 0 and λ ≥ 0."
+   },
+   {
+    "theorem": "PP2Target.simonLiebTarget_holds",
+    "claim": "SimonLiebTarget: the Simon–Lieb inequality holds for all m₀ ≠ 0 and λ ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "PP2FKG",
+  "path": "lean/yang-mills/PP8_post_chain/PP2FKG.lean",
+  "chars": 20784,
+  "sha256": "c73230db1f0a32b031597809979f7b8ca424832d608f6627a802d2c35cef7bf6",
+  "local_imports": [
+   "PP2Griffiths3B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2FKG.fourFunctions_pi",
+    "claim": "Ahlswede–Daykin four functions theorem for Lebesgue measure on ℝ^ι, ι any finite type."
+   },
+   {
+    "theorem": "PP2FKG.fkg_integral",
+    "claim": "FKG inequality: for an integrable log-supermodular density ρ ≥ 0 on ℝ^ι and bounded monotone F, G, (∫FGρ)(∫ρ) ≥ (∫Fρ)(∫Gρ)."
+   },
+   {
+    "theorem": "PP2FKG.dweight_logSupermodular",
+    "claim": "The Dirichlet-box weight satisfies the FKG lattice condition (log-supermodularity), for all n, k, m₀, λ, P."
+   },
+   {
+    "theorem": "PP2FKG.fkg_dexpect",
+    "claim": "FKG for the normalised quartic box measure: for λ ≥ 0, m₀ ≠ 0 and bounded measurable monotone F, G, ⟨FG⟩ ≥ ⟨F⟩⟨G⟩."
+   },
+   {
+    "theorem": "PP2FKG.fkg_gibbs",
+    "claim": "FKG for the quartic box Gibbs measure: ∫FG dμ ≥ ∫F dμ · ∫G dμ for bounded measurable monotone F, G (λ ≥ 0, m₀ ≠ 0)."
+   }
+  ]
+ },
+ {
+  "module": "PP2NewmanA",
+  "path": "lean/yang-mills/PP8_post_chain/PP2NewmanA.lean",
+  "chars": 14258,
+  "sha256": "3bbf2d73a1da06bdb63472619101e0adb2a883b90502ba9063918fd043b2e091",
+  "local_imports": [
+   "PP2FKG",
+   "PP2M6Smeared"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Newman.fkg_of_integrable",
+    "claim": "FKG for bounded monotone observables extends (by truncation) to integrable monotone observables with integrable product."
+   },
+   {
+    "theorem": "PP2Newman.abs_cov_le",
+    "claim": "Abstract Newman comparison: for an FKG measure, if G₁ ± F and G₂ ± H are increasing (F, H bounded, G₁, G₂, G₁G₂ integrable), then |Cov(F,H)| ≤ Cov(G₁,G₂)."
+   },
+   {
+    "theorem": "PP2Newman.boundedFKG_gibbs",
+    "claim": "The quartic Dirichlet-box Gibbs measure satisfies FKG for bounded measurable monotone observables (λ ≥ 0, m₀ ≠ 0)."
+   }
+  ]
+ },
+ {
+  "module": "PP2NewmanB",
+  "path": "lean/yang-mills/PP8_post_chain/PP2NewmanB.lean",
+  "chars": 13351,
+  "sha256": "c2ed451e36a6163085ae10c1594b683e8d1dd0c3ce2feca921fcdb0cece056f2",
+  "local_imports": [
+   "PP2NewmanA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Newman.cov_lin_le",
+    "claim": "For c, d ≥ 0, Cov(Σ c_x φ_x, Σ d_y φ_y) ≤ Σ_x Σ_y c_x d_y ⟨φ_x φ_y⟩ under the quartic box Gibbs measure (uses Griffiths I)."
+   },
+   {
+    "theorem": "PP2Newman.newman_hN",
+    "claim": "Newman's inequality for the quartic Dirichlet box (λ ≥ 0, m₀ ≠ 0): ‖ZD(f+g) − ZD(f)ZD(g)‖ ≤ 4 Σ_x Σ_y ε²|f(x)| ε²|g(y)| ⟨φ_x φ_y⟩ for all n, k, f, g."
+   },
+   {
+    "theorem": "PP2Newman.clustering_of_simonLieb_newman",
+    "claim": "With Newman's inequality discharged: Simon–Lieb with local term, Griffiths I for regions, small boundary sum γ < 1 and region susceptibility give finite-cutoff clustering at some rate m > 0 (λ ≥ 0, m₀ ≠ 0)."
+   }
+  ]
+ },
+ {
+  "module": "PP2Limit",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Limit.lean",
+  "chars": 12852,
+  "sha256": "e69037739549dfbb82aaeac1a08101f78bd0da50010112b3f5579a5d681dd485",
+  "local_imports": [
+   "PP2Griffiths3B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.norm_ZD_le_one",
+    "claim": "The finite-cutoff generating functional ZD has norm at most 1."
+   },
+   {
+    "theorem": "PP2Target.exists_subseq_tendsto_of_equicont",
+    "claim": "Diagonal extraction: a uniformly bounded sequence of complex functions, equicontinuous w.r.t. ρ on a space with a countable ρ-dense subset, has a pointwise convergent subsequence."
+   },
+   {
+    "theorem": "PP2Target.norm_ZD_sub_le",
+    "claim": "For λ ≥ 0, m₀ ≠ 0, ‖ZD f − ZD g‖ ≤ ⟨|φ(f − g)|⟩ uniformly in the cutoffs n, k."
+   },
+   {
+    "theorem": "PP2Target.exists_limitPoint_of_equicont",
+    "claim": "Conditional on uniform equicontinuity of ZD in a finite Schwartz seminorm and Schwartz separability, ZD has a limit point."
+   }
+  ]
+ },
+ {
+  "module": "PP2Limit2A",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Limit2A.lean",
+  "chars": 12958,
+  "sha256": "192a2e89a440a74f6ae8b0b6fe617e54cc5dfcd6aa097a8a7f2014670c89277b",
+  "local_imports": [
+   "PP2Limit",
+   "PP2M6Smeared"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.abs_moment_le_sqrt",
+    "claim": "Cauchy–Schwarz against the Gibbs measure: ⟨|φ(h)|⟩ ≤ ⟨φ(h)²⟩^{1/2}."
+   },
+   {
+    "theorem": "PP2Target.sqMoment_le",
+    "claim": "Under a uniform susceptibility bound K, ⟨φ(h)²⟩ ≤ K·M·ε² Σ_x |h(x)| for |h| ≤ M."
+   },
+   {
+    "theorem": "PP2Target.uniformSusceptibility_of_smearedDecay",
+    "claim": "Uniform smeared exponential decay (rate m > 0) of the two-point function implies a uniform susceptibility bound sup_x ε² Σ_y |⟨φ_x φ_y⟩| ≤ K."
+   }
+  ]
+ },
+ {
+  "module": "PP2Limit2B",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Limit2B.lean",
+  "chars": 12138,
+  "sha256": "a37dbc9fe459497052dffd9372f81536249ef0eed295a938ab6786bd5930ccbc",
+  "local_imports": [
+   "PP2Limit2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.riemann_schwartz",
+    "claim": "Riemann-sum bound for Schwartz functions: ε² Σ_x |h(x)| ≤ 1024 ‖h‖_{4,0}, uniformly in the cutoffs."
+   },
+   {
+    "theorem": "PP2Target.uniformEquicont_of_susceptibility",
+    "claim": "A uniform susceptibility bound K gives uniform equicontinuity: ‖ZD f − ZD g‖ ≤ 128 (max K 0)^{1/2} ‖f − g‖_{4,0} uniformly in n, k (λ ≥ 0, m₀ ≠ 0)."
+   },
+   {
+    "theorem": "PP2Target.exists_limitPoint_of_smearedDecay",
+    "claim": "Uniform smeared decay and Schwartz separability give a limit point of ZD."
+   },
+   {
+    "theorem": "PP2Target.exists_limitPoint_of_simonLieb'",
+    "claim": "The hypotheses of the smeared M6 consumer and Schwartz separability give a limit point of ZD."
+   }
+  ]
+ },
+ {
+  "module": "PP2Assembly",
+  "path": "lean/yang-mills/PP8_post_chain/PP2Assembly.lean",
+  "chars": 8816,
+  "sha256": "be6c15865d5e9959cc3aae0cb06a671ea9b6744bb014526ee094b5f4e10d07d8",
+  "local_imports": [
+   "PP2SimonLieb4B",
+   "PP2NewmanB",
+   "PP2Limit2B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.regionGriffithsI_holds",
+    "claim": "Griffiths I holds for the Dirichlet region measures, for all m₀ and λ."
+   },
+   {
+    "theorem": "PP2Target.clustering_of_M5",
+    "claim": "Conditional on the two node-M5 inputs (boundary sum ≤ γ < 1 and region susceptibility ≤ A), finite-cutoff clustering holds at some rate m > 0 for m₀ ≠ 0, λ ≥ 0; Simon–Lieb, Newman and region Griffiths I are proved."
+   },
+   {
+    "theorem": "PP2Target.limitPoint_of_M5",
+    "claim": "Conditional on the node-M5 inputs and Schwartz separability, ZD has a limit point."
+   },
+   {
+    "theorem": "PP2Target.phiFourTwoGapV3_of_M5",
+    "claim": "PhiFourTwoGapV3 follows from: for each m₀ > 0 there is λ₀ > 0 such that for 0 < λ < λ₀ the M5 inputs hold and every limit point is non-Gaussian, together with Schwartz separability."
+   }
+  ]
+ }
+]
