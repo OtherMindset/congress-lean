@@ -47,3 +47,8 @@ Lead's reading of A: S1 for φ⁴₂ alone is closer to Established (14) than Ma
 - T2a (formal deliverable, A ≤ 14): μ_c^χ = mass threshold with an ε-uniform gap bound from χ; crux = DirichletSuppression.
 - T2b (research bet, A 14–22): sharpness half (μ < μ_c^χ ⇒ M⁺ > 0) in the continuum; needs a mass-derivative (∂_μ) analogue of ABF / Duminil-Copin–Tassion — no known route (bond pivotality does not survive ε → 0). Do not present as Major until this has an idea.
 - S2 (2D continuity, A 22) kept as secondary; no toolkit entry point.
+
+## Round 11 (26 Nov 2026)
+- M9: tree bound proved (`tree_bound_box`: u₄ ≥ −24λε²Σ_z S⁴, BFS CMP 91 (1.3)); with Lebowitz, −24λε²ΣS⁴ ≤ u₄ ≤ 0. Strict negativity still needs the UPPER skeleton bound.
+- T2a: DirichletSuppression replaced by StripCrossing (proved at λ = 0) + RegionSimonLieb (box case proved); uniform clustering from uniform χ for all λ ≥ 0 conditional on those two (PP2Sharp2).
+- T2b (user priority: drive the mass-derivative idea): Fable proposes the Ising–Kac regularisation (Mourrat–Weber scaling): rescaled ABF reads m ≤ h∂_h m + γ²m³ − m²∂_μ m, uniform in γ; DCT gives m² ≥ 2(μ_c(γ) − μ). Needs: Kac → φ⁴₂ with field h, locally uniform in (μ, h) (Hairer–Iberti on the torus; h ≠ 0 extension), infinite volume, and a restated T2b (ε → 0 first, then h ↓ 0). Exponents to be re-derived before adoption.
