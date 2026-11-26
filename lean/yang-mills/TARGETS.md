@@ -5,7 +5,7 @@ Kept so that no target is lost. Rubric: Research Impact Rubric (0–120), A–G.
 ## Active
 | Id | Target | A (standing) | Direction score (est.) | Status |
 |---|---|---|---|---|
-| T1 | φ⁴₂ weak coupling, Dirichlet boxes: FiniteCutoffClustering + limit points + non-Gaussian (PhiFourTwoGapV3), Hamiltonian form and O(2) (V4) | 14 (formalization of a 1970s theorem) | 71 | In progress. V3 rests on NelsonRegionHyp (→ region rough L²), WickDefectHyp, WickL2Hyp, non-Gaussianity (skeleton inequality, ~11–15 sessions). Hamiltonian form also needs time-translation invariance of limit points. |
+| T1 | φ⁴₂ weak coupling, Dirichlet boxes: FiniteCutoffClustering + limit points + non-Gaussian (PhiFourTwoGapV3), Hamiltonian form and O(2) (V4) | 14 (formalization of a 1970s theorem) | 71 | V3 reduced to non-Gaussianity alone (`phiFourTwoGapV3_of_nonGaussian`, round 10). Skeleton route: L0, L1, L3 done (PP2Skeleton1). Hamiltonian form also needs time-translation invariance of limit points. |
 
 ## Pursue (user decision, 26 Nov 2026): a Major (A = 22) open problem
 | Id | Candidate | A | Est. score | Openness | Reuse of T1 machinery |
@@ -40,3 +40,10 @@ Lead's reading of A: S1 for φ⁴₂ alone is closer to Established (14) than Ma
 ## Adopted (26 Nov 2026): T2 = S1, continuum sharpness for φ⁴₂ (φ⁴₃ extension; S2 kept as secondary)
 - Step (a), formal: "susceptibility bounded uniformly in (ε, L) ⇒ exponential clustering uniform in (ε, L)" via Simon–Lieb averaged over box radii (removes the boundary factor). Reuses PP2SimonLieb4, PP2M6Smeared. Check Simon 1980 / Glimm–Jaffe for priority.
 - Step (b), research: do the ABF / Duminil-Copin–Tassion / OSSS sharpness arguments survive ε → 0 with the mass (not nearest-neighbour coupling) as parameter? Main obstacle: those inequalities differentiate in J ~ ε⁻². May fail.
+
+## T2 review (Fable, 26 Nov 2026) — split
+- Step (a) as first stated is not ε-uniform: averaging over radii loses a factor ε (γ ≲ χ/(εR)); the missing input is Dirichlet boundary suppression (regionTwoPt = O(ε) next to ∂B). PP2Sharp1 proves the uniform result conditional on `DirichletSuppression` and the fixed-spacing result unconditionally.
+- Literature: McBryan–Rosen (CMP 51, 1976) give m > 0 above the mass-defined threshold; Bauerschmidt–Dagallier–Weber (arXiv:2504.08606) prove a unique invariant measure for μ > μ_c^χ and state the other half of sharpness is open in the continuum.
+- T2a (formal deliverable, A ≤ 14): μ_c^χ = mass threshold with an ε-uniform gap bound from χ; crux = DirichletSuppression.
+- T2b (research bet, A 14–22): sharpness half (μ < μ_c^χ ⇒ M⁺ > 0) in the continuum; needs a mass-derivative (∂_μ) analogue of ABF / Duminil-Copin–Tassion — no known route (bond pivotality does not survive ε → 0). Do not present as Major until this has an idea.
+- S2 (2D continuity, A 22) kept as secondary; no toolkit entry point.

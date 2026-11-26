@@ -1,6 +1,6 @@
-# P(φ)₂ parallel tracks, rounds 1–9 (25 Nov 2026)
+# P(φ)₂ parallel tracks, rounds 1–10 (25 Nov 2026)
 
-Forty-four Lean files from parallel seats (Opus 5.5: medium effort for routine nodes, high for M3; second passes by Sonnet; route reviews by Fable). All build on Lean 4.35.0 / Mathlib 56a00585 with axioms propext, Classical.choice, Quot.sound only. Imports use local module names (`LongTable.PP2Green` etc.); for site posting they must be rewritten to posted `P_<id>` modules.
+Forty-nine Lean files from parallel seats (Opus 5.5: medium effort for routine nodes, high for M3; second passes by Sonnet; route reviews by Fable). All build on Lean 4.35.0 / Mathlib 56a00585 with axioms propext, Classical.choice, Quot.sound only. Imports use local module names (`LongTable.PP2Green` etc.); for site posting they must be rewritten to posted `P_<id>` modules.
 
 | File | Node | Content |
 |---|---|---|
@@ -47,6 +47,11 @@ Forty-four Lean files from parallel seats (Opus 5.5: medium effort for routine n
 | PP2M5Final | M5 I2 + conclusions | `phiFourTwoGapV3_of_hyps`: V3 target from NelsonRegionHyp, WickDefectHyp, WickL2Hyp, non-Gaussianity and Schwartz separability |
 | PP2Separable | — | `schwartzSeparable`: SchwartzSeparable proved |
 | PP2HamAssembly | H6 | CompactApprox proved; LatticeReflStable from UniformEquicont; `hamiltonianGap_of_limitPoint(_susc)`: only time-translation invariance of the limit point remains |
+| PP2RoughL2Region | M5 G4 | region rough L²: **region Nelson bound proved** (`nelsonRegionHyp_holds`) |
+| PP2WickHyps | M5 | WickDefectHyp and WickL2Hyp proved |
+| PP2EuclidFinal | — | **`phiFourTwoGapV3_of_nonGaussian`: V3 target from non-Gaussianity alone** |
+| PP2Skeleton1 | M9 L0, L1, L3 | Volterra resolvent `Rop` (existence, uniqueness, positivity, linearity), `Rop_split` (replaces BFS Lemma 2.1), `tI_eq_Rop` |
+| PP2Sharp1 | T2 step (a) | Griffiths II region monotonicity; uniform susceptibility + DirichletSuppression ⇒ uniform clustering (all λ ≥ 0); fixed-spacing clustering unconditional |
 | PP2WickSplit | M5d | Wick binomial with split constant (all degrees), Gaussian orthogonality (degree ≤ 4) |
 
 Route findings: (1) M5 via pphi2 port ≈ 20–30 sessions; replaced by a native sine-basis/heat-kernel route ≈ 11–16 (Fable). (2) Pointwise `UniformBaseBound` in M6 is a real gap; fix by smeared decay + region susceptibility (Fable). (3) Wick ordering makes α < 4 on fine lattices; PP2SimonLieb3 shows a weight e^{c'Στ} still contracts, so R4 is proved as planned.
@@ -60,3 +65,5 @@ Round 7: M5 plan in M5_PLAN.md; done F2, F3 (box), G1 (box), G3, I1. Remaining M
 Round 8: Nelson box bound reduced to RoughL2; Hamiltonian gap assembled conditional on limit-point properties (translation invariance, continuity, CompactApprox, clustering).
 
 Round 9: Euclidean V3 target now rests on region rough-L² (→ NelsonRegionHyp), WickDefectHyp, WickL2Hyp, and non-Gaussianity (skeleton inequality, ~11–15 sessions, plan in Fable review). Hamiltonian form additionally on time-translation invariance of limit points.
+
+Round 10: the Euclidean V3 target now needs only non-Gaussianity of limit points.
