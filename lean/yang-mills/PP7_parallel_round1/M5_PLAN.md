@@ -38,3 +38,8 @@ Interacting chain (BFS (7.5)–(7.7), summed form)
 Final: ∀ m₀ > 0, ∃ l ≥ 0, ∃ lam₀ > 0, ∃ A ≥ 0, ∀ lam, 0 ≤ lam → lam < lam₀ →
   SmallBoundarySum m₀ lam l (3/4) ∧ RegionSusceptibility m₀ lam l A.
 Parallel: F1→F2; F3; F4; G2; G3; I1. Serial tail: G1 → G4 → I2 → conclusions.
+
+## To-do added after the BFS §7 page-image checks (#mwwsp58f-heli3s, #mwwsvkj2; correction #mwwsz098-qhd5o7)
+- SmallBoundarySum is the BOND sum of (7.3). BFS's printed per-site target (7.5) < 1/(4l) gives only bond sum < 1 + δ/l
+  (4q boundary sites, 4q+4 crossing bonds). Any route through (7.5) needs a per-site bound with margin, e.g. < 1/[4(l+δ)].
+  Our route (PP2Region `free_boundary_le` + PP2M5Final `m5f_boundary_le`) bounds the bond sum directly and does not use (7.5).
