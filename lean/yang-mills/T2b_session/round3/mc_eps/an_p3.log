@@ -1,0 +1,9 @@
+== B3_b0.00125_L256: L=256 a=1.99342 b=0.00125 m*=0.6885 chi=3.208e+04 chi*b=40.100 U=0.6357 xi2=39.86 tau(|A|,B)=(11.1,11.2) nind~5396
+   s= 0.10 margin=0.8559+-0.0015 (569sig) dR/dH=-109.7 (-54sig) EOMpull=0.44
+   s= 0.30 margin=0.8496+-0.0016 (540sig) dR/dH=-309.2 (-53sig) EOMpull=0.44
+   s= 1.00 margin=0.7807+-0.0023 (345sig) dR/dH=-574.3 (-51sig) EOMpull=0.43
+   s= 3.00 margin=0.5161+-0.0029 (177sig) dR/dH=-269.9 (-59sig) EOMpull=0.35
+   s=10.00 margin=0.3777+-0.0028 (136sig) dR/dH=-140 (-65sig) EOMpull=-0.19
+   DIR s=  1.00 margin=0.8226+-0.0254 EOMpull=-0.14 tau(|A|,B)=(13.1,11.9)
+   DIR s=  3.00 margin=0.5110+-0.0113 EOMpull=0.68 tau(|A|,B)=(19.9,13.1)
+   DIR s= 10.00 margin=0.3686+-0.0078 EOMpull=0.18 tau(|A|,B)=(14.2,8.9)

@@ -1,0 +1,9 @@
+== k0_b0.08_L32: L=32 a=1.744 b=0.08 m*=0.6697 chi=478.4 chi*b=38.269 U=0.6287 xi2=5.38 tau(|A|,B)=(7.6,8.3) nind~19747
+   s= 0.10 margin=0.8645+-0.0008 (1147sig) dR/dH=-1.859 (-86sig) EOMpull=-0.76
+   s= 0.30 margin=0.8584+-0.0008 (1084sig) dR/dH=-5.239 (-86sig) EOMpull=-0.76
+   s= 1.00 margin=0.7928+-0.0012 (673sig) dR/dH=-9.702 (-83sig) EOMpull=-0.72
+   s= 3.00 margin=0.5387+-0.0015 (349sig) dR/dH=-4.589 (-105sig) EOMpull=-0.52
+   s=10.00 margin=0.3994+-0.0015 (275sig) dR/dH=-2.367 (-121sig) EOMpull=-0.21
+   DIR s=  1.00 margin=0.7888+-0.0189 EOMpull=-1.15 tau(|A|,B)=(9.1,9.4)
+   DIR s=  3.00 margin=0.5317+-0.0084 EOMpull=-1.95 tau(|A|,B)=(12.4,10.4)
+   DIR s= 10.00 margin=0.3999+-0.0029 EOMpull=1.11 tau(|A|,B)=(9.3,8.2)

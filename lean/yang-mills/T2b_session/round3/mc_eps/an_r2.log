@@ -1,0 +1,11 @@
+== R2_b0.005_L128: L=128 a=1.97706 b=0.005 m*=0.6823 chi=7895 chi*b=39.474 U=0.6337 xi2=20.37 tau(|A|,B)=(7.9,8.0) nind~12723
+   s= 0.10 margin=0.8560+-0.0011 (749sig) dR/dH=-27.6 (-109sig) EOMpull=1.71
+   s= 0.30 margin=0.8496+-0.0012 (706sig) dR/dH=-77.78 (-107sig) EOMpull=1.71
+   s= 1.00 margin=0.7804+-0.0018 (424sig) dR/dH=-143.9 (-91sig) EOMpull=1.71
+   s= 3.00 margin=0.5188+-0.0031 (167sig) dR/dH=-68.05 (-72sig) EOMpull=1.67
+   s=10.00 margin=0.3834+-0.0022 (171sig) dR/dH=-35.61 (-85sig) EOMpull=1.02
+   DIR s=  1.00 margin=0.7819+-0.0227 EOMpull=1.88 tau(|A|,B)=(10.0,9.1)
+   DIR s=  3.00 margin=0.5037+-0.0095 EOMpull=0.31 tau(|A|,B)=(12.1,9.0)
+   DIR s= 10.00 margin=0.3894+-0.0061 EOMpull=0.00 tau(|A|,B)=(9.1,6.6)
+   DIR s= 30.00 margin=0.2770+-0.0039 EOMpull=-0.97 tau(|A|,B)=(5.7,4.5)
+   DIR s=100.00 margin=0.1719+-0.0021 EOMpull=1.81 tau(|A|,B)=(3.7,3.1)
