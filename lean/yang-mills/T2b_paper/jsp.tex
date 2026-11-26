@@ -1,0 +1,45 @@
+\RequirePackage{amsthm}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array}
+\usepackage{url}
+\emergencystretch=2em
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=(\alph*)}
+\input{macros}
+\theoremstyle{thmstyleone}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{thmstylethree}
+\newtheorem*{hypothesis}{Hypothesis}
+\theoremstyle{thmstyletwo}
+\newtheorem{remark}[theorem]{Remark}
+\raggedbottom
+
+\begin{document}
+\title[One-site monotonicity and conditional sharpness for $\varphi^4_2$]{A one-site monotonicity theorem and a conditional reduction of sharpness for continuum $\varphi^4_2$}
+
+\author*{\fnm{Alexander Ross} \sur{Cohen}}\email{[author email]}
+\affil*{\orgname{Other Mindset Lab LLC}, \orgaddress{\country{USA}}}
+
+\abstract{\input{abstract}}
+
+\keywords{$\varphi^4_2$ field theory, sharpness of phase transition, spontaneous magnetisation, correlation inequalities, formal verification, AI-assisted research}
+
+\pacs[MSC Classification]{82B20, 81T08, 60K35, 03B35}
+
+\maketitle
+
+\noindent ORCID: \url{https://orcid.org/0009-0006-2755-8313}
+
+\input{body}
+
+\backmatter
+\bmhead{Acknowledgements} None.
+
+\section*{Declarations}
+\input{declarations}
+
+\bibliography{refs}
+\end{document}
