@@ -1,0 +1,10 @@
+13.73 const: 13.732907877814584157
+4 zeta(2) beta(2) = 6.0268120396919401235  direct sum (|n|<=400 box): 6.026796012336619
+0.2825 const: 0.28250681436055969329
+FD_2 threshold theta*: 0.3486121811341606  value at 0.34: 0.5104
+FD_3 at theta=1/2: 2.9999999999999996
+max (theta/Theta) over extremal IR profiles: 0.9999999999889527 (must be <= 1)
+Gaussian n=64 L=8 m=1: theta/lam=0.9703  Theta/lam=13.9175  ratio=14.343  12/(4pi m^2)=0.9549  0.955*chiL=0.9550
+Gaussian n=128 L=8 m=1: theta/lam=0.9632  Theta/lam=13.9175  ratio=14.450  12/(4pi m^2)=0.9549  0.955*chiL=0.9550
+Gaussian n=128 L=32 m=0.5: theta/lam=3.8615  Theta/lam=55.1075  ratio=14.271  12/(4pi m^2)=3.8197  0.955*chiL=3.8200
+Gaussian n=256 L=32 m=0.5: theta/lam=3.8328  Theta/lam=55.1075  ratio=14.378  12/(4pi m^2)=3.8197  0.955*chiL=3.8200

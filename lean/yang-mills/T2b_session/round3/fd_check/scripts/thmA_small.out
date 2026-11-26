@@ -1,0 +1,1 @@
+tested theta<1 cases: 146  bad: 0  max kappa_min/kappa_A: 0.8170626807073541  largest theta case (theta,J,N,a,b,kA,kmin): (np.float64(0.9826718048259762), 1.0, 2, np.float64(1.0437470018510964), 0.059050996230221316, np.float64(162.23624817822534), 0.6592087531620614)
