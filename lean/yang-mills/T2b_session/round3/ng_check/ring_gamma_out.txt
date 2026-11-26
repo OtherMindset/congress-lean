@@ -1,0 +1,10 @@
+second-difference identity log R = -8b t.t' + Gamma and Gamma >= 0 (rings)
+  n=3 a= 0.50 b=0.50 t.t'=  0.1701: logR=-0.55652986  -8bt.t'+Gamma=-0.55652986  diff=1.1e-16  Gamma=0.12382  min cov=3.11e-03  D=+0.5565
+  n=3 a= 0.50 b=0.50 t.t'=  1.1552: logR=-4.29854407  -8bt.t'+Gamma=-4.29854407  diff=4.2e-14  Gamma=0.32212  min cov=1.02e-03  D=+4.2985
+  n=4 a=-1.00 b=0.50 t.t'=  3.8836: logR=-12.75078799  -8bt.t'+Gamma=-12.75078797  diff=2.3e-08  Gamma=2.78354  min cov=1.48e-04  D=+12.7508
+  n=4 a=-1.00 b=0.50 t.t'=  0.9350: logR=-1.66516332  -8bt.t'+Gamma=-1.66516522  diff=1.9e-06  Gamma=2.07483  min cov=2.18e-05  D=+1.6652
+  n=4 a=-3.00 b=1.00 t.t'=  2.4008: logR=-15.22757486  -8bt.t'+Gamma=-15.22757571  diff=8.5e-07  Gamma=3.97883  min cov=3.70e-04  D=+15.2276
+  n=4 a=-3.00 b=1.00 t.t'=  2.5218: logR=-15.90343444  -8bt.t'+Gamma=-15.90343440  diff=4.3e-08  Gamma=4.27094  min cov=4.30e-04  D=+15.9034
+  n=5 a= 1.20 b=0.05 t.t'=  0.7192: logR=-0.26784748  -8bt.t'+Gamma=-0.26784748  diff=3.3e-16  Gamma=0.01982  min cov=9.89e-03  D=+0.2678
+  n=5 a= 1.20 b=0.05 t.t'= 10.6033: logR=-4.11193958  -8bt.t'+Gamma=-4.11193958  diff=8.9e-15  Gamma=0.12938  min cov=1.89e-03  D=+4.1119
+  n=6 a= 0.00 b=1.00 t.t'=  0.2244: logR=-1.50498074  -8bt.t'+Gamma=-1.50498074  diff=1.3e-15  Gamma=0.29054  min cov=6.70e-06  D=+1.5050

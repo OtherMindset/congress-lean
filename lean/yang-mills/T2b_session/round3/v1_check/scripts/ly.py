@@ -1,0 +1,13 @@
+import sympy as sp
+H,x=sp.symbols('H x',real=True)
+Z=sp.integrate(x**2*sp.exp(-x**2/2+H*x),(x,-sp.oo,sp.oo))
+Z=sp.simplify(Z); print('Z=',Z)
+L=sp.log(sp.exp(H**2/2)*(1+H**2))
+print('ratio Z/(e^{H^2/2}(1+H^2))',sp.simplify(Z/(sp.exp(H**2/2)*(1+H**2))))
+k1=sp.diff(L,H);k2=sp.diff(k1,H);k3=sp.diff(k2,H)
+R=sp.simplify(k3/k1+2*k2)
+claim=2-6/(H**2+3)+2/(H**2+1)
+print('R-claim=',sp.simplify(R-claim))
+dR=sp.factor(sp.diff(claim,H)); print('dR=',dR)
+print(sp.solve(sp.numer(sp.together(sp.diff(claim,H)))/H,H))
+print(sp.N(3**sp.Rational(1,4)))

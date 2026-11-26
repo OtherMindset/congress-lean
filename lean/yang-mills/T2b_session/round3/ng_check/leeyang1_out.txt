@@ -1,0 +1,26 @@
+a=1 b=0.5: first zeros [4.3229651, 7.340052, 9.884365, 12.179256] ... alpha_40=64.5195; recurrence check rel=0.0e+00
+   kappa2/2=0.1448011932  sum alpha^-2 (40 zeros)=0.1248541043 +tail 1.96e-02 = 0.1444625914  rel=2.3e-03
+   -kappa4/12=0.0034342511  sum alpha^-4=0.0034330865 +tail 1.2e-06  rel=2.4e-06
+   |B| direct=0.49137043  3 sum w^2=0.49367538  3w1^2=0.411608 <= |B| <= 3w1=1.111226 : True; alpha1^2 kappa2=5.41210
+a=0 b=1: first zeros [3.4534641, 6.7843277, 9.6358589, 12.229119] ... alpha_40=72.9046; recurrence check rel=0.0e+00
+   kappa2/2=0.1689945600  sum alpha^-2 (40 zeros)=0.1541618388 +tail 1.48e-02 = 0.1689949334  rel=2.2e-06
+   -kappa4/12=0.0077258280  sum alpha^-4=0.0077251434 +tail 6.8e-07  rel=1.4e-08
+   |B| direct=0.81156038  3 sum w^2=0.81155681  3w1^2=0.738506 <= |B| <= 3w1=1.488462 : True; alpha1^2 kappa2=4.03100
+a=-2 b=0.3: first zeros [0.93239589, 2.6828175, 4.3348218, 5.9099141] ... alpha_40=47.3051; recurrence check rel=0.0e+00
+   kappa2/2=1.4998460115  sum alpha^-2 (40 zeros)=1.4688915277 +tail 3.24e-02 = 1.5012947255  rel=9.7e-04
+   -kappa4/12=1.3468458297  sum alpha^-4=1.3468423495 +tail 3.5e-06  rel=5.0e-08
+   |B| direct=1.79616321  3 sum w^2=1.79269846  3w1^2=1.761116 <= |B| <= 3w1=2.298553 : True; alpha1^2 kappa2=2.60782
+a=-6 b=1: first zeros [0.92857787, 2.7766626, 4.602885, 6.4010406] ... alpha_40=58.8267; recurrence check rel=0.0e+00
+   kappa2/2=1.4535296680  sum alpha^-2 (40 zeros)=1.4350132926 +tail 2.00e-02 = 1.4549965310  rel=1.0e-03
+   -kappa4/12=1.3651503284  sum alpha^-4=1.3651489590 +tail 1.4e-06  rel=3.2e-08
+   |B| direct=1.93844700  3 sum w^2=1.93454052  3w1^2=1.906005 <= |B| <= 3w1=2.391237 : True; alpha1^2 kappa2=2.50663
+a=2 b=0.05: first zeros [9.5483079, 11.612204, 13.315272, 14.829859] ... alpha_40=47.3447; recurrence check rel=0.0e+00
+   kappa2/2=0.1207207267  sum alpha^-2 (40 zeros)=0.0716473577 +tail 4.43e-02 = 0.1159949701  rel=3.9e-02
+   -kappa4/12=0.0003092494  sum alpha^-4=0.0003041689 +tail 4.9e-06  rel=6.7e-04
+   |B| direct=0.06365998  3 sum w^2=0.06890649  3w1^2=0.026825 <= |B| <= 3w1=0.283680 : True; alpha1^2 kappa2=22.01226
+
+real	9m54.885s
+user	8m29.375s
+sys	0m0.050s
+
+[exited with code 0]
