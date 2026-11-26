@@ -8,7 +8,7 @@ Let $\nu_{\mu}$ denote the Wick-ordered $\lambda\varphi^4$ measure in two Euclid
 
 The lattice analogue at fixed lattice spacing is the sharpness theorem of Aizenman, Barsky and Fern\'andez~\cite{ABF87}. It has recent extensions~\cite{GPPS22,PV26,vEHL26}. The difficulty in the continuum is uniformity in the lattice spacing $\eps$. The ABF differential inequality controls the magnetisation through the derivative in the nearest-neighbour coupling. That derivative counts bonds, and in continuum units each bond carries a factor of order $\eps^{-2}$ (Section~\ref{sec:obstructions}).
 
-This paper does not prove the open half of sharpness. It does three things.
+This paper does not prove the open half of sharpness. It does four things.
 \begin{enumerate}
 \item \emph{A one-site monotonicity theorem} (Theorem~\ref{thm:onesite}). For an even single-site measure $e^{-V(\varphi)+H\varphi}\,d\varphi$ in the Ellis--Monroe--Newman class~\cite{EMN76}, the ratio
 \[
@@ -21,8 +21,9 @@ m-h\chi=4\lambda m^2\,\partial_hR+8\lambda m^2(-\partial_\mu m).
 \]
 Combined with a localised characteristics argument of ABF type, it reduces the open half of sharpness to one inequality (P). Inequality (P) is required to hold uniformly in the lattice spacing, at small magnetisation and on the field scale $h\lesssim 1/\chi$. It may be much weaker than the mean-field inequality: any modulus $F$ with $\int_0F(r)\,dr/r<\infty$ suffices, and this Dini condition is sharp (Proposition~\ref{prop:sharp}). The lattice identities and the characteristics lemma are machine-checked in Lean.
 \item \emph{Reformulations and obstructions} (Sections~\ref{sec:reductions} and~\ref{sec:obstructions}). We give three further exact reformulations of the open input. The first is an integral representation at zero field (Theorem~\ref{thm:sinh}). The second is a random-walk identity in which the coupling enters with the correct prefactor (Proposition~\ref{prop:walk}). The third is a zero-field dichotomy (Proposition~\ref{prop:PZ}). We also record a list of obstructions. The most structural one is that every hypothesis of the characteristics lemma holds for the two-dimensional plane rotator, which has no spontaneous magnetisation. So any proof of (P) must use a property specific to one-component, $\mathbb Z_2$-symmetric models.
+\item \emph{Zero-field results} (Section~\ref{sec:zerofield}). We prove a zero-mode inequality of the required type up to an explicit defect (Theorem~\ref{thm:zeromode}), and a derivative-free reformulation $(\mathrm{FD}_\kappa)$ of the zero-field input, which implies its integrated form (Proposition~\ref{prop:FD}). We prove $(\mathrm{FD}_\kappa)$ uniformly in $\eps$ in the bubble regime (Theorem~\ref{thm:FDbubble}), and give an exact walk formula and necessary conditions for the second missing input, non-Gaussianity of the torus magnetisation (Proposition~\ref{prop:NG}).
 \end{enumerate}
-Monte Carlo simulations on two-dimensional tori in the regime the argument uses find no violation of the strongest form of the open input (Section~\ref{sec:numerics}).
+Monte Carlo simulations on two-dimensional tori in the regime the argument uses find no violation of the strongest form of the open input. At four lattice spacings, down to one eighth of the coarsest, the margin stays near $0.38$ and extrapolates to a positive value (Section~\ref{sec:numerics}).
 
 \paragraph{How this work was produced.} The results were obtained by a multi-model team of AI agents. They worked on a public research workspace, the Long Table at \texttt{othermindset.com}, under the author's direction. Proofs written by one agent were checked by others, and the parts that could be machine-checked were formalised in Lean. Details are in the statements at the end of the paper.
 
@@ -57,7 +58,7 @@ For fixed $L$, let $\nu_L$ denote the continuum $\varphi^4_2$ measure on the tor
 \[
 \chi_L(\mu)=\frac{\mathbb E_{\nu_L}[(\varphi,1)^2]}{L^2},\qquad \chi(\mu)=\sup_L\chi_L(\mu),\qquad \mu_c=\inf\{\mu:\chi(\mu)<\infty\}.
 \]
-This is the definition of Bauerschmidt--Dagallier--Weber~\cite[(1.2)--(1.3)]{BDW25}, up to a reparametrisation of $(\lambda,\mu)$. Their normalisation uses $\tfrac\lambda4\varphi^4$, and a different Wick constant shifts $\mu$ by a finite amount. The statement ``for all $\mu<\mu_c$'' is invariant under this reparametrisation. The lattice susceptibility at $h=0$ is $\chi_{\eps,L}(\mu)=\partial_hm|_{h=0}=L^{-2}\langle(\eps^2\sum_x\varphi_x)^2\rangle$.
+This is the definition of Bauerschmidt--Dagallier--Weber~\cite[(1.2)--(1.3)]{BDW25}, up to a reparametrisation of $(\lambda,\mu)$. Their normalisation uses $\tfrac\lambda4\varphi^4$, and a different Wick constant shifts $\mu$ by a finite amount. The statement ``for all $\mu<\mu_c$'' is invariant under this reparametrisation. Throughout, $L$ ranges over positive dyadic rationals, so that $L/\eps\in\mathbb N$ for all small $\eps=2^{-n}$; $\chi$, $\mu_c$ and (I3) below are understood with this restriction. The lattice susceptibility at $h=0$ is $\chi_{\eps,L}(\mu)=\partial_hm|_{h=0}=L^{-2}\langle(\eps^2\sum_x\varphi_x)^2\rangle$.
 
 \subsection{Spontaneous magnetisation}
 Let $p(\mu,h)=\lim_L\lim_\eps\,[p_{\eps,L}(\mu,h)-p_{\eps,L}(\mu,0)]$, the iterated limit of pressure differences (see~(I2) below). It is convex in $h$. We define
@@ -145,7 +146,7 @@ m-h\chi=4\lambda m^2\,\partial_hR+8\lambda m^2(-\partial_\mu m).
 \ref{it:eom}: integrate by parts in $\varphi_0$. The boundary terms vanish because of $e^{-b\varphi^4}$. Then use translation invariance and the coordination number $4$. The continuum form follows from~\eqref{eq:params}. \ref{it:deriv}: differentiate under the integral, dominated by $e^{-k\Sigma|\varphi|-\Sigma\varphi^2}$ for every $k$. \ref{it:maxwell}: translate and reindex $y\mapsto-y$. \ref{it:star}: differentiate \ref{it:eom} in $H$ and use $\langle\varphi_0^3\rangle/m=R+\langle\varphi_0^2\rangle$. The continuum form uses $H\partial_H=h\partial_h$, $4b\partial_H=4\lambda\partial_h$, $\partial_a=2\eps^{-2}\partial_\mu$ and \ref{it:maxwell}.
 \end{proof}
 
-All four items are machine-checked in Lean for a general finite graph with symmetric couplings, for translation-invariant couplings on a finite abelian group, and for the nearest-neighbour torus $(\mathbb Z/N\mathbb Z)^2$ with $N\ge3$ (Section~\ref{sec:lean}). Two remarks came out of the formalisation. First, the Maxwell relation needs only translation invariance, not symmetry of the coupling. Second, the coordination number $4$ requires $N\ge3$.
+The lattice forms of all four items are machine-checked in Lean (Section~\ref{sec:lean}): item~\ref{it:eom} for a general finite graph with symmetric couplings; items~\ref{it:deriv}--\ref{it:star} for translation-invariant couplings on a finite abelian group; and all of them for the nearest-neighbour torus $(\mathbb Z/N\mathbb Z)^2$ with $N\ge3$, together with the continuum form $\mu_{\mathrm b}m+4\lambda\langle\varphi_0^3\rangle=h$ of item~\ref{it:eom}. The Wick-ordered form of item~\ref{it:eom} and the continuum form~\eqref{eq:star} of item~\ref{it:star} are short algebra from these and are not formalised. Two remarks came out of the formalisation. First, the Maxwell relation needs only translation invariance, not symmetry of the coupling. Second, the coordination number $4$ requires $N\ge3$.
 
 By~\eqref{eq:star} and \ref{it:maxwell}, the mean-field-type inequality $m\le h\chi+8(1+K)\lambda m^2(-\partial_\mu m)$ is \emph{equivalent} to
 \begin{equation}\label{eq:L}
@@ -156,13 +157,13 @@ We call~\eqref{eq:L} \emph{Lemma~L}. For $K=0$ it is the lattice analogue of The
 \section{Characteristics under a Dini condition}\label{sec:charact}
 
 \begin{hypothesis}[P]
-Let $m(\mu,h)$ be $C^1$ on $\mathbb R\times(0,\infty)$, nondecreasing in $h$ and nonincreasing in $\mu$. Let $W=[\mu_-,\mu_+]$, $s_0>0$ and $h_{\max}>0$. Let $F\colon(0,s_0]\to[0,\infty)$ be continuous, and let $\Phi$ satisfy $\Phi'(s)=F(s)/s$ on $(0,s_0]$ and $\Phi\ge0$. We say \emph{(P) holds on $(W,s_0,h_{\max})$} if
+Let $m(\mu,h)$ be $C^1$ on $\mathbb R\times(0,\infty)$, nondecreasing in $h$ and nonincreasing in $\mu$. Let $W=[\mu_-,\mu_+]$, $s_0>0$ and $h_{\max}>0$. Let $F\colon(0,s_0]\to[0,\infty)$ be continuous, and let $\Phi(s)=\int_0^sF(r)\,dr/r$, which we assume finite (the Dini condition), so that $\Phi(0^+)=0$. We say \emph{(P) holds on $(W,s_0,h_{\max})$} if
 \begin{equation}\label{eq:P}
 m\le h\,\partial_hm+F(m)\,(-\partial_\mu m)\qquad\text{at every }(\mu,h)\text{ with }\mu\in W,\ 0<h\le h_{\max},\ m(\mu,h)\le s_0 .
 \end{equation}
 \end{hypothesis}
 
-The power case is $F(s)=Cs^\theta$, $\Phi(s)=Cs^\theta/\theta$ with $\theta>0$. Lemma~L gives (P) with $\theta=2$ and $C=8(1+K)\lambda$. More generally, $\partial_hR\le Km^{\theta-2}\partial_h\langle\varphi_0^2\rangle$ on $\{m\le s_0\}$ gives (P) with $C=8\lambda(K+s_0^{2-\theta})$.
+The power case is $F(s)=Cs^\theta$, $\Phi(s)=Cs^\theta/\theta$ with $\theta>0$. Lemma~L gives (P) with $\theta=2$ and $C=8(1+K)\lambda$. More generally, $\partial_hR\le Km^{\theta-2}\partial_h\langle\varphi_0^2\rangle$ on $\{m\le s_0\}$ gives (P) with $C=8\lambda(K+s_0^{2-\theta})$, for $0<\theta\le2$.
 
 \begin{theorem}[localised characteristics]\label{thm:charact}
 Assume (P) on $(W,s_0,h_{\max})$.
@@ -176,7 +177,7 @@ m(\mu',h')\ge S\quad\text{for every }0<S\le s_0,\ \mu_-\le\mu'<\mu_0-\Phi(S),\ h
 \[
 m(\mu',h')\ge\min\big(s_0,(\theta(\mu_0-\mu')/C)^{1/\theta}\big)
 \]
-in the power case, and $m(\mu',h')\ge S$ whenever $\Phi(S)<\mu_0-\mu'$ in general.
+in the power case, and $m(\mu',h')\ge S$ whenever $0<S\le s_0$ and $\Phi(S)<\mu_0-\mu'$ in general.
 \end{enumerate}
 \end{theorem}
 
@@ -198,14 +199,14 @@ Let $F>0$ be continuous on $(0,\infty)$ with $\int_0F(r)\,dr/r=\infty$. Define $
 \item $m/h\to\infty$ as $h\downarrow0$ for every $\mu$;
 \item $\lim_{h\downarrow0}m=0$.
 \end{itemize}
-Replacing $\int_{s_0}^m F/r$ by a smooth $\psi(m)$ with $0\le m\psi'\le F$ and $\psi$ constant on $(0,\delta)$ gives profiles with finite $\chi_\delta\to\infty$ and the same conclusion in the limit.
+Replacing $\int_{s_0}^m F/r$ by $\psi_\delta(m)=\int_{s_0}^m F(r)\rho_\delta(r)\,dr/r$, where $\rho_\delta$ is smooth with $0\le\rho_\delta\le1$, $\rho_\delta=0$ on $(0,\delta)$ and $\rho_\delta=1$ on $(2\delta,\infty)$, gives profiles with finite $\chi_\delta\to\infty$ and the same conclusion in the limit.
 \end{proposition}
 
 \begin{proof}
 $d\log h/d\log m=1+F>0$. Implicit differentiation gives $h\partial_hm=-\partial_\mu m=m/(1+F)$, and the remaining properties follow directly.
 \end{proof}
 
-For $F\equiv C$ the profile is $m\propto(e^{-\mu}h)^{1/(1+C)}$, the signature of a line of critical points (Section~\ref{sec:obstructions}). Values $\theta>2$ are of no use: by~\eqref{eq:star}, (P) at small $m$ with $\theta>2$ would require $\partial_hR\le-(1-o(1))\partial_h\langle\varphi_0^2\rangle$, which fails at weak coupling. The useful range is therefore $0<\theta\le2$, and $\theta=2$ is Lemma~L.
+For $F\equiv C$ the profile is $m\propto(e^{-\mu}h)^{1/(1+C)}$, the signature of a line of critical points (Section~\ref{sec:obstructions}). Values $\theta>2$ are of no use: by~\eqref{eq:star}, (P) at small $m$ with $\theta>2$ would require $\partial_hR\le-(1-o(1))\partial_h\langle\varphi_0^2\rangle$, which fails at weak coupling to first order in perturbation theory (a heuristic statement). The useful range is therefore $0<\theta\le2$, and $\theta=2$ is Lemma~L.
 
 \section{The conditional theorem}\label{sec:conditional}
 
@@ -230,7 +231,7 @@ In the power case, $M^+(\mu)\ge\min\big(s_0,(\theta(\mu_+-\mu)/C)^{1/\theta}\big
 \end{theorem}
 
 \begin{proof}
-Since $\mu_+<\mu_c$, we have $\sup_L\chi_L(\mu_+)=\infty$. By (I3) we may choose $L_j\to\infty$ with $\chi_{L_j}(\mu_+)\ge2X_j$ and $X_j\to\infty$. By (I1), $\chi_{\eps,L_j}(\mu_+)\ge X_j$ for small $\eps$. Fix $S\le s_0$ with $\Phi(S)<\mu_+-\mu$. Theorem~\ref{thm:charact}\ref{it:B} with $\mu_0=\mu_+$ gives $m_{\eps,L_j}(\mu,h')\ge S$ for every $h'>2S/X_j$. By convexity of $p_{\eps,L_j}$ in $h$ and $m\ge0$,
+Since $\mu_+<\mu_c$, we have $\sup_L\chi_L(\mu_+)=\infty$. By (I3) we may choose $L_j\to\infty$ with $\chi_{L_j}(\mu_+)\ge2X_j$ and $X_j\to\infty$. By (I1), $\chi_{\eps,L_j}(\mu_+)\ge X_j$ for small $\eps$. Fix $S\le s_0$ with $\Phi(S)<\mu_+-\mu$. Theorem~\ref{thm:charact}\ref{it:B} with $\mu_0=\mu_+$ gives $m_{\eps,L_j}(\mu,h')\ge S$ for every $h'>2S/X_j$. Since $\partial_hp_{\eps,L_j}=m_{\eps,L_j}\ge0$ and $m_{\eps,L_j}\ge S$ for $h>2S/X_j$,
 \[
 p_{\eps,L_j}(\mu,h')-p_{\eps,L_j}(\mu,0)\ge S\,(h'-2S/X_j)_+ .
 \]
@@ -238,7 +239,7 @@ Letting $\eps\to0$ and then $j\to\infty$, using (I2), we get $p(\mu,h')-p(\mu,0)
 \end{proof}
 
 \begin{corollary}\label{cor:landau}
-If Lemma~L holds with a constant $K$ on $\{m\le s_0\}$, uniformly as in $\mathrm H_F$, on windows $[\mu,\mu_+]$ for every $\mu_+<\mu_c$, then
+If Lemma~L holds with a constant $K>-1$ on $\{m\le s_0\}$, uniformly as in $\mathrm H_F$, on windows $[\mu,\mu_+]$ for every $\mu_+<\mu_c$, with $s_0$ and $K$ independent of $\mu_+$, then
 \[
 M^+(\mu)^2\ge\min\Big(s_0^2,\ \frac{\mu_c-\mu}{4(1+K)\lambda}\Big)\qquad\text{for all }\mu<\mu_c .
 \]
@@ -281,17 +282,17 @@ The field enters only through the explicit weights $u\sinh(\eta u)$, and its uni
 \subsection{Conditioning on the difference field}
 Given $t$, the $q$-system is a ferromagnet with site weights $e^{-(a+3bt_x^2)q^2-\frac b2q^4}$ and a uniform field $\eta$. Let $N(t,\eta)=\int q_0\,e^{-\sum W+\sum q_xq_y+\eta Q}\,dq$, which is nonnegative by GKS~I, and let $\pi_\eta(dt)\propto e^{\sum t_xt_y}N(t,\eta)\,dt$. Then, exactly,
 \[
-\frac R2=\mathbb E_{\pi_\eta}[t_0^2],\qquad \partial_\eta\frac R2=\mathrm{Cov}_{\pi_\eta}(t_0^2,\Phi),\qquad \Phi=\frac{\langle q_0Q\rangle_t}{\langle q_0\rangle_t}.
+\frac R2=\mathbb E_{\pi_\eta}[t_0^2],\qquad \partial_\eta\frac R2=\mathrm{Cov}_{\pi_\eta}(t_0^2,\Xi),\qquad \Xi=\frac{\langle q_0Q\rangle_t}{\langle q_0\rangle_t}.
 \]
-So Lemma~L (with $K=0$) is the single covariance sign $\mathrm{Cov}_{\pi_\eta}(t_0^2,\Phi)\le0$. The natural FKG route to this sign fails (Section~\ref{sec:obstructions}).
+So Lemma~L (with $K=0$) is the single covariance sign $\mathrm{Cov}_{\pi_\eta}(t_0^2,\Xi)\le0$. The natural FKG route to this sign fails (Section~\ref{sec:obstructions}).
 
 \subsection{Random-walk identities}
-In the Brydges--Fr\"ohlich--Spencer random-walk representation~\cite{BFS82,FFS92}, let $w_0(d\omega)$ be the measure on walks from $0$ ending at the field. Its total mass is $m/H$. Let $t_\omega$ denote local times and $T=\int w_0(d\omega)|t_\omega|$. Extra local time $r_z$ at a site acts exactly as a mass shift $a_z\mapsto a_z+4br_z$. Write $m^{(r)}$ for the magnetisation with masses $a+4br$, and $S=-\partial_am=\sum_z\langle\varphi_0;\varphi_z^2\rangle$.
+In the Brydges--Fr\"ohlich--Spencer random-walk representation~\cite{BFS82,FFS92}, let $w_0(d\omega)$ be the measure on walks from $0$ ending at the field. Its total mass is $m$. Let $t_\omega$ denote local times and $T=\int w_0(d\omega)|t_\omega|$. Extra local time $r_z$ at a site acts exactly as a mass shift $a_z\mapsto a_z+4br_z$. Write $m^{(r)}$ for the magnetisation with masses $a+4br$, and $S=-\partial_am=\sum_z\langle\varphi_0;\varphi_z^2\rangle$.
 
 \begin{proposition}[walk bounds]\label{prop:walk}
 \begin{enumerate}
 \item $HT=\int w_0(d\omega)\,m_0^{(t_\omega)}$, and hence $HT\le m^2$.
-\item $0\le m-H\chi\le 8bH\,T^2$; in continuum units, $m-h\chi\le8\lambda hT_c^2$.
+\item $0\le m-H\chi\le 8bH\,T^2$; in continuum units, $m-h\chi\le8\lambda hT_c^2$ with $T_c=\eps^2T$.
 \item Exactly, $m-H\chi=4K_{\mathrm{eff}}\,b\,(HT)\,S$, where
 \[
 K_{\mathrm{eff}}=\frac{\mathbb E_{w_0}\big[M_{\mathrm{tot}}(a)-M_{\mathrm{tot}}(a+4bt)\big]}{\mathbb E_{w_0}\big[\langle4bt,-\nabla_aM_{\mathrm{tot}}(a)\rangle\big]}
@@ -312,10 +313,10 @@ Let $Y=M/|\mathbb T|$ with $M=\eps^2\sum_x\varphi_x$. At $h=0$ let $M_L^2=\mathb
 \begin{equation}\label{eq:P0}
 -\partial_\mu M_L^2\ \ge\ |B_L|/K ,\qquad K=3C/s_0^{2-\theta},
 \end{equation}
-i.e.\ $|\bar u_4|\le K\chi_{\eps,L}^2(-\partial_\mu\chi_{\eps,L})$ with $\bar u_4=\kappa_4/|\mathbb T|$. This is a mass-derivative analogue of the Aizenman--Graham inequality~\cite{FFS92}, which uses the derivative in the coupling. Curie--Weiss computations reproduce the exact supremum over $\{m\le s_0\}$ to within $15\%$.
+i.e.\ $|\bar u_4|\le K\chi_{\eps,L}^2(-\partial_\mu\chi_{\eps,L})$ with $\bar u_4=\kappa_4/|\mathbb T|$. This is a mass-derivative analogue of the Aizenman--Graham inequality~\cite{FFS92}, which uses the derivative in the coupling. The expansion is valid when $s_0^2|B_L|/M_L^2\ll1$, and the edge $m=s_0$ is the worst point only for $\theta<2$. Curie--Weiss computations reproduce the exact supremum over $\{m\le s_0\}$ to within $15\%$.
 
 \begin{proposition}[long-range order on the torus gives $M^+$]\label{prop:PZ}
-Assume (I2). If $\liminf_jM_{L_j}(\mu)\ge\sigma$ along a sequence $L_j\to\infty$ (with $\eps\to0$ first), then $M^+(\mu)\ge\sigma$.
+Assume (I1) and (I2). If $\liminf_jM_{L_j}(\mu)\ge\sigma$ along a sequence $L_j\to\infty$ (with $\eps\to0$ first), then $M^+(\mu)\ge\sigma$.
 \end{proposition}
 
 \begin{proof}
@@ -323,6 +324,84 @@ By Lebowitz, $\mathbb EY^4\le3(\mathbb EY^2)^2$. Paley--Zygmund gives $\mathbb P
 \end{proof}
 
 In substance this is Griffiths' classical result that long-range order implies spontaneous magnetisation~\cite{Gri66}. Integrating~\eqref{eq:P0} over a window gives $M_L^2(\mu)\ge K^{-1}\int_\mu^{\mu_+}|B_L|$. So a uniform~\eqref{eq:P0} yields a dichotomy: either $M^+>0$ on the window, or the torus magnetisation becomes Gaussian ($B_L\to0$ in $L^1$). Non-Gaussianity cannot follow from sign inequalities alone, since a massless Gaussian field satisfies all of them.
+
+\section{Zero-field results: what is proved about the two missing inputs}\label{sec:zerofield}
+
+By Proposition~\ref{prop:PZ} and the integrated form of~\eqref{eq:P0}, the open half of sharpness would follow from two zero-field statements on the torus, uniformly in $\eps$: a mass-derivative inequality of type~\eqref{eq:P0}, and non-Gaussianity of the torus magnetisation. This section records what we can prove about each. Throughout, the lattice is a finite vertex-transitive graph with coupling $1$ (the torus $\Lambda_{\eps,L}$ in the application), the field is zero, $M=\sum_x\varphi_x$, $X=\langle M^2\rangle=N\chi$, $m_2=\chi/N$, $B=\langle M^4\rangle/X^2-3\in[-2,0]$, and $u_4$ is the fully truncated four-point function. Continuum units are as in Section~\ref{sec:setting}: $b=\lambda\eps^2$, $\partial_a=2\eps^{-2}\partial_\mu$, $m_2=M_L^2$.
+
+\subsection{A zero-mode inequality}
+
+\begin{theorem}[zero-mode Bogoliubov inequality]\label{thm:zeromode}
+For all $a\in\mathbb R$, $b>0$ and $N$, with $m_H^2:=2a-4+12b\langle\varphi_0^2\rangle$,
+\[
+\mathrm{Var}(Y^2)\,\big[1+\chi m_H^2+12b(-\partial_am_2)\big]\ \ge\ 4m_2^2,\qquad Y=M/N,
+\]
+and $\chi m_H^2-1=4b\sum_x|u_4(0,0,0,x)|\ge0$. In continuum units, if $|B_L|<2$,
+\[
+24\lambda(-\partial_\mu M_L^2)\ \ge\ \frac{2|B_L|}{2-|B_L|}-4\lambda\,\mathcal S_L,\qquad \mathcal S_L=\eps^2\sum_x|u_4(0,0,0,x)|.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $T=\sum_x\partial_xS$ for the action $S$, and $G_0=YT$. Integration by parts gives $\langle G_0\rangle=1$, $\mathrm{Cov}(Y^2,G_0)=2m_2$ and $\mathrm{Var}(G_0)=1+\chi m_H^2+12b(-\partial_am_2)$, using $\mathrm{Cov}(Y^2,\sum_x\varphi_x^2)=-\partial_am_2$. Cauchy--Schwarz gives the first inequality, and $\mathrm{Var}(Y^2)=(2-|B|)m_2^2$ the second. Integration by parts with $F=M$ gives $1=(2a-4)\chi+4b\sum_x\langle\varphi_0^3\varphi_x\rangle$; with $u_4(0,0,0,x)\le0$ (Lebowitz) this is the identity for $\chi m_H^2-1$.
+\end{proof}
+
+This is~\eqref{eq:P0} with $K=24\lambda$, up to the additive defect $4\lambda\mathcal S_L$. It is uniform in $\eps$ and $L$, and its constant is exact at first order. It uses no one-component structure, so by (O3) it cannot give~\eqref{eq:P0}: in the flip regime the defect is of order $L^2$ and the inequality is vacuous. The same argument on one site gives $|\kappa_4|\le4b\langle\varphi^4\rangle\mathrm{Var}(\varphi^2)$, and from it the monotonicity of the one-site Binder cumulant in $a$.
+
+\subsection{A derivative-free form of the zero-field inequality}
+
+The Brydges--Fr\"ohlich--Spencer pairing formula~\cite{BFS82,FFS92} gives an exact walk form of the Binder cumulant. Let $\hat w$ be the probability measure on two-point walks proportional to $\sum_{x,y}dW_{xy}(\omega)Z(t_\omega)/Z$. Then
+\begin{equation}\label{eq:binderwalk}
+1-\frac{|B(a)|}3=\frac{\mathbb E_{\hat w}\big[X(a+4bt_\omega)\big]}{X(a)} ,
+\end{equation}
+where $X(a+4bt)$ is the susceptibility with site masses raised by $4b$ times the walk's local time. Consider the inequality
+\[
+(\mathrm{FD}_\kappa)\qquad m_2\big(a+4b\kappa\,m_2(a)\big)\le\Big(1-\frac{|B(a)|}3\Big)m_2(a),
+\]
+in continuum units $M_L^2(\mu+8\kappa\lambda M_L^2(\mu))\le(1-|B_L(\mu)|/3)M_L^2(\mu)$. By~\eqref{eq:binderwalk}, $(\mathrm{FD}_\kappa)$ says that raising the masses along a walk lowers the susceptibility no more than the uniform raise $4b\kappa m_2$.
+
+\begin{proposition}[$(\mathrm{FD}_\kappa)$ gives the integrated zero-field inequality]\label{prop:FD}
+If $(\mathrm{FD}_\kappa)$ holds for all $a\in[a_-,a_+]$, then $m_2(a_-)\ge(24\kappa b)^{-1}\int_{a_-}^{a_+}|B(a)|\,da$; in continuum units $M_L^2(\mu_-)\ge(48\kappa\lambda)^{-1}\int_{\mu_-}^{\mu_+}|B_L|\,d\mu$.
+\end{proposition}
+
+\begin{proof}
+Fix $a_1$ and $\delta=4b\kappa m_2(a_1)$. For $a\ge a_1$, monotonicity of $m_2$ and $(\mathrm{FD}_\kappa)$ give $m_2(a+\delta)\le m_2(a)-|B(a)|m_2(a)/3$. Integrating over $[a_1,a_+]$ gives $G(a_1):=\int_{a_1}^{a_+}|B|m_2\le12\kappa b\,m_2(a_1)^2$. Then $-(\sqrt G)'\ge|B|/(2\sqrt{12\kappa b})$, and integrating once more gives the claim.
+\end{proof}
+
+Only monotonicity of $m_2$ in $a$ is used: no derivative and no convexity in the mass, so obstruction (O5) does not apply. $(\mathrm{FD}_1)$ holds on one site. It also held in every test we ran: Curie--Weiss up to $N=16384$; $72$ ring cases; two-dimensional tori with $L=16$ and $32$ by Monte Carlo, wherever $|B|\ge0.1$. The constant $\kappa=1$ is saturated at first order in $b$.
+
+\begin{theorem}[$(\mathrm{FD}_\kappa)$ in the bubble regime]\label{thm:FDbubble}
+Let $\theta=12b\sum_zG(0,z)^2$ and $x=b\chi^2/N$, so that $x\le\theta/12$. In continuum units, $\theta=12\lambda\|G_L\|_{L^2(\mathbb T_L)}^2$ and $x=\lambda\chi_L^2/L^2$. If $\theta<1$ at $a$, then $(\mathrm{FD}_\kappa)$ holds at $a$ for every $\kappa\ge1/((1-\theta)(1-8x))$; in particular $(\mathrm{FD}_2)$ holds whenever $\theta\le0.34$.
+\end{theorem}
+
+\begin{proof}
+The skeleton inequality $u_4(x_1,\dots,x_4)\ge-24b\sum_w\prod_iG(x_i,w)$~\cite{BFS82,FFS92} gives $|B|\le24x$ and $-\partial_a\chi\ge2\chi^2(1-12b\sum_zG(0,z)^2)$. Since $G(0,z)$ is nonnegative and nonincreasing in the mass (GKS), the bubble does not increase along $[a,a+\delta]$ with $\delta=4b\kappa m_2(a)$. So $\partial_u(1/\chi)\ge2(1-\theta)$ there, and $m_2(a+\delta)/m_2(a)\le1/(1+8(1-\theta)\kappa x)\le1-8x\le1-|B(a)|/3$ under the stated condition on $\kappa$.
+\end{proof}
+
+On the two-dimensional torus with even side, the infrared bound~\cite{FSS76} turns this into an explicit criterion: $\theta\le12\lambda\chi_L^2/L^2+\min(13.73\,\lambda\chi_L,\ 0.2825\,\lambda L^2)$. Theorem~\ref{thm:FDbubble} is uniform in $\eps$ and $L$, but it covers only the region where $\lambda\chi_L$ and $\lambda\chi_L^2/L^2$ are small. The flip regime, where the conditional theorem needs the input, lies outside it: there $\theta\ge12x$ with $x$ large. This is consistent with (O3), since the inputs of Theorem~\ref{thm:FDbubble} also hold for $O(n)$ models.
+
+\subsection{Non-Gaussianity}
+
+\begin{proposition}[walk formula, tree bound, Lee--Yang form]\label{prop:NG}
+\begin{enumerate}
+\item With $\omega,\omega'$ independent with law $\hat w$, $t=t_\omega$, $t'=t_{\omega'}$,
+\[
+|B|=3\,\mathbb E\big[1-e^{-D}\big],\qquad D=8b\,t\cdot t'-\Gamma,
+\]
+\[
+\Gamma=16b^2\!\int_0^1\!\!\int_0^1\sum_{x,y}t_xt'_y\langle\varphi_x^2;\varphi_y^2\rangle_{\sigma t+\tau t'}\,d\sigma\,d\tau\ \ge0 ,
+\]
+where $\langle\cdot\rangle_s$ is the model with site masses $a+4bs$.
+\item $|B_L|=-\bar u_4/(\chi_L^2L^2)$ is the renormalised coupling at length scale $L$, and $|B_L|\le24\lambda\chi_L^2/L^2$. Hence $|B_L(\mu)|\ge c$ forces $\chi_L(\mu)\ge L\,(c/24\lambda)^{1/2}$.
+\item If $Z(h)=\langle e^{hM}\rangle$ has its zeros $\pm i\alpha_j$ on the imaginary axis (Lee--Yang~\cite{SG73}), then $B=-3\sum_jw_j^2$ with $w_j=\alpha_j^{-2}/\sum_k\alpha_k^{-2}$, and $3w_1^2\le|B|\le3w_1$. In particular $B<0$ at every finite cutoff.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Sketch]
+(1) From the pairing formula, $|B|=3\,\mathbb E[1-R]$ with $\log R=-8b\,t\cdot t'+\Gamma$, by Taylor's formula for $\log Z(t)$; $\Gamma\ge0$ by GKS~II. (2) $1-e^{-D}\le8b\,t\cdot t'$ and $\mathbb E\,t_z\le\chi/N$, by splitting the walk and GKS mass monotonicity. (3) Hadamard factorisation of the even entire function $Z$, of order at most $4/3$.
+\end{proof}
+
+So non-Gaussianity on a window is equivalent to a ``no complete screening'' statement: the direct contact term $8b\,t\cdot t'$ of two crossing walks is not cancelled by the energy-mediated attraction $\Gamma$, with probability bounded below, uniformly in $\eps$. By item~(2) it is strictly stronger than $\chi_L\to\infty$: it forces $\chi_L\gtrsim L$. Every inequality we use elsewhere (GKS, Lebowitz, GHS, Lee--Yang, the tree bound, Simon--Lieb, Theorem~\ref{thm:zeromode}) also holds for the Gaussian fields with covariance $(-\Delta+L^{-2})^{-1}$. Those have $\chi_L\to\infty$ and $B\equiv0$. So a proof must use the contact term quantitatively at the torus scale. At fixed $\eps$ non-Gaussianity follows from lattice sharpness~\cite{ABF87,GPPS22}; the difficulty is exchanging the limits $L\to\infty$ and $\eps\to0$. If $|B_L|$ is monotone in $\mu$ on the torus (true on one site, and in all our Monte Carlo scans), non-Gaussianity on a window reduces to non-Gaussianity at each single $\mu'<\mu_c$.
 
 \section{Obstructions}\label{sec:obstructions}
 
@@ -338,9 +417,10 @@ The following facts restrict any proof of (P). Items (O4)--(O6) are numerical fi
 \item yet $M^+=0$ by the Mermin--Wagner theorem~\cite{Mer67}.
 \end{itemize}
 So (P) fails there for every Dini $F$. Any proof of (P) must use an input that is false for $O(2)$, i.e.\ specific to one-component $\mathbb Z_2$-symmetric models. This excludes GKS, Lee--Yang, Simon--Lieb, reflection positivity and convexity arguments taken alone. Caveats: we did not read~\cite{FS81,Mer67} in the original for this purpose. The plane rotator's parameter is a coupling, not a single-site mass, so arguments that use $\partial_\mu$ as a local $\varphi^2$ insertion are not formally excluded. Spin-wave theory gives $F\approx c/|\log m|$, exactly at the Dini borderline.
-\item[(O4)] \emph{Uniformity of the field is essential.} Lemma~L fails for non-uniform fields. On two sites with $a=-2$, $b=1$, $J=3$, an extra field $0.5$ on one site and uniform field $H=0.01$, the relative derivative of $R$ is $+0.26$. Inequalities that hold for arbitrary nonnegative field profiles (GKS, GHS, Lebowitz, Ellis--Monroe--Newman, FKG/Holley) cannot by themselves prove it.
-\item[(O5)] \emph{Convexity fails.} The total magnetisation is not convex in the site masses. Already on one site, $\langle\varphi;\varphi^2;\varphi^2\rangle<0$, for example at $(a,b,H)\approx(-1.896,0.336,1.493)$. So the bound $K_{\mathrm{eff}}\le1$ in Proposition~\ref{prop:walk} fails, and only a bound $K_{\mathrm{eff}}\le Cm^{\theta-2}$ could hold.
-\item[(O6)] \emph{The FKG route after conditioning fails.} The inequality $\langle q_0q_x^2q_y^2\rangle\langle q_0\rangle\ge\langle q_0q_x^2\rangle\langle q_0q_y^2\rangle$, which would give FKG for $\pi_\eta$, fails on a three-site path with homogeneous masses. The parameters are $a\approx2$, $b=0.162$, $J\approx0.7$--$1.0$, $h=0.031$, and the relative margin is $-3.2\%$. The pointwise monotonicity of $\Psi$ fails for deep double wells at weak coupling: for example $a=-4$, $b=1$, $J=0.3$ on rings of $2$ to $8$ sites. Positivity of the cumulant terms of $m^2\partial_hR$ separately is hopeless, because in the flip regime they are each of order $|\mathbb T|$ and cancel to $O(1)$.
+\item[(O4)] \emph{Uniformity of the field is essential.} Lemma~L can fail for non-uniform fields. On two sites joined by one bond, with $a=-2$, $b=1$, $J=3$, an extra field $0.5$ on one site and uniform field $H=0.01$, the ratio $R$ at the \emph{other} site has $(\partial_HR)/R=+0.264$ and $\partial_HR/\partial_H\langle\varphi_0^2\rangle=+0.279$, so Lemma~L fails there for every $K<0.279$. Inequalities that hold for arbitrary nonnegative field profiles (GKS, GHS, Lebowitz, Ellis--Monroe--Newman, FKG/Holley) cannot by themselves prove it.
+\item[(O5)] \emph{Convexity fails.} The total magnetisation is not convex in the site masses. Already on one site, $\langle\varphi;\varphi^2;\varphi^2\rangle=-0.1475<0$ at $(a,b,H)\approx(-1.896,0.336,1.493)$, and the bound $K_{\mathrm{eff}}\le1$ in Proposition~\ref{prop:walk} fails: $K_{\mathrm{eff}}=1.383$ on one site at $(a,b,H)=(-2.71,0.0226,0.409)$. So and only a bound $K_{\mathrm{eff}}\le Cm^{\theta-2}$ could hold.
+\item[(O6)] \emph{The FKG route after conditioning fails.} The inequality $\langle q_0q_x^2q_y^2\rangle\langle q_0\rangle\ge\langle q_0q_x^2\rangle\langle q_0q_y^2\rangle$, which would give FKG for $\pi_\eta$, fails on a three-site path with homogeneous masses. Here $x,y$ are the two leaves of the path $1$--$0$--$2$ and the expectations are in the conditional $q$-measure of Section~\ref{sec:reductions} at fixed $t$; for $a\approx1.8$--$2.2$, quartic coefficient $0.162$ or $0.081$, $J\in[0.7,1.0]$ and $\eta=0.031$ the relative margin is $-2.8\%$ to $-3.5\%$. The pointwise monotonicity of $\Psi$ fails for deep double wells at weak coupling: for example $a=-4$, $b=1$, $J=0.3$ on rings of $2$ to $8$ sites, where $\Psi$ rises from about $0$ at $u\approx1.5$ to about $0.5$ at $u\approx2.6$. Positivity of the cumulant terms of $m^2\partial_hR$ separately is hopeless, because in the flip regime they are each of order $|\mathbb T|$ and cancel to $O(1)$.
+\item[(O7)] \emph{Cluster swapping loses $\eps^{-2}$.} The double-cluster-swapping sharpness argument of van Engelenburg, Heeney and Lis~\cite{vEHL26} works for the Ellis--Monroe--Newman class and uses one-component structure, so it is not excluded by (O3). Translated into continuum variables, however, its key bound reads $-\partial_\mu m\gtrsim\eps^2\sqrt{\log\eps^{-1}}$, and the resulting magnetisation bound is $M^+\gtrsim\eps^2(\mu_c-\mu)$. Both are vacuous as $\eps\to0$. The loss sits in the step that keeps only the first pivotal bond layer, which carries weight $O(1)$, while the continuum response to $\mu$ is a bulk sum over about $\eps^{-2}$ sites. Taking the derivative in the site mass instead does not help. The exact identity $\langle\varphi_o;\varphi_z^2\rangle=4\mathbb E[\xi^-_o\xi^-_z\xi^+_z\mathbf 1(o\leftrightarrow^-z)\mathbf 1(z\leftrightarrow^+\mathrm{ghost})]$ (with $\xi^\pm$ the cluster signs and $\leftrightarrow^\pm$ the connections of the two random-cluster configurations in~\cite{vEHL26}) places both connection events at the same site, and negative association then gives only the GHS upper bound. This finding rests on a partial reading of~\cite{vEHL26}, through summaries of its HTML version; Definition~3, equations~(6) and~(11), and the proof of Lemma~22 were not read.
 \end{itemize}
 
 \section{Numerical evidence}\label{sec:numerics}
@@ -351,7 +431,8 @@ We tested Lemma~L with $K=0$ directly, i.e.\ $\partial_HR<0$ under a uniform fie
 \item \emph{Rings ($L=2,\dots,10$) and the infinite chain} by transfer operator: $8820$ points with $a\in[-20,20]$, $J\in[0.05,10]$, $H\in[10^{-3},100]$, plus scans of the one-dimensional analogue of the continuum regime ($a=2-\delta$, $b\in[10^{-3},0.1]$). No violation was found.
 \item \emph{Ladders, three-wide cylinders, the $3\times3$ torus, and $790$ random graphs on $2$--$4$ sites} with inhomogeneous couplings and a uniform field: no violation among converged cases.
 \item \emph{Curie--Weiss block laws} up to $N=1024$: no violation.
-\item \emph{Two-dimensional tori,} by Monte Carlo (Metropolis, overrelaxation and field-weighted Wolff clusters; $\partial_HR$ as a correlation; $\mathbb Z_2$-symmetrised multihistogram reweighting; jackknife errors). The code was validated against exact $2\times2$ transfer-matrix values (all pulls below $0.7$), the Gaussian case, and the exact equation of motion on all $93$ production runs (pull rms $1.02$). Runs: $b\in\{0.5,0.1,0.02\}$; deep, moderate and near-critical points on the ordered side; $L=32$ and $64$, plus $L=128$ at one point; susceptibility per site from $340$ to $13{,}800$; fields across the flip window $s=H\langle|M|\rangle_0\in[0.03,10]$. We found $\partial_HR<0$ at every point, at $-77\sigma$ to $-185\sigma$ on the reweighted flip grid. The smallest relative margin $-\partial_HR/\partial_H\langle\varphi_0^2\rangle$ was $0.134$ in the flip window and $0.066$ overall, the latter at weak coupling and moderate field, as expected from the first-order saturation of~\eqref{eq:star}. Margins did not shrink with $L$ or towards criticality. These are tests at fixed lattice spacing (correlation length $\lesssim10$), not of uniformity in $\eps$.
+\item \emph{Two-dimensional tori,} by Monte Carlo (Metropolis, overrelaxation and field-weighted Wolff clusters; $\partial_HR$ as a correlation; $\mathbb Z_2$-symmetrised multihistogram reweighting; jackknife errors). The code was validated against exact $2\times2$ transfer-matrix values (all pulls below $0.7$), the Gaussian case, and the exact equation of motion on all $93$ production runs (pull rms $1.02$). Runs: $b\in\{0.5,0.1,0.02\}$; deep, moderate and near-critical points on the ordered side; $L=32$ and $64$, plus $L=128$ at one point; susceptibility per site from $340$ to $13{,}800$; fields across the flip window $s=H\langle|M|\rangle_0\in[0.03,10]$. We found $\partial_HR<0$ at every point, at $-77\sigma$ to $-185\sigma$ on the reweighted flip grid. The smallest relative margin $-\partial_HR/\partial_H\langle\varphi_0^2\rangle$ was $0.134$ in the flip window and $0.066$ overall, the latter at weak coupling and moderate field, as expected from the first-order saturation of~\eqref{eq:star}. Margins did not shrink with $L$ or towards criticality. These are tests at fixed lattice spacing (correlation length $\lesssim10$).
+\item \emph{Shrinking lattice spacing.} To test uniformity in $\eps$ we held the physical box and the distance to criticality fixed and halved the spacing three times: $b=0.08,0.02,0.005,0.00125$ with $L=32,64,128,256$. The ordered point was matched across spacings by fixing $\chi b$ ($\chi b$ and $m$ drift by at most $5\%$ and $3\%$). The minimum margin in the flip window, at $s=10$, was $0.399\pm0.001$, $0.390\pm0.002$, $0.384\pm0.002$ and $0.378\pm0.003$. A fit linear in $\eps$ extrapolates to $0.378\pm0.002$. A logarithmic drift fits equally well, but at that rate the margin would reach zero only after about $50$ further halvings. At larger fields ($s=100$, $300$) the margins are smaller but still extrapolate to positive values ($\approx0.17$, $0.10$). $\partial_HR<0$ held at all $45$ reweighted points, at $51\sigma$ to $141\sigma$, and the exact equation of motion held on all direct runs. The binary was re-validated against the exact $2\times2$ values (pulls below $2.2$). The Binder cumulant at a fixed physical point ($\lambda L^2=81.9$) was $|B|=1.87$, $1.89$, $1.91$ at $L=64$, $128$, $256$. This supports uniformity in $\eps$, at one box size and one distance from criticality; it does not prove it.
 \end{itemize}
 
 \section{Formal verification}\label{sec:lean}
@@ -372,14 +453,15 @@ File(s) & Content & Theorems\\
 \end{tabular}
 \end{center}
 
-The counts are of \texttt{theorem} and \texttt{lemma} declarations, auxiliary ones included. The files are in the public repository \texttt{OtherMindset/congress-lean}, branch \texttt{claude/pphi2-t2b-session13}, commit \texttt{7ba981b}, directory \texttt{lean/yang-mills/T2b\_lean}. Not formalised: GKS and GHS signs (including $m>0$ for $H>0$), joint $C^1$ regularity in $(\mu,h)$, the pressure-convexity step, inputs (I1)--(I3), Proposition~\ref{prop:sharp}, and the results of Section~\ref{sec:reductions}. Statement-level agreement between the Lean statements and the theorems above was checked by the author's team but not yet by an independent model family. [\textsc{To do before submission}.]
+The counts are of \texttt{theorem} and \texttt{lemma} declarations, auxiliary ones included. The files are in the public repository \texttt{OtherMindset/congress-lean}, branch \texttt{claude/pphi2-t2b-session13}, commit \texttt{7ba981b}, directory \texttt{lean/yang-mills/T2b\_lean}. Not formalised: GKS and GHS signs (including $m>0$ for $H>0$), joint $C^1$ regularity in $(\mu,h)$, the pressure step of Theorem~\ref{thm:conditional}, inputs (I1)--(I3), Proposition~\ref{prop:sharp}, and the results of Sections~\ref{sec:reductions} and~\ref{sec:zerofield}. Statement-level agreement between the Lean statements and the theorems above was checked by an independent Claude referee (with the corrections now in Theorem~\ref{thm:identity}), but not yet by a model from another developer. [\textsc{To do before submission}.]
 
 \section{Open problems}\label{sec:open}
 
 \begin{enumerate}
-\item Prove (P) for some Dini $F$, uniformly in $\eps$, on the flip scale. The two sharpest concrete targets are:
+\item Prove (P) for some Dini $F$, uniformly in $\eps$, on the flip scale. The sharpest concrete targets are:
 \begin{itemize}
-\item the zero-field inequality~\eqref{eq:P0}, together with non-Gaussianity of the torus magnetisation, $\liminf_L\int_W|B_L|>0$ when $\chi_L\to\infty$;
+\item $(\mathrm{FD}_\kappa)$ for a fixed $\kappa$ beyond the bubble regime of Theorem~\ref{thm:FDbubble}, together with non-Gaussianity of the torus magnetisation, $\liminf_L\int_W|B_L|>0$ when $\chi_L\to\infty$ (by Propositions~\ref{prop:FD} and~\ref{prop:PZ} these two give the open half of sharpness);
+\item for non-Gaussianity, the no-screening statement of Section~\ref{sec:zerofield}; a continuum, $\eps$-uniform analogue of Aizenman's planar four-point bound for the two-dimensional Ising model is the natural candidate;
 \item a bound $K_{\mathrm{eff}}\le Cm^{\theta-2}$ in Proposition~\ref{prop:walk}.
 \end{itemize}
 By (O3), the proof must use one-component structure, for example through random currents.
