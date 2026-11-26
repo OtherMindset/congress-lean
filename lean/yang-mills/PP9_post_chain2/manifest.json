@@ -1,0 +1,1753 @@
+[
+ {
+  "module": "R_PP2Sine",
+  "original": "PP2Sine",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Sine.lean",
+  "chars": 19870,
+  "bytes": 20845,
+  "sha256": "ef677a3b8b7009c160e6fde4ff8e5918a5a52d0828efcadf0ace387f3a547af9",
+  "local_imports": [],
+  "posted_imports": [
+   "mwwgf1nl-r5zhai"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.sineVec_orthonormal",
+    "claim": "Orthonormality of the 1-D discrete sine basis on Fin N: Σ_i e_j(i) e_k(i) = δ_jk for j, k < N."
+   },
+   {
+    "theorem": "PP2Target.lap1_sineVec",
+    "claim": "The 1-D Dirichlet lattice Laplacian has eigenvectors e_k with eigenvalues 4 sin²(π(k+1)/(2(N+1)))."
+   },
+   {
+    "theorem": "PP2Target.dirOp_mulVec_sineVec2",
+    "claim": "The 2-D product sine vectors e_K are eigenvectors of the Dirichlet box operator dirOp with eigenvalue dirEig K (any m₀)."
+   },
+   {
+    "theorem": "PP2Target.dirGreen_spectral",
+    "claim": "Spectral formula for the box Green function: dirGreen x y = Σ_K e_K(x) e_K(y) / λ_K, for every m₀ (dirGreen is the matrix inverse of dirOp; λ_K = dirEig K > 0)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Heat",
+  "original": "PP2Heat",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Heat.lean",
+  "chars": 11376,
+  "bytes": 12041,
+  "sha256": "4110220a372d34c2f40543e99ca14b17352736dbfb2a1a355a9c73b93b917078",
+  "local_imports": [
+   "R_PP2Sine"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.heatK_semigroup",
+    "claim": "Semigroup property of the box heat kernel p_t = exp(−t·dirOp) (spectral definition): Σ_z p_t(x,z) p_s(z,y) = p_{t+s}(x,y), all real t, s and any m₀."
+   },
+   {
+    "theorem": "PP2Target.integral_heatK",
+    "claim": "The Bochner integral ∫_0^∞ p_t(x,y) dt of the box heat kernel equals dirGreen x y (stated for every m₀; λ_K = dirEig K > 0 makes it integrable)."
+   },
+   {
+    "theorem": "PP2Target.heat1_le",
+    "claim": "One-dimensional diagonal heat bound: h(τ, i) ≤ √(π/(4τ)) for τ > 0, uniformly in the length N and the site i."
+   },
+   {
+    "theorem": "PP2Target.heatK_diag_le",
+    "claim": "Diagonal heat-kernel bound uniform in n, k, x and m₀: ε⁻² p_t(x,x) ≤ π/(4t) for t > 0."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2FreeVarA",
+  "original": "PP2FreeVar",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2FreeVarA.lean",
+  "chars": 18872,
+  "bytes": 20241,
+  "sha256": "4ec51abfa0f9579007036d68358c6f5843516e2d723d08a31b8d0c105fabb23d",
+  "local_imports": [
+   "R_PP2Heat"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.iter_integral_trig",
+    "claim": "Torus orthogonality, iterated-integral form: ∫_{−π}^{π}∫_{−π}^{π} Σ_{i∈s} c_i cos(p_i·θ) = 4π² Σ_{p_i = 0} c_i for integer frequency vectors p_i."
+   },
+   {
+    "theorem": "PP2Target.two_mul_sub_dirAction_le_freeVar",
+    "claim": "Variational bound: for m₀ ≠ 0, every field v on the Dirichlet box and every site a, 2 v(a) − dirAction(v) ≤ freeVar (the infinite-lattice site variance at spacing ε = 2⁻ⁿ)."
+   },
+   {
+    "theorem": "PP2Target.dirVar_le_freeVar",
+    "claim": "Dirichlet ≤ infinite volume: for m₀ ≠ 0 the site variance ε⁻² dirGreen a a of the Dirichlet free field is at most freeVar, at every box site a."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2FreeVarB",
+  "original": "PP2FreeVar",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2FreeVarB.lean",
+  "chars": 18970,
+  "bytes": 20582,
+  "sha256": "2d39ff748992400dc5a8868c6c525660c65d5063623b563f5ecc8422421e6a6d",
+  "local_imports": [
+   "R_PP2FreeVarA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.sineVec_centre_sq",
+    "claim": "At the centre i = M of an odd box N = 2M+1: e_j(M)² = 1/(M+1) if j is even, and 0 if j is odd."
+   },
+   {
+    "theorem": "PP2Target.specVar_centre",
+    "claim": "Centre-site identity: the spectral site variance specVar (2M+1) μ at the centre equals a midpoint Riemann sum over (M+1)² cells of [0,π]² of 1/w_μ, with weights (1/(M+1))²."
+   },
+   {
+    "theorem": "PP2Target.freeVar_eq_quarter",
+    "claim": "For m₀ ≠ 0, freeVar = (1/π²) ∫_0^π∫_0^π 1/w(θ) dθ, w the lattice symbol at μ = m₀²ε² (interval integrals)."
+   },
+   {
+    "theorem": "PP2Target.freeVar_sub_specVar_centre_le",
+    "claim": "Boundary-strip bound (m₀ ≠ 0): freeVar − specVar(2M+1)(m₀²ε²) at the centre ≤ (1/π²)(∫_0^a∫_0^π 1/w + ∫_0^π∫_0^a 1/w), a = π/(2(M+1))."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2FreeVar2A",
+  "original": "PP2FreeVar2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2FreeVar2A.lean",
+  "chars": 16217,
+  "bytes": 17460,
+  "sha256": "c654296b38ac3625f68004bb6b75e802327b46c8b77414eb84b66d79939d4a31",
+  "local_imports": [
+   "R_PP2FreeVarB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.fv2_strip_le",
+    "claim": "First strip estimate: at μ = (4/π²)p², p > 0, and 0 ≤ a ≤ π, ∫_0^a∫_0^π 1/w_μ ≤ (π³/8)(1 + log⁺(a/p))."
+   },
+   {
+    "theorem": "PP2Target.fv2_strips_eq",
+    "claim": "The two boundary strips have equal integrals (θ₁ ↔ θ₂ symmetry), for μ > 0 and a ≥ 0."
+   },
+   {
+    "theorem": "PP2Target.fv2_freeVar_sub_centre_le",
+    "claim": "For m₀ ≠ 0 and N = 2M+1: freeVar − specVar(2M+1)(m₀²ε²) at the centre ≤ (π/4)(1 + log⁺(1/(|m₀| ε (M+1))))."
+   },
+   {
+    "theorem": "PP2Target.fv2_regionGreen_le_dirGreen",
+    "claim": "Domain monotonicity (m₀ ≠ 0): for every region B of box sites, regionGreen B x y ≤ dirGreen x y entrywise on B × B."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2FreeVar2B",
+  "original": "PP2FreeVar2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2FreeVar2B.lean",
+  "chars": 16250,
+  "bytes": 17245,
+  "sha256": "f4277640ff9bc161e851bcbb00b1d8ac702bead0679f25e88ce7490d61d47a09",
+  "local_imports": [
+   "R_PP2FreeVar2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.fv2_two_mul_sub_quad_le",
+    "claim": "Variational lower bound (m₀ ≠ 0): 2 v(a) − ⟨v, dirOp v⟩ ≤ dirGreen a a for every field v and site a."
+   },
+   {
+    "theorem": "PP2Target.fv2_specVar_le_dirVar",
+    "claim": "If the odd sub-box of half-width M centred at x fits in the box (m₀ ≠ 0), its centre spectral variance specVar(2M+1)(m₀²ε²) is ≤ ε⁻² dirGreen x x."
+   },
+   {
+    "theorem": "PP2Target.fv2_wick_defect_le_of_fits",
+    "claim": "Wick defect at a site with a fitting sub-box (m₀ ≠ 0): freeVar − ε⁻² dirGreen x x ≤ (π/4)(1 + log⁺(1/(|m₀| ε (M+1))))."
+   },
+   {
+    "theorem": "PP2Target.fv2_wick_defect_le",
+    "claim": "Wick defect bound at every box site (m₀ ≠ 0): freeVar − ε⁻² dirGreen x x ≤ (π/4)(1 + log⁺(1/(|m₀| r(x)))), r(x) = ε(M(x)+1) the physical distance to the Dirichlet boundary."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Region",
+  "original": "PP2Region",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Region.lean",
+  "chars": 21534,
+  "bytes": 22868,
+  "sha256": "d2f5caf4bf49296eb5aa16d9d3849a29144b86e0388eb3beb3f7c60d1b1eb7d5",
+  "local_imports": [
+   "R_PP2FreeVar2B"
+  ],
+  "posted_imports": [
+   "mwwgf2cx-iollxj"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.dirAction_zeroExt",
+    "claim": "The box action of a zero-extended region field equals ε² ⟨ψ, regionOp B ψ⟩ (any m₀)."
+   },
+   {
+    "theorem": "PP2Target.regionTwoPt_free",
+    "claim": "At λ = 0 and m₀ ≠ 0, the region two-point function equals ε⁻² regionGreen B x y."
+   },
+   {
+    "theorem": "PP2Target.rg_regionGreen_nonneg",
+    "claim": "For m₀ ≠ 0 the region Green function regionGreen B is entrywise nonnegative."
+   },
+   {
+    "theorem": "PP2Target.free_boundary_le",
+    "claim": "Free exit weight of a ball (m₀ ≠ 0, l ≥ 0): Σ_{u∈B} Σ_{v∉B} bondJ u v · ε⁻² regionGreen B (x,u) ≤ 2/cosh(κ l), κ = min(1,|m₀|)/2, B = physBall x l, uniformly in n, k, x."
+   },
+   {
+    "theorem": "PP2Target.rg_exit_weight_le_one",
+    "claim": "For m₀ ≠ 0 the free exit weight of any region B from any y ∈ B is at most 1."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2WickSplitA",
+  "original": "PP2WickSplit",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2WickSplitA.lean",
+  "chars": 14685,
+  "bytes": 15240,
+  "sha256": "6dd90663a64ca7345eedd2724d3b1201c4e49ef810a840084fb39d7f3a0a3fb9",
+  "local_imports": [],
+  "posted_imports": [
+   "mwvi84dh-hnd872"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.wickPow_add_binomial",
+    "claim": "Wick binomial (Hermite addition) formula for wickPow: :(y+z)^j:_{c₁+c₂} = Σ_i C(j,i) :y^i:_{c₁} :z^{j−i}:_{c₂}, for all real c₁, c₂, y, z."
+   },
+   {
+    "theorem": "PP2Target.wickPow_four_add",
+    "claim": "The quartic Wick split used in Nelson's estimate: :(y+z)⁴:_{c₁+c₂} = :y⁴: + 4:y³:z + 6:y²::z²: + 4y:z³: + :z⁴: (with constants c₁ for y, c₂ for z)."
+   },
+   {
+    "theorem": "PP2Target.wickPow_scale",
+    "claim": "Scaling of Wick powers: :(a y)^k:_{a²c} = a^k :y^k:_c."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2WickSplitB",
+  "original": "PP2WickSplit",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2WickSplitB.lean",
+  "chars": 14996,
+  "bytes": 15544,
+  "sha256": "e7e540fcea1f5c4beaea6a09ede8b4e523f3285927aebbe880f2c871cf6b14bb",
+  "local_imports": [
+   "R_PP2WickSplitA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.wickPow_orthogonal",
+    "claim": "One-dimensional Gaussian orthogonality, degrees ≤ 4: for the centred Gaussian of variance v ≥ 0, E[:x^j:_v :x^k:_v] = δ_jk j! v^j."
+   },
+   {
+    "theorem": "PP2Target.wickPow_cross",
+    "claim": "Cross orthogonality, degrees ≤ 4: for x ~ γ_c, w ~ γ_d independent and Y = a x + w, E[:x^j:_c :Y^k:_{a²c+d}] = δ_jk j! (a c)^j."
+   },
+   {
+    "theorem": "PP2Target.wickPow_cross_cov",
+    "claim": "Covariance form: for c > 0, r² ≤ c c', the pair (x, (r/c)x + w), x ~ γ_c, w ~ γ_{c'−r²/c}, satisfies E[:X^j:_c :Y^k:_{c'}] = δ_jk j! r^j for j, k ≤ 4."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2DoubleIBPA",
+  "original": "PP2DoubleIBP",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2DoubleIBPA.lean",
+  "chars": 16436,
+  "bytes": 17589,
+  "sha256": "007b5974863ed78cc94750203401d5b251a803f3cc7c87f6015d3c66fa58138e",
+  "local_imports": [
+   "R_PP2Region",
+   "R_PP2WickSplitB"
+  ],
+  "posted_imports": [
+   "mwwgf1nl-r5zhai",
+   "mwwgf25i-d0aeg1"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2DoubleIBP.dib_fderiv_F1",
+    "claim": "Fréchet derivative of φ ↦ φ_u E(φ) (E = exp(−λ e Σ :φ⁴:_c)): ∂_v(φ_u E) = E · (v_u − λ φ_u D(φ, v))."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_fderiv_F2",
+    "claim": "Fréchet derivative of φ ↦ :φ_y³:_c E(φ): equals E · (3 :φ_y²: v_y − λ :φ_y³: D(φ, v))."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_integrable",
+    "claim": "For A positive definite, e ≥ 0, λ ≥ 0: any continuous h with |h(φ)| ≤ K exp(2Σ|φ_j|) is integrable against the interacting weight W = gaussWeight A · E."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2DoubleIBPB",
+  "original": "PP2DoubleIBP",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2DoubleIBPB.lean",
+  "chars": 19208,
+  "bytes": 20666,
+  "sha256": "b08c24bc85d5f32eb78bdff980e56352f80a4231584868260c3d0c23cd332a21",
+  "local_imports": [
+   "R_PP2DoubleIBPA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2DoubleIBP.dib_step1",
+    "claim": "First Gaussian integration by parts, unnormalised (A ≻ 0, e, λ ≥ 0): ∫ φ_xφ_u W = A⁻¹(x,u) ∫W − 4λe Σ_y A⁻¹(x,y) ∫ φ_u :φ_y³:_c W."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_step2",
+    "claim": "Second integration by parts, unnormalised: ∫ φ_u :φ_y³: W = 3A⁻¹(u,y) ∫ :φ_y²: W − 4λe Σ_z A⁻¹(u,z) ∫ :φ_y³::φ_z³: W."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_double_ibp",
+    "claim": "Double integration by parts, normalised (A ≻ 0, e, λ ≥ 0, g = A⁻¹t): Σ_u t_u⟨φ_xφ_u⟩ = g(x) − 12λe Σ_z g(z)A⁻¹(x,z)⟨:φ_z²:⟩ + 16λ²⟨F₁F_g⟩ (⟨·⟩ a ratio of Bochner integrals)."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_double_ibp_box",
+    "claim": "I1 on the Dirichlet box (m₀ ≠ 0, λ ≥ 0, Wick constant freeVar, G = ε⁻² dirGreen, g = Gt): Σ_u t_u⟨φ_xφ_u⟩ = g(x) − 12λε² Σ_z g(z)G(x,z)⟨:φ_z²:⟩ + 16λ²⟨F₁F_g⟩."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2DoubleIBPC",
+  "original": "PP2DoubleIBP",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2DoubleIBPC.lean",
+  "chars": 19055,
+  "bytes": 20363,
+  "sha256": "76c4d8c84cb0085d4d86c2b17035e6b20c042cc4db96a022cdbc253e61d6d16f",
+  "local_imports": [
+   "R_PP2DoubleIBPB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2DoubleIBP.dib_double_ibp_region",
+    "claim": "I1 for a region B (m₀ ≠ 0, λ ≥ 0, C_B = ε⁻² regionGreen B, g = C_B t): Σ_u t_u regionTwoPt(a,u) = g(a) − 12λε² Σ_z g(z)C_B(a,z)⟨:ψ_z²:⟩_B + 16λ²⟨F₁F_g⟩_B."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_wick_herm",
+    "claim": "Hermite recursion for Wick powers, j ≤ 2: :y^{j+2}:_c = y :y^{j+1}:_c − (j+1) c :y^j:_c."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_g3_step_unnorm",
+    "claim": "G3 recursion, unnormalised (A ≻ 0, j ≤ 2, k ≤ 4): ∫ :φ_y^{j+2}::φ_{y'}^k: ρ_A = −(j+1)(c − A⁻¹(y,y)) ∫ :φ_y^j::φ_{y'}^k: ρ_A + k A⁻¹(y,y') ∫ :φ_y^{j+1}::φ_{y'}^{k−1}: ρ_A."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2DoubleIBPD",
+  "original": "PP2DoubleIBP",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2DoubleIBPD.lean",
+  "chars": 12886,
+  "bytes": 13564,
+  "sha256": "f494b3335a7e1bc8e95bf0b79bb496d8be97059bd22a64fa545b1b9536fc0352",
+  "local_imports": [
+   "R_PP2DoubleIBPC"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2DoubleIBP.dib_g3_step",
+    "claim": "Normalised G3 recursion for free Gaussian Wick moments (A ≻ 0, j ≤ 2, k ≤ 4), with δ_y = c − A⁻¹(y,y): E₀[:φ_y^{j+2}::φ_{y'}^k:] = −(j+1)δ_y E₀[:φ_y^j::φ_{y'}^k:] + k A⁻¹(y,y') E₀[:φ_y^{j+1}::φ_{y'}^{k−1}:]."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_wick22_box",
+    "claim": "Box, λ = 0, m₀ ≠ 0, c = freeVar, G = ε⁻² dirGreen: E₀[:φ_y²::φ_{y'}²:] = δ_yδ_{y'} + 2G(y,y')², δ_y = c − G(y,y)."
+   },
+   {
+    "theorem": "PP2DoubleIBP.dib_wick44_box",
+    "claim": "Box, λ = 0, m₀ ≠ 0: E₀[:φ_y⁴::φ_{y'}⁴:] = 9δ_y²δ_{y'}² + 72G²δ_yδ_{y'} + 24G⁴, G = G(y,y'), δ_y = freeVar − G(y,y)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2GreenLpA",
+  "original": "PP2GreenLp",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2GreenLpA.lean",
+  "chars": 12009,
+  "bytes": 12821,
+  "sha256": "590164b984c04b96d02fb5c1070cbf9a8d95e270451b9d2f6356dc528aab47c0",
+  "local_imports": [
+   "R_PP2FreeVarB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.glp_dirGreen_rowSum_le",
+    "claim": "Row-sum bound (m₀ ≠ 0): Σ_y dirGreen x y ≤ 1/m₀² (maximum principle)."
+   },
+   {
+    "theorem": "PP2Target.glp_heatK_diag_le",
+    "claim": "Diagonal heat bound keeping the mass: ε⁻² p_t(x,x) ≤ e^{−t m₀²} π/(4t) for t > 0."
+   },
+   {
+    "theorem": "PP2Target.glp_heatK_abs_le",
+    "claim": "Off-diagonal heat bound: |p_t(x,y)| ≤ (p_t(x,x) + p_t(y,y))/2 (any m₀, t)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2GreenLpB",
+  "original": "PP2GreenLp",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2GreenLpB.lean",
+  "chars": 12212,
+  "bytes": 13024,
+  "sha256": "8ac481363ca352c625da37d21eb47ee21f5ff57b768b901f0cea86c55e5239fe",
+  "local_imports": [
+   "R_PP2GreenLpA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.glp_dirGreen_Lp_le",
+    "claim": "Lᵖ bound for the box covariance (m₀ ≠ 0, natural p ≥ 2), uniformly in n, k, x: ε² Σ_y (ε⁻² dirGreen x y)^p ≤ (π/4)^{p−1}/2 · Γ(1/p)^p / m₀²."
+   },
+   {
+    "theorem": "PP2Target.glp_roughCov_Lp_le",
+    "claim": "Lᵖ bound for the rough covariance C_r(T) = ∫_0^T heat kernel (any m₀, T ≥ 0, p ≥ 2), uniformly in n, k, x: ε² Σ_y |C_r(T)(x,y)|^p ≤ (π/4)^{p−1}/2 · p^p · T."
+   },
+   {
+    "theorem": "PP2Target.glp_roughCov_spectral",
+    "claim": "Spectral form of the rough covariance (T ≥ 0): C_r(T)(x,y) = ε⁻² Σ_K e_K(x)e_K(y)(1 − e^{−Tλ_K})/λ_K."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2M5FinalA",
+  "original": "PP2M5Final",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2M5FinalA.lean",
+  "chars": 20464,
+  "bytes": 22204,
+  "sha256": "c3f7522b802477addd85bd4cf9d9a545c3207ff46dfaae0b58164832cb1c980d",
+  "local_imports": [
+   "R_PP2DoubleIBPD",
+   "R_PP2GreenLpB"
+  ],
+  "posted_imports": [
+   "mwwlq07a-c2sp8h"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2M5Final.m5f_schwarz",
+    "claim": "Schwarz with a free parameter: for ρ ≥ 0, with XYρ, X²ρ, Y²ρ integrable, ∫X²ρ ≤ a²Z, ∫Y²ρ ≤ b²Z (a ≥ 0, b > 0, Z ≥ 0) imply |∫XYρ| ≤ abZ."
+   },
+   {
+    "theorem": "PP2M5Final.m5f_abs_ex_le",
+    "claim": "Normalised Schwarz in the free measure (A ≻ 0, e, λ ≥ 0, X continuous of controlled growth): ⟨X²⟩₀ ≤ a², ⟨E²⟩₀ ≤ b², ⟨E⟩₀ ≥ z > 0 imply |⟨X⟩_λ| ≤ ab/z."
+   },
+   {
+    "theorem": "PP2M5Final.m5f_jensen",
+    "claim": "Jensen, tangent-line form: ⟨e^{−λV}⟩₀ ≥ e^{−λ⟨V⟩₀} for V = e Σ_z :φ_z⁴:_c (A ≻ 0, e ≥ 0, λ ≥ 0)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2M5FinalB",
+  "original": "PP2M5Final",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2M5FinalB.lean",
+  "chars": 20437,
+  "bytes": 22265,
+  "sha256": "fb3fb0024b12a167ec54c2b6719c48db57b90ebf37b32a216621a447c4f66cf0",
+  "local_imports": [
+   "R_PP2M5FinalA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2M5Final.m5f_correction_le",
+    "claim": "I2 correction bound, CONDITIONAL on the hypotheses NelsonRegionHyp, WickDefectHyp, WickL2Hyp (m₀ ≠ 0): ∃ K ≥ 0 with |12λε²Σ g C_B⟨:ψ²:⟩_λ| + |16λ²⟨F₁F_g⟩_λ| ≤ λΓK for 0 ≤ λ ≤ 1 and 0 ≤ g ≤ Γ on B = physBall x l."
+   },
+   {
+    "theorem": "PP2M5Final.m5f_boundary_le",
+    "claim": "Conditional on NelsonRegionHyp, WickDefectHyp, WickL2Hyp (m₀ ≠ 0, l ≥ 0): ∃ K ≥ 0, ∀ λ ∈ [0,1], SmallBoundarySum m₀ λ l (2/cosh(κl) + λK) and RegionSusceptibility m₀ λ l (1/m₀² + λK/m₀²)."
+   },
+   {
+    "theorem": "PP2M5Final.m5Inputs_of",
+    "claim": "Conditional on the three hypotheses (for all m₀ > 0, l ≥ 0): ∀ m₀ > 0, ∃ l ≥ 0, λ₀ > 0, A ≥ 0 such that for λ ∈ [0, λ₀): SmallBoundarySum m₀ λ l (3/4) ∧ RegionSusceptibility m₀ λ l A."
+   },
+   {
+    "theorem": "PP2M5Final.phiFourTwoGapV3_of_hyps",
+    "claim": "PhiFourTwoGapV3 CONDITIONAL on: NelsonRegionHyp, WickDefectHyp, WickL2Hyp (all m₀ > 0, l ≥ 0), non-Gaussianity of all limit points for small λ > 0, and SchwartzSeparable. Not unconditional."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Modes",
+  "original": "PP2Modes",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Modes.lean",
+  "chars": 18246,
+  "bytes": 19453,
+  "sha256": "c683d821c162df3ecd35ef3d8a2bc5e454e224e2b5fd657f80907ff9ad9f66d9",
+  "local_imports": [
+   "R_PP2Sine"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.md_dirAction",
+    "claim": "Spectral form of the box action: dirAction(Aξ) = Σ_K ξ_K² for the mode map (Aξ)(x) = ε⁻¹ Σ_K λ_K^{−1/2} ξ_K e_K(x)."
+   },
+   {
+    "theorem": "PP2Target.md_gauss_modes",
+    "claim": "G1 (box): for every F and every m₀ (no hypotheses on F; Bochner integrals), (∫ F e^{−S/2})/(∫ e^{−S/2}) = ∫ F(Aξ) dγ^Λ(ξ), S = dirAction."
+   },
+   {
+    "theorem": "PP2Target.md_gauss_modes_measure",
+    "claim": "Measure form: the pushforward of the standard Gaussian γ^Λ under the mode map A equals the normalised measure (∫e^{−S/2})⁻¹ e^{−S/2} dφ."
+   },
+   {
+    "theorem": "PP2Target.md_gauss_split",
+    "claim": "G1 split (box): for measurable F and 0 ≤ α_K ≤ 1, the free Dirichlet expectation of F equals E[F(A(αξˢ) + A(βξʳ))], ξˢ, ξʳ independent standard Gaussian, β_K = √(1 − α_K²)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Chaos",
+  "original": "PP2Chaos",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Chaos.lean",
+  "chars": 17866,
+  "bytes": 18765,
+  "sha256": "d3e5ffdaee57d86a7c57e6285bf64872185fd387bd3d0e7ef8b397aab9aa7843",
+  "local_imports": [
+   "R_PP2WickSplitB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Chaos.oneDim_moment",
+    "claim": "One-dimensional hypercontractive step: for 0 ≤ ρ ≤ 1 with (m+1)(2m+1)ρ² E_γ[P(1+ρ²P)^m] ≤ 1 (P = Σ_{k=1}^4 He_k²/k!), every b satisfies E_γ[(Σ_{k≤4} ρ^k b_k He_k)^{2m+2}] ≤ (Σ_k k! b_k²)^{m+1}."
+   },
+   {
+    "theorem": "PP2Chaos.sq_err_le",
+    "claim": "Error-term bound for 0 ≤ ρ ≤ 1: (Σ_{k=1}^4 ρ^k b_k He_k(x))² ≤ ρ² (b₁² + 2b₂² + 6b₃² + 24b₄²) P(x)."
+   },
+   {
+    "theorem": "PP2Chaos.sum_abs_sq_le",
+    "claim": "Elementary inequality: (|u| + |e|)² ≤ (u² + s)(1 + r) when e² ≤ s r and s, r ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Chaos2A",
+  "original": "PP2Chaos2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Chaos2A.lean",
+  "chars": 15304,
+  "bytes": 16231,
+  "sha256": "3c274c170b104485d116d249987ab21944d3feb05c099bc8b3966b7d2fd3441f",
+  "local_imports": [
+   "R_PP2Chaos"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Chaos2.ch2_admissible",
+    "claim": "Admissibility: 52488 (m+1)⁶ ρ² ≤ 1 implies the hypothesis of oneDim_moment, (m+1)(2m+1)ρ² E_γ[P(1+ρ²P)^m] ≤ 1."
+   },
+   {
+    "theorem": "PP2Chaos2.oneDim_moment'",
+    "claim": "One-dimensional hypercontractive step with explicit ρ_m = 1/(230(m+1)³): E_γ[hpoly(ρ_m, b)^{2m+2}] ≤ (Σ_k k! b_k²)^{m+1}."
+   },
+   {
+    "theorem": "PP2Chaos2.oneDim_moment_le_rho",
+    "claim": "The same bound for every 0 ≤ ρ ≤ ρ_m."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Chaos2B",
+  "original": "PP2Chaos2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Chaos2B.lean",
+  "chars": 15645,
+  "bytes": 16545,
+  "sha256": "859a33fe106c4bd1fc29abea05ebea6a1b2dbd9c0856bf35bafd8d562d95d1b5",
+  "local_imports": [
+   "R_PP2Chaos2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Chaos2.ch2_hyper",
+    "claim": "Tensorised hypercontractive bound S(n), Bochner form: under the one-dimensional admissibility condition, E_{γⁿ}[F_{T_ρ c}^{2m+2}] ≤ (Σ_α α! c_α²)^{m+1} for all n and coefficient arrays c (per-variable degree ≤ 4)."
+   },
+   {
+    "theorem": "PP2Chaos2.ch2_L2",
+    "claim": "L² identity: E_{γⁿ}[F_c²] = Σ_α α! c_α² for Hermite expansions F_c with per-variable degree ≤ 4."
+   },
+   {
+    "theorem": "PP2Chaos2.ch2_hyper_explicit",
+    "claim": "Explicit hypercontractive bound, all n: E_{γⁿ}[F_{T_{ρ_m}c}^{2m+2}] ≤ (E_{γⁿ}[F_c²])^{m+1}, ρ_m = 1/(230(m+1)³)."
+   },
+   {
+    "theorem": "PP2Chaos2.ch2_degree_bound",
+    "claim": "Degree-d corollary: if c is supported on total degree |α| ≤ d then E[F_c^{2m+2}] ≤ (ρ_m^{−2d} E[F_c²])^{m+1}."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2PortNelson1",
+  "original": "PP2PortNelson1",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2PortNelson1.lean",
+  "chars": 16772,
+  "bytes": 17377,
+  "sha256": "db6380b9d5ebeccf6f9e8681e7c82091e83d3356816f76f23089a79d3e7b7a5a",
+  "local_imports": [],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Port.LayerCake.lintegral_expSq_neg_le_layer_cake",
+    "claim": "Ported from pphi2 (Apache-2.0): for an s-finite measure μ and measurable V, ∫⁻ exp(−V)² dμ ≤ μ(univ) + ∫⁻_{t>0} μ{V ≤ −t}·2e^{2t} dt."
+   },
+   {
+    "theorem": "PP2Port.LayerCake.lintegral_expSq_neg_le_of_tail",
+    "claim": "Tail interface: if μ{V ≤ −t} ≤ ψ(t) for t > 0 then ∫⁻ exp(−V)² dμ ≤ μ(univ) + ∫⁻_{t>0} ψ(t)·2e^{2t} dt."
+   },
+   {
+    "theorem": "PP2Port.IntegrabilityHelpers.lintegral_layer_cake_lt_top_of_eventual_decay",
+    "claim": "If ∫⁻_{(0,T₀]} ψ·2e^{2t} < ∞ and ψ(t)·2e^{2t} ≤ e^{−t} for t > T₀ (T₀ > 0), then ∫⁻_{t>0} ψ(t)·2e^{2t} dt < ∞."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2NelsonA",
+  "original": "PP2Nelson",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2NelsonA.lean",
+  "chars": 20410,
+  "bytes": 21822,
+  "sha256": "68c22c9a57da46c437825c82ef17d31817dfe585995c414d06cc6018eff680ea",
+  "local_imports": [
+   "R_PP2Modes",
+   "R_PP2GreenLpB",
+   "R_PP2FreeVar2B",
+   "R_PP2Chaos2B",
+   "R_PP2PortNelson1"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Nelson.nl_abstract",
+    "claim": "Abstract Nelson estimate: if μ = law of Φ_u under a probability P for every u ≥ 0, V∘Φ_u ≥ R_u − (a + bu²) pointwise and E[R_u^{2m+2}] ≤ (M(m+1)^p e^{−θu})^{m+1} for all m (b, M ≥ 0, θ > 0), then ∫⁻ e^{−2V} dμ ≤ an explicit N(a,b,M,θ,p)."
+   },
+   {
+    "theorem": "PP2Nelson.nl_split_map",
+    "claim": "Law of the split field: for T ≥ 0, φ_s + φ_r (independent smooth and rough parts) has the law A_*γ^Λ of the free Dirichlet field."
+   },
+   {
+    "theorem": "PP2Nelson.nl_tail",
+    "claim": "Markov at an even moment: if R − D ≤ W pointwise, D ≤ t/2, t ≥ 2 and ∫⁻ R^{2m+2} dP ≤ Y, then P{W ≤ −t} ≤ Y."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2NelsonB",
+  "original": "PP2Nelson",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2NelsonB.lean",
+  "chars": 20668,
+  "bytes": 22060,
+  "sha256": "24d8d0056cc56374e72bf7e2bc990ee61c6ee1583e9cc9cbb9acdc3042ef42f1",
+  "local_imports": [
+   "R_PP2NelsonA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Nelson.nl_V_split",
+    "claim": "Wick binomial split of the box interaction V = ε² Σ :φ⁴:_{freeVar}: V(φs + φr) = V_s(φs) + R(φs, φr), Wick constants c₁(y) + c_r(y) = freeVar."
+   },
+   {
+    "theorem": "PP2Nelson.nl_Vs_ge",
+    "claim": "Smooth lower bound, pointwise: V_s(φ) ≥ −D(T) = −6 ε² Σ_y c₁(y)²."
+   },
+   {
+    "theorem": "PP2Nelson.nl_nelsonBox_of_hyps",
+    "claim": "Reduction: nl_SmoothHyp ∧ nl_RoughL2Hyp ∧ nl_ChaosHyp (for m₀, k) ⇒ nl_NelsonBox m₀ k, i.e. ∃ N, ∀ n, ∀ λ ∈ [0,1], E⁰[exp(−2λ ε² Σ_y :φ_y⁴:)] ≤ N. Conditional on the three hypotheses."
+   },
+   {
+    "theorem": "PP2Nelson.nl_sum_f_bdist",
+    "claim": "Lattice sum of the boundary singularity: ε² Σ_y r(y)^{−1/2} ≤ 8 L^{3/2}, uniformly in n (L = boxL k)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2NelsonC",
+  "original": "PP2Nelson",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2NelsonC.lean",
+  "chars": 20288,
+  "bytes": 21617,
+  "sha256": "f1001c192bc1f32b98e26d5011eab1164bb90f065a5115b24c9b04b17b705e31",
+  "local_imports": [
+   "R_PP2NelsonB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Nelson.nl_smoothHyp",
+    "claim": "The smooth-constant hypothesis nl_SmoothHyp m₀ k holds for every m₀ ≠ 0 and k."
+   },
+   {
+    "theorem": "PP2Nelson.nl_mvpoly_herm",
+    "claim": "Every real polynomial of total degree ≤ 4 in d variables equals a Hermite expansion F_c with c supported on |α| ≤ 4."
+   },
+   {
+    "theorem": "PP2Nelson.nl_chaosHyp",
+    "claim": "The chaos hypothesis nl_ChaosHyp m₀ k holds for every m₀ and k (the remainder R_T is a degree-≤ 4 polynomial in the 2|Λ| standard Gaussians)."
+   },
+   {
+    "theorem": "PP2Nelson.nl_nelsonBox_of_rough",
+    "claim": "For m₀ ≠ 0: nl_RoughL2Hyp m₀ k and nl_ChaosHyp m₀ k imply nl_NelsonBox m₀ k (smooth part discharged). Conditional on the rough L² hypothesis (discharged in PP2RoughL2)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2ModesGenA",
+  "original": "PP2ModesGen",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2ModesGenA.lean",
+  "chars": 15574,
+  "bytes": 16491,
+  "sha256": "c67c1a1e38af1632924da05c39a36b5576b3de858ccbc183d4a1d75415dea549",
+  "local_imports": [
+   "R_PP2Modes",
+   "R_PP2GreenLpB",
+   "R_PP2Region"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.mg_quad_modeMat",
+    "claim": "For A positive definite and M = U diag(λ^{−1/2}): (Mξ)ᵀ A (Mξ) = Σ_K ξ_K²."
+   },
+   {
+    "theorem": "PP2Target.mg_gauss_modes",
+    "claim": "G1 (generic, A ≻ 0): for every F (no hypotheses; Bochner integrals), (∫ F e^{−½φᵀAφ})/(∫ e^{−½φᵀAφ}) = ∫ F(Mξ) dγ^ι(ξ)."
+   },
+   {
+    "theorem": "PP2Target.mg_inv_spectral",
+    "claim": "For A positive definite, A⁻¹ = U diag(λ⁻¹) Uᵀ (U the orthogonal eigenvector matrix of A)."
+   },
+   {
+    "theorem": "PP2Target.mg_gauss_modes_measure",
+    "claim": "Measure form (A ≻ 0): the pushforward of γ^ι under M equals the normalised measure (∫e^{−½φᵀAφ})⁻¹ e^{−½φᵀAφ} dφ."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2ModesGenB",
+  "original": "PP2ModesGen",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2ModesGenB.lean",
+  "chars": 15751,
+  "bytes": 16526,
+  "sha256": "7f943d0121f81e054f3d529ffab75355b317ede1cba80b258141b28d982df852",
+  "local_imports": [
+   "R_PP2ModesGenA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.mg_split_law",
+    "claim": "Per-mode split: for 0 ≤ α_K ≤ 1, β_K = √(1 − α_K²), the map (ξˢ, ξʳ) ↦ αξˢ + βξʳ pushes γ^ι ⊗ γ^ι to γ^ι."
+   },
+   {
+    "theorem": "PP2Target.mg_gauss_split",
+    "claim": "Generic split (A ≻ 0, measurable F, 0 ≤ α ≤ 1): the normalised Gaussian expectation of F equals E[F(M(αξˢ) + M(βξʳ))] under γ^ι ⊗ γ^ι."
+   },
+   {
+    "theorem": "PP2Target.mg_heat_split",
+    "claim": "Heat split (A ≻ 0, t ≥ 0, measurable F): the same with α_K = e^{−tλ_K/2}, β_K = √(1 − e^{−tλ_K})."
+   },
+   {
+    "theorem": "PP2Target.mg_integral_heat",
+    "claim": "For A ≻ 0: ∫_0^∞ p_t(x,y) dt = A⁻¹(x,y)."
+   },
+   {
+    "theorem": "PP2Target.mg_integral_heat_Ioc",
+    "claim": "Rough covariance (A ≻ 0, T ≥ 0): ∫_{(0,T]} p_t dt = U diag((1 − e^{−Tλ})/λ) Uᵀ."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2ModesGenC",
+  "original": "PP2ModesGen",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2ModesGenC.lean",
+  "chars": 15590,
+  "bytes": 16574,
+  "sha256": "4b20d80784b96e64f99ced0fe6f3d512cb450cd4f6bca4de32678449fd23d921",
+  "local_imports": [
+   "R_PP2ModesGenB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.mg_heat_submatrix_le",
+    "claim": "Domain monotonicity of heat kernels for symmetric Z-matrices: if A is symmetric with A_ij ≤ 0 off the diagonal and A_B its restriction to B × B, then 0 ≤ p^{A_B}_t(x,y) ≤ p^A_t(x,y) for t ≥ 0, x, y ∈ B."
+   },
+   {
+    "theorem": "PP2Target.mg_regionHeat_diag_le",
+    "claim": "Region diagonal heat bound: ε⁻² p^B_t(x,x) ≤ e^{−tm₀²} π/(4t) for t > 0, uniformly in n, k, B, x."
+   },
+   {
+    "theorem": "PP2Target.mg_regionRough_Lp_le",
+    "claim": "Region rough Lᵖ bound (T ≥ 0, p ≥ 2): ε² Σ_{y∈B} |C^B_r(T)(x,y)|^p ≤ (π/4)^{p−1}/2 · p^p · T, uniformly in n, k, B, x."
+   },
+   {
+    "theorem": "PP2Target.mg_regionGreen_Lp_le",
+    "claim": "Region Green Lᵖ bound (m₀ ≠ 0, p ≥ 2): ε² Σ_{y∈B} (ε⁻² regionGreen B x y)^p ≤ (π/4)^{p−1}/2 · Γ(1/p)^p/m₀²."
+   },
+   {
+    "theorem": "PP2Target.mg_region_gauss_modes",
+    "claim": "G1 (region, m₀ ≠ 0): for every F, the normalised free region expectation with density qweight m₀ 0 (zeroExt B ψ) equals ∫ F(Mξ) dγ^B (Bochner integrals)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2NelsonRegionA",
+  "original": "PP2NelsonRegion",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2NelsonRegionA.lean",
+  "chars": 21482,
+  "bytes": 23079,
+  "sha256": "7ba3d7a3ae6d564a9361ae221f67c7af907cda2641acc4a9ed4c79e69f4e90d4",
+  "local_imports": [
+   "R_PP2NelsonC",
+   "R_PP2ModesGenC"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2NelsonRegion.nr_split_map",
+    "claim": "Generic split law (A ≻ 0, τ ≥ 0): φ_s + φ_r has the law M_*γ^ι."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_chaos_of_poly",
+    "claim": "Generic chaos bound: if F ∘ nr_e is a polynomial of total degree ≤ 4, then ∫⁻ F^{2m+2} ≤ (ρ_m^{−8} E[F²])^{m+1}."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_generic",
+    "claim": "Generic Nelson bound (A ≻ 0, w ≥ 0): if the smooth constant D(u) ≤ a + bu² and E[R_u²] ≤ K e^{−θu} (θ > 0, b ≥ 0) for all u ≥ 0, then for λ ∈ [0,1], ∫⁻ e^{−2λV} d(M_*γ^ι) ≤ 1 + nl_N(a, b, 230⁸ max(K,0), θ, 24)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2NelsonRegionB",
+  "original": "PP2NelsonRegion",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2NelsonRegionB.lean",
+  "chars": 20932,
+  "bytes": 22339,
+  "sha256": "ed226e2dd1be0c260e36d9efe1f5b7102becb58ad2706d34c4916ceee6721062",
+  "local_imports": [
+   "R_PP2NelsonRegionA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2NelsonRegion.nr_chaosHyp",
+    "claim": "The region chaos hypothesis nr_ChaosHyp m₀ l holds for every m₀ ≠ 0 and l."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_nelsonRegion_of_hyps",
+    "claim": "Reduction (m₀ ≠ 0): nr_SmoothHyp m₀ l and nr_RoughL2Hyp m₀ l imply nl_NelsonRegion m₀ l. Conditional on those two hypotheses."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_region_two_mul_sub_quad_le",
+    "claim": "Variational bound for regions (m₀ ≠ 0): 2 w(a) − ⟨w, regionOp B w⟩ ≤ regionGreen B a a."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_region_defect_le",
+    "claim": "Region Wick defect (m₀ ≠ 0): if the odd sub-box of half-width M at x fits and lies in B, freeVar − ε⁻² regionGreen B x x ≤ (π/4)(1 + log⁺(1/(|m₀|ε(M+1))))."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2NelsonRegionC",
+  "original": "PP2NelsonRegion",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2NelsonRegionC.lean",
+  "chars": 19896,
+  "bytes": 21235,
+  "sha256": "4abd94e9b6bfc7ad8901e1ab12a960ad304c202e55421e5b3546cfff8eaf88ee",
+  "local_imports": [
+   "R_PP2NelsonRegionB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2NelsonRegion.nr_cs_bounds",
+    "claim": "Region smooth Wick constant (m₀ ≠ 0, 0 < T ≤ 1, fitting sub-box in B): 0 ≤ c₁(T)(y) ≤ (π/4)(1 + log⁺(1/(|m₀|ε(M+1)))) + (π/4)(log(1/T) + m₀⁻²)."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_card_le",
+    "claim": "Lattice volume of a ball (l ≥ 0): ε² |physBall x l| ≤ (2l+1)²."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nr_smoothHyp",
+    "claim": "The region smooth-constant hypothesis nr_SmoothHyp m₀ l holds for m₀ ≠ 0, l ≥ 0 (6ε²Σ_{y∈B} c₁(T)(y)² ≤ a + b(log T)², uniformly in n, k, x)."
+   },
+   {
+    "theorem": "PP2NelsonRegion.nl_nelsonRegion_of_roughL2",
+    "claim": "For m₀ ≠ 0, l ≥ 0: the region rough L² hypothesis nr_RoughL2Hyp alone implies Nelson's bound nl_NelsonRegion m₀ l for the free region measures of B = physBall x l."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Chaos3",
+  "original": "PP2Chaos3",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Chaos3.lean",
+  "chars": 16593,
+  "bytes": 17514,
+  "sha256": "bc93680e376aec5ca20930a4e2e7a9aba149da9f764d99d7125040ffa97a663f",
+  "local_imports": [
+   "R_PP2Chaos2B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Chaos3.ch3_markov",
+    "claim": "Markov on the (2m+2)-th moment: for c supported on |α| ≤ d and t > 0, γⁿ{|F_c| ≥ t} ≤ ((ρ_m^{−2d} Σ_α α!c_α²)/t²)^{m+1}."
+   },
+   {
+    "theorem": "PP2Chaos3.ch3_tail",
+    "claim": "Tail bound: for c supported on |α| ≤ d and s > 0, γⁿ{s‖F_c‖₂ < |F_c|} ≤ e · exp(−(s/(e·230^d))^{1/(3d)})."
+   },
+   {
+    "theorem": "PP2Chaos3.ch3_bridge",
+    "claim": "A real polynomial in n variables of total degree ≤ d and degree ≤ 4 in each variable is F_c for some c supported on |α| ≤ d."
+   },
+   {
+    "theorem": "PP2Chaos3.ch3_tail_mvPoly",
+    "claim": "Reindexed tail bound: for P : MvPolynomial ι ℝ of total degree ≤ d, degree ≤ 4 per variable, under the standard Gaussian product on ι, P(|P(ξ)| > s‖P‖₂) ≤ e·exp(−(s/(e·230^d))^{1/(3d)})."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Separable",
+  "original": "PP2Separable",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Separable.lean",
+  "chars": 9536,
+  "bytes": 10230,
+  "sha256": "86599387a557a327f8371f2df9a526887b217df09d7fa3c3c9aecc3d678ad4ec",
+  "local_imports": [],
+  "posted_imports": [
+   "mwwlpzs6-scsdxq"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.schwartzSeparable",
+    "claim": "SchwartzSeparable holds: the Schwartz test-function space is separable for each finite seminorm schwartzSup a b (as defined in the posted V3 target)."
+   },
+   {
+    "theorem": "PP2Target.sep_tail",
+    "claim": "Tail bound: ‖x‖^k ‖Dⁿh(x)‖ (1 + ‖x‖) ≤ 2^{a+1} ‖h‖_{a+1,b} for k ≤ a, n ≤ b."
+   },
+   {
+    "theorem": "PP2Target.sep_countable_R",
+    "claim": "For each a, b, R there is a countable D ⊆ TestFn whose image under Ψ_R is dense in the image of all test functions."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2WickHypsA",
+  "original": "PP2WickHyps",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2WickHypsA.lean",
+  "chars": 18671,
+  "bytes": 19880,
+  "sha256": "4c04e9428669323c9272d9d18e72f5697592edd20b2cdc1e25d48b194b097561",
+  "local_imports": [
+   "R_PP2M5FinalB",
+   "R_PP2NelsonRegionC",
+   "R_PP2Chaos3",
+   "R_PP2Separable"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2WickHyps.wh_ex0_sq",
+    "claim": "Bilinear expansion (A ≻ 0, j ≤ 4): ⟨(e Σ_z a_z :φ_z^j:_c)²⟩₀ = e² Σ_{z,z'} a_z a_{z'} E₀[:φ_z^j::φ_{z'}^j:]."
+   },
+   {
+    "theorem": "PP2WickHyps.wh_hyper",
+    "claim": "Hypercontractive fourth moment (A ≻ 0, any c): F = e Σ_z a_z :φ_z³:_c has ⟨F⁴⟩₀ ≤ (ρ₁⁻⁶ ⟨F²⟩₀)²."
+   },
+   {
+    "theorem": "PP2WickHyps.wh_schur",
+    "claim": "Schur test: for H ≥ 0 symmetric with e Σ_{z'} H(z,z') ≤ S (e ≥ 0), e² Σ_{z,z'} u_z u_{z'} H(z,z') ≤ S · e Σ_z u_z²."
+   },
+   {
+    "theorem": "PP2WickHyps.wh_F_bound",
+    "claim": "Algebraic bound for the (3,3) Wick moment: e²ΣΣ a_z a_{z'}(9G δ_zδ_{z'} + 6G³) ≤ 9S·eΣ(a_zδ_z)² + 6K₃·eΣa_z², given G ≥ 0 symmetric, row sums ≤ S and cubic row sums ≤ K₃."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2WickHypsB",
+  "original": "PP2WickHyps",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2WickHypsB.lean",
+  "chars": 18919,
+  "bytes": 20192,
+  "sha256": "4359ad4016de0a1ed6a50edc1494e89e6584984560f38ffe902af1d7b997ecd4",
+  "local_imports": [
+   "R_PP2WickHypsA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2WickHyps.wh_wickDefectHyp",
+    "claim": "The hypothesis WickDefectHyp m₀ l of PP2M5Final holds for m₀ ≠ 0, l ≥ 0 (squared Wick defect ε²Σ_{z∈B}(freeVar − C_B(z,z))² bounded uniformly)."
+   },
+   {
+    "theorem": "PP2WickHyps.wh_wickL2Hyp",
+    "claim": "The hypothesis WickL2Hyp m₀ l (free L² Wick moments) holds for m₀ ≠ 0, l ≥ 0."
+   },
+   {
+    "theorem": "PP2WickHyps.phiFourTwoGapV3_of_nelson_nonGaussian",
+    "claim": "PhiFourTwoGapV3 CONDITIONAL on NelsonRegionHyp (all m₀ > 0, l ≥ 0) and non-Gaussianity of all limit points at small λ > 0; WickDefectHyp, WickL2Hyp and SchwartzSeparable are discharged."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RoughL2A",
+  "original": "PP2RoughL2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RoughL2A.lean",
+  "chars": 17172,
+  "bytes": 18108,
+  "sha256": "38dd45d0471f205828871edbe4eab38857b755499f13075490c5472ffe11c688",
+  "local_imports": [
+   "R_PP2NelsonC"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RoughL2.rl_cov_fin",
+    "claim": "Wick covariance of linear forms on ℝ^{Fin d} (degrees ≤ 4): E[:⟨u,x⟩^a:_{|u|²} :⟨v,x⟩^b:_{|v|²}] = δ_ab a! ⟨u,v⟩^a under the standard Gaussian."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_cov",
+    "claim": "The same for any finite index type ι: for ξ ~ γ^ι, Wick-ordered at the true variances, E[:X^a::Y^b:] = δ_ab a! ⟨u,v⟩^a (a, b ≤ 4)."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_int",
+    "claim": "Products of Wick powers of linear forms of γ^ι are integrable, for any Wick constants and degrees."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RoughL2B",
+  "original": "PP2RoughL2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RoughL2B.lean",
+  "chars": 17651,
+  "bytes": 18876,
+  "sha256": "475f0dd0bac7c0fbd2239f725b514146d9c5c71a516808305f0653db76bcf21d",
+  "local_imports": [
+   "R_PP2RoughL2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RoughL2.rl_smooth_sq",
+    "claim": "Mis-ordered Wick powers (j ≤ 3): if X = ⟨u,ξ⟩ has variance |u|² ≤ c, then E[(:X^j:_c)²] ≤ 15(1 + c)³."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_cov_B",
+    "claim": "Rough Wick covariance (T ≥ 0, a, b ≤ 4): E[:φ_r(y)^a:_{c_r(y)} :φ_r(y')^b:_{c_r(y')}] = δ_ab a! C_r(T)(y,y')^a."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_ER2",
+    "claim": "Exact second moment of the Nelson remainder (T ≥ 0): E[R_T²] = ε⁴ Σ_{y,y'} Σ_{j<4} C(4,j)² E[S_j(y)S_j(y')] (4−j)! C_r(y,y')^{4−j}."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_E_le",
+    "claim": "Mis-ordered smooth covariances (m₀ ≠ 0, T ≥ 0, j ≤ 3): |E[S_j(y)S_j(y')]| ≤ (M(y) + M(y'))/2."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RoughL2C",
+  "original": "PP2RoughL2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RoughL2C.lean",
+  "chars": 15209,
+  "bytes": 16122,
+  "sha256": "7fc19217fbba55d4cbf7e66661a2cf82017d9c5e112588758b494f36c30e6f25",
+  "local_imports": [
+   "R_PP2RoughL2B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RoughL2.rl_G_sum_le",
+    "claim": "Row sums (T = s⁸, 0 < s ≤ 1): ε² Σ_{y'} G(y,y') ≤ K_G s⁴ uniformly in n."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_site_le",
+    "claim": "Per-site smooth factor (m₀ ≠ 0, T = s⁸ ∈ (0,1]): s⁴(1 + c₁(y))³ ≤ s(Q₀ + Q₁ r(y)^{−1/2})."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_roughL2Hyp",
+    "claim": "Rough L² bound, box (m₀ ≠ 0, every k): nl_RoughL2Hyp m₀ k, i.e. E[R_T²] ≤ K T^{1/8} for all n and T ∈ (0,1], K independent of n, T."
+   },
+   {
+    "theorem": "PP2RoughL2.rl_nelsonBox",
+    "claim": "Nelson's bound for the box, unconditional for m₀ ≠ 0: ∃ N, ∀ n, ∀ λ ∈ [0,1], E⁰[exp(−2λ ε² Σ_y :φ_y⁴:_{freeVar})] ≤ N (both lintegral and ratio forms of nl_NelsonBox)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RoughL2RegionA",
+  "original": "PP2RoughL2Region",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RoughL2RegionA.lean",
+  "chars": 15740,
+  "bytes": 16939,
+  "sha256": "c5bd924176802c59e13e0de001cb2062b32ee82fe2d520343ab39548ac15893b",
+  "local_imports": [
+   "R_PP2RoughL2C",
+   "R_PP2NelsonRegionC",
+   "R_PP2M5FinalB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RoughL2Region.rr_ER2",
+    "claim": "Exact second moment of the generic remainder R (factorisation over γ^ι ⊗ γ^ι and rough orthogonality)."
+   },
+   {
+    "theorem": "PP2RoughL2Region.rr_ER2_bound",
+    "claim": "Generic rough L² bound: from a row-sum estimate w Σ_{y'} G ≤ K_G s⁴ and a site-sum estimate w Σ_y s⁴(1 + c_s(y))³ ≤ sQ (w ≥ 0, K_G ≥ 0, Σ_K ls² ≤ c_s), E[R²] ≤ 96·15·K_G Q s."
+   },
+   {
+    "theorem": "PP2RoughL2Region.rr_eps_tau",
+    "claim": "Time normalisation: ε² τ = T for τ = nr_τ n T."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RoughL2RegionB",
+  "original": "PP2RoughL2Region",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RoughL2RegionB.lean",
+  "chars": 15570,
+  "bytes": 16483,
+  "sha256": "d372d244513d8b751e58fbb851a12968adde20f702d07f86ac6f06b788c9dc24",
+  "local_imports": [
+   "R_PP2RoughL2RegionA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RoughL2Region.rr_G_sum_le",
+    "claim": "Region row sums (m₀ ≠ 0, T = s⁸, 0 < s ≤ 1, ε²|B| ≤ (2l+1)²): ε² Σ_{y'∈B} G(y,y') ≤ K_G s⁴."
+   },
+   {
+    "theorem": "PP2RoughL2Region.rr_roughL2Hyp",
+    "claim": "Region rough L² bound (m₀ ≠ 0, l ≥ 0): nr_RoughL2Hyp m₀ l, i.e. E[R_T²] ≤ K T^{1/8} for all n, k, x and T ∈ (0,1], B = physBall x l."
+   },
+   {
+    "theorem": "PP2RoughL2Region.nelsonRegion_holds",
+    "claim": "Nelson's bound for regions, unconditional for m₀ ≠ 0, l ≥ 0: nl_NelsonRegion m₀ l."
+   },
+   {
+    "theorem": "PP2RoughL2Region.nelsonRegionHyp_holds",
+    "claim": "The hypothesis NelsonRegionHyp m₀ l of PP2M5Final holds for m₀ ≠ 0, l ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2EuclidFinal",
+  "original": "PP2EuclidFinal",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2EuclidFinal.lean",
+  "chars": 1625,
+  "bytes": 1682,
+  "sha256": "2695d179304407ae6c10374c970d0d2d9521ab4e3421d5473a9948fd5f925fea",
+  "local_imports": [
+   "R_PP2WickHypsB",
+   "R_PP2RoughL2RegionB"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2EuclidFinal.phiFourTwoGapV3_of_nonGaussian",
+    "claim": "PhiFourTwoGapV3 (posted V3 target: uniform finite-cutoff clustering at small λ, existence of limit points, all limit points non-Gaussian) follows from ONE remaining hypothesis: for every m₀ > 0 there is λ₁ > 0 such that every limit point at 0 < λ < λ₁ is non-Gaussian. Conditional, not unconditional."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RPA",
+  "original": "PP2RP",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RPA.lean",
+  "chars": 18597,
+  "bytes": 19499,
+  "sha256": "e2ce6c589539ee18f1a0961a0247e7f93316c2e435328f200f473f8f963ba932",
+  "local_imports": [],
+  "posted_imports": [
+   "mwwgf1y3-auszzz"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2RP.rp_kernel",
+    "claim": "Reflection positivity of the kernel exp(Σ_j ψ(c j) η(c j)): if g·exp(Σ_j ψ(c j)²/2) is integrable then ∫∫ g(ψ) g(η) exp(Σ_j ψ(c j)η(c j)) ≥ 0."
+   },
+   {
+    "theorem": "PP2RP.integral_glue",
+    "claim": "Change of variables φ = glue(ψ, η) across the reflection plane preserves Lebesgue measure: ∫ f = ∫ f ∘ glue (requires 0 < n + k)."
+   },
+   {
+    "theorem": "PP2RP.glue_reflX",
+    "claim": "Reflecting a glued field swaps its two halves."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RPB",
+  "original": "PP2RP",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RPB.lean",
+  "chars": 18883,
+  "bytes": 19886,
+  "sha256": "e7cd4c04f0be9896a086423f481b92004d5e07ca8cc4950e2e37db70864fd4db",
+  "local_imports": [
+   "R_PP2RPA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RP.Jnn_closed",
+    "claim": "Closed form of the nearest-neighbour coupling: Jnn x y = [x = y + e₁] + [x = y + e₂]."
+   },
+   {
+    "theorem": "PP2RP.dweight_glue",
+    "claim": "Decomposition across the reflection plane: dweight(glue(ψ,η)) = B(ψ)·B(η)·exp(Σ_j ψ(0,j)η(0,j)) (any m₀, λ, P; 0 < n + k)."
+   },
+   {
+    "theorem": "PP2RP.rp_dweight",
+    "claim": "Reflection positivity, general form: for F depending only on the right half with F(glue(ψ,0))·B·exp(Σ_j ψ(0,j)²/2) integrable, ∫ F(φ∘refl) F(φ) dweight(φ) dφ ≥ 0."
+   },
+   {
+    "theorem": "PP2RP.rp_dweight_bounded",
+    "claim": "Reflection positivity for the quartic Dirichlet box (m₀ ≠ 0, λ ≥ 0, 0 < n + k) and bounded measurable right-half F: ∫ F(φ∘refl) F(φ) dweight(φ) dφ ≥ 0."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2TargetV4",
+  "original": "PP2TargetV4",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2TargetV4.lean",
+  "chars": 18381,
+  "bytes": 19969,
+  "sha256": "b8ea272e15ae645a4869af8c01a904e5f515e787262d688da731ccc9a86b1a0d",
+  "local_imports": [],
+  "posted_imports": [
+   "mww4cze7-bk8bxu"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.limitPoint_clusters2",
+    "claim": "Every O(2) limit point inherits the finite-cutoff clustering bound FiniteCutoffClustering2 m₀ λ m, giving ClustersAt2 Z m. (The file is otherwise a statement card of definitions.)"
+   },
+   {
+    "theorem": "PP2Target.reflect_apply",
+    "claim": "The time reflection of a test function is (Θf)(x) = f(−x₀, x₁) (definitional)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RP2A",
+  "original": "PP2RP2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RP2A.lean",
+  "chars": 21114,
+  "bytes": 22425,
+  "sha256": "a1cbd5028f0928b8180b5ced9f0e1075884db469dfff6b3a328906b82e6c129b",
+  "local_imports": [
+   "R_PP2RPB",
+   "R_PP2TargetV4"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RP2.rp_complex",
+    "claim": "Reflection positivity for complex bounded right-half observables (m₀ ≠ 0, λ ≥ 0, 0 < n + k): ∫ conj(ΘF)·F·dweight is a nonnegative real (0 ≤ z in ComplexOrder: re ≥ 0, im = 0)."
+   },
+   {
+    "theorem": "PP2RP2.osForm_conj_symm",
+    "claim": "Conjugate symmetry of the finite-volume OS form: ⟪G, F⟫ = conj ⟪F, G⟫."
+   },
+   {
+    "theorem": "PP2RP2.osForm_add_right",
+    "claim": "Additivity of the OS form in the second slot, for bounded measurable observables (m₀ ≠ 0, λ ≥ 0)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2RP2B",
+  "original": "PP2RP2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2RP2B.lean",
+  "chars": 21401,
+  "bytes": 22599,
+  "sha256": "4e522b84541581ead7888de5201065cb6a04b94e58c8145ee47fc7a533de9c9d",
+  "local_imports": [
+   "R_PP2RP2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2RP2.osForm_nonneg",
+    "claim": "Positivity: ⟪F, F⟫ ≥ 0 (a nonnegative real) for OS observables (m₀ ≠ 0, λ ≥ 0, 0 < n + k)."
+   },
+   {
+    "theorem": "PP2RP2.osForm_cauchy_schwarz",
+    "claim": "Cauchy–Schwarz for the OS form: |⟪F,G⟫|² ≤ Re⟪F,F⟫ · Re⟪G,G⟫."
+   },
+   {
+    "theorem": "PP2RP2.rp_ZD",
+    "claim": "Finite-volume OS positivity of the box generating functional: Σ_{i,j} conj(c_i) c_j Z_box(f_j − τ_{(−ε)}Θ f_i) ≥ 0 for positive-time f_i (m₀ ≠ 0, λ ≥ 0, 0 < n + k)."
+   },
+   {
+    "theorem": "PP2RP2.osPositive_of_limitPoint",
+    "claim": "Under the hypothesis LatticeReflStable m₀ λ (m₀ ≠ 0, λ ≥ 0), every limit point of the Dirichlet-box generating functionals is OS positive."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2OSRecon",
+  "original": "PP2OSRecon",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2OSRecon.lean",
+  "chars": 13513,
+  "bytes": 14085,
+  "sha256": "aef00888e584f9b1aac0cf6ac918500b271d862f6c55bf4a9ce5ec7083496e93",
+  "local_imports": [
+   "R_PP2RP2B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2OSRecon.osr_psi_inner",
+    "claim": "OS reconstruction: the matrix elements of the OS Hilbert space satisfy ⟪ψ f, ψ g⟫ = Z(g − Θf) for positive-time f, g (Z OS positive)."
+   },
+   {
+    "theorem": "PP2OSRecon.osr_psi_dense",
+    "claim": "The span of ψ(positive-time test functions) is dense in the OS Hilbert space."
+   },
+   {
+    "theorem": "PP2OSRecon.osr_vacuum_norm",
+    "claim": "If Z 0 = 1 the vacuum Ω = ψ 0 is a unit vector."
+   },
+   {
+    "theorem": "PP2OSRecon.osr_kernel_herm_of",
+    "claim": "Hermiticity of the OS kernel from Z(−h) = conj Z(h) and Θ-invariance Z(Θh) = Z(h)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2OSShift",
+  "original": "PP2OSShift",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2OSShift.lean",
+  "chars": 18529,
+  "bytes": 19588,
+  "sha256": "3e872741fbd31b2b4166906e248e2fec15e590174ff439f164bab9a7d0c9a54f",
+  "local_imports": [
+   "R_PP2OSRecon"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2OSShift.oss_A_contraction",
+    "claim": "Contraction of the time shift on the pre-Hilbert space (iterated Cauchy–Schwarz): ‖A_t c‖ ≤ ‖c‖ for t ≥ 0."
+   },
+   {
+    "theorem": "PP2OSShift.oss_A_null",
+    "claim": "The time shift maps null vectors to null vectors (so it descends to V/N)."
+   },
+   {
+    "theorem": "PP2OSShift.oss_OS_main",
+    "claim": "For Z OS positive, time-translation invariant, |Z| ≤ 1, Z 0 = 1: the reconstructed T(t) are self-adjoint contractions forming a semigroup with T(0) = 1, TΩ = Ω, ⟪ψf, T(t)ψg⟫ = Z(τ_t g − Θf), and ψ(positive-time) spans a dense set (all OSGap clauses except the gap)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2SemigroupGap",
+  "original": "PP2SemigroupGap",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2SemigroupGap.lean",
+  "chars": 7950,
+  "bytes": 8708,
+  "sha256": "1ade592cae6e7d0b907410bfe2632d1ac27502cdbb09d2eaf48c751297501c10",
+  "local_imports": [],
+  "posted_imports": [
+   "mwpv7txg-lpqim9"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Gap.semigroup_gap",
+    "claim": "Semigroup gap: for a self-adjoint semigroup T(t), t ≥ 0, on a real or complex Hilbert space fixing a unit vector Ω, decay Re⟪v, T(s)v⟫ ≤ C e^{−ms} on a subset D ⊆ Ω^⊥ dense in Ω^⊥ implies ‖T(t)u‖ ≤ e^{−mt}‖u‖ for all u ⊥ Ω."
+   },
+   {
+    "theorem": "PP2Gap.fixed_mem_span",
+    "claim": "Uniqueness of the vacuum: under the same hypotheses with m > 0, every u with T(t)u = u for all t ≥ 0 is ⟪Ω,u⟫Ω."
+   },
+   {
+    "theorem": "PP2Gap.pow_eq",
+    "claim": "Powers of a semigroup: T(k t) = T(t)^k for t ≥ 0 and k ≥ 1."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2OSGap",
+  "original": "PP2OSGap",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2OSGap.lean",
+  "chars": 18521,
+  "bytes": 19459,
+  "sha256": "7bbe28616bd83e4e1c1fdcdff129d2b745218353e00487d81154950c895fe86e",
+  "local_imports": [
+   "R_PP2OSShift",
+   "R_PP2SemigroupGap"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2OSGap.osg_gap",
+    "claim": "Gap clause: if Z 0 = 1, Z clusters at rate m and the compact-support span V is dense, then ‖T(t)u‖ ≤ e^{−mt}‖u‖ for t ≥ 0 and u ⊥ Ω."
+   },
+   {
+    "theorem": "PP2OSGap.osg_dense_compact",
+    "claim": "Density of span ψ(positive-time, compactly supported f), assuming Z is Lipschitz in a seminorm p and CompactApprox p."
+   },
+   {
+    "theorem": "PP2OSGap.osGap_of",
+    "claim": "Assembly: OS positivity, time-translation invariance, |Z| ≤ 1, Z 0 = 1, continuity in a seminorm p with CompactApprox p, and ClustersAt Z m give OSGap Z (with the PP2TargetV4 reflection, translations, positive-time and compact-support classes) at rate m."
+   },
+   {
+    "theorem": "PP2OSGap.hamiltonianGap_of",
+    "claim": "Same hypotheses ⇒ HamiltonianGap Z m (the HamiltonianGap form of the previous statement)."
+   },
+   {
+    "theorem": "PP2OSGap.osg_vacuum_unique",
+    "claim": "With m > 0 and the same hypotheses, vectors fixed by every T(t), t ≥ 0, are multiples of the vacuum."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2HamAssembly",
+  "original": "PP2HamAssembly",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2HamAssembly.lean",
+  "chars": 22135,
+  "bytes": 23517,
+  "sha256": "fc114f9e189bf151ed6fad633bae2106a6bd36109d57ebd75de93f4f470e42f4",
+  "local_imports": [
+   "R_PP2OSGap"
+  ],
+  "posted_imports": [
+   "mwwlq01a-b80lsb"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2HamAssembly.ha_compactApprox",
+    "claim": "CompactApprox (schwartzSup a b) holds for every a, b: compactly supported cut-offs approximate test functions in each Schwartz seminorm."
+   },
+   {
+    "theorem": "PP2HamAssembly.ha_latticeReflStable",
+    "claim": "UniformEquicont m₀ λ implies LatticeReflStable m₀ λ."
+   },
+   {
+    "theorem": "PP2HamAssembly.hamiltonianGap_of_limitPoint",
+    "claim": "Conditional Hamiltonian gap: for m₀ ≠ 0, λ ≥ 0, a limit point Z, UniformEquicont m₀ λ, FiniteCutoffClustering m₀ λ m and time-translation invariance of Z imply HamiltonianGap Z m."
+   },
+   {
+    "theorem": "PP2HamAssembly.hamiltonianGap_of_limitPoint_susc",
+    "claim": "The same with UniformSusceptibility m₀ λ K (sup_x ε²Σ_y|⟨φ_xφ_y⟩| ≤ K uniformly) in place of UniformEquicont: m₀ ≠ 0, λ ≥ 0, Z a limit point, clustering at rate m and time-translation invariance of Z (an explicit hypothesis) ⇒ HamiltonianGap Z m."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2LebowitzA",
+  "original": "PP2Lebowitz",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2LebowitzA.lean",
+  "chars": 17539,
+  "bytes": 18819,
+  "sha256": "3365b8f987437c7fc816d80851d4fdb0e1ca7dec074bf9fc445dcb8fb94a52b7",
+  "local_imports": [],
+  "posted_imports": [
+   "mwwgf25i-d0aeg1"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Lebowitz.lebowitzSite_quartic",
+    "claim": "The φ⁴ single-site weight exp(−(a y⁴ + b y² + d)), a ≥ 0, b, d arbitrary, satisfies the Lebowitz single-site condition LebowitzSite."
+   },
+   {
+    "theorem": "PP2Lebowitz.lev2_had_flip",
+    "claim": "Pointwise identity behind the Lebowitz inequality: after the Hadamard change of variables and D ↦ −D, the second-duplication integrand equals −4·(A_iB_j + B_iA_j)(C_kD_l + D_kC_l)·(positive weight), given evenness of the single-site factors."
+   },
+   {
+    "theorem": "PP2Lebowitz.integral_lev2_nonpos",
+    "claim": "Sign of the second-duplication integral: for even w_x ≥ 0 with LebowitzSite and J ≥ 0, ∫ lev2 ≤ 0 (no integrability hypothesis: Bochner convention, a non-integrable integrand gives 0)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2LebowitzB",
+  "original": "PP2Lebowitz",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2LebowitzB.lean",
+  "chars": 17444,
+  "bytes": 18998,
+  "sha256": "191e9cc363070b8ccb72708b026b39814ec6101cb2bb26b75342713ed57f5a0e",
+  "local_imports": [
+   "R_PP2LebowitzA"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Lebowitz.lebowitz_ferro",
+    "claim": "Lebowitz inequality, general form: for ρ = exp(Σ Jφφ) ∏ w_x(φ_x) with J ≥ 0, each w_x even, ≥ 0, LebowitzSite, and all monomial moments integrable, u₄(i,j,k,l) ≤ 0."
+   },
+   {
+    "theorem": "PP2Lebowitz.lebowitz_dexpect",
+    "claim": "Lebowitz inequality for the quartic Dirichlet-box measure (m₀ ≠ 0, λ ≥ 0): ⟨φ_aφ_bφ_cφ_d⟩ − ⟨φ_aφ_b⟩⟨φ_cφ_d⟩ − ⟨φ_aφ_c⟩⟨φ_bφ_d⟩ − ⟨φ_aφ_d⟩⟨φ_bφ_c⟩ ≤ 0."
+   },
+   {
+    "theorem": "PP2Lebowitz.isNonGaussian_of_norm_ne",
+    "claim": "A Gaussian generating functional has ‖Z(2f)‖ = ‖Z(f)‖⁴; hence one f with ‖Z(2f)‖ ≠ ‖Z(f)‖⁴ certifies IsNonGaussian Z."
+   },
+   {
+    "theorem": "PP2Lebowitz.isNonGaussian_of_quarticDeficit",
+    "claim": "QuarticDeficit m₀ λ (a finite-cutoff hypothesis, not proved here) implies every limit point Z is non-Gaussian."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Lebowitz2A",
+  "original": "PP2Lebowitz2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Lebowitz2A.lean",
+  "chars": 17300,
+  "bytes": 18423,
+  "sha256": "f60f69402e02dabc4e7d3c14ba16f97d4851e46dc9172cf857c3f0522d4c0e44",
+  "local_imports": [
+   "R_PP2LebowitzB"
+  ],
+  "posted_imports": [
+   "mwwlpzo0-wwossd",
+   "mwwlq01a-b80lsb"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Lebowitz2.lb2_integral_cos_taylor",
+    "claim": "Taylor expansion with sixth-moment remainder: for X with X², X⁴, X⁶ integrable (probability measure), |E cos(sX) − (1 − s²m₂/2 + s⁴m₄/24)| ≤ 3s⁶m₆."
+   },
+   {
+    "theorem": "PP2Lebowitz2.lb2_taylor_deficit",
+    "claim": "Taylor step: if E X² ≤ K, E X⁶ ≤ K and E X⁴ − 3(E X²)² ≤ −δ, then for 4(K+1)t² ≤ 1 and 4000(1+K)³t² ≤ δ: E cos(2tX) ≥ 0 and E cos(2tX) + δt⁴/4 ≤ (E cos tX)⁴."
+   },
+   {
+    "theorem": "PP2Lebowitz2.lb2_dexpect_odd",
+    "claim": "Odd observables have zero box expectation (change of variables φ ↦ −φ; no integrability hypothesis needed, by the Bochner convention)."
+   },
+   {
+    "theorem": "PP2Lebowitz2.lb2_ZD_eq_cos",
+    "claim": "For m₀ ≠ 0, λ ≥ 0 the box generating functional is real: Z_D(f) = ⟨cos φ(f)⟩."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Lebowitz2B",
+  "original": "PP2Lebowitz2",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Lebowitz2B.lean",
+  "chars": 16864,
+  "bytes": 18014,
+  "sha256": "09f138d87eb2d488f31b2fca24b0b198e5e521af8cd195e7ff9782015bf856f2",
+  "local_imports": [
+   "R_PP2Lebowitz2A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Lebowitz2.lb2_u4_expand",
+    "claim": "Multilinear expansion (m₀ ≠ 0, λ ≥ 0): u₄(f) = Σ_{a,b,c,d} c_a c_b c_c c_d u₄(a,b,c,d), c_x = ε² f(x)."
+   },
+   {
+    "theorem": "PP2Lebowitz2.lb2_u4_nonpos",
+    "claim": "Smeared Lebowitz inequality: u₄(f) = ⟨φ(f)⁴⟩ − 3⟨φ(f)²⟩² ≤ 0 for f ≥ 0 on the box (m₀ ≠ 0, λ ≥ 0)."
+   },
+   {
+    "theorem": "PP2Lebowitz2.lb2_quarticDeficit_of_uniform",
+    "claim": "UniformQuarticNegativity m₀ λ (a cutoff-uniform hypothesis: u₄(f) ≤ −δ and ⟨φ(f)⁶⟩, ⟨φ(f)²⟩ ≤ K for large n, k) implies QuarticDeficit m₀ λ (m₀ ≠ 0, λ ≥ 0)."
+   },
+   {
+    "theorem": "PP2Lebowitz2.lb2_nonGaussian_of_uniform",
+    "claim": "Under UniformQuarticNegativity m₀ λ (hypothesis), every limit point is non-Gaussian."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Moments",
+  "original": "PP2Moments",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Moments.lean",
+  "chars": 16536,
+  "bytes": 17694,
+  "sha256": "d963d02e1f4c907de4b3ef4b03363c122a7362d43540949b38c1d059f06f5b61",
+  "local_imports": [
+   "R_PP2Lebowitz2B"
+  ],
+  "posted_imports": [
+   "mwwjem2s-tf34yn"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Moments.mo_mom_step",
+    "claim": "Moment step (m₀ ≠ 0, λ ≥ 0, f ≥ 0 on the box, X = φ(f)): ⟨X^{m+2}⟩ ≤ (m+1)⟨X^m⟩⟨X²⟩ for every m."
+   },
+   {
+    "theorem": "PP2Moments.mo_newman4",
+    "claim": "Newman's fourth-moment inequality: ⟨φ(f)⁴⟩ ≤ 3⟨φ(f)²⟩² for f ≥ 0 (m₀ ≠ 0, λ ≥ 0)."
+   },
+   {
+    "theorem": "PP2Moments.mo_newman6'",
+    "claim": "Sixth moment: ⟨φ(f)⁶⟩ ≤ 15⟨φ(f)²⟩³ for f ≥ 0 (m₀ ≠ 0, λ ≥ 0)."
+   },
+   {
+    "theorem": "PP2Moments.mo_cs_lower",
+    "claim": "Hölder lower bound: for 0 ≤ f ≤ M on the box, with h(z) = Σ_y ⟨φ_zφ_y⟩ ε² f(y), ⟨φ(f)²⟩⁴ ≤ (ε²Σf)³·M·ε²Σ_z h(z)⁴ (and the quotient form)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Skeleton1A",
+  "original": "PP2Skeleton1",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Skeleton1A.lean",
+  "chars": 17649,
+  "bytes": 18971,
+  "sha256": "684e3d1dff2ce48e2b118bef148b5c3d1a2187f47fdcfd005dad2ae3c471595e",
+  "local_imports": [],
+  "posted_imports": [
+   "mwwjem2s-tf34yn"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2SGD.sk1_Sol.nonneg",
+    "claim": "Positivity for the Volterra system D_i(τ) = ∫_0^∞ (h_i + Σ_j J_ij D_j)(τ + s e_i) ds on the orthant: with J ≥ 0, row sums ≤ r < c, D in the weighted class c and h ≥ 0, D ≥ 0."
+   },
+   {
+    "theorem": "PP2SGD.sk1_Sol.unique",
+    "claim": "Uniqueness of solutions of the same Volterra system in the class c (J ≥ 0, row sums ≤ r < c, sources in the class c)."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Skeleton1B",
+  "original": "PP2Skeleton1",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Skeleton1B.lean",
+  "chars": 17501,
+  "bytes": 18858,
+  "sha256": "a7ea108426135f58e0632f7be568ec6cb404819027461d6af5b59dc107d14573",
+  "local_imports": [
+   "R_PP2Skeleton1A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2SGD.sk1_exists",
+    "claim": "Existence (Banach fixed point, contraction constant r/c) of a solution in the weighted class c for J ≥ 0 with row sums ≤ r < c and sources in the class c."
+   },
+   {
+    "theorem": "PP2SGD.Rop_spec",
+    "claim": "The chosen resolvent Rop J c a b g lies in the class c and solves the Volterra equation with source δ_ab g."
+   },
+   {
+    "theorem": "PP2SGD.Rop_unique",
+    "claim": "Any solution in the class c of the Volterra equation with source δ_ab g equals Rop on the orthant."
+   },
+   {
+    "theorem": "PP2SGD.Rop_nonneg",
+    "claim": "g ≥ 0 on the orthant implies Rop J c a b g ≥ 0 there."
+   },
+   {
+    "theorem": "PP2SGD.Rop_add",
+    "claim": "Linearity of Rop in g (sum), on the orthant."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Skeleton1C",
+  "original": "PP2Skeleton1",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Skeleton1C.lean",
+  "chars": 16846,
+  "bytes": 18056,
+  "sha256": "825fbd6aa97bb6771f043798263f00e703250133a9b9084e4d79ebff6a3eefb7",
+  "local_imports": [
+   "R_PP2Skeleton1B"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2SGD.Rop_split_fun",
+    "claim": "L3, functional form: for r < c < c' and g in the class c', on the orthant Rop_ab((σ_z − τ₀_z)g)(τ) = (τ_z − τ₀_z)Rop_ab(g)(τ) + Rop_az(Rop_zb g)(τ)."
+   },
+   {
+    "theorem": "PP2SGD.Rop_split",
+    "claim": "L3 (replaces BFS Lemma 2.1): for J ≥ 0, row sums ≤ r < c < c', g in the class c' and τ₀ in the orthant, Rop_ab(σ ↦ (σ_z − τ₀_z)g(σ))(τ₀) = Rop_az(Rop_zb g)(τ₀)."
+   },
+   {
+    "theorem": "PP2SGD.tI_eq_Rop",
+    "claim": "L1: for admissible G with admissible partials (no cone condition), on the orthant [φ_iG]_τ = Σ_x Rop_ix(σ ↦ [∂_xG]_σ)(τ), J = K + Kᵀ, under the stated integrability, row-sum and growth (f(t) ≥ c't − C₀) hypotheses."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Sharp1A",
+  "original": "PP2Sharp1",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Sharp1A.lean",
+  "chars": 17369,
+  "bytes": 18589,
+  "sha256": "ea567b572b3e35452bf20460d44071fc4a560e9f77abf75bde86b1c1ea60d9d3",
+  "local_imports": [],
+  "posted_imports": [
+   "mwwlq07a-c2sp8h"
+  ],
+  "statements": [
+   {
+    "theorem": "PP2Target.sh1_consumer",
+    "claim": "Generalised consumer: SimonLiebIneq', RegionGriffithsI, VarSmallBoundarySum m₀ λ L γ (0 < γ < 1, L ≥ 0) and UniformSusceptibility m₀ λ K give ∃ C₀ ≥ 0, m > 0 with UniformSmearedDecay m₀ λ C₀ m (all as hypotheses)."
+   },
+   {
+    "theorem": "PP2Target.clustering_of_varSmallBoundarySum",
+    "claim": "For m₀ ≠ 0, λ ≥ 0: VarSmallBoundarySum m₀ λ L γ (0 < γ < 1) and UniformSusceptibility m₀ λ K imply ∃ m > 0, FiniteCutoffClustering m₀ λ m (Simon–Lieb', region Griffiths I, Newman discharged). Conditional on the two hypotheses."
+   },
+   {
+    "theorem": "PP2Target.sh1_exists_radius",
+    "claim": "Averaging: among R₀ + jε, j < M, some radius has shellSum ≤ 4Σ_u⟨φ_xφ_u⟩/M."
+   }
+  ]
+ },
+ {
+  "module": "R_PP2Sharp1B",
+  "original": "PP2Sharp1",
+  "path": "lean/yang-mills/PP9_post_chain2/R_PP2Sharp1B.lean",
+  "chars": 19680,
+  "bytes": 20826,
+  "sha256": "e4f42baedfde204489a5a08ad697aba9fdb25d490c567d8a2b82cad11f559fb8",
+  "local_imports": [
+   "R_PP2Sharp1A"
+  ],
+  "posted_imports": [],
+  "statements": [
+   {
+    "theorem": "PP2Target.varSmallBoundarySum_of_suppression",
+    "claim": "UniformSusceptibility m₀ λ K and DirichletSuppression m₀ λ R₀ C (R₀, C ≥ 0; both hypotheses) give VarSmallBoundarySum with γ = 1/2 and radius ≤ R₀ + ⌈8CK⌉ + 1."
+   },
+   {
+    "theorem": "PP2Target.clustering_of_uniformSusceptibility_of_suppression",
+    "claim": "For m₀ ≠ 0, λ ≥ 0: UniformSusceptibility and DirichletSuppression (open hypotheses) ⇒ ∃ m > 0, FiniteCutoffClustering m₀ λ m."
+   },
+   {
+    "theorem": "PP2Target.sh1_regionTwoPt_le_twoPt",
+    "claim": "Griffiths II monotonicity (m₀ ≠ 0, λ ≥ 0): ⟨φ_xφ_u⟩_R ≤ ⟨φ_xφ_u⟩ for every region R."
+   },
+   {
+    "theorem": "PP2Target.levelClustering_of_susceptibility",
+    "claim": "A level-n susceptibility bound (uniform in k) gives clustering at level n at the explicit rate m_n = log 2/(T_nε + 1), T_n = ⌈8K/ε²⌉ + 1; this rate tends to 0 as n → ∞, so it is NOT uniform in the cutoff."
+   }
+  ]
+ }
+]
