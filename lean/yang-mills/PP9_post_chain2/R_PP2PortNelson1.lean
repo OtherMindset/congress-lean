@@ -8,7 +8,7 @@ Toolchain: Lean 4.35.0, Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679 (projec
 
 Ported (faithful copies, namespace renamed to `PP2Port`, minimal API-drift fixes) from
 
-* repository: https://github.com/mrdouglasny/pphi2
+* repository: mrdouglasny/pphi2 on GitHub, licence at https://github.com/mrdouglasny/pphi2/blob/83501022fc6ff5f38e93a4d5b631ef4044b66216/LICENSE
 * commit:     83501022fc6ff5f38e93a4d5b631ef4044b66216
 * files:      `Pphi2/Polynomial.lean`,
               `Pphi2/NelsonEstimate/LayerCake.lean`,
