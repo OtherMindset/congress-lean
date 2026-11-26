@@ -9,6 +9,7 @@ Each file builds as module `LongTable.<name>` with no `sorry`. Every theorem use
 | PP2TorusEOM.lean | The equation of motion on any finite graph (`eom`); the translation-invariant form (`eom_ti`); the H- and a-derivative formulas. Imports only Mathlib. | 55 |
 | PP2TorusMaxwell.lean | The Maxwell relation, and the exact identity `star_identity`: m − Hχ = 4bm²(∂_H R + ∂_H⟨φ₀²⟩). | 29 |
 | PP2TorusNN.lean | The nearest-neighbour torus (ZMod N)², N ≥ 3: `eom_nn`, `eom_continuum` (μ_b m + 4λ⟨φ₀³⟩ = h), `maxwell_nn`, `star_nn`. | 16 |
+| PP2OneSiteA–D.lean | The one-site theorem. `R_antitoneOn_EMN`: for V that is C², even, with V″ nondecreasing on [0,∞) and superlinear, R(H) = ⟨φ;φ²⟩_H/⟨φ⟩_H is antitone on H > 0. `R_antitoneOn_phi4`: the instance V = λx⁴ + (μ/2)x² for λ > 0 and any μ. Layers: Chebyshev/MLR in product form, sinh-ratio monotonicity, the duplication change of variables, supermodularity from EMN. Imports only Mathlib. | 16+14+27+8 |
 
 Not formalized:
 - m > 0 for H > 0 (GKS I);
