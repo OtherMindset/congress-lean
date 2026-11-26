@@ -1,0 +1,29 @@
+time 586.8352377414703 mp points 1021
+max r = -1.489997960235242e-10  #r>0: 0  min r -0.7232484241735623
+  top: alpha=-1e+05 eta=1e+05 r=-1.489998e-10
+  top: alpha=-1e+05 eta=6.31e+04 r=-1.493674e-10
+  top: alpha=-1e+05 eta=3.981e+04 r=-1.496005e-10
+  top: alpha=-1e+05 eta=2.512e+04 r=-1.497474e-10
+  top: alpha=-1e+05 eta=1.585e+04 r=-1.498413e-10
+  top: alpha=-1e+05 eta=1e+04 r=-1.498997e-10
+  top: alpha=-1e+05 eta=6310 r=-1.499363e-10
+  top: alpha=-1e+05 eta=3981 r=-1.499595e-10
+  top: alpha=-1e+05 eta=2512 r=-1.499747e-10
+  top: alpha=-1e+05 eta=1585 r=-1.499840e-10
+alpha=-1e+05  max_eta r=-1.490e-10 (eta=1e+05)  min r=-6.667e-01 (eta=1e-05)
+alpha=-1e+04  max_eta r=-1.234e-08 (eta=1e+05)  min r=-6.667e-01 (eta=1e-05)
+alpha=-1e+03  max_eta r=-1.512e-07 (eta=1e+05)  min r=-6.667e-01 (eta=1e-05)
+alpha=-100  max_eta r=-2.192e-07 (eta=1e+05)  min r=-6.667e-01 (eta=1e-05)
+alpha=-10  max_eta r=-2.271e-07 (eta=1e+05)  min r=-6.737e-01 (eta=1e-05)
+alpha=-1  max_eta r=-2.279e-07 (eta=1e+05)  min r=-6.101e-01 (eta=0.000158)
+alpha=-0.1  max_eta r=-2.280e-07 (eta=1e+05)  min r=-5.131e-01 (eta=0.000158)
+alpha=-0.01  max_eta r=-2.280e-07 (eta=1e+05)  min r=-5.030e-01 (eta=0.000158)
+alpha=-0.001  max_eta r=-2.280e-07 (eta=1e+05)  min r=-5.020e-01 (eta=0.000251)
+alpha=0.00398  max_eta r=-2.280e-07 (eta=1e+05)  min r=-5.014e-01 (eta=1e-05)
+alpha=0.0398  max_eta r=-2.280e-07 (eta=1e+05)  min r=-4.974e-01 (eta=0.000158)
+alpha=0.398  max_eta r=-2.280e-07 (eta=1e+05)  min r=-4.575e-01 (eta=0.000398)
+alpha=3.98  max_eta r=-2.284e-07 (eta=1e+05)  min r=-1.773e-01 (eta=0.000398)
+alpha=39.8  max_eta r=-2.315e-07 (eta=1e+05)  min r=-3.736e-03 (eta=0.00631)
+alpha=398  max_eta r=-2.643e-07 (eta=1e+05)  min r=-3.785e-05 (eta=0.251)
+alpha=3.98e+03  max_eta r=-2.595e-07 (eta=1e+05)  min r=-3.786e-07 (eta=1e-05)
+alpha=3.98e+04  max_eta r=-3.784e-09 (eta=1e+05)  min r=-3.786e-09 (eta=1e-05)

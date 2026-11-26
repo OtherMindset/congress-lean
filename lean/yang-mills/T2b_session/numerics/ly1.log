@@ -1,0 +1,62 @@
+LP require_positive=True: cases 19162  R'>0 cases 5276  worst R'/P' 3.4948e-02
+   worst: {'beta': 2.913643114895183, 'alphas': [np.float64(0.6954150201936318), np.float64(5.288848341163431), np.float64(0.3514705873684462)], 'H': 1.0, 'Rp': 2.586590201514562, 'positive': True, 'minrel': 9.553545902232042e-07}
+LP require_positive=False: cases 78000  R'>0 cases 48604  worst R'/P' 4.4292e+03
+   worst: {'beta': 3.70317124586349, 'alphas': [np.float64(15.58748477538626), np.float64(0.23539317550353586)], 'H': 0.1584893192461114, 'Rp': 26.84518631598646, 'positive': False, 'minrel': -0.0038072685645749076}
+time 26.08733296394348
+CW N=2 beta=0.20  max_H R'/P' = -1.0000e+00
+CW N=2 beta=0.60  max_H R'/P' = -1.0000e+00
+CW N=2 beta=0.90  max_H R'/P' = -1.0000e+00
+CW N=2 beta=1.00  max_H R'/P' = -1.0000e+00
+CW N=2 beta=1.10  max_H R'/P' = -1.0000e+00
+CW N=2 beta=1.50  max_H R'/P' = -1.0000e+00
+CW N=2 beta=3.00  max_H R'/P' = -1.0000e+00
+CW N=3 beta=0.20  max_H R'/P' = -6.6667e-01
+CW N=3 beta=0.60  max_H R'/P' = -6.6667e-01
+CW N=3 beta=0.90  max_H R'/P' = -6.6668e-01
+CW N=3 beta=1.00  max_H R'/P' = -6.6668e-01
+CW N=3 beta=1.10  max_H R'/P' = -6.6668e-01
+CW N=3 beta=1.50  max_H R'/P' = -6.6668e-01
+CW N=3 beta=3.00  max_H R'/P' = -6.6668e-01
+CW N=4 beta=0.20  max_H R'/P' = -5.0001e-01
+CW N=4 beta=0.60  max_H R'/P' = -5.0003e-01
+CW N=4 beta=0.90  max_H R'/P' = -5.0003e-01
+CW N=4 beta=1.00  max_H R'/P' = -5.0003e-01
+CW N=4 beta=1.10  max_H R'/P' = -5.0003e-01
+CW N=4 beta=1.50  max_H R'/P' = -5.0003e-01
+CW N=4 beta=3.00  max_H R'/P' = -5.0002e-01
+CW N=8 beta=0.20  max_H R'/P' = -2.5019e-01
+CW N=8 beta=0.60  max_H R'/P' = -2.5031e-01
+CW N=8 beta=0.90  max_H R'/P' = -2.5030e-01
+CW N=8 beta=1.00  max_H R'/P' = -2.5029e-01
+CW N=8 beta=1.10  max_H R'/P' = -2.5027e-01
+CW N=8 beta=1.50  max_H R'/P' = -2.5021e-01
+CW N=8 beta=3.00  max_H R'/P' = -2.5005e-01
+CW N=16 beta=0.20  max_H R'/P' = -1.2583e-01
+CW N=16 beta=0.60  max_H R'/P' = -1.2625e-01
+CW N=16 beta=0.90  max_H R'/P' = -1.2611e-01
+CW N=16 beta=1.00  max_H R'/P' = -1.2604e-01
+CW N=16 beta=1.10  max_H R'/P' = -1.2596e-01
+CW N=16 beta=1.50  max_H R'/P' = -1.2565e-01
+CW N=16 beta=3.00  max_H R'/P' = -1.2510e-01
+CW N=64 beta=0.20  max_H R'/P' = -3.3921e-02
+CW N=64 beta=0.60  max_H R'/P' = -3.5378e-02
+CW N=64 beta=0.90  max_H R'/P' = -3.4718e-02
+CW N=64 beta=1.00  max_H R'/P' = -3.4407e-02
+CW N=64 beta=1.10  max_H R'/P' = -3.4091e-02
+CW N=64 beta=1.50  max_H R'/P' = -3.2983e-02
+CW N=64 beta=3.00  max_H R'/P' = -3.1430e-02
+CW N=256 beta=0.20  max_H R'/P' = -1.0043e-02
+CW N=256 beta=0.60  max_H R'/P' = -1.2615e-02
+CW N=256 beta=0.90  max_H R'/P' = -1.1815e-02
+CW N=256 beta=1.00  max_H R'/P' = -1.1361e-02
+CW N=256 beta=1.10  max_H R'/P' = -1.0912e-02
+CW N=256 beta=1.50  max_H R'/P' = -9.4910e-03
+CW N=256 beta=3.00  max_H R'/P' = -7.9540e-03
+CW N=1024 beta=0.20  max_H R'/P' = -2.8522e-03
+CW N=1024 beta=0.60  max_H R'/P' = -5.4076e-03
+CW N=1024 beta=0.90  max_H R'/P' = -5.0932e-03
+CW N=1024 beta=1.00  max_H R'/P' = -4.6073e-03
+CW N=1024 beta=1.10  max_H R'/P' = -4.1389e-03
+CW N=1024 beta=1.50  max_H R'/P' = -2.9185e-03
+CW N=1024 beta=3.00  max_H R'/P' = -2.0184e-03
+time 38.1018705368042
