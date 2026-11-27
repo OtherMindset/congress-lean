@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{longtable,booktabs,array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{seqsplit}
+\newcommand{\hash}[1]{{\ttfamily\footnotesize\seqsplit{#1}}}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\newcommand{\pid}[1]{\texttt{\##1}}
+\newcommand{\lid}[1]{\texttt{#1}}
+\setlength{\parskip}{3pt}
+
+\title{Online Resource 1: verification record for\\ ``A one-site monotonicity theorem and a conditional reduction of sharpness for continuum $\varphi^4_2$''}
+\author{Alexander Ross Cohen\\ \small Other Mindset Lab LLC, Washington, DC, USA. ORCID 0009-0006-2755-8313}
+\date{Version 1, 27 November 2026\\ \small Supplement to the preprint doi:10.5281/zenodo.24565416}
+
+\begin{document}
+\sloppy
+\hypersetup{pdftitle={Online Resource 1: verification record (T2b preprint)},pdfauthor={Alexander Ross Cohen}}
+\maketitle
+
+\noindent This document records how each result of the paper was produced and checked. It supplements Section~12 of the paper (``Statement on AI involvement''), which states the conventions used here. Theorem, section and equation numbers refer to the paper. Post ids (such as \pid{mwziu7xt-7jygdd}) and ledger ids (such as \lid{l-mwzlzy4r-zob2io}) refer to the Yang--Mills table of the Long Table, \url{https://othermindset.com/table/yang-mills}, where each post can be read with its checks. Paths refer to the public repository \url{https://github.com/OtherMindset/congress-lean}, branch \path{claude/pphi2-t2b-session13}, commit \texttt{446f7f9} (full hash \hash{446f7f96bf68d632745cef7a15c922b93bab1618}); \path{T2b_session/} and \path{T2b_lean/} abbreviate \path{lean/yang-mills/T2b_session/} and \path{lean/yang-mills/T2b_lean/}. The site's records were read on 27 November 2026. Everything here was compiled by a Claude Opus 5.5 session from the repository and the site; no person has reviewed it.
+
+\section{Status of each result}
+
+Table~\ref{tab:status} lists every numbered result of the paper with the checks it has received. The kinds of check are those of Section~12.2 of the paper: Lean builds, programs, and checks by language models (team, independent referee and cross-family checks). ``Referee $n$'' is item $n$ of the list of independent referee checks in Section~12.3 of the paper; the reports are in the repository (Section~\ref{sec:who}). The ledger status is the one recorded at the table: \emph{machine-checked} means that the site's runner built the Lean file and a model of another family matched its statements to the claims; \emph{conditional} means that the result rests on dependencies listed with the entry: cited sources that no checker read and, for Thm 6.1 with Cor 6.2 and for Prop 8.2, the open hypotheses $H_F$ and $(\mathrm{FD}_\kappa)$. ``None'' in the last column means that the result has no ledger entry and no cross-family check.
+
+{\small
+\begin{longtable}{@{}p{0.15\linewidth}p{0.2\linewidth}p{0.27\linewidth}p{0.3\linewidth}@{}}
+\caption{Status of each result.}\label{tab:status}\\
+\toprule
+Result & Produced by & Checks & Cross-family checks; ledger \\
+\midrule\endfirsthead
+\toprule
+Result & Produced by & Checks & Cross-family checks; ledger \\
+\midrule\endhead
+Thm 3.1 (one-site) & Claude Opus 5.5 team, round 1 (\path{T2b_session/zerod}) & Lean \path{PP2OneSiteA}--\path{D} (Section~\ref{sec:lean}); numerics (Section~10) & Lean statements: GPT-6 and Gemini, hard holds; \lid{l-mwzlz1ft-vjnloi}, \lid{l-mwzlz249-oaltez}, \lid{l-mwzlz2s3-hv9cli}, \lid{l-mwzlz3gq-re3nnu}: machine-checked \\
+Thm 4.1 (identities) & earlier Claude sessions; round 1 (\path{T2b_session/lift}) & Lean \path{PP2TorusEOM}, \path{PP2TorusMaxwell}, \path{PP2TorusNN}; referee 4 (Lean statements vs paper) & Lean statements: GPT-6 and Gemini, hard holds; \lid{l-mwzlyzdl-zf093o}, \lid{l-mwzlz030-dmmaa8}, \lid{l-mwzlz0q1-dcfqaf}: machine-checked. The continuum-unit form is not formalised. \\
+Thm 5.1 (characteristics) & Claude Opus 5.5 team, round 1 (\path{T2b_session/theta1}) & Lean \path{PP2ABFDini}; referee 4 & Lean statements: GPT-6 (gap, answered, then holds) and Gemini, hard holds; \lid{l-mwzlyynv-ecgym9}: machine-checked \\
+Prop 5.2 (Dini sharp) & round 1 (\path{T2b_session/theta1}, \path{PROOF.md} \S5) & referee 4 & none \\
+Thm 6.1, Cor 6.2 & round 1; citation check \path{T2b_session/cite} & referee 4 (missing hypotheses found and added) & \pid{mwzfyk6n-7vf6aa}: GPT-6 and Gemini, hard holds; \lid{l-mwzlzv3n-k7uhb4}: conditional \\
+Thm 7.1 (sinh) & round 1 & referee 4 & none \\
+Prop 7.2 (walk bounds) & round 1 (\path{T2b_session/r2/B}, \path{theta2}) & referee 4 (normalisation error found and fixed) & \pid{mwzfz4vz-kcw1vq}: GPT-6 unsure (counterexample to a claim in the posted proof); corrected \pid{mwzircx2-dp977k}: GPT-6 and Gemini, hard holds; \lid{l-mwzlzvsz-bnlmd9}: conditional. The last claim of the proposition was checked by a Claude referee only. \\
+Prop 7.3 (torus LRO) & round 1 & referee 4 & none \\
+Thm 8.1 (zero mode) & Claude Fable 5.2, round 2 (\path{T2b_session/round3/fable}) & referee 1 & \pid{mwzg06k8-2nmi18}: GPT-6 and Gemini, hard holds; \lid{l-mwzlzwnn-funp3d}: conditional \\
+Prop 8.2 ($\mathrm{FD}_\kappa$ integrated) & Claude Fable 5.2, round 2 (\path{round3/fable}) & referee 1 & \pid{mwzg0mj8-bskmht}: GPT-6 and Gemini, hard holds; \lid{l-mwzlzxhj-dahntw}: conditional \\
+Thm 8.3 (bubble regime) and the infrared criterion & Claude Opus 5.5, round 2 (\path{round3/fd}) & referee 2 & \pid{mwzg170q-1swu3s}: GPT-6 gap (\pid{mwzhu97n-c9b9pm}), answered (\pid{mwzhzicp-77nzmz}), then holds (\pid{mwzi533b-wwrj8g}); corrected \pid{mwziu7xt-7jygdd}: GPT-6 and Gemini, hard holds; \lid{l-mwzlzy4r-zob2io}: conditional \\
+Prop 8.4 (walk formula, tree bound, Lee--Yang form) & Claude Opus 5.5, round 2 (\path{round3/ng}) & referee 3 & none \\
+(O1)--(O3) & round 1 & team only & none \\
+(O4)--(O6) & round 1 (\path{T2b_session/r2/E}, \path{b3check}) & referee 4 (quoted numbers) & none \\
+(O7) & Claude Opus 5.5, round 2 (\path{round3/vehl}) & team; identities numerical only & none \\
+Section 10 numerics & rounds 1--2 (\path{T2b_session/numerics}, \path{mc}, \path{round3/mc_eps}) & referee 4 (quoted numbers); Monte Carlo validation rerun (\path{round3/mcval}) & none \\
+\bottomrule
+\end{longtable}
+}
+
+\section{Programs}\label{sec:programs}
+
+The numerical work of the paper was done by Python programs and one C program in \path{T2b_session/}. None of them was posted to the table or rerun by the site's runner. They were run in the Claude sessions that wrote them, and some were rerun or independently reimplemented by the referee sessions, as their reports state. They are evidence, not proof. Table~\ref{tab:dirs} says what each directory holds; Directory names are the sessions' own labels and do not follow the paper's numbering of rounds: \path{r2/} belongs to the paper's round 1, and \path{round3/} to its round 2. Table~\ref{tab:files} lists every program file with its SHA-256 hash at commit \texttt{446f7f9}. Data files, logs and notes in the same directories are not listed.
+
+{\small
+\begin{longtable}{@{}p{0.22\linewidth}p{0.72\linewidth}@{}}
+\caption{Directories of \texttt{T2b\_session/} that hold programs.}\label{tab:dirs}\\
+\toprule
+Directory & Contents \\
+\midrule\endfirsthead
+\toprule Directory & Contents \\ \midrule\endhead
+\path{zerod} & One-site theorem (Thm 3.1): numerics, the pair representation, and lattice tests (\path{zerod_proof.md}). \\
+\path{theta1}, \path{theta2}, \path{theta3} & The Dini characteristics lemma (Thm 5.1), Prop 5.2 and the integrated form; Curie--Weiss numerics. \\
+\path{lift} & Lifting the one-site argument and the torus identities (\path{AUDIT_AND_LIFT.md}). \\
+\path{numerics} & Exact quadrature and transfer-operator scans of Section 10 (single site, rings, chains, strips, small graphs); summary in \path{RESULTS.md}. \\
+\path{mc} & Two-dimensional Monte Carlo of Lemma L (C program \path{phi4.c} and Python analysis); summary in \path{RESULTS.md}. \\
+\path{abtest}, \path{b3check} & Tests used for (O4)--(O6). \\
+\path{r2/A}--\path{r2/E} & Team notes and scripts of the paper's round 1 (the sessions' own label ``r2'' counts an earlier planning round): structure, walk representations (Prop 7.2), exponent bounds, literature, and the convexity test behind (O5). \\
+\path{round3/fable}, \path{round3/fable_check} & Thm 8.1, Prop 8.2 and their referee check (referee 1). \\
+\path{round3/fd}, \path{round3/fd_check} & Thm 8.3 and the infrared criterion, and their referee check (referee 2). \\
+\path{round3/ng}, \path{round3/ng_check} & Prop 8.4 and its referee check (referee 3). \\
+\path{round3/v1_check} & Referee 4: the results not formalised in Lean. \\
+\path{round3/vehl} & Obstruction (O7). \\
+\path{round3/mc_eps}, \path{round3/mcval} & Shrinking-spacing Monte Carlo (Section 10) and the re-validation of the Monte Carlo program against exact values. \\
+\bottomrule
+\end{longtable}
+}
+
+{\tiny
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.36\linewidth}l@{}}
+\caption{Program files at commit \texttt{446f7f9} with their SHA-256 hashes (212 files).}\label{tab:files}\\
+\toprule
+File (under \texttt{T2b\_session/}) & SHA-256 \\
+\midrule\endfirsthead
+\toprule File (under \texttt{T2b\_session/}) & SHA-256 \\ \midrule\endhead
+\multicolumn{2}{@{}l}{\textbf{\texttt{abtest/}} (5 files)}\\
+\texttt{abtest/ab.py} & \texttt{08647d416f3eb868b4727da5d48c95a926bf5a2856032b127c66c34ce555706c}\\
+\texttt{abtest/stats.py} & \texttt{abc641fd8f96b935477b763b4a61a787d4efac3e37cb0f770aafe62e8ef230bb}\\
+\texttt{abtest/v4.py} & \texttt{380af49595d67ddf016dff68c224bbb4b8d6efe52049a5a3d05e54d8b28e4e12}\\
+\texttt{abtest/vb.py} & \texttt{36aecf09b680ebe189ee3dae0ccb81bb095d74292c8ddbbd9790eeaafc2af579}\\
+\texttt{abtest/verify.py} & \texttt{1b5064c7ffce85b7d7a61bf508fb5a272ddf1ca44c41b74d2a9b5a01834e6f29}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{b3check/}} (16 files)}\\
+\texttt{b3check/b3.py} & \texttt{07c54efd6063a41182008bdde4212edec8bbbfb9370a08c034e1e30dfd3a060b}\\
+\texttt{b3check/cx.py} & \texttt{b41b0e9da41a88fdb9c1b684da9e923e7e3578ca311b28ed50854fc829fcfa69}\\
+\texttt{b3check/cx2.py} & \texttt{196338c6c8f124810d5e2276e614a2544f367e301825ed0e557e074b25068cee}\\
+\texttt{b3check/cx3.py} & \texttt{d571ec58be2915d687c07bfc46a4b51cb7392ccdf0f8cd31a05e508685c6b2f3}\\
+\texttt{b3check/dbg.py} & \texttt{968b6f79badf08bdf72ad7594892bc46a2e8c758b919287242d79d24a55db52d}\\
+\texttt{b3check/dd.py} & \texttt{8170c654c9fef9ddf5cffe5d77725ac16bc06c845a112a1019196be5c624ce7f}\\
+\texttt{b3check/dd2.py} & \texttt{955d75b51967f5d228f84c8454ed19a0174f653be7317f3eaf8d4796c7cab7e0}\\
+\texttt{b3check/decomp.py} & \texttt{9fe30492fc84e2615dbe8b4fda612aec0ae6c532187c64d5ec77e7858ccdc07d}\\
+\texttt{b3check/eq.py} & \texttt{86f09aef64542c98f3769c601c7b7dea09a9efc69d833f6a989177d06fb8ca1e}\\
+\texttt{b3check/p4.py} & \texttt{cc98cd85b385aff44f2f5e779796206b3a90310231eb553be12d8efde7529cc4}\\
+\texttt{b3check/p4b.py} & \texttt{6edd43208f43708a577ef95d3cb4bf7003a7198aa9697090f01cf160d5ffa95c}\\
+\texttt{b3check/p4c.py} & \texttt{49163e09648b58bf34de73684cc648e8e1826ee08f2b71a7b47d165a5ded79de}\\
+\texttt{b3check/strip.py} & \texttt{83658e3ca4331e871518d03a8059c8ede5539b994dac9151233503da342b55aa}\\
+\texttt{b3check/t1.py} & \texttt{cc54ccbe58aefb5f10327296a33d1aeef3f89e3f7fe821265391e9dcbf35ff00}\\
+\texttt{b3check/t3.py} & \texttt{aebdd9c91ed32a219e69172f713abc5fb366ce8ce04f7630d17b4af434cde8ca}\\
+\texttt{b3check/t4.py} & \texttt{3ddeacd2fa4b7a34f716aeef3dc9c70692d770e58c24e95fbb43f6c9783b7a30}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{lift/}} (17 files)}\\
+\texttt{lift/A\_test.py} & \texttt{e9a7723656d19d97f96d0af75765f5db9eb1b6dabd8b0fea166d4244866dbd5b}\\
+\texttt{lift/A\_vs\_R.py} & \texttt{e01ff588813cd038b1ab69f75c70fccde2d856431b4b8b8a17213e19dfa0ad01}\\
+\texttt{lift/check\_z0.py} & \texttt{34c56bf5ab792ffc6739be09d60f5db65c29a48aabbd92726baab15a882bdc8e}\\
+\texttt{lift/gc\_test.py} & \texttt{8a0a1cb3b7b4de4f000db455fafe40f710599f12ea65dd3140502039c1f703f4}\\
+\texttt{lift/gc\_test2.py} & \texttt{397ab1030b80bea6466a6bfbc0159eb6ebc26982079cd552783eb22befa7e439}\\
+\texttt{lift/gc\_test3.py} & \texttt{eea5b8c19a8cf4d7683e6527202d34b890a3b42246f80163edebe8e40d838758}\\
+\texttt{lift/ic\_form.py} & \texttt{014c4d776a071aeadfe0adfdda9e8b6b367442af9d6397de5d85413dbebdef76}\\
+\texttt{lift/lhopital.py} & \texttt{35b428ed11de05b3f759a9e9084703ce34c6128f6cc3029748e6253e45bed0e3}\\
+\texttt{lift/ly\_test.py} & \texttt{7ba441ae1747bff63e13cd1121422d413a25b2711c7b03c762155c308840b360}\\
+\texttt{lift/nonti\_test.py} & \texttt{e0dc40f4ffd9f80679e3d32bbb6e24b491af37723e91d8d65d40bffa0669e358}\\
+\texttt{lift/osp\_test.py} & \texttt{0559bd7b3521bb7fa1248c77888616637544e57988fa1c723c60975d5c5e4ec6}\\
+\texttt{lift/p4\_check.py} & \texttt{ec614a342fda2495fbb73c876a7e881cf0cb3cb1e4635403df78bef6866ac03b}\\
+\texttt{lift/p4\_coord.py} & \texttt{526a9213519ec72252f7b41ca5a0c10dd1ae80c2699e6837e7f57be351f729eb}\\
+\texttt{lift/p4\_test.py} & \texttt{a47ecce93527ca3707a31bde0cb793c9a748d5356b7cfd9ea255e2540f1335c4}\\
+\texttt{lift/p4\_test\_anyc.py} & \texttt{eeb9e2fed9798422498f9bd69bf224ff7b550b0b62c74f5d91bafde8b4598741}\\
+\texttt{lift/pointwise\_test.py} & \texttt{30176e5aae86c0c231cdf5df9d5961c49e9246eb8a65f6176481a516412fa111}\\
+\texttt{lift/ring\_test.py} & \texttt{2b6fa6d1d60b625349fcc828a6dca64a32250fb38692b835a965c6fd8d9d8d32}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{mc/}} (7 files)}\\
+\texttt{mc/ana.py} & \texttt{640c77740fc43b8e0fdf1cd3d3c8fea8b00f63a587328a228bf019e9c295e918}\\
+\texttt{mc/analyze.py} & \texttt{b7615054821f5221f35c196bdeb1a7c8c368985efff4442efb7fb0a20416db75}\\
+\texttt{mc/binder.py} & \texttt{66c883f6251e8478ca8b05d1e4c2029f7e25101e30c1ca47fe7839f67aa5c8fb}\\
+\texttt{mc/phi4.c} & \texttt{5f4367f659660c68efcbe394b77556c1fcc96f2e225711fd68453bf8fc9a841a}\\
+\texttt{mc/run\_all.py} & \texttt{7e23af770156ebd4685938c1a1d87f9081f9b4118b73cb9aa21e026997fb9751}\\
+\texttt{mc/table.py} & \texttt{a3a8d0598e4c8388e59aed1349d5af9f2ccf0fbffb53508cb1882f3248dd4743}\\
+\texttt{mc/validate.py} & \texttt{77b5a2dc5d35d5e7bbf769d77bcbcd2ff35721c8493187acd0dc70eaf49c86f4}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{numerics/}} (25 files)}\\
+\texttt{numerics/chain\_smallH.py} & \texttt{9adc7c7a6fb3f316a8f8ca39cdb6c1806f87729210ea6f7d910237f1cdc3ca70}\\
+\texttt{numerics/chain\_t2b.py} & \texttt{2be107330dcbed9639249dcb350cf853ba8cc300cff91c0cf5b65d55a9fd5832}\\
+\texttt{numerics/cyl\_t2b.py} & \texttt{a8c48c17dcce229b8de03ebf3f42a6c139a1a1af06c26844f34c857227e37eea}\\
+\texttt{numerics/discrete\_target.py} & \texttt{374715c87ac05c3a8f4664004c5c8d53d4adf0196e93fd802f0d1352c1a7e48f}\\
+\texttt{numerics/gc\_ising.py} & \texttt{6336b270086736a0240b9be1d80c149d895878579d2fdc368625cb95a92784a3}\\
+\texttt{numerics/gc\_opt.py} & \texttt{8331bcb727e46ca55451c1a854cb39576c1c0ad8be9aad2313a39cb3f37ed482}\\
+\texttt{numerics/gc\_phi4.py} & \texttt{0dd440b8711251852169cf0f2f8cf2b89e6601f494b4b5326fe9c287b85925d0}\\
+\texttt{numerics/gc\_search.py} & \texttt{b9cfe69544fcda44db2658fe63d8c77aaed7d5e3b07b7459e6f3914b67cc965a}\\
+\texttt{numerics/gc\_verify.py} & \texttt{b5c53f6f8b503cd511aec1982be841ef17e293d23e8d74fdb1534f6e865e19c2}\\
+\texttt{numerics/graph\_target.py} & \texttt{6411a85d301d7826114fc4441c1f2a0dcf89788cbe416d730699514ea95e3436}\\
+\texttt{numerics/ising\_check.py} & \texttt{8d24fc1666f820dc12425b9cc57be4dc8362c1ebd8ad96ee35d1ee47e339a227}\\
+\texttt{numerics/ising\_mp.py} & \texttt{62b152d007cf60923d9a7d5ad222f940a84288c58e8fca890bdf83ab9fb79028}\\
+\texttt{numerics/ising\_strip.py} & \texttt{6eb892c68baddf89fb458892bf7dab03d491c3efe61c968806146e5bf3a44578}\\
+\texttt{numerics/ly1.py} & \texttt{7eb03e11653d62fd5904fa216dca6d73451778972972b7a8be624702eedc743b}\\
+\texttt{numerics/ly1\_family.py} & \texttt{20ad41951d7308c5bc2492591fba9b27a0a7893e888681e42c4d93b759cf24b8}\\
+\texttt{numerics/ly1\_verify.py} & \texttt{53eaa3442a5c77b27317824215f9eb9d3b406d0dff60c8c26f4fa01cf448d9af}\\
+\texttt{numerics/psi\_batch.py} & \texttt{2dc3911f8e60009e31b22c317d1b677902e33545881e653593a7c09cb11cab28}\\
+\texttt{numerics/psi\_check1.py} & \texttt{82a9011fe7a3598612ddb93e5b37764f71f417e3e9349400783ec4683097e2e7}\\
+\texttt{numerics/psi\_t2b.py} & \texttt{34dfa5978a6e650657339ff9a5a13f7d8bb97301fad98b21e484b375348216d8}\\
+\texttt{numerics/psi\_test.py} & \texttt{e9f1aee82b8e0f033f22d0749255d6ca070c40a2e8504bb664ca933cbac05690}\\
+\texttt{numerics/scan\_2d.py} & \texttt{6874e3e31ce23a444b56485091f6dad132ff2b030d099e62e3ac058c4a797bb5}\\
+\texttt{numerics/scan\_chain.py} & \texttt{c4163164d54540767403c02a9a400e6c32914805f3b8b23d58f4c3a27ab438d3}\\
+\texttt{numerics/scan\_single.py} & \texttt{5b539fb226e1427c207290c469f7c19ded399e4d3483876342e0b2ccbfe8b8d1}\\
+\texttt{numerics/single\_site.py} & \texttt{56290fa6309d4ca5c1192b32645c48bcecb536fd3d8c6e75da050ae03b4a255a}\\
+\texttt{numerics/transfer.py} & \texttt{d6f30ff9dd44353038e2a34780fc3f782cb26e592f9ddba5730370a8777dd6bc}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{r2/A/}} (2 files)}\\
+\texttt{r2/A/mixsign.py} & \texttt{4632c343bcdf6c2a630ffa813062fbba0d58868afc2e92280ee44950dbaa13c5}\\
+\texttt{r2/A/rsurv.py} & \texttt{4ef983b1b3385d9f0437e10f6f972bdcdbda76e593f32e0eaa5574819e7bede1}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{r2/B/}} (3 files)}\\
+\texttt{r2/B/cw\_plateau.py} & \texttt{c0fc4724d0d8992b9df5f6bf3bc6eeafb1a435b97086c8e24851f78058172d5d}\\
+\texttt{r2/B/rw2site.py} & \texttt{5bbf07b2a644700dafd47b9c0c4f00af115ba631af4a253c082cbd9a2e701fe6}\\
+\texttt{r2/B/screened1site.py} & \texttt{81d45258391bdfe689451d5779df4e759e245a05f0cfcb0d316bfcf955fd5c9f}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{r2/C/}} (2 files)}\\
+\texttt{r2/C/cw0.py} & \texttt{60fa796ac7e7770f9d7411f5ad45b0fd18855747ce1c2247b52ed0e0687d0abd}\\
+\texttt{r2/C/cw\_ly.py} & \texttt{db897c9b431e53a215481d418dd3563ad206fb57414ecd8b8f2fabcf884e46dc}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{r2/D/}} (6 files)}\\
+\texttt{r2/D/checks.py} & \texttt{606885c9f9ec7c4d891669d4879c600ec644330b327f3d6424b94416f451c58b}\\
+\texttt{r2/D/conv.py} & \texttt{76733a39bcf50f4178c5da4aff6462681bb681248275e25bb2d0b2186e0d034f}\\
+\texttt{r2/D/fkg2.py} & \texttt{393bc45d3420764d8f8baabd14cd28a38a04dd2520251d19a38a97552ab5e350}\\
+\texttt{r2/D/lemmaB\_cw.py} & \texttt{be38a76136df6872e88ccf5de631ffac00622e83cfaa607742a4db578975791d}\\
+\texttt{r2/D/rw1hp.py} & \texttt{1f6138757d15fa8559b6ca5a96d94b2975663e611b0a7594667eb219d22f5c09}\\
+\texttt{r2/D/w1.py} & \texttt{f63c36444092ad3449c3e8d52b67591329f4315a76f7c5d2b4530b3f4a5189ae}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{r2/E/}} (6 files)}\\
+\texttt{r2/E/chain.py} & \texttt{6f4b695867f20edf5b105260c736ad03b36bb673074adfad0cb0df7a6482eff8}\\
+\texttt{r2/E/cw3.py} & \texttt{c2c299882a227bfd6101321c341fdb9bd225fee28ae3134c46e616919f56ab92}\\
+\texttt{r2/E/exact.py} & \texttt{e3c7cefe0c8b2786d239daa235b7ea877a5058570af57537a684cb129bbce955}\\
+\texttt{r2/E/keff.py} & \texttt{a2877da4d9e95ca23d50dab6f81295625e7bfba51f52e1e310d79a8ab1f29bc9}\\
+\texttt{r2/E/mc3.py} & \texttt{efe73ab2111a85d4678793480438b3bc256ab64898c6b100f1a68ef3b01bc2b0}\\
+\texttt{r2/E/scan.py} & \texttt{a392d8e7553f71c74f551d3473df514ef8f43ea40b49e6fedb415e29cd272f93}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/fable/}} (12 files)}\\
+\texttt{round3/fable/mc2d/ana.py} & \texttt{d05718f9640e29982fcbae05c878986388a6e015827f9759a041d341dccf3536}\\
+\texttt{round3/fable/mc2d/run.py} & \texttt{c7aab91635b5d85b9c1302b69c9ee7efdb6a51ac30ea0b88b15a29e7054d5568}\\
+\texttt{round3/fable/scripts/cw.py} & \texttt{cd860c1522f1b7105a36a3badf562cccd6df353ae083dc09e3c877bc99366193}\\
+\texttt{round3/fable/scripts/fd\_1site.py} & \texttt{df435803af8952c6d59c2507502e91141907b1b49844f010500494168a2c987b}\\
+\texttt{round3/fable/scripts/fd\_cw.py} & \texttt{18f59013dcb95905282fa866c0c7fb61603ceaccdd9a93bb03744192c26331b9}\\
+\texttt{round3/fable/scripts/fd\_ring.py} & \texttt{283cd2cf9e2718c4734235b6d0445295f247224208cf3bb06a0e5807dd4949fe}\\
+\texttt{round3/fable/scripts/lam.py} & \texttt{8a1cc38cb3e79964ab3947320923c5b78fb07777ceda81e412b459ee1455dc57}\\
+\texttt{round3/fable/scripts/ring.py} & \texttt{da556654c84b12d2953efe48744bdb5c17f24075a4947327bac46785a12357a8}\\
+\texttt{round3/fable/scripts/uni\_test.py} & \texttt{610d4001d1fbeeb5087c37c0c335f276c68e7781ee4a1997df2501fc60c1b3d9}\\
+\texttt{round3/fable/scripts/verify.py} & \texttt{295ecfd4f43bb5d19455c640edf047cc61e36c72e4fcdd01f694187f2704082e}\\
+\texttt{round3/fable/scripts/verify\_Z.py} & \texttt{a071736a550d9fad0c03084a0f01af420945ce5c57f1d5fdb6aef6641f5104b2}\\
+\texttt{round3/fable/scripts/verify\_ring.py} & \texttt{a7878736d161fe3551173669090ddf709012454e52ce075f940619f44d9576b9}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/fable\_check/}} (8 files)}\\
+\texttt{round3/fable\_check/scripts/bfs\_check.py} & \texttt{e3aa03b92a6cd13f1d47ce4aa8731dd2222fb50e8ec1c259003fe6d6b0732987}\\
+\texttt{round3/fable\_check/scripts/fd\_indep.py} & \texttt{517b1b08c176e3cb47e7af0a3df79b36d8e1c1cc6181cda8127e2a8cd1f3a95a}\\
+\texttt{round3/fable\_check/scripts/fd\_neargauss.py} & \texttt{bce0acf2617536de6d153d44bb4227da0f06dd44ba778f0c2dfde0e0fb2074f5}\\
+\texttt{round3/fable\_check/scripts/onesite\_check.py} & \texttt{f85c3460991473b00a9cbc5aca7f0f6f57eac7006e6f423a39a8bcd391ada8a0}\\
+\texttt{round3/fable\_check/scripts/ring\_exact.py} & \texttt{3aeb617f3d864cedbba60238a8bd86e5b52670cec0e7dfb9894ad124ba305837}\\
+\texttt{round3/fable\_check/scripts/thm1\_check.py} & \texttt{9cadbb3dca031b99628780c42a7239004681a755b80575354f2a43024475b4ba}\\
+\texttt{round3/fable\_check/scripts/thm1\_k4fix.py} & \texttt{5ab26124dac8608bd3ee4ab543d71f56b6e115e1a2253d3634ca22adfd53fb3b}\\
+\texttt{round3/fable\_check/scripts/thm4\_check.py} & \texttt{72f932172d465950f2113800a7a4f539e3e3895e49fddf55436eaafee92c6a31}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/fd/}} (5 files)}\\
+\texttt{round3/fd/scripts/fable\_ring.py} & \texttt{da556654c84b12d2953efe48744bdb5c17f24075a4947327bac46785a12357a8}\\
+\texttt{round3/fd/scripts/ir\_check.py} & \texttt{26c77804cd227d622880c08c60c4e061980e4be0a4e5fc0153ab4a77fce89031}\\
+\texttt{round3/fd/scripts/ising\_limit.py} & \texttt{b1cdb5d31c04694e702011d81c27f940d82425a9b613f673a273993e19ffb9b2}\\
+\texttt{round3/fd/scripts/ringtm.py} & \texttt{0b762dcc5a9b8e19b4d4eb12f930971d99c2ef431f59a0a132663cfea91ee032}\\
+\texttt{round3/fd/scripts/thmA\_test.py} & \texttt{b359adec8dc1308919839b435288ce204c5c572758039e8d3d18a13734202031}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/fd\_check/}} (7 files)}\\
+\texttt{round3/fd\_check/scripts/corB\_constants.py} & \texttt{200937e9aa87a4ca40000b4b8cea335ec8bbedc47f448db79ad40458a2f29d6b}\\
+\texttt{round3/fd\_check/scripts/ir\_ring.py} & \texttt{a35e775e61d5bb8ad783453a8ed49470153619bd6c6cc6463b6e174ca1472283}\\
+\texttt{round3/fd\_check/scripts/ising\_indep.py} & \texttt{0e8c53de8b7b35a3586d4f1f82d593569170c8b21ebcc1bcb4c24a429a3c8c25}\\
+\texttt{round3/fd\_check/scripts/ring.py} & \texttt{ade7fbd9284b29dfb05546bce79a92fcf9ee7f7386d69fc8cd9b3387f497c957}\\
+\texttt{round3/fd\_check/scripts/skeleton\_pointwise.py} & \texttt{63fca8dac6b23fdb084bf709a1c0b023175b5ff35359973c5df66688f4fcfe25}\\
+\texttt{round3/fd\_check/scripts/thmA\_indep.py} & \texttt{309a3e3f78b372544b7db79211bd716311e4561e485eb8639f53bb6b9ec9dc73}\\
+\texttt{round3/fd\_check/scripts/thmA\_small.py} & \texttt{13bb57fbfd546eb91391af64e0ec483b9759b6d73c63339de8def93534fa95c0}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/mc\_eps/}} (10 files)}\\
+\texttt{round3/mc\_eps/ana.py} & \texttt{54a80eea8aec76cd786a5b2729d9c51f2f7842d67ce54fcff01e7cf855d437b7}\\
+\texttt{round3/mc\_eps/analyze.py} & \texttt{b7615054821f5221f35c196bdeb1a7c8c368985efff4442efb7fb0a20416db75}\\
+\texttt{round3/mc\_eps/analyze\_eps.py} & \texttt{23829648c6b45bb550bc6a4aa92bf96cef5f0d79773572b271c7d6201dbdfeb3}\\
+\texttt{round3/mc\_eps/binder.py} & \texttt{66c883f6251e8478ca8b05d1e4c2029f7e25101e30c1ca47fe7839f67aa5c8fb}\\
+\texttt{round3/mc\_eps/binder2.py} & \texttt{1d03e7d79b06903e7d06df122959ecf511f09ae114de320fcd7b7d940e353fa9}\\
+\texttt{round3/mc\_eps/cross.py} & \texttt{fd16c2dde60a287b77aa7077e4bd5b9b6b78f83ad8a6d4800f8914d8c85adb95}\\
+\texttt{round3/mc\_eps/ext\_run.py} & \texttt{1654e273b7576c3a780b5ac8267c7e70342297304d1e26afa8da1021400f582a}\\
+\texttt{round3/mc\_eps/make\_table.py} & \texttt{95d2a8be4166b556e04e356cd6ad7da2bceb0530e4a2cea0f6f5e93f1bb3b7b2}\\
+\texttt{round3/mc\_eps/run\_all.py} & \texttt{7e23af770156ebd4685938c1a1d87f9081f9b4118b73cb9aa21e026997fb9751}\\
+\texttt{round3/mc\_eps/run\_eps.py} & \texttt{e4e75fee782d642d5c27e598e8151b32417dbbfc6f904f60b50877ad23b1748a}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/mcval/}} (2 files)}\\
+\texttt{round3/mcval/ana.py} & \texttt{640c77740fc43b8e0fdf1cd3d3c8fea8b00f63a587328a228bf019e9c295e918}\\
+\texttt{round3/mcval/validate.py} & \texttt{77b5a2dc5d35d5e7bbf769d77bcbcd2ff35721c8493187acd0dc70eaf49c86f4}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/ng/}} (1 files)}\\
+\texttt{round3/ng/scripts/check.py} & \texttt{621789dff2e8ecdc8d8308f8dcd6b9c48868ac886c1975bad0f651d229c9b0c8}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/ng\_check/}} (4 files)}\\
+\texttt{round3/ng\_check/scripts/leeyang1.py} & \texttt{a4566ccc9b2617d277b31d50132fb9732a1657f11bcf442abd536c651faa8401}\\
+\texttt{round3/ng\_check/scripts/onesite.py} & \texttt{eea06083779fad4ba04f0456922306bd5df528f30b19dfa92444d2069c81814c}\\
+\texttt{round3/ng\_check/scripts/ring.py} & \texttt{3e8a76171e93babb627749c7b91cd7eb4f99a481c494d85265d360e1d99b5431}\\
+\texttt{round3/ng\_check/scripts/twosite.py} & \texttt{234ec338d9eb793d7cbce5e090b1b1cd5aa8bcf93e0dd70e876290b55501b279}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/v1\_check/}} (10 files)}\\
+\texttt{round3/v1\_check/scripts/cond\_t.py} & \texttt{4327094a722c0063e79b76a34398b8a2252808fab55977bc1c5463e1b591a152}\\
+\texttt{round3/v1\_check/scripts/keff1.py} & \texttt{b749b3898571aeeef2f4329313b4f8299a394ae6ea992aaf670a909e2ae57e36}\\
+\texttt{round3/v1\_check/scripts/ly.py} & \texttt{53b366a6511d97c4a011deac50d4f680d99f8a2fe31268e96719d667d3b56b61}\\
+\texttt{round3/v1\_check/scripts/o4.py} & \texttt{f461a24eedb4d71665f434eaece1868fbc6374557c5f67a4f2ced72460ef2ba7}\\
+\texttt{round3/v1\_check/scripts/o6fkg.py} & \texttt{9e0dfe3b13ee78f5cd4398cc6ff1a67a1aa5cdd9ec473800b905c9073368bfb6}\\
+\texttt{round3/v1\_check/scripts/onesite.py} & \texttt{eba5b343fc6e5eb4320bd190e27b281adf0b4c5f83dc525d7a0f054d2289672e}\\
+\texttt{round3/v1\_check/scripts/psi\_conv.py} & \texttt{ff055c5f4c72ce458aff89e6ebabdadb28c71ea9bfcf0009e6275fb11723229c}\\
+\texttt{round3/v1\_check/scripts/psi\_ring.py} & \texttt{a1d8ac8d7fd17fa86276a05e13dbfd354e2cec5079cd9590a6304a94b6a77d24}\\
+\texttt{round3/v1\_check/scripts/sinh\_check.py} & \texttt{9a55e3cf27a2cb432531a2819014a3908d2e79e6926bba67e99c496f870ccc23}\\
+\texttt{round3/v1\_check/scripts/walk2site.py} & \texttt{dc2000830a8b0d7ae9a2484ec25a10acc05f42d89e2d678876e9f24b50df4c89}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{round3/vehl/}} (2 files)}\\
+\texttt{round3/vehl/scripts/checks.py} & \texttt{4b1cb4562281e1cfb70f5b5b42ec9a9cc19e0b62eb6f559711decc55369db877}\\
+\texttt{round3/vehl/scripts/cw\_flip.py} & \texttt{a08585e9ccac1ce2da9db68baaa97457501c611f7898c0ec7c361a996e82e787}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{theta1/}} (1 files)}\\
+\texttt{theta1/cw\_theta.py} & \texttt{cec7712f7b68fa6b1bd5b079b11f63b5b67b7f381aa0fd93ea6c099fb8ee7e72}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{theta2/}} (3 files)}\\
+\texttt{theta2/cw\_Tbound.py} & \texttt{69a998d28bf4e3ddd9443e7b286a463319e13549b9aeb4dad27a028f37ae2eb5}\\
+\texttt{theta2/cw\_terms.py} & \texttt{a415d6737bf2a5966439a0787c86696bebb9729bad4951fb06afdb53b96c1771}\\
+\texttt{theta2/rw1site.py} & \texttt{19b19f2177f47acddd444823e53524c377f27d06ecc0fa90cd46a0acbea5393d}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{theta3/}} (6 files)}\\
+\texttt{theta3/cw.py} & \texttt{5a338d41d26362ba42488548559097d384316fd609c47976787e4bf4eccb6668}\\
+\texttt{theta3/ring1d.py} & \texttt{f5619660157b1b79ded5e3ca119be38ea3708a3d908b681f8ef8699b8af60461}\\
+\texttt{theta3/t1.py} & \texttt{3ec99f83117dc954031e71fe9eb68badc089bc4df3fc155f416490e403e5831f}\\
+\texttt{theta3/t2.py} & \texttt{52093e7eed6bd330a7155f0b9e63bd0b51802ecc296caa9001a18c857cc0e691}\\
+\texttt{theta3/t3.py} & \texttt{1feb6f33a2b2163f373a46af5d6c6fbed87fec846f7f9fd9a5d7d5374b690e1d}\\
+\texttt{theta3/t4.py} & \texttt{60c891e295864f0e1a2e9107ac2146ed951a5ee4cd8674a6a9a7442957cbab43}\\
+\multicolumn{2}{@{}l}{\textbf{\texttt{zerod/}} (52 files)}\\
+\texttt{zerod/Ftest.py} & \texttt{b509c5ad7c3789ad91c41efc91c941b28f221373a3e1a14207720f2ccfde05ec}\\
+\texttt{zerod/check0d.py} & \texttt{575dfbf6e6cbd62224ad359d135bd8a958b9bb50bd97baaf93560d2712ad5525}\\
+\texttt{zerod/condt.py} & \texttt{da814ad03a96ce5e8dbf062b42e57197b2d2acaf23d356b2475b6c22a1443db8}\\
+\texttt{zerod/condtA.py} & \texttt{cb0ef494798cff6432b338eb589f2d4d98048c46fa9096268ba371076743f4de}\\
+\texttt{zerod/condtB2.py} & \texttt{8aec0d2eaddeac9db1b73b7f1d186642aa56a02812c27f1341f7514e77379212}\\
+\texttt{zerod/condtB3.py} & \texttt{821eb6a87864b7dfbd60febec85c17de5f9784dc589be6e4f7ba428455e8b78a}\\
+\texttt{zerod/condtB3pos.py} & \texttt{45f8e7b8749fadaaf30ba6c19c7b61adf07faef752dceea8163783e88f5a9eb5}\\
+\texttt{zerod/fast0d.py} & \texttt{e098c341b7cb1b9bac7d2e3d3935ac837a42e8ce7b077ca67459f3465f955b95}\\
+\texttt{zerod/hyper2.py} & \texttt{be0843a2ca036bc5844b06de6b40589971d6be93fdf6fc7fbd6119c022f8b927}\\
+\texttt{zerod/imageTP2.py} & \texttt{6c471a5f6f99796b3218d0f20bd9bbdad2cec71e5fb6e6da61d7626e3328cd5e}\\
+\texttt{zerod/imageTP2b.py} & \texttt{39ef4e9159380b7def3446be2166948acb273a3d49f4affdef082b28ac7facbc}\\
+\texttt{zerod/imageTP2c.py} & \texttt{ce880b62d95658fd7c9b62ac5f613682d4ebe8d925e4d68c6a57ab0eb6c054a5}\\
+\texttt{zerod/isingB.py} & \texttt{5d2358d4b28978c34b5ddf4025a36cac73e4f5a94d345f24f11fb1fcbfb5fa27}\\
+\texttt{zerod/isingB2.py} & \texttt{6cc229ca923af9fd92b0f276299ea8f2e1bdf591fb5c568dd8f642b25d380b9c}\\
+\texttt{zerod/isingBig.py} & \texttt{474ceb0d54c3c6c60795c4e0e6f13a5fcae9e9c5afc03f24ace082f2434c95e6}\\
+\texttt{zerod/isingBig2.py} & \texttt{cfc2e04c9b1e2acc666110c37f49846bebcf6e857db6adbed8879ecfb460d8cf}\\
+\texttt{zerod/isingE.py} & \texttt{279b278c0c618358d3d3e8e048a97b6cea5e56001b6c7264fd44452498cdc306}\\
+\texttt{zerod/isingL.py} & \texttt{ffd47d2a3ff8b9cc9508f555ff098dabac0e53102f54f5bde5cc26208c251e52}\\
+\texttt{zerod/isingL2.py} & \texttt{43241f06210af90f8e8a17cb198c3ec85f967d8e850499504ea6d54aeaffc35a}\\
+\texttt{zerod/isingL3.py} & \texttt{06e3f1d83a207c97af760d4c75fc864d5c099681fa970b4893cbe1627873e66f}\\
+\texttt{zerod/isingL3g.py} & \texttt{c85640e1fbe868c61536688da55ff0791852783ff96fe1e540fe7673099b43f8}\\
+\texttt{zerod/isingL4.py} & \texttt{f825fb3b7472bfb6a2dcff217bf0427b1fd45642749861d40bb638b50bdc92ad}\\
+\texttt{zerod/isingL5.py} & \texttt{ba22d7830f2b4e5788212aabb2dd91fb5828b4b74447f725b86dac6c3814492f}\\
+\texttt{zerod/isingP.py} & \texttt{6cf7d72de474f4d8cd393d05677afe577d6a5ae19cdbd938133cd2911c105400}\\
+\texttt{zerod/isingRay.py} & \texttt{6388d1c270a2c3bc3748a00d7184c182446043651a346378827a2d00854dea89}\\
+\texttt{zerod/isingRay2.py} & \texttt{9ffbe90c3414879f6f357da812c00e93a4547cf5075523dddb01586e4c7dc294}\\
+\texttt{zerod/isingS.py} & \texttt{f8367c9c2c8f44e8c47e2f8cac56e783c34a543de16b32c132bf978747297069}\\
+\texttt{zerod/isingS2.py} & \texttt{df71f2b31cfda2a7f45ca7e2a1d37fe6ae841b5f0c4d895f209fa1c34d81a77c}\\
+\texttt{zerod/isingS\_mp.py} & \texttt{520a78de9bdf4fcf051a26be28f3470ac339c61913377c2ea6f0cab47c0686bc}\\
+\texttt{zerod/ly1.py} & \texttt{f25138b660d6ec697f01125c734e92e7441cf1063bd5638e6646cbd3bd02a94a}\\
+\texttt{zerod/ly1b.py} & \texttt{54a7daa0fff8e28b898880c87d25fd483a01f38cc05e8db843993ed9ec972828}\\
+\texttt{zerod/ly1c.py} & \texttt{e62d0927ea416a6322741e07d4f8950add354a8d37023c09aefbc130e31d99a9}\\
+\texttt{zerod/ly1check.py} & \texttt{a44e5b5e8bee7fc2c47766bf0cbe65772d41dc9eecf24823a5fd5af503e5e70a}\\
+\texttt{zerod/ly1d.py} & \texttt{7222dc68542fef60c5f0b119a0f6547cc50ca2fdda6d770a9f181468e66acfdc}\\
+\texttt{zerod/ly1e.py} & \texttt{7b3dff4340ce751417c66d8574523e0228429d64ab4202bf4fd950eac8216358}\\
+\texttt{zerod/ly1f.py} & \texttt{b7ec608db5036c2f8740038fad0677f329c568010c35db1ea10529fe23b5e47d}\\
+\texttt{zerod/ly1g.py} & \texttt{cf7c23c4109b6fbd86ff63bcbc7fd96973d8448a1b84292daf130610a375ad4c}\\
+\texttt{zerod/ly1h.py} & \texttt{b687845c5301d3dea6d8ebcc49a266f0f692845946a9dfe07e46b2abcea779a6}\\
+\texttt{zerod/ly1i.py} & \texttt{078e83d3839cd8c63fa311f61e997fe29df180724eb7ea52e9521a3406cc374a}\\
+\texttt{zerod/lytest.py} & \texttt{bd1b960790efc70c5b8ba083d6bfc399ecd32c9c62efa23de9836b9ced41fea6}\\
+\texttt{zerod/lytest2.py} & \texttt{911379b154a74720f1e3a0c2515d720dfd3b6eacfbfe008e65a56b90202e272e}\\
+\texttt{zerod/offsite.py} & \texttt{3b6991c677629a65cd8279ac3e09180ae76cd5d57c084dbc3070d00120e4d335}\\
+\texttt{zerod/pair.py} & \texttt{903295da2fb676cbe1296f70072f5a4dc8a9895e3b64840ab599975cdddb0bed}\\
+\texttt{zerod/phi4\_2site.py} & \texttt{445bfe59c885399aac9100be0918078fabd3fb985d08a3fe1159eb4b7bfc1d98}\\
+\texttt{zerod/phi4\_2site\_b.py} & \texttt{a984186920a43968f8b7632de0183ca3055162c0261461b3cd4dfba80a28df17}\\
+\texttt{zerod/phi4\_ray.py} & \texttt{2365f9a4793afac210a9202f29aed4def203b3899dbbdbe9178ec70363b8fbfa}\\
+\texttt{zerod/psiJ0.py} & \texttt{0f7bbfcc0376aa914eb7bd6140923ba823e789fbd926f5e2f4a54afe84c5d290}\\
+\texttt{zerod/psiJ0b.py} & \texttt{ad630af22c054054f7678a7a759463a1783b434682f7d0905191cdeb13c08caa}\\
+\texttt{zerod/psiQ.py} & \texttt{f584edd88331073641de175c648275671ea5d6dda71bafb0a7d3e1ec275f596a}\\
+\texttt{zerod/psiQphi4.py} & \texttt{d28990aad7e30ac52ca9fdc634cae1007a70057be86cc095d9b2dbe496f15bbb}\\
+\texttt{zerod/psiQphi4b.py} & \texttt{7b1f24e1a089b2cc3d1791e48bea699a8d18a2d435a18e9e86078fd9b041abd4}\\
+\texttt{zerod/qmarg.py} & \texttt{6dfc011b2f73f4c22c4ca5c5c168a9d2eed8061e99cd3041467d0ee2ee0ad419}\\
+\bottomrule
+\end{longtable}
+}
+
+\section{Lean files}\label{sec:lean}
+
+The eight files were written by Claude Opus 5.5 agents in round 1, rebuilt and audited for axioms by the coordinating session (script \path{T2b_lean/check.sh}), and posted to the table on 26 November 2026 by reference to the repository at commit \texttt{dc5c9e9} (full hash \hash{dc5c9e9272f59f294c1e11c0a874844cfdbe19cb}); the site fetched each file and checked its hash before storing it. The files are byte-identical at commits \texttt{7ba981b}, \texttt{dc5c9e9} and \texttt{446f7f9}. The hashes below are of the repository files; the site displays its own hash of the code as it stores it. Toolchain: Lean 4.35.0, Mathlib commit \hash{56a005855ea17e0b0958f73ec801ae140b0a1679}.
+
+For every file the site's sandboxed runner reports: build passed, no \texttt{sorry}, and every theorem depends only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. Each file has two cross-family checks, each a hard ``holds'' with a statement match: one by OpenAI models (a first pass by GPT-6 Sol and a second by GPT-6 Astra) and one by Gemini~4 Argon (two passes). The checkers compared the statements as Lean elaborated them with the post's statement card, reading the Mathlib definitions involved at the stated commit. These checks compare statements; the proofs are checked by the Lean kernel. Counts are of \texttt{theorem} and \texttt{lemma} declarations.
+
+{\small
+\begin{longtable}{@{}p{0.15\linewidth}>{\footnotesize}p{0.24\linewidth}p{0.55\linewidth}@{}}
+\toprule
+File & \small Post; ledger & Theorems; SHA-256; notes \\
+\midrule\endhead
+\path{PP2ABFDini} & \pid{mwxrgqa8-yzwwh3}; \lid{l-mwzlyynv-ecgym9} & 10: \texttt{abfD\_Phi\_mono}, \texttt{abfD\_barrier}, \texttt{abfD\_char\_of\_pde}, \texttt{abfD\_pow\_hasDerivAt}, \texttt{abfD\_char\_of\_pde\_pow}, \texttt{abfD\_torus}, \texttt{abfD\_torus\_pow}, \texttt{abfD\_char\_of\_tendsto}, \texttt{abfD\_limit}, \texttt{abfD\_limit\_pow} (Thm 5.1). \hash{d1f1a10f4579805ccd6734eea1b16ef6722bad67670d76d74866dd4ecff02f78}. The GPT check first found a gap (\pid{mwzc8k62-lkaumd}): the header described a continuity hypothesis of \texttt{abfD\_char\_of\_tendsto} as continuity on $(0,s_0]$, where Lean requires two-sided continuity at $s_0$. The claim was narrowed to the Lean statement (\pid{mwzcpm4u-9n4zzp}), and the re-check held. \\
+\path{PP2TorusEOM} & \pid{mwxrgqed-wp91bc}; \lid{l-mwzlyzdl-zf093o} & 36, among them \texttt{eom} and \texttt{eom\_ti} (Thm 4.1, equation of motion), with the integrability and translation-invariance lemmas. \hash{e20414a0d77ef44e32a3192843f34d2e42e47ac0be7e3ff92f8755a72bc7c17a}. \\
+\path{PP2TorusMaxwell} & \pid{mwxrgqjt-yz1opc}; \lid{l-mwzlz030-dmmaa8} & 20, among them \texttt{maxwell}, \texttt{star\_abstract}, \texttt{star\_identity} and \texttt{star\_identity\_maxwell} (Thm 4.1, Maxwell relation and identity (\(\star\))), with the parameter derivatives. \hash{bfa22d77cd94dae78b10620ca3360c1d4b7480a07174fc168fd8079bce8bf514}. \\
+\path{PP2TorusNN} & \pid{mwxrgqpc-6ye1sm}; \lid{l-mwzlz0q1-dcfqaf} & 9, among them \texttt{eom\_nn}, \texttt{eom\_continuum}, \texttt{maxwell\_nn} and \texttt{star\_nn} on $(\mathbb Z/N)^2$, $N\ge3$. Not formalised: the continuum-unit form of (\(\star\)). \hash{d25cc613c6f0759be0b9406f8b83406e607432fcc01e290507afb2c25376d510}. \\
+\path{PP2OneSiteA} & \pid{mwxrgqtf-l3pl1a}; \lid{l-mwzlz1ft-vjnloi} & 8: \texttt{cheb\_prod}, \texttt{cheb\_even\_cond}, \texttt{sinhN\_hasDerivAt}, \texttt{sinhN\_nonneg}, \texttt{sinh\_ratio}, \texttt{even\_abs\_eq}, \texttt{rotE\_apply}, \texttt{rot\_integral} (one-variable lemmas of Thm 3.1). \hash{58b4a6a39d28b6ffd63ae732ac2b0520cbf4c23a2aec75a9c8d6ed1b785dd8d9}. \\
+\path{PP2OneSiteB} & \pid{mwxrgqyf-36c38e}; \lid{l-mwzlz249-oaltez} & 13 (the monotone-conditional step for the duplicated pair weight, with integrability). \hash{0e8604c85c2a88a664dad579244ea95d71b82b3a696c88d8b84a97c000997778}. \\
+\path{PP2OneSiteC} & \pid{mwxrgr5q-ejxthl}; \lid{l-mwzlz2s3-hv9cli} & 18, among them \texttt{prodA}, \texttt{prodB}, \texttt{sinh\_form}, \texttt{R\_eq\_ratio}, \texttt{AB\_cross} and \texttt{R\_antitoneOn\_of\_supermodular} (duplication identities). \hash{f3ce18847e06bc780a919e4ae901dbd49d8ef0530b26c9ba858a04c9f84d0af4}. \\
+\path{PP2OneSiteD} & \pid{mwxrgras-f25253}; \lid{l-mwzlz3gq-re3nnu} & 7, among them \texttt{supermodular\_of\_EMN}, \texttt{R\_antitoneOn\_EMN} and \texttt{R\_antitoneOn\_phi4} (Thm 3.1 for the EMN/GHS class and for $\varphi^4$). \hash{648a8141bf2a26dee5c03ab47b7df197b4593b39f19ee9ff89dc5077fe06c448}. \\
+\bottomrule
+\end{longtable}
+}
+\noindent The audit script \path{check.sh} has SHA-256 \hash{118635ac549a740387409da5699ac9bc74ecad10533356fe064c4f48f746ce8b}. What is not formalised is stated in Section~11 of the paper: GKS and GHS signs, joint $C^1$ regularity, the pressure step of Thm 6.1, inputs (I1)--(I3), Prop 5.2, and the results of Sections 7 and 8.
+
+\section{Who produced what, and how it was checked}\label{sec:who}
+
+\paragraph{Sessions.} All mathematics, programs and Lean files were produced in agent sessions of Claude models directed by the author, and kept in the repository. Both rounds ran on 26 November 2026; the five results were posted and cross-checked, and the text was revised, on 27 November. A coordinating Claude Opus 5.5 session set the tasks, assembled the results and wrote the text. The rounds are described in Section~12.3 of the paper. In brief:
+\begin{itemize}
+\item \emph{Before round 1:} earlier Claude sessions adopted the target, after a review by Claude Fable 5.2, and found an earlier form of Thm 4.1 and the reduction to the monotonicity of $R$.
+\item \emph{Round 1} (Claude Opus 5.5 teams): Thm 3.1, 5.1, 7.1, Prop 5.2, 7.2, 7.3, the identities of Section 7, (O1)--(O6), the Lean files, the fixed-spacing numerics and Monte Carlo, and the citation work behind (I1) and (I2) (\path{T2b_session/cite/CITATIONS.md}).
+\item \emph{Round 2:} Claude Fable 5.2 proved Thm 8.1 and Prop 8.2 (\path{round3/fable}); Claude Opus 5.5 sessions proved Thm 8.3 (\path{round3/fd}) and Prop 8.4 (\path{round3/ng}) and found (O7) (\path{round3/vehl}); Claude Sonnet 5.5 ran the shrinking-spacing Monte Carlo (\path{round3/mc_eps}) and verified the bibliography; the coordinating session re-validated the Monte Carlo program (\path{round3/mcval}).
+\end{itemize}
+
+\paragraph{Checks before posting.} Four independent referee checks, each by a separate Claude Opus 5.5 session, cover every result not formalised in Lean. Their reports were recorded by the coordinating session from each referee's final message:
+\begin{enumerate}
+\item \path{round3/fable_check/REPORT.md}: Thm 8.1, Prop 8.2, the one-site facts and the walk formula. All correct; presentational fixes.
+\item \path{round3/fd_check/REPORT.md}: Thm 8.3 and the infrared criterion. Correct, with minor fixes. The cross-family check later found two points this referee had missed (below).
+\item \path{round3/ng_check/REPORT.md}: Prop 8.4 and the reductions after it. No mathematical error; five small fixes.
+\item \path{round3/v1_check/REPORT.md}: the other results not formalised in Lean, the quoted numbers in (O4)--(O6), and the agreement of Thm 3.1, 4.1 and 5.1 with the Lean files. It found one error, in the normalisation of the walk measure in Prop 7.2 (total mass $m$, not $m/H$), missing hypotheses in Thm 6.1 and Cor 6.2, an overstatement of what is formalised for Thm 4.1, and imprecise wording in (O4) and (O5).
+\end{enumerate}
+
+\paragraph{Cross-family checks and the challenges they raised.} The checks were run by the author through the providers' batch interfaces with a script that posts each verdict to the table. A check by OpenAI models is a first pass by GPT-6 Sol and a second pass by GPT-6 Astra; a check by Google is two passes by Gemini~4 Argon. Each check of a result was asked to rederive the proof from the posted text, taking the cited inputs as given, and to list those inputs as unread.
+\begin{itemize}
+\item \emph{Lean file \path{PP2ABFDini}.} Gap check \pid{mwzc8k62-lkaumd} (header wording, Section~\ref{sec:lean}), answered by \pid{mwzcpm4u-9n4zzp}, which narrowed the claim to the Lean statement; the re-check (\pid{mwzf4vf9-8z4wu1}) held.
+\item \emph{Thm 8.3} (posted as Thm 9.3, \pid{mwzg170q-1swu3s}). Gap check \pid{mwzhu97n-c9b9pm}: the proof used $|B|\le24x$ but derived only $B\ge-24x$ from the skeleton inequality, and the corollary's constants $13.73$ and $0.2825$ were rounded down. Answer \pid{mwzhzicp-77nzmz}: the Lebowitz inequality gives $B\le0$, and the constants are rounded outward to $13.74$ and $0.2826$ (exact values $13.7329\ldots$ and $0.282507\ldots$). GPT then replaced its gap check with a hard ``holds'' on the amended post (\pid{mwzi533b-wwrj8g}). The corrected version was posted again as \pid{mwziu7xt-7jygdd}, and received hard ``holds'' checks, each rederived, from GPT-6 Astra (\pid{mwzl2e57-jubh6i}) and Gemini~4 Argon.
+\item \emph{Prop 7.2} (\pid{mwzfz4vz-kcw1vq}). Check \pid{mwzhu2w9-puk6jb} returned ``unsure'' and gave a counterexample to a claim in the posted proof, that the integrand $Z(t_1)Z(t_2)-Z(t_1+t_2)Z$ is pointwise nonnegative (two sites, small coupling, disjoint local times). The statement was not affected. Reply \pid{mwzhziqc-dh1azd}: the upper bound needs only a one-sided pointwise estimate, and the lower bound follows from the identity (W3) and GKS. The corrected version was posted again as \pid{mwzircx2-dp977k}, and received hard ``holds'' checks, each rederived, from GPT-6 Astra (\pid{mwzl2cd6-b8s8kx}) and Gemini~4 Argon.
+\item \emph{Thm 6.1 with Cor 6.2, Thm 8.1 and Prop 8.2} (posts \pid{mwzfyk6n-7vf6aa}, \pid{mwzg06k8-2nmi18}, \pid{mwzg0mj8-bskmht}): hard ``holds'' checks from both families, with no gap. The post for Thm 8.1 is a correction, by its author, of \pid{mwzfzotr-0zhev4}, in which step 7 (the continuum conversion) was garbled.
+\end{itemize}
+The posts number the results of Section 8 of the paper as 9.1--9.3 and cite section numbers from an earlier numbering of the paper; the statements are those of the paper, except as noted in Section~12.5 of the paper.
+
+\paragraph{How the text was written and reviewed.} The coordinating Claude Opus 5.5 session wrote the text from the session notes and referee reports, in a shared source for the Zenodo and journal versions. Before release, the final text was read by one Claude Opus 5.5 session (the mathematics changed during the cross-family checks, compared with the checked posts, with the constants recomputed) and one Claude Sonnet 5.5 session (consistency, numbering, identifiers and bibliography). Neither found a mathematical error; their findings were imprecisions and inconsistencies, which were corrected. Their reports are in \path{lean/yang-mills/T2b_paper/final_read/}. The revised text was read within the Claude family only.
+
+\paragraph{Sources.} The coordinating session read the parts of the cluster-swapping paper by van Engelenburg, Heeney and Lis used for (O7) (Definition~3, equations (6) and (11), Proposition~20 with its proof, and Lemmas 21--23), from a copy supplied by the author. The citation check in \path{T2b_session/cite/CITATIONS.md} read, by automated fetch, the paper of Bauerschmidt, Dagallier and Weber (arXiv:2504.08606v1) and the paper of Guerra, Rosen and Simon (Ann.\ IHP A 25, 1976) from a scan. The following were cited but not read in the original:
+\begin{itemize}
+\item Brydges, Fr\"ohlich and Sokal, CMP 91 (1983), Section 8, on which input (I1) rests through Bauerschmidt--Dagallier--Weber;
+\item the hypotheses of Guerra--Rosen--Simon, Theorem IX.5, beyond what the scan showed;
+\item the skeleton inequality and the random-walk representation (Brydges--Fr\"ohlich--Spencer 1982; Fern\'andez--Fr\"ohlich--Sokal 1992), checked numerically instead;
+\item the Lebowitz inequality and the Griffiths--Simon construction;
+\item the Lee--Yang theorem for $\varphi^4$;
+\item the infrared bound of Fr\"ohlich, Simon and Spencer (1976);
+\item Fr\"ohlich--Spencer (1981) and Mermin (1967), for (O3);
+\item the standard inequalities of Griffiths, Kelly--Sherman and Ginibre (GKS), and FKG for the $|\varphi|$-marginal.
+\end{itemize}
+Input (I3) has no reference. The cross-family checks list the inputs they relied on without reading as ``unread inputs'' of their checks; these keep the results at the conditional level on the ledger.
+
+\paragraph{The author's role.} The author built and runs the site, chose to pursue this research direction, directed the sessions and chose the models that ran them, started the cross-family checks, decided which results to post, supplied a copy of a source the models could not otherwise read, and decided to release this preprint. The author did not write the proofs and did not verify them line by line.
+
+\end{document}

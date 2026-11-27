@@ -468,18 +468,18 @@ Most of the work reported here was done outside the table, in agent sessions of 
 \end{sloppypar}
 
 \subsection{Open multi-model research and its provenance}
-We regard the way this work was produced as part of its contribution. It involved models of three families, Claude (Anthropic), GPT-6 (OpenAI) and Gemini (Google), in different roles. Claude models produced all the arguments, programs and Lean files, and checked one another's work in separate referee sessions. GPT-6 and Gemini models produced nothing in this paper; they checked the statements of the Lean files and five posted results with their proofs. GPT-6 checks found two problems in Claude posts that the Claude referee checks had not caught, a missing step with two constants rounded the wrong way in Theorem~\ref{thm:FDbubble} and a false claim in the posted proof of Proposition~\ref{prop:walk}; both were repaired, and the repaired versions were checked again by both families (Section~\ref{sec:resultchecks}). On the table's ledger the eight Lean files are recorded as machine-checked, a level the site grants only for a runner build together with a statement-match check from another model family, and the five results as conditional, because they rest on cited sources that no checker read. The site keeps each post with its author's model family, the checks on it with their families and verdicts, the runner's builds, and the history of each ledger entry; the rest of the work, with the referee reports, is in the public repository. The paper exposes this record as follows.
+We regard the way this work was produced as part of its contribution. It involved models of three families, Claude (Anthropic), GPT-6 (OpenAI) and Gemini (Google), in different roles. Claude models produced all the arguments, programs and Lean files, and checked one another's work in separate referee sessions. GPT-6 and Gemini models produced nothing in this paper; they checked the statements of the Lean files and five posted results with their proofs. GPT-6 checks found two problems in Claude posts that the Claude referee checks had not caught, a missing step with two constants rounded the wrong way in Theorem~\ref{thm:FDbubble} and a false claim in the posted proof of Proposition~\ref{prop:walk}; both were repaired, and the repaired versions were checked again by both families (Section~\ref{sec:resultchecks}). On the table's ledger the eight Lean files are recorded as machine-checked, a level the site grants only for a runner build together with a statement-match check from another model family, and the five results as conditional, because they rest on cited sources that no checker read and, in two cases, on an open hypothesis. The site keeps each post with its author's model family, the checks on it with their families and verdicts, the runner's builds, and the history of each ledger entry; the rest of the work, with the referee reports, is in the public repository. Online Resource~1 (a supplementary file) gives the full record: the status of each result, every program with its hash, each Lean file, and who produced and checked what. The paper exposes this record as follows.
 
 \begin{center}
 \begin{tabular}{@{}p{0.3\linewidth}p{0.64\linewidth}@{}}
 \hline
 Dimension & Where it is in this paper\\
 \hline
-Origin and development & Section~\ref{sec:who}; the repository\\
-Challenge & Section~\ref{sec:resultchecks}: the gap and ``unsure'' checks and how each was answered\\
-Verification & Sections~\ref{sec:leanchecks} and~\ref{sec:resultchecks}; the ledger entries at the table\\
-Computation & Section~\ref{sec:numerics}; the programs in the repository\\
-Formalisation & Sections~\ref{sec:lean} and~\ref{sec:leanchecks}\\
+Origin and development & Section~\ref{sec:who}; Online Resource~1, Section~S4\\
+Challenge & Section~\ref{sec:resultchecks} and Online Resource~1, Section~S4: the gap and ``unsure'' checks and how each was answered\\
+Verification & Online Resource~1, Table~S1; Sections~\ref{sec:leanchecks} and~\ref{sec:resultchecks}\\
+Computation & Section~\ref{sec:numerics}; every program with its hash in Online Resource~1, Section~S2\\
+Formalisation & Sections~\ref{sec:lean} and~\ref{sec:leanchecks}; each file in Online Resource~1, Section~S3\\
 Remaining uncertainty & Section~\ref{sec:notchecked}\\
 \hline
 \end{tabular}
@@ -560,7 +560,7 @@ Input (I3) has no reference.
 The author built and runs the site, chose to pursue this research direction, set the rules the sessions followed (including that confirmation must come from Lean builds and checks from another model family, not from human review), started each session and the cross-family checks, decided which results to post, supplied copies of sources the models could not otherwise read, and decided to release this preprint.
 
 \subsection{What this means for the reader}
-The eight Lean files are recorded on the table's ledger as machine-checked (entries \path{l-mwzlyynv-ecgym9} to \path{l-mwzlz3gq-re3nnu}): the site's runner built them, and models of two other families matched their statements to the claims. The five results of Section~\ref{sec:resultchecks} are recorded as conditional (entries \path{l-mwzlzv3n-k7uhb4} to \path{l-mwzlzy4r-zob2io}): models of two other families rederived each proof from the posted text, but the proofs rest on cited sources that no checker read. Everything else in this paper was checked by Claude models only. None of these checks is review by a person.
+The eight Lean files are recorded on the table's ledger as machine-checked (entries \path{l-mwzlyynv-ecgym9} to \path{l-mwzlz3gq-re3nnu}): the site's runner built them, and models of two other families matched their statements to the claims. The five results of Section~\ref{sec:resultchecks} are recorded as conditional (entries \path{l-mwzlzv3n-k7uhb4} to \path{l-mwzlzy4r-zob2io}): models of two other families rederived each proof from the posted text, but the proofs rest on cited sources that no checker read, and Theorem~\ref{thm:conditional} and Proposition~\ref{prop:FD} also on the open hypotheses $H_F$ and $(\mathrm{FD}_\kappa)$. Everything else in this paper was checked by Claude models only. None of these checks is review by a person.
 
 \section{Open problems}\label{sec:open}
 
