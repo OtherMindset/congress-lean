@@ -25,7 +25,7 @@ Combined with a localised characteristics argument of ABF type, it reduces the o
 \end{enumerate}
 Monte Carlo simulations on two-dimensional tori in the regime the argument uses find no violation of the strongest form of the open input. At four lattice spacings, down to one eighth of the coarsest, the margin stays near $0.38$ and extrapolates to a positive value (Section~\ref{sec:numerics}).
 
-\paragraph{How the work was done.} The mathematics, the programs, the Lean files and the text of this paper were produced by large language models (Claude models from Anthropic), working in agent sessions directed by the author. Section~\ref{sec:produced} says who produced what, how each result was checked, and what no person has reviewed.
+\paragraph{How the work was done.} The mathematics, the programs, the Lean files and the text of this paper were produced by large language models (Claude models from Anthropic), working in agent sessions directed by the author, and checked by Claude, GPT-6 and Gemini models. Section~\ref{sec:produced} describes the AI involvement: who produced what, how each result was checked, and what no person has reviewed.
 
 \paragraph{Status labels.} We distinguish three kinds of result. \emph{Theorems} and \emph{propositions} are proved here, possibly from cited results. \emph{Hypotheses} are stated assumptions, which are not proved. \emph{Numerical findings} are reported as such. Where a cited result was used without our reading the original, we say so.
 
@@ -456,18 +456,40 @@ File(s) & Content & Theorems\\
 
 The counts are of \texttt{theorem} and \texttt{lemma} declarations, auxiliary ones included. The files are in the public repository \texttt{OtherMindset/congress-lean}, branch \texttt{claude/pphi2-t2b-session13}, commit \texttt{7ba981b} (the files are unchanged at \texttt{446f7f9}, the commit cited in the data availability statement), directory \texttt{lean/yang-mills/T2b\_lean}. Not formalised: GKS and GHS signs (including $m>0$ for $H>0$), joint $C^1$ regularity in $(\mu,h)$, the pressure step of Theorem~\ref{thm:conditional}, inputs (I1)--(I3), Proposition~\ref{prop:sharp}, and the results of Sections~\ref{sec:reductions} and~\ref{sec:zerofield}. The eight files were also posted at the Long Table and rebuilt there by the site's sandboxed runner, which replayed them in the kernel and confirmed the same three axioms. Their statements were compared with the claims stated for them by an independent Claude referee (with the corrections now in Theorem~\ref{thm:identity}) and by models of other developers (Section~\ref{sec:produced}).
 
-\section{How this paper was produced and checked}\label{sec:produced}
+\section{Statement on AI involvement}\label{sec:produced}
 
-The mathematics, the computer programs, the Lean files and the text of this paper were produced by large language models. The author did not write the proofs and did not verify them line by line; verification rests on the Lean formalisation (Section~\ref{sec:lean}) and the model checks recorded below. This section states who produced what, how each result was checked, and what has not been checked. It documents the use of language models and is meant to be read as part of the paper. A check by a language model is corroboration and a search for errors. It is not review by a person, and it is not proof.
+The mathematics, computer programs, Lean files and text of this paper were produced by AI systems. The author did not write the proofs and did not verify them line by line; verification rests on the Lean formalisation (Section~\ref{sec:lean}) and the model checks recorded below. This section describes who did what, how each result was checked, and what has not been checked. It is meant to be read as part of the paper.
 
-\subsection{Where the work was done, and the kinds of check}
+\subsection{The workspace}
+The Long Table~\cite{LongTable} is a public workspace on \texttt{othermindset.com}, a website run by the author, where AI agents post attempts, results, computations, checks and ledger entries. Agents from several model families work there side by side, as a multi-model swarm: they read one another's posts, build on them, and check them. Posts are public and keep their ids; the site records the model family of each author and checker, rebuilds posted Lean files and reruns posted computations in a sandbox, and accepts a ledger status only when the posted evidence supports it.
+
 \begin{sloppypar}
-The work was done in agent sessions of Claude models (Anthropic), directed by the author, which kept their notes, programs and Lean files in the public repository \path{OtherMindset/congress-lean}, branch \path{claude/pphi2-t2b-session13}. Earlier rounds of this research direction posted some Lean files at the Yang--Mills table of the Long Table, the public workspace on \texttt{othermindset.com} run by the author. The eight Lean files of Section~\ref{sec:lean} were posted there on 26 November 2026 (posts \path{mwxrgqa8-yzwwh3}, \path{mwxrgqed-wp91bc},\linebreak[1] \path{mwxrgqjt-yz1opc}, \path{mwxrgqpc-6ye1sm},\linebreak[1] \path{mwxrgqtf-l3pl1a}, \path{mwxrgqyf-36c38e},\linebreak[1] \path{mwxrgr5q-ejxthl} and \path{mwxrgras-f25253}). There they were rebuilt by the site's sandboxed runner and their statements were checked by models of other developers (Section~\ref{sec:leanchecks}). On 27 November 2026 the results whose proofs are not formalised and on which the main claims rest were posted there with their proofs and checked the same way (Section~\ref{sec:resultchecks}). The rest of the work has not been posted there and has no cross-family check.
+Most of the work reported here was done outside the table, in agent sessions of Claude models (Anthropic), directed by the author, which kept their notes, programs and Lean files in the public repository \path{OtherMindset/congress-lean}, branch \path{claude/pphi2-t2b-session13}. Earlier rounds of this research direction posted some Lean files at the Yang--Mills table of the Long Table. The eight Lean files of Section~\ref{sec:lean} were posted there on 26 November 2026 (posts \path{mwxrgqa8-yzwwh3}, \path{mwxrgqed-wp91bc},\linebreak[1] \path{mwxrgqjt-yz1opc}, \path{mwxrgqpc-6ye1sm},\linebreak[1] \path{mwxrgqtf-l3pl1a}, \path{mwxrgqyf-36c38e},\linebreak[1] \path{mwxrgr5q-ejxthl} and \path{mwxrgras-f25253}). There they were rebuilt by the site's sandboxed runner and their statements were checked by models of other developers (Section~\ref{sec:leanchecks}). On 27 November 2026 the results whose proofs are not formalised and on which the main claims rest were posted there with their proofs and checked the same way (Section~\ref{sec:resultchecks}). The rest of the work has not been posted there and has no cross-family check.
 \end{sloppypar}
 
-We use the following terms. A \emph{team check} is a check by another agent of the same session, working on the same problem. An \emph{independent referee check} is a check by a separate Claude session that did not write the result. Such a session is given the result and its notes, is asked to find errors, rederives every step by hand, and recomputes every quoted number with its own code. It returns a verdict for each item: correct, correct with fixes, or wrong. A \emph{cross-family check} is a check by a model of another developer. The cross-family checks reported here are of the Lean statements (Section~\ref{sec:leanchecks}) and of five results with their proofs (Section~\ref{sec:resultchecks}); every other check is by Claude models, the author's model family. No check involves a person.
+\subsection{Open multi-model research and its provenance}
+We regard the way this work was produced as part of its contribution. It involved models of three families, Claude (Anthropic), GPT-6 (OpenAI) and Gemini (Google), in different roles. Claude models produced all the arguments, programs and Lean files, and checked one another's work in separate referee sessions. GPT-6 and Gemini models produced nothing in this paper; they checked the statements of the Lean files and five posted results with their proofs. GPT-6 checks found two problems in Claude posts that the Claude referee checks had not caught, a missing step with two constants rounded the wrong way in Theorem~\ref{thm:FDbubble} and a false claim in the posted proof of Proposition~\ref{prop:walk}; both were repaired, and the repaired versions were checked again by both families (Section~\ref{sec:resultchecks}). On the table's ledger the eight Lean files are recorded as machine-checked, a level the site grants only for a runner build together with a statement-match check from another model family, and the five results as conditional, because they rest on cited sources that no checker read. The site keeps each post with its author's model family, the checks on it with their families and verdicts, the runner's builds, and the history of each ledger entry; the rest of the work, with the referee reports, is in the public repository. The paper exposes this record as follows.
 
-\subsection{Who produced what}
+\begin{center}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.64\linewidth}@{}}
+\hline
+Dimension & Where it is in this paper\\
+\hline
+Origin and development & Section~\ref{sec:who}; the repository\\
+Challenge & Section~\ref{sec:resultchecks}: the gap and ``unsure'' checks and how each was answered\\
+Verification & Sections~\ref{sec:leanchecks} and~\ref{sec:resultchecks}; the ledger entries at the table\\
+Computation & Section~\ref{sec:numerics}; the programs in the repository\\
+Formalisation & Sections~\ref{sec:lean} and~\ref{sec:leanchecks}\\
+Remaining uncertainty & Section~\ref{sec:notchecked}\\
+\hline
+\end{tabular}
+\end{center}
+
+The checks are of three kinds, and the paper keeps them apart: Lean files built by the runner, whose statements the Lean kernel has checked, within the scope stated in Section~\ref{sec:lean}; numerical programs (exact quadrature, transfer-operator and Monte Carlo computations), run in the Claude sessions and not rerun by the site's runner, which are evidence but not proof; and checks by language models, which are corroboration and a search for errors, not proof. Cross-family agreement is reported here as corroboration, not as independent verification. Models of different families can share training data, conventions and blind spots, and can be persuaded by the same plausible error; their checks are verdicts on the text supplied to them, and the site does not test a checker's reasoning.
+
+We use the following terms. A \emph{team check} is a check by another agent of the same session, working on the same problem. An \emph{independent referee check} is a check by a separate Claude session that did not write the result. Such a session is given the result and its notes, is asked to find errors, rederives every step by hand, and recomputes every quoted number with its own code. It returns a verdict for each item: correct, correct with fixes, or wrong. A \emph{cross-family check} is a check by a model of another developer. The cross-family checks reported here are of the Lean statements (Section~\ref{sec:leanchecks}) and of five results with their proofs (Section~\ref{sec:resultchecks}); every other check is by Claude models, the family that produced the work. No check involves a person.
+
+\subsection{Who produced what}\label{sec:who}
 \emph{The target.} The open half of sharpness was adopted as a target in earlier Claude sessions on 26 November 2026, after a review by Claude Fable 5.2. The exact identity of Theorem~\ref{thm:identity}, in an earlier form, and the reduction of the target to the monotonicity of $R$ date from the same sessions.
 
 \emph{The first round.} The following were produced on 26 November 2026 by teams of Claude Opus 5.5 agents. A coordinating Claude Opus 5.5 session set the tasks and assembled the results.
@@ -512,7 +534,7 @@ On 27 November 2026 five results were posted at the same table, each with a self
 \end{itemize}
 These checks take the cited inputs as given. The site's ledger therefore records each of these results as supported at most conditionally on those inputs. Most of them are listed below as not read in the original; the others, GKS and Ginibre's inequalities, FKG for the $|\varphi|$-marginal and the value of the lattice sum, are standard and were not read either. No person has reviewed these checks.
 
-\subsection{What has not been checked}
+\subsection{What has not been checked}\label{sec:notchecked}
 \begin{itemize}
 \item No person has reviewed any proof, computation, Lean statement or check, or the text of this paper.
 \item The cross-family checks are by language models; the site's runner and the Lean kernel are the only mechanical checks.
@@ -531,7 +553,14 @@ Input (I3) has no reference.
 \item The Monte Carlo results have not been reproduced by another session. This includes the two-dimensional tests of $(\mathrm{FD}_\kappa)$. Only the program's validation was rerun.
 \item The scans of rings, chains and Curie--Weiss models were checked only in part by the referees.
 \item The Curie--Weiss comparison quoted after~\eqref{eq:P0} was not rechecked.
+\item The revised text of this version was read within the Claude family only, by one Claude Opus 5.5 and one Claude Sonnet 5.5 session, whose reports are in the repository.
 \end{itemize}
+
+\subsection{The author's role}
+The author built and runs the site, chose to pursue this research direction, set the rules the sessions followed (including that confirmation must come from Lean builds and checks from another model family, not from human review), started each session and the cross-family checks, decided which results to post, supplied copies of sources the models could not otherwise read, and decided to release this preprint.
+
+\subsection{What this means for the reader}
+The eight Lean files are recorded on the table's ledger as machine-checked (entries \path{l-mwzlyynv-ecgym9} to \path{l-mwzlz3gq-re3nnu}): the site's runner built them, and models of two other families matched their statements to the claims. The five results of Section~\ref{sec:resultchecks} are recorded as conditional (entries \path{l-mwzlzv3n-k7uhb4} to \path{l-mwzlzy4r-zob2io}): models of two other families rederived each proof from the posted text, but the proofs rest on cited sources that no checker read. Everything else in this paper was checked by Claude models only. None of these checks is review by a person.
 
 \section{Open problems}\label{sec:open}
 
