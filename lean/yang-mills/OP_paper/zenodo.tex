@@ -1,0 +1,311 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,array}
+\usepackage{url}
+\emergencystretch=2em
+\usepackage[shortlabels]{enumitem}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\ip}[1]{\langle #1\rangle}
+\newcommand{\lean}[1]{\texttt{#1}}
+\makeatletter\g@addto@macro\UrlBreaks{\do\_\do-}\makeatother
+\theoremstyle{plain}
+\newtheorem*{theoremA}{Theorem A}
+
+\begin{document}
+\hypersetup{pdftitle={One phase or many? What OpenAI's formal Yang–Mills construction proves about its vacuum, and where it stops},pdfauthor={Alexander Ross Cohen}}
+\thispagestyle{plain}
+\vspace*{2.5cm}
+\begin{center}
+{\LARGE One phase or many? What OpenAI's formal\\[4pt] Yang--Mills construction proves about its vacuum,\\[4pt] and where it stops\par}
+\vspace{1.6em}
+{\large Alexander Ross Cohen$^{1*}$\par}
+\vspace{1.2em}
+{\normalsize $^{1*}$Other Mindset Lab LLC, Washington, DC, USA. ORCID:\\ 0009-0006-2755-8313.\par}
+\vspace{2em}
+{\normalsize Corresponding author(s). E-mail(s): \href{mailto:alexander.ross.cohen@gmail.com}{alexander.ross.cohen@gmail.com};\par}
+\end{center}
+\vspace{1.5em}
+\begin{abstract}
+\noindent OpenAI's Lean~4 submission of 28 October 2026 constructs four-dimensional Yang--Mills theory as a lattice limit whose reconstructed state may be a mixture of phases; an independent assessment notes that this mixed reconstruction is not proven to have a unique vacuum. We ask whether the construction is a single phase, and record what can be proved about that question inside OpenAI's own formal objects. First, for OpenAI's own public hierarchy and with no added hypotheses, we prove in Lean that the following are equivalent: the construction is one phase; the lattice limit clusters; the lattice limit's reconstructed chamber has, up to scalars, a unique heat-invariant vector (\lean{UniqueHeat}); the character space has at most one point. Second, we show that at dimension four all one-point phase dependence is a single number per phase. Assuming the submission's \lean{Core} bundle (reconstruction, trace tests, operator-product and joint estimates), phases can differ at short distance only through condensates; condensates of dimension below four are the same in every phase; the dimension-four number can be taken to be the stress-trace condensate; and it is the same in every phase if and only if one two-point function of the lattice limit clusters. Third, from a read of the submission's source, we record that we found no hypothesis on the lattice limit that distinguishes one phase from an average of phases, that a convexity argument in a coupling appears not to apply, and what long-distance input would settle the question. We do not settle it. About 130 theorems and lemmas in eight files were built against the submission on the author's machine (Lean~4.32.0, standard axioms, no \texttt{sorry}); the code is public. The work was done by a multi-model AI council, with results posted and cross-checked at the Long Table of othermindsetlab.com, a public workspace: Claude models produced it, and Claude, GPT and Gemini models checked it; Section~\ref{sec:produced} states how each result was checked.
+
+\medskip
+\noindent\textbf{Keywords:} Yang--Mills theory, constructive quantum field theory, vacuum uniqueness, cluster property, operator product expansion, gluon condensate, Lean~4, formal verification, AI-generated mathematics, multi-model verification
+
+\medskip
+\noindent\textbf{MSC Classification:} 81T13, 81T08, 81T25, 03B35
+\end{abstract}
+\clearpage
+
+\section{Introduction}\label{sec:intro}
+
+Whether OpenAI's construction is a single phase is open, and this note makes the question precise and machine-checked without answering it.
+
+The submission~\cite{OpenAI} (repository \path{yang-mills-group/OpenAI-YM-20261028}, commit \texttt{3456e5e7}, Lean~4.32.0) constructs, for each simple gauge group and refinement, a lattice limit together with a compact space of characters, a phase measure on it, and a phase for each character. It then selects one phase, \lean{atPoint}, and proves the Wightman axioms, including a unique vacuum, for that phase and for each character. The independent assessment of 10 November 2026~\cite[\S6.2]{YMgroup} remarks that the mixed reconstruction is not proven to have a unique vacuum, and lists convergence and uniqueness of the infinite-volume limit as open~\cite[\S8]{YMgroup}.
+
+\paragraph{Context.} The assessing group (D.~Gross, chair; M.~Douglas, A.~Jaffe, I.~Klebanov, N.~Nekrasov) was assembled after OpenAI approached Gross, who chose the other members. Its 35-page assessment of 10 November judges the construction to be Yang--Mills under an existence criterion, reports Lean and Comparator checks of the public target and of stronger review targets, and says the construction gives no evidence for or against a mass gap~\cite{Kingy}. The assessors worked from the Lean code and used OpenAI's Astra to help digest it; Kingy reports that they do not yet fully understand the proof. Woit reported on 11 November that the informal manuscript, of about 1,147 pages, was being kept unreleased, and criticised this once the code was public~\cite{Woit}; the Advisory Group on Mathematics and AI also called for both the formal and the natural-language outputs to be public~\cite{Kingy}. Kingy also reports other independent efforts: an AI-written manuscript draft from the Lean (Armstrong) and a crowd-sourced monograph (Hairer's Humanise); it adds that a full build, an axiom audit and a line-by-line audit remain outstanding there. This note contributes a public, multi-model check of specific statements about the construction, with every step, check and build on the record; it is not a review of the whole proof.
+
+The distinction matters for the mass gap. A theory with a gap and a unique vacuum clusters exponentially. A nontrivial mixture of phases does not cluster, because distant regions can disagree about which phase they are in. We separate two questions:
+\begin{itemize}
+\item[\textbf{(U1)}] For a given refinement, is the lattice limit a single phase?
+\item[\textbf{(U2)}] Is the limit the same along different volume subsequences?
+\end{itemize}
+This note concerns (U1) only. It claims three things: Lean equivalences for (U1) stated against OpenAI's own objects (Section~\ref{sec:A}); a short-distance reduction of how phases can differ (Section~\ref{sec:B}); and a documented boundary of what the submission's statements can give (Section~\ref{sec:stops}). It does not claim that the construction is or is not a single phase, does not touch (U2), and does not evaluate the submission's other claims.
+
+\paragraph{How the work was done.} The mathematics, the Lean files and the text of this note were produced by large language models (Claude models from Anthropic), working in agent sessions directed by the author, and checked by Claude, GPT-6 and Gemini models. Section~\ref{sec:produced} describes the AI involvement: who produced what, how each result was checked, and what no person has reviewed.
+
+\section{Setting}\label{sec:setting}
+
+All statements are about the submission's own Lean objects, as built from its source at commit \texttt{3456e5e7}.
+
+\begin{center}
+\small
+\begin{tabular}{@{}>{\raggedright}p{0.3\linewidth}>{\raggedright}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.28\linewidth}@{}}
+\toprule
+Object & In the submission & Role here\\
+\midrule
+\lean{F : Spec.Final C p S} & the construction for one refinement & fixed throughout\\
+\lean{F.$\alpha$.space.X}, \lean{F.$\alpha$.space.$\mu$} & compact character space and full-support phase measure & phases are characters $i$\\
+\lean{F.$\alpha$.ensemble i} & the phase at character $i$ & a ``viewer'' \lean{some i}\\
+\lean{S} & the unselected lattice-limit table & the viewer \lean{none}\\
+\lean{F.$\alpha$.room} & the reconstructed chamber of $S$ & its vacuum space\\
+\lean{F.$\alpha$.atPoint} & the selected phase & has the Wightman axioms\\
+\lean{YM.Independent.Core} & OPE, trace tests, joint estimates & the hypothesis of Section~\ref{sec:B}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The public hierarchy \lean{hierarchy F Q} (\path{HierarchyBridge.lean}) exposes characters, phase measure and correlations through public definitions; an earlier public file states one phase (\lean{SinglePhase}), point mass (\lean{DiracPhase}) and rate-free clustering (\lean{Clusters}) against those definitions.
+
+\paragraph{How the work was built.} The site's sandboxed runner builds public Lean files only, and cannot build the submission's private library. The council's files were therefore built on the author's laptop inside a clone of the repository at commit \texttt{3456e5e7} (Lean~4.32.0, Mathlib \texttt{81a5d257}). The import closure of the bridge file \path{HierarchyBridge}, 6,573 of the submission's modules, took about sixteen hours to compile once; every later file (\path{Condensates}, \path{LowCondensates}, \path{DimFour}, \path{DimFourTrace}, \path{TraceUnit}, \path{MarkerCluster}) imports only that closure and built in minutes. \path{LowCondensates} copies six lemmas and one definition, with attribution, from submission files outside that closure. The theorems in the axiom record of Online Resource~1 (Section~S2) were checked with \lean{\#print axioms} and use only \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
+
+\section{Result A: four equivalent forms of one phase}\label{sec:A}
+
+For every \lean{F : Final C p S} and reader $Q$, with no hypotheses, OpenAI's own hierarchy satisfies
+\[
+\textsf{SinglePhase} \iff \textsf{Clusters}(\text{lattice limit}) \iff \textsf{F.}\alpha\textsf{.room.UniqueHeat} \iff |X|\le 1 .
+\]
+
+\begin{theoremA}[\path{openai_singlePhase_iff_clusters}, \path{openai_singlePhase_iff_uniqueHeat}, \path{openai_separates}, with \path{singlePhase_iff_subsingleton} and \path{singlePhase_iff_diracPhase} in \path{S2Bridge}]
+The construction is one phase if and only if the lattice limit clusters (rate-free, as Euclidean time separation grows), if and only if every heat-invariant vector of the lattice limit's own reconstructed chamber is a multiple of its vacuum, if and only if there is at most one character. Correlations on separated points separate characters.
+\end{theoremA}
+
+\paragraph{How it is proved.} An interface \lean{Reads} records how a public hierarchy reads a \lean{Final}: an identification of characters, a tag-to-token map and a token-to-tag map, and four equations. The equivalences are proved for every hierarchy satisfying \lean{Reads}. The instance \lean{openaiReads F Q} then shows OpenAI's hierarchy satisfies it: two equations hold by \lean{rfl}, as in the submission's own \lean{publicReconstruction}; the lattice-limit class equation is the submission's \lean{Table.at\_project} step in \lean{wilsonLimit}; the phase case applies \lean{Table.at\_project} to each phase's laws. The unique-vacuum direction uses the Gelfand bound (re-proved as the submission does in its \lean{Pressure} card) and the library's cyclicity of the vacuum; the converse uses continuity and full support of the phase measure.
+
+\paragraph{Reading.} The submission's own uniqueness field, \lean{heat}, concerns the selected phase's chamber, not \lean{room}. So Theorem~A shows that the assessment's remark is exactly (U1). \lean{UniqueHeat} says every vector invariant under Euclidean time evolution is a multiple of the vacuum; for the reconstructed theory this is the uniqueness of the vacuum that~\cite[\S6.2]{YMgroup} refers to, and it is equivalent to clustering of the lattice limit, not weaker than it. The assessment~\cite[\S6.2]{YMgroup} already sketches the direction from clustering to one phase; Theorem~A formalises it for OpenAI's objects, together with the converse and the \lean{UniqueHeat} form.
+
+\section{Result B: how phases can differ at short distance}\label{sec:B}
+
+Given the submission's \lean{Core}, phases differ at short distance only through condensates, not at all below dimension four, and through a single number at dimension four. A \emph{viewer} is a phase (\lean{some i}) or the lattice limit (\lean{none}); a \emph{condensate} is a viewer's one-point value of a channel actor of the submission's operator-product reader.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}>{\raggedright}p{0.31\linewidth}>{\raggedright}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.5\linewidth}@{}}
+\toprule
+Theorem & Hypotheses & Statement\\
+\midrule
+\lean{viewer\_difference} & \lean{Core} & for small $r$, uniformly over insertions within distance $Mr$ of a centre and spacing $\ge\eta r$: two viewers differ by $\Sigma$ over orders $\le D$ of the shared coefficients times the condensate differences, plus $2r^{D+1-\mathrm{weight}-\varepsilon}$\\
+\lean{phases\_agree\_of\_condensates} & \lean{Core} & equal condensates through order $D$ at every centre give agreement up to $2r^{D+1-\mathrm{weight}-\varepsilon}$\\
+\lean{condensate\_low} & $G$ simple & every condensate of order $j<4$ is the same in every viewer\\
+\lean{viewers\_agree\_below\_four} & \lean{Core} & any two viewers agree up to $2r^{4-\mathrm{weight}-\varepsilon}$\\
+\lean{field\_four\_rank} & $G$ simple & the dimension-four field space of $S$ has rank 22\\
+\lean{onePoint\_mirror} & none & every viewer's one-point functional on it is invariant under the 384 signed permutations of the axes\\
+\lean{one\_number} & $G$ simple & there are $w$ and viewer-independent $c,\kappa$ with $\ip{z}_s=c(z)+\kappa(z)\ip{w}_s$ for every viewer $s$\\
+\lean{viewers\_differ\_by\_one\_number} & \lean{Core} & two viewers differ by $K(x,a,o)\cdot\|\ip{w}_s-\ip{w}_t\|+2r^{5-\mathrm{weight}-\varepsilon}$\\
+\lean{trace\_marker\_unconditional} & trace tests of \lean{Core} & $w$ can be taken to be the stress trace $\theta$\\
+\lean{dimFour\_phase\_iff\_clusters} & $G$ simple & for the $w$ of \lean{one\_number}: every dimension-four one-point value takes the lattice-limit value in every phase $\iff$ the lattice limit clusters on the pair $(\bar w,w)$\\
+\lean{marker\_phase\_iff\_clusters} & none & for any dimension-four field $w$: $\ip{w}$ takes the lattice-limit value in every phase $\iff$ the lattice limit clusters on the pair $(\bar w,w)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Why one number.} The dimension-four fields are the unit and the 21 symmetric pairs $\operatorname{tr}F_pF_q$ of field-strength planes. Reflecting an axis that lies in exactly one of two distinct planes kills $\operatorname{tr}F_pF_q$ for $p\neq q$, including the $\operatorname{tr}F\tilde F$ type; permuting axes makes the six diagonal values equal; the unit fixes one more constant. The submission proves every phase reflection-invariant, so the parity-odd order parameter that separates degenerate vacua at $\theta=\pi$ is excluded here by construction.
+
+\paragraph{Why the stress trace.} If $\theta$ were a multiple of the unit, the centred trace and its Euclidean two-point function would vanish identically; the submission's \lean{Tests.shortDistance} would then force its award to be zero, contradicting \lean{Tests.positive}. So $\theta$ is not a multiple of the unit, and it can serve as $w$. With $w=\theta$, \lean{marker\_phase\_iff\_clusters} gives the abstract's statement: $\ip{\theta}$ is the same in every phase if and only if the lattice limit clusters on $(\bar\theta,\theta)$.
+
+\paragraph{Reading.} Calling $\ip{\theta}$ the gluon condensate is interpretation; in Lean it is the one-point value of one fixed field. The physics is standard operator-product lore (Shifman--Vainshtein--Zakharov~\cite{SVZ}). We are not aware of a theorem of this form about a rigorous four-dimensional non-abelian construction; our literature check was partial (Section~\ref{sec:limits}). It is a symmetry and linear-algebra reduction; the analytic content is the submission's own OPE.
+
+\section{Where the construction stops}\label{sec:stops}
+
+In the files we read, nothing on the lattice limit distinguishes a single phase from an average of phases, so (U1) needs a long-distance input that we did not find in the files we read. This section is evidence from reading source, not a theorem: we did not build a countermodel.
+
+\paragraph{No separating hypothesis found.} We read the submission's \path{Spec}, \path{Phase}, \path{Ground}, \path{Org/Phase}, \path{EveryPhase}, \path{Independent/Core}, \path{Continuum}, \path{HeadlineSpec}, \path{Construction}, \path{FullVolume} and \path{Pert} files (headers and key statements; not the renormalisation-group internals or all 6,573 modules). Each hypothesis we found on $S$ or \lean{room} would also hold for an average of two distinct phases with the same short-distance data:
+\begin{itemize}
+\item reflection positivity and Euclidean invariance of $S$;
+\item the decomposition into phases and the barycenter identity;
+\item \lean{Core}: the OPE with phase-independent coefficients, and the joint estimates;
+\item the per-phase spectral statements (unique vacuum, low-energy weight, heat-kernel bounds, trivial commutant), with constants uniform in the phase;
+\item the operator bounds of \lean{Spread.Laws};
+\item \lean{FullVolume.PositionsUV}, which is convergence of smeared lattice correlations on compact patches, not clustering;
+\item the perturbative UV limits.
+\end{itemize}
+The source is consistent with this reading. A proof comment in \lean{cleanse} fixes the chambers ``before selecting uniqueness'' (\path{YM/Org/Phase.lean:69}); a docstring describes a book of contours used ``when vacuum uniqueness isn't known yet'' (\path{YM/EveryPhase/Pack.lean:111--112}); and the Wightman axioms are stated for the chosen phase and each character, not for \lean{room} (\path{YM/Nonperturbative/HeadlineSpec.lean:76--79}).
+
+\paragraph{The convexity route appears not to apply (from a read of the source).} A pressure convex in a coupling is differentiable at all but countably many values, and there every invariant Gibbs state has the same energy density; Driver~\cite{Driver} used this for compact U(1) lattice gauge theory in four dimensions. In the submission:
+\begin{itemize}
+\item the parameter $b$ of \lean{constructed} is not a parameter of one family: each $b$ gets a separate \lean{Classical.choose} (\path{YM/Independent/ConstructionRun.lean}), so phase spaces at different $b$ are different types, and $b$ is a block-spin kernel weight, not the coupling;
+\item the lattice coupling is tied to a schedule (\path{YM/RG/History.lean}) rather than free;
+\item pressure-like objects (\path{YM/Wilson/Law.lean}, \path{YM/Pressure}, \path{YM/Push/BETA_TRANSPORT}) are finite-volume, and there is no infinite-volume or renormalised pressure, no convexity statement for one, and no DLR statement.
+\end{itemize}
+Even where it applies, equal energy density does not give one phase: in $\varphi^4_2$ at strong coupling two phases share pressure and even condensates~\cite{GJS}.
+
+\paragraph{What would settle (U1).} The weakest sufficient input our proof uses: for every distinct word $A$, the lattice limit clusters on $(\bar A, A)$ translated in Euclidean time. Uniform-in-volume decay of truncated lattice correlations, or a mass gap with a unique vacuum for the lattice limit itself, would give it. That is close to the heart of the Clay problem~\cite{JaffeWitten}.
+
+\paragraph{What would refute it.} A genuine mixture would need phases differing in $\ip{\theta}$, which breaks no symmetry, or at dimension five or more, or only at long distance. We have no evidence either way. The physics expectation (not checked against the library) is a unique vacuum for continuum SU($N$) at $\theta=0$.
+
+\section{Statement on AI involvement}\label{sec:produced}
+
+The mathematics, the Lean files and the text of this note were produced by AI systems. The author did not write the proofs and did not verify them line by line; verification rests on the Lean builds (Section~\ref{sec:setting}) and the model checks recorded below. This section describes who did what, how each result was checked, and what has not been checked. It is meant to be read as part of the note.
+
+\subsection{The workspace}\label{sec:workspace}
+The Long Table is a public workspace on othermindsetlab.com, a website run by the author, where AI agents post attempts, results, checks and ledger entries for open problems. Agents from several model families work there side by side, as a multi-model council: they read one another's posts, build on them and check them. Posts are public and keep their ids; the site records the model family of each author and checker, rebuilds in a sandboxed runner the posted Lean files it can build, and accepts a ledger status only when the posted evidence supports it.
+
+Most of the work reported here was done outside the table, in agent sessions of Claude models (Anthropic) directed by the author, between 24 and 26 November 2026, with checks recorded to 27 November. Their Lean files are in the public repository \path{OtherMindset/congress-lean}, branch \path{claude/onephase-s2-s6}. The results were posted at the Yang--Mills table of the Long Table (the posts listed in the data availability statement) and checked there by models of other developers. The site's runner built two earlier files: one of public definitions and conditional theorems (\path{#mwvhv107-mzajy4}), and a mass-gap statement file posted by Claude Fable~5.2 (\path{#mwuyw6ne-1irnyq}) whose body \path{S2Bridge} includes. It could not rebuild the eight files of Sections~\ref{sec:A} and~\ref{sec:B}, because they import the submission's library, which it cannot build; those were built on the author's machine (Section~\ref{sec:setting}).
+
+\subsection{Open multi-model research and its provenance}
+We regard the way this work was produced as part of its record. It involved models of three families, Claude (Anthropic), GPT-6 (OpenAI) and Gemini (Google), in different roles. Claude models produced all the arguments, Lean files and text, and checked one another's work in second passes. GPT-6 and Gemini models produced nothing in this note; they checked five posts against their stated claims. On the table's ledger the runner-built file is recorded as machine-checked, Theorem~A and the condensate corollary as conditional, and the dimension-four result as open; the post on the convexity route has no ledger entry. The site keeps each post with its author's model family, the checks on it with their families and verdicts, the runner's builds, and the history of each ledger entry. Online Resource~1 (a supplementary file) gives the full record: each Lean file with its hash and source, the recorded build and axiom output, a reproduction recipe and the check record. The note exposes this record as follows.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.3\linewidth}p{0.64\linewidth}@{}}
+\hline
+Dimension & Where it is in this note\\
+\hline
+Origin and development & Section~\ref{sec:who}\\
+Challenge & Sections~\ref{sec:second} and~\ref{sec:cross}: what each second pass changed, and the ``unsure'' verdicts\\
+Verification & Sections~\ref{sec:setting} and~\ref{sec:cross}; Online Resource~1, Sections~S2 and~S4\\
+Formalisation & Sections~\ref{sec:A} and~\ref{sec:B}; each file in Online Resource~1, Sections~S1 and~S5\\
+Reproduction & Online Resource~1, Section~S3\\
+Remaining uncertainty & Sections~\ref{sec:notchecked} and~\ref{sec:limits}\\
+\hline
+\end{tabular}
+\end{center}
+
+The checks are of two kinds, and the note keeps them apart: Lean files built and audited for axioms, whose statements the Lean kernel has checked; and checks by language models, which are corroboration and a search for errors, not proof. Cross-family agreement is reported here as corroboration, not as independent verification. Models of different families can share training data, conventions and blind spots, and can be persuaded by the same plausible error; their checks are verdicts on the text supplied to them.
+
+We use the following terms. A \emph{second pass} is a check of a draft by another Claude agent before it was posted. A \emph{cross-family check} is a check by a model of another developer, run at the table. The cross-family checks reported here are of five posts (Section~\ref{sec:cross}); every other check is by Claude models, the family that produced the work. No check involves a person.
+
+\subsection{Who produced what}\label{sec:who}
+\begin{itemize}
+\item \textbf{The question.} The author chose the question of whether OpenAI's construction is one phase, following the assessment's remark (Section~\ref{sec:intro}), and directed each session.
+\item \textbf{Theorem A and the condensate corollary} (\path{S2Bridge}, \path{S2Instance}, \path{Condensates}) were posted by the Claude Opus~5.5 session that led the council; \path{S2Bridge} also includes the body of the earlier mass-gap statement file posted by Claude Fable~5.2 (\path{#mwuyw6ne-1irnyq}).
+\item \textbf{Below and at dimension four.} Claude Sonnet~5.5 agents drafted the low-dimension file (\path{LowCondensates}); Claude Fable~5.2 and Claude Opus~5.5 agents drafted the dimension-four argument (\path{DimFour}, \path{DimFourTrace}). Claude Fable~5.2 also reviewed the earlier results. The site records only the model that posted (the Claude Opus~5.5 council lead, for all ten posts cited here); the drafting roles in this list come from the session records.
+\item \textbf{The overnight climb.} Teams of Claude Opus~5.5 agents, coordinated by a Claude Opus~5.5 session, produced \path{TraceUnit} and \path{MarkerCluster} (the unconditional trace marker and the clustering criterion of Section~\ref{sec:B}), the source reading and the convexity analysis of Section~\ref{sec:stops}, and the literature survey of Section~\ref{sec:limits}.
+\item \textbf{The author} ran every build on his own machine, ran the cross-family checks with the site's checking script, and approved each post.
+\item \textbf{The text} of this note was written by the coordinating Claude Opus~5.5 session from the posts and notes, and revised at the author's direction. A final independent referee check by a separate Claude Opus~5.5 session found two errors and several overstatements; the errors and the main overstatements are corrected in this version.
+\end{itemize}
+
+\subsection{Second passes}\label{sec:second}
+Results were given a second pass by another Claude agent, mostly Claude Sonnet~5.5, before they were posted. Each of the following changed what was posted:
+\begin{itemize}
+\item a loose line citation (the instance's phase case is new, not a repetition of the submission's own step), corrected publicly;
+\item an overstatement that the stress trace was ``exactly'' a condensate in the reader's sense;
+\item dropped hypotheses on the barycenter identity;
+\item headline wording stronger than the theorem; quantifiers and hypotheses missing from paraphrased statements;
+\item an unscoped claim that the library ``cannot'' prove (U1), recast as evidence from reading source.
+\end{itemize}
+
+\subsection{Cross-family checks}\label{sec:cross}
+The author ran the cross-family checks with the site's checking script, sending each post to Gemini~4 Argon (Google) and GPT-6 Sol (OpenAI). The checkers compared the posted statements with the posted claims, with the submission's definitions they needed supplied as short definitions files. The site counts a check as hard when the checker reads a source, reruns a computation, or rederives the argument. Results as of 27 November 2026:
+
+\begin{center}
+\small
+\footnotesize
+\begin{tabular}{@{}>{\raggedright}p{0.19\linewidth}>{\raggedright}p{0.29\linewidth}>{\raggedright}p{0.16\linewidth}>{\raggedright}p{0.09\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}@{}}
+\toprule
+Post & Content & Gemini 4 Argon & GPT-6 Sol & Ledger\\
+\midrule
+\path{#mwvhv107-mzajy4} & public definitions, conditional theorems (runner-built) & hard holds, statement match & unsure & machine-checked\\
+\path{#mwwzdfk1-k4u75v} & Theorem A for OpenAI's hierarchy & hard holds & unsure & conditional\\
+\path{#mwwzt6lg-xzbdzd} & condensate corollary & hard holds & unsure & conditional\\
+\path{#mwx4819k-zurj73} & dimension four & unsure & unsure & open\\
+\path{#mwx48gi3-hzpe6y} & convexity route (appears not to apply) & unsure & unsure & none yet\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+An ``unsure'' is not a pass. Checkers from other families read the statements and the instance, not the build. Each hard check on Theorem~A and the condensate corollary lists the author's local build as an input it relied on without reading, so these entries cannot rise above ``conditional'' until someone else rebuilds the submission. The checkers stalled twice for want of definitions, and were unblocked by short definitions files rather than long ones, which their batch inputs truncated. No person has reviewed these checks.
+
+\subsection{What has not been checked}\label{sec:notchecked}
+\begin{itemize}
+\item No person has checked any proof, Lean statement or model check in this note; the author read the text but did not verify it line by line.
+\item The eight Lean files of Sections~\ref{sec:A} and~\ref{sec:B} were built on one machine; neither the site's runner nor any other party has rebuilt them. The Lean kernel and the recorded axiom output are the only mechanical checks.
+\item No post has a hard ``holds'' from both other families. The dimension-four result and the convexity analysis have only ``unsure'' verdicts, and the cross-family checks compare statements, not builds.
+\item Section~\ref{sec:stops} rests on a partial reading of the submission's source by Claude agents, checked within the family only, apart from the convexity post, which both other families marked unsure; it is evidence, not a theorem.
+\item The literature survey of Section~\ref{sec:limits} was done by Claude agents; several references were recalled rather than re-read (see the note after the references).
+\end{itemize}
+
+\subsection{The author's role}
+The author built and runs the site and wrote its rules, under which a result's status on the ledger is set only by Lean builds of the site's runner and checks from another model family, not by human review. The author chose to pursue this question, directed the sessions and chose the models that ran them, ran the Lean builds on his own machine, started the cross-family checks, decided which results to post, and decided to release this preprint.
+
+\subsection{What this means for the reader}
+Theorem~A and the results of Section~\ref{sec:B} are Lean theorems that compiled against the submission with standard axioms on the author's machine; their statements are recorded in Online Resource~1. On the table's ledger, Theorem~A and the condensate corollary are conditional (entries \path{l-mwvktiae-4pnb8n} and \path{l-mwwztb9m-az2rnt}): a model of another family matched their statements to the claims, but relied on the author's build without reading it. The dimension-four result is open (\path{l-mwx48m6a-u2n9rc}), and Section~\ref{sec:stops} is a reading of source, not a theorem. Everything else in this note was checked by Claude models only. None of these checks is review by a person.
+
+\section{Limitations and related work}\label{sec:limits}
+
+The results are conditional on the submission and narrow in scope; the related literature supplies the physics but, as far as we found, no theorem of this form for a rigorous four-dimensional non-abelian construction.
+
+\paragraph{Limitations.}
+\begin{itemize}
+\item The short-distance estimates and the stress-trace identification in Section~\ref{sec:B} assume the submission's \lean{Core}, which \lean{constructed} provides for some refinement; we did not build \lean{constructed} or combine it with our theorems.
+\item All builds ran on one machine; no other party has rebuilt them.
+\item Section~\ref{sec:stops} rests on a partial read of a large library and is evidence, not an independence result.
+\item Nothing here bears on (U2) or on the submission's mass-gap claims.
+\item The note's value depends on the submission's status; a revised construction may change it.
+\end{itemize}
+
+\paragraph{Related work.}
+\begin{itemize}
+\item \emph{Clustering and unique vacuum.} For Euclidean, reflection-positive states, clustering is equivalent to uniqueness of the vacuum (Osterwalder--Schrader~\cite{OS}; Glimm--Jaffe~\cite{GlimmJaffe}). Theorem~A is that equivalence proved for this construction's objects.
+\item \emph{Convexity and energy density.} Lanford and Robinson~\cite{LanfordRobinson}, and Israel~\cite{Israel}, tie invariant equilibrium states to tangents of a convex pressure. Driver~\cite{Driver} uses the resulting energy-density argument for compact U(1) in four dimensions. Section~\ref{sec:stops} explains why the argument does not apply here.
+\item \emph{Coexisting phases.} Glimm, Jaffe and Spencer~\cite{GJS} construct two phases of $\varphi^4_2$ at strong coupling with equal pressure. Gaiotto, Kapustin, Komargodski and Seiberg~\cite{GKKS} discuss degenerate vacua of Yang--Mills at $\theta=\pi$, which differ in $\ip{\operatorname{tr}F\tilde F}$. Vafa and Witten~\cite{VafaWitten} argue parity is unbroken at $\theta=0$.
+\item \emph{Operator-product expansion.} Shifman, Vainshtein and Zakharov~\cite{SVZ} introduced the gluon condensate as the leading non-perturbative term. Rigorous OPE results (Hollands--Kopper~\cite{HollandsKopper}; Hollands--Wald~\cite{HollandsWald}) are perturbative or axiomatic.
+\item \emph{Four-dimensional Yang--Mills.} Uniqueness of the infinite-volume lattice limit at weak coupling is open~\cite{Chatterjee}. Ba{\l}aban's ultraviolet stability~\cite{Balaban} and the infrared-cutoff construction of Magnen, Rivasseau and S\'en\'eor~\cite{MRS} do not give it. We found no rigorous vacuum-uniqueness result for four-dimensional SU($N$) at weak coupling or in the continuum.
+\end{itemize}
+Several of these references were recalled rather than re-read for this note; the note after the references says which were checked.
+
+\paragraph{Acknowledgements.} The mathematics, Lean files and text were produced by Claude models (Anthropic). Cross-family checks were by GPT-6 Sol (OpenAI) and by Gemini~4 Argon (Google). These are AI systems and are not authors; their use is described in Section~\ref{sec:produced}.
+
+\section*{Statements and declarations}
+
+\paragraph{Funding.} No funding was received for this work.
+
+\paragraph{Ethics approval and consent.} Not applicable: the work involves no human participants, human data or animals.
+
+\paragraph{Use of large language models.} The mathematics, Lean files and text of this note were produced by large language models (Claude models from Anthropic: Claude Opus~5.5, Claude Fable~5.2 and Claude Sonnet~5.5), and checked by further sessions of Claude models; the statements of five posted results were also checked by OpenAI (GPT-6 Sol) and Google (Gemini~4 Argon) models. Section~\ref{sec:produced} documents who produced what, how each result was checked, and the author's role. The author takes responsibility for this preprint: for its account of how the work was produced and checked, for the verification status reported for each result, and for correcting or withdrawing any claim found to be wrong. The author did not verify the proofs line by line. Verification rests on the Lean builds (Section~\ref{sec:setting}) and the model checks recorded publicly (Section~\ref{sec:produced}).
+
+\paragraph{Preprint.} This is version~1 of this preprint on Zenodo, dated 27 November 2026, doi:10.5281/zenodo.24614275; later versions are linked from that record. It is distributed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0).
+
+\paragraph{Author contributions.} A.R.C. built and runs the workspace and wrote its verification rules, chose the research question, ran the sessions, the Lean builds and the cross-family checks, and prepared the preprint. The mathematical content was produced by AI systems as described in Section~\ref{sec:produced}.
+
+\paragraph{Conflict of interest.} The author is the founder and sole member of Other Mindset Lab LLC, which operates the website othermindsetlab.com, including the public workspace (the Long Table) on which the work reported here was posted and checked, and the GitHub account OtherMindset that holds the repository in which its Lean files are kept. The author has no financial relationship with OpenAI, Anthropic or Google relevant to this note. Other Mindset Lab LLC is funded by the author and earns no revenue from this work. The author declares no other financial or non-financial interests.
+
+\paragraph{Data and code availability.} All Lean files are public in the repository \url{https://github.com/OtherMindset/congress-lean}, folder \path{lean/yang-mills/OP_onephase}, commit \path{601d8641a7100675c65d16742f58767824de18ce}, with SHA-256 hashes in its manifest. Building them needs a clone of \path{yang-mills-group/OpenAI-YM-20261028} at commit \texttt{3456e5e7}; the recipe is in Online Resource~1 and in the posts listed below. The full record (results, checks, second passes and ledger history) is public at \url{https://othermindset.com/table/yang-mills}: posts \path{#mwvhv107-mzajy4}, \path{#mwvkso1a-c92ybt}, \path{#mwwzd5cw-gc8tst}, \path{#mwwzdfk1-k4u75v}, \path{#mwwzsv3f-36j2fn}, \path{#mwwzt6lg-xzbdzd}, \path{#mwx47lma-6xyxrq}, \path{#mwx4819k-zurj73}, \path{#mwx48gi3-hzpe6y} and \path{#mwx48grb-kwmkhv}. Six lemmas and one definition copied from the submission are used under its Apache-2.0 licence, with its LICENSE and NOTICE files kept. Online Resource~1 (supplementary file) holds the full source of the eight files, their hashes, the recorded build and axiom output, the cross-family check record and a reproduction recipe.
+
+\begin{thebibliography}{19}\small
+\bibitem{YMgroup} Yang--Mills group. Validation of the OpenAI Yang--Mills construction: Summary of results and independent validation, Nov~10, 2026 release. Prepared by M.~R.~Douglas, A.~Jaffe, R.~Nissim and F.~Rajasekaran; approved by the group.
+\bibitem{OpenAI} OpenAI. Yang--Mills submission, repository \path{yang-mills-group/OpenAI-YM-20261028}, commit \texttt{3456e5e7}, 28 October 2026.
+\bibitem{JaffeWitten} A.~Jaffe, E.~Witten. Quantum Yang--Mills theory. Clay Mathematics Institute official problem description, \url{https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf}; also in J.~Carlson, A.~Jaffe, A.~Wiles (eds.), \emph{The Millennium Prize Problems}, CMI/AMS, 2006.
+\bibitem{OS} K.~Osterwalder, R.~Schrader. Axioms for Euclidean Green's functions. Commun. Math. Phys. 31 (1973) 83--112; Axioms for Euclidean Green's functions II. Commun. Math. Phys. 42 (1975) 281--305.
+\bibitem{GlimmJaffe} J.~Glimm, A.~Jaffe. \emph{Quantum Physics: A Functional Integral Point of View}, 2nd ed. Springer, New York, 1987.
+\bibitem{LanfordRobinson} O.~E.~Lanford III, D.~W.~Robinson. Statistical mechanics of quantum spin systems. III. Commun. Math. Phys. 9 (1968) 327--338.
+\bibitem{Israel} R.~B.~Israel. \emph{Convexity in the Theory of Lattice Gases}. Princeton Series in Physics, Princeton University Press, 1979.
+\bibitem{Driver} B.~K.~Driver. Convergence of the U(1)$_4$ lattice gauge theory to its continuum limit. Commun. Math. Phys. 110 (1987) 479--501.
+\bibitem{GJS} J.~Glimm, A.~Jaffe, T.~Spencer. Phase transitions for $\varphi^4_2$ quantum fields. Commun. Math. Phys. 45 (1975) 203--216.
+\bibitem{GKKS} D.~Gaiotto, A.~Kapustin, Z.~Komargodski, N.~Seiberg. Theta, time reversal and temperature. JHEP 05 (2017) 091, arXiv:1703.00501.
+\bibitem{VafaWitten} C.~Vafa, E.~Witten. Parity conservation in quantum chromodynamics. Phys. Rev. Lett. 53 (1984) 535--536.
+\bibitem{SVZ} M.~A.~Shifman, A.~I.~Vainshtein, V.~I.~Zakharov. QCD and resonance physics. Theoretical foundations. Nucl. Phys. B 147 (1979) 385--447; QCD and resonance physics. Applications. Nucl. Phys. B 147 (1979) 448--518.
+\bibitem{HollandsKopper} S.~Hollands, C.~Kopper. The operator product expansion converges in perturbative field theory. Commun. Math. Phys. 313 (2012) 257--290, arXiv:1105.3375.
+\bibitem{HollandsWald} S.~Hollands, R.~M.~Wald. Axiomatic quantum field theory in curved spacetime. Commun. Math. Phys. 293 (2010) 85--125, arXiv:0803.2003.
+\bibitem{Chatterjee} S.~Chatterjee. Yang--Mills for probabilists. In: \emph{Probability and Analysis in Interacting Physical Systems}, Springer Proc. Math. Stat., Springer, 2019, pp.~1--16; arXiv:1803.01950.
+\bibitem{Balaban} T.~Ba{\l}aban. Renormalization group approach to lattice gauge field theories. I: Commun. Math. Phys. 109 (1987) 249--301; II: Commun. Math. Phys. 116 (1988) 1--22.
+\bibitem{MRS} J.~Magnen, V.~Rivasseau, R.~S\'en\'eor. Construction of YM$_4$ with an infrared cutoff. Commun. Math. Phys. 155 (1993) 325--383.
+\bibitem{Woit} P.~Woit. The Yang--Mills publicity stunt. \emph{Not Even Wrong} (blog), 11 November 2026, \url{https://www.math.columbia.edu/~woit/wordpress/?p=15986}.
+\bibitem{Kingy} C.~Pyke. OpenAI's Yang--Mills proof gets backing; mass gap stays open. Kingy AI, published 10 November 2026, updated 13 November 2026, \url{https://kingy.ai/blog/openai-yang-mills-proof-mass-gap/}.
+\end{thebibliography}
+
+\noindent\small References~3--17 were checked on 27 November 2026 against publisher and Crossref records, arXiv and claymath.org (bibliographic details, not page-level text); 18--19 were read in full. References~1 and~2 are the assessment and the submission themselves.
+\end{document}

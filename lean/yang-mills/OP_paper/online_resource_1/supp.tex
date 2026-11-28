@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{lmroman10}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setmonofont{DejaVuSansMono}[Extension=.ttf,Path=/usr/share/fonts/truetype/dejavu/,BoldFont=*-Bold,Scale=0.88]
+\usepackage{amsmath,amssymb}
+\usepackage{longtable,booktabs,array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{seqsplit}
+\usepackage{fvextra}
+\usepackage{newunicodechar}
+\newfontfamily\mathfb{latinmodern-math.otf}
+\newunicodechar{𝓝}{{\mathfb 𝓝}}
+\newcommand{\hash}[1]{{\ttfamily\footnotesize\seqsplit{#1}}}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\newcommand{\pid}[1]{\texttt{\##1}}
+\newcommand{\lid}[1]{\texttt{#1}}
+\setlength{\parskip}{3pt}
+
+\title{Online Resource 1: verification record for\\ ``One phase or many? What OpenAI's formal Yang--Mills construction proves about its vacuum, and where it stops''}
+\author{Alexander Ross Cohen\\ \small Other Mindset Lab LLC, Washington, DC, USA. ORCID 0009-0006-2755-8313}
+\date{Version 1, 27 November 2026\\ \small Supplement to the preprint doi:10.5281/zenodo.24614275}
+
+\begin{document}
+\sloppy
+\hypersetup{pdftitle={Online Resource 1: verification record (One phase or many?)},pdfauthor={Alexander Ross Cohen}}
+\maketitle
+
+\noindent This document records the Lean files behind the results of the preprint and how they were built and checked. It supplements Section~6 of the preprint (``Statement on AI involvement''), which states the conventions used here. Theorem and section numbers refer to the preprint. Post ids (such as \pid{mwwzdfk1-k4u75v}) and ledger ids (such as \lid{l-mwvktiae-4pnb8n}) refer to the Yang--Mills table of the Long Table, \url{https://othermindset.com/table/yang-mills}, where each post can be read with its checks. Paths refer to the public repository \url{https://github.com/OtherMindset/congress-lean}, folder \path{lean/yang-mills/OP_onephase}, commit \texttt{601d864} (full hash \hash{601d8641a7100675c65d16742f58767824de18ce}). In the build record and the recipe the files sit in a folder \path{Check/} inside a clone of the submission. All builds ran on the author's machine; no other party has rebuilt them. The site's records were read on 27 November 2026. Everything here was compiled by a Claude Opus 5.5 session from the repository, the build output and the site; no person has reviewed it.
+
+\section{Files}\label{sec:files}
+
+Table~\ref{tab:files} lists the eight Lean files with their sizes and SHA-256 hashes; the hashes match the repository's \path{manifest.json}. The full source of each file is in Section~\ref{sec:source}. The public file behind the machine-checked ledger entry (the definitions \texttt{SinglePhase}, \texttt{DiracPhase}, \texttt{Clusters} and the conditional theorems) was built by the site's runner and is held at the table as post \pid{mwvhv107-mzajy4}; it is not repeated here.
+
+{\small
+\begin{longtable}{@{}>{\raggedright}p{0.27\linewidth}>{\raggedleft}p{0.08\linewidth}>{\raggedright\arraybackslash}p{0.57\linewidth}@{}}
+\caption{The eight Lean files.}\label{tab:files}\\
+\toprule
+File & Bytes & Contents; SHA-256 \\
+\midrule\endfirsthead
+\toprule File & Bytes & Contents; SHA-256 \\ \midrule\endhead
+\path{Check/S2Bridge.lean} & 55,550 & \texttt{Reads} interface; one phase $\Leftrightarrow$ clustering $\Leftrightarrow$ \texttt{UniqueHeat} $\Leftrightarrow$ $|X|\le1$ for any hierarchy satisfying \texttt{Reads}; includes the body of the runner-built mass-gap statement file \pid{mwuyw6ne-1irnyq}\newline\hash{cab246d619441b9beb954fbad5231f4c520fe1d7429dd51aacf215773ce33ba4} \\
+\path{Check/S2Instance.lean} & 1,529 & \texttt{openaiReads}: OpenAI's own hierarchy satisfies \texttt{Reads}; Theorem A for it\newline\hash{5b30ad1d6309c4c3e80f74215319d7297c8690acb35b84b4f55b091d4a0e5d1e} \\
+\path{Check/Condensates.lean} & 5,939 & \texttt{condensate}; \texttt{viewer\_difference}; \texttt{phases\_agree\_of\_condensates}\newline\hash{1fde22837e7c6e330c3f33613458872e2b0d1a1071294d823bf219948f47c06a} \\
+\path{Check/LowCondensates.lean} & 10,385 & condensates below dimension four; six lemmas and one definition copied from the submission (Apache-2.0)\newline\hash{863fff71a22868e21386d58b2f241c99f3095378b5a48243b36587f6b65aeec8} \\
+\path{Check/DimFour.lean} & 32,362 & rank 22; mirror invariance; \texttt{one\_number}; \texttt{viewers\_differ\_by\_one\_number}\newline\hash{97abd2cc92247f4970df718a13cc834d6fadfaf50dca267094980f4af92e6b63} \\
+\path{Check/DimFourTrace.lean} & 9,127 & \texttt{trace\_marker} (conditional form)\newline\hash{c6ccb4d2987b169b0b2f975fa7e4c4b22866a893babc6d97ff95aa87664870ba} \\
+\path{Check/TraceUnit.lean} & 6,209 & \texttt{stressTrace\_ne\_smul\_unit}; \texttt{trace\_marker\_unconditional}\newline\hash{fab347df064166ee23cd46919e5d1b2b8fff40c2f3e56376b33844f686eac5ff} \\
+\path{Check/MarkerCluster.lean} & 11,631 & \texttt{const\_iff}; \texttt{marker\_phase\_iff\_clusters}; \texttt{dimFour\_phase\_iff\_clusters}\newline\hash{518301f4af264afdad6e18982fb938adaa5691749502d41e4dda74cf8167fabb} \\
+\bottomrule
+\end{longtable}
+}
+
+\section{Build and axiom record}\label{sec:build}
+
+Output as printed on the author's machine (Lean~4.32.0, Mathlib \texttt{81a5d257}, inside the submission at commit \texttt{3456e5e7}). Every theorem listed depends only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, and no file contains \texttt{sorry}.
+
+\VerbatimInput[fontsize=\scriptsize,breaklines]{rec.txt}
+
+\section{Reproduction}\label{sec:repro}
+
+\VerbatimInput[fontsize=\footnotesize,breaklines]{repro.txt}
+
+\section{Cross-family check record}\label{sec:checks}
+
+The author ran the checks with the site's checking script; the conventions are those of Section~6 of the preprint. ``Unsure'' is not a pass. Hard checks list the author's local build as an input they relied on without reading, since the site's runner cannot build the submission; this keeps Theorem~A and the condensate corollary at the conditional level on the ledger.
+
+{\small
+\begin{longtable}{@{}>{\raggedright}p{0.18\linewidth}>{\raggedright}p{0.26\linewidth}>{\raggedright}p{0.16\linewidth}>{\raggedright}p{0.08\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+\caption{Cross-family checks, as of 27 November 2026.}\label{tab:checks}\\
+\toprule
+Post & Content & Gemini 4 Argon & GPT-6 Sol & Ledger \\
+\midrule\endfirsthead
+\toprule Post & Content & Gemini 4 Argon & GPT-6 Sol & Ledger \\ \midrule\endhead
+\pid{mwvhv107-mzajy4} & public definitions, conditional theorems (runner-built) & hard holds, statement match & unsure & machine-checked (\lid{l-mwvij26l-4zlsui}) \\
+\pid{mwwzdfk1-k4u75v} & Theorem A for OpenAI's hierarchy & hard holds & unsure & conditional (\lid{l-mwvktiae-4pnb8n}) \\
+\pid{mwwzt6lg-xzbdzd} & condensate corollary & hard holds & unsure & conditional (\lid{l-mwwztb9m-az2rnt}) \\
+\pid{mwx4819k-zurj73} & dimension four & unsure & unsure & open (\lid{l-mwx48m6a-u2n9rc}) \\
+\pid{mwx48gi3-hzpe6y} & convexity route (appears not to apply) & unsure & unsure & none \\
+\bottomrule
+\end{longtable}
+}
+
+\noindent The other posts of the record are \pid{mwvkso1a-c92ybt}, \pid{mwwzd5cw-gc8tst}, \pid{mwwzsv3f-36j2fn}, \pid{mwx47lma-6xyxrq} and \pid{mwx48grb-kwmkhv} (the code and data posts for the files of Table~\ref{tab:files}, and the summary of where the construction stops). The site records the Claude Opus~5.5 council lead as the poster of all ten.
+
+\section{Lean source}\label{sec:source}
+
+The files are reproduced as committed, in the order of Table~\ref{tab:files}.
+
+\subsection{\texttt{Check/S2Bridge.lean}}\label{src:S2Bridge}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/S2Bridge.lean}
+
+\subsection{\texttt{Check/S2Instance.lean}}\label{src:S2Instance}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/S2Instance.lean}
+
+\subsection{\texttt{Check/Condensates.lean}}\label{src:Condensates}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/Condensates.lean}
+
+\subsection{\texttt{Check/LowCondensates.lean}}\label{src:LowCondensates}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/LowCondensates.lean}
+
+\subsection{\texttt{Check/DimFour.lean}}\label{src:DimFour}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/DimFour.lean}
+
+\subsection{\texttt{Check/DimFourTrace.lean}}\label{src:DimFourTrace}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/DimFourTrace.lean}
+
+\subsection{\texttt{Check/TraceUnit.lean}}\label{src:TraceUnit}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/TraceUnit.lean}
+
+\subsection{\texttt{Check/MarkerCluster.lean}}\label{src:MarkerCluster}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../../OP_onephase/MarkerCluster.lean}
+
+\end{document}
