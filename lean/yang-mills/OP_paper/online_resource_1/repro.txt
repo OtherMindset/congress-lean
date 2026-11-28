@@ -1,0 +1,12 @@
+1. git clone https://github.com/yang-mills-group/OpenAI-YM-20261028 ym && cd ym
+   git checkout 3456e5e75cf8d4cd558955a5c7638fba2d68f464      (lean-toolchain: Lean 4.32.0; Mathlib 81a5d257)
+2. mkdir Check; copy the eight files of Section S5 into Check/
+3. append to lakefile.toml:
+     [[lean_lib]]
+     name = "Check"
+     roots = ["Check.S2Bridge", "Check.S2Instance", "Check.Condensates", "Check.LowCondensates",
+              "Check.DimFour", "Check.DimFourTrace", "Check.TraceUnit", "Check.MarkerCluster"]
+4. lake exe cache get
+5. lake build HierarchyBridge Check        (about 16 hours on a MacBook Air for HierarchyBridge's
+                                           closure, 6,573 of the submission's modules; minutes after)
+6. for each theorem listed in Section S2: lake env lean on a file containing #print axioms <name>

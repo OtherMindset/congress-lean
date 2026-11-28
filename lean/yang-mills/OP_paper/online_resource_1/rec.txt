@@ -1,0 +1,48 @@
+
+== S2 (HierarchyBridge, S2Bridge, S2Instance; operator's Mac, 25 Nov 2026)
+Build completed successfully (15235 jobs).
+'YangMills.openai_singlePhase_iff_clusters' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YangMills.openai_singlePhase_iff_uniqueHeat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YangMills.openai_separates' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== Condensates (25 Nov 2026)
+Build completed successfully (14839 jobs).
+'YM.Independent.viewer_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.phases_agree_of_condensates' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== LowCondensates (built as a dependency of DimFour; axiom check run separately, 25 Nov 2026)
+'YM.Independent.Low.condensate_eq_oneToken' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.Low.condensate_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.Low.viewers_agree_below_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.Low.viewers_differ_by_dim4' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== DimFour and DimFourTrace (25 Nov 2026)
+Build completed successfully (14841 jobs).
+'YM.Independent.DimFour.invariant_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.field_four_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.onePoint_mirror' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.invariant_two_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.two_numbers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.one_number' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.marker_dichotomy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.viewers_differ_by_one_number' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.viewers_agree_of_one_number' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.dimension_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+-- DimFourTrace
+Build completed successfully (14842 jobs).
+'YM.Independent.DimFour.invariant_sep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.marker_of_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.stressTrace_mirror' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.DimFour.trace_marker' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== TraceUnit and MarkerCluster (26 Nov 2026)
+-- TraceUnit
+Build completed successfully (14843 jobs).
+'YM.Independent.TraceUnit.stressTrace_ne_smul_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.TraceUnit.stressTrace_ne_smul_unit_of_tests' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.TraceUnit.trace_marker_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+-- MarkerCluster
+Build completed successfully (14846 jobs).
+'YM.OS.Ground.Marker.const_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.Marker.marker_phase_iff_clusters' depends on axioms: [propext, Classical.choice, Quot.sound]
+'YM.Independent.Marker.dimFour_phase_iff_clusters' depends on axioms: [propext, Classical.choice, Quot.sound]
